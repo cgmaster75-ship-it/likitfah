@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ตรวจสลากกินแบ่งรัฐบาล & สถิติหวย AI - ลิขิตฟ้า</title>
+    <meta name="description" content="ตรวจหวย สลากกินแบ่งรัฐบาล รวดเร็ว แม่นยำ พร้อมระบบ AI วิเคราะห์สถิติหวยย้อนหลัง เจาะลึกเลขเด็ด เลขดัง งวดนี้ห้ามพลาด">
+    <meta name="keywords" content="ตรวจหวย, สลากกินแบ่งรัฐบาล, ลอตเตอรี่, สถิติหวย, เลขเด็ด, ตรวจรางวัล">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/scaner.html">
+    <meta property="og:title" content="ตรวจสลากกินแบ่งรัฐบาล & สถิติหวย AI - ลิขิตฟ้า">
+    <meta property="og:description" content="ตรวจหวยรวดเร็วทันใจ พร้อมระบบ AI วิเคราะห์สถิติหวยย้อนหลัง เจาะลึกเลขเด็ดงวดนี้">
+    <meta property="og:image" content="https://likitfah.com/img/og-scaner.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ตรวจสลากกินแบ่งรัฐบาล & สถิติหวย AI">
+    <meta name="twitter:description" content="ตรวจหวยรวดเร็วทันใจ พร้อมวิเคราะห์สถิติหวยย้อนหลัง">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-scaner.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #0B1120; color: white; font-family: 'Prompt', sans-serif; }
+        .card { background: #1E293B; border-radius: 1.25rem; border: 1px solid rgba(255,255,255,0.05); }
+        select { background-color: #334155; border: 1px solid #475569; border-radius: 0.5rem; padding: 0.5rem 1rem; width: 100%; color: white; appearance: none; }
+        
+        /* สไตล์ตาราง */
+        .history-table th { border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-weight: 500; color: #94a3b8; }
+        .history-table td { border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+
+        /* อนิเมชันหลอดเปอร์เซ็นต์ */
+        @keyframes loadBar { from { width: 0; } }
+        .bar-animate { animation: loadBar 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-5xl mx-auto">
+        <button onclick="window.location.href='dashboard.html'" class="mb-6 text-slate-400 hover:text-white transition-colors">
+            <i class="fa-solid fa-arrow-left mr-2"></i>กลับเมนู
+        </button>
+        
+        <h1 class="text-3xl font-bold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-teal-400">
+            <i class="fa-solid fa-chart-line text-emerald-400 mr-2"></i> สถิติหวยย้อนหลัง 36 ปี
+        </h1>
+
+        <div class="card p-6 mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-end shadow-lg">
+            <div>
+                <label class="text-xs text-slate-400 mb-1 block">วัน</label>
+                <select id="f-day"><option value="all">ทุกวัน</option><option value="อาทิตย์">อาทิตย์</option><option value="จันทร์">จันทร์</option><option value="อังคาร">อังคาร</option><option value="พุธ">พุธ</option><option value="พฤหัสบดี">พฤหัสบดี</option><option value="ศุกร์">ศุกร์</option><option value="เสาร์">เสาร์</option></select>
+            </div>
+            <div>
+                <label class="text-xs text-slate-400 mb-1 block">เดือน</label>
+                <select id="f-month"><option value="all">ทุกเดือน</option><option value="1">มกราคม</option><option value="2">กุมภาพันธ์</option><option value="3">มีนาคม</option><option value="4">เมษายน</option><option value="5">พฤษภาคม</option><option value="6">มิถุนายน</option><option value="7">กรกฎาคม</option><option value="8">สิงหาคม</option><option value="9">กันยายน</option><option value="10">ตุลาคม</option><option value="11">พฤศจิกายน</option><option value="12">ธันวาคม</option></select>
+            </div>
+            <div>
+                <label class="text-xs text-slate-400 mb-1 block">ปี พ.ศ.</label>
+                <select id="f-year"><option value="all">ทุกปี (รวมสถิติ)</option></select>
+            </div>
+            <button onclick="analyze()" id="btn-search" class="bg-emerald-600 hover:bg-emerald-500 h-10 rounded-lg font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                <i class="fa-solid fa-magnifying-glass mr-1"></i> ค้นหาสถิติ
+            </button>
+        </div>
+
+        <div id="loading" class="text-center hidden py-10">
+            <i class="fa-solid fa-circle-notch fa-spin text-4xl text-emerald-500 mb-3"></i>
+            <p class="text-emerald-400 text-sm animate-pulse">กำลังประมวลผลฐานข้อมูล...</p>
+        </div>
+
+        <div id="results" class="hidden">
+            <p id="summary" class="text-center text-emerald-400 mb-6 font-medium bg-emerald-900/20 py-2 rounded-full border border-emerald-500/20 w-max mx-auto px-6"></p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="card p-6 shadow-xl">
+                    <h2 class="text-amber-400 font-bold mb-5 pb-3 border-b border-slate-700/50 flex items-center">
+                        <i class="fa-solid fa-arrow-up text-lg mr-2"></i> TOP 5 เลข 2 ตัวบน (ท้ายรางวัลที่ 1)
+                    </h2>
+                    <div id="list-top" class="space-y-4"></div>
+                </div>
+                <div class="card p-6 shadow-xl">
+                    <h2 class="text-emerald-400 font-bold mb-5 pb-3 border-b border-slate-700/50 flex items-center">
+                        <i class="fa-solid fa-arrow-down text-lg mr-2"></i> TOP 5 เลข 2 ตัวล่าง
+                    </h2>
+                    <div id="list-bottom" class="space-y-4"></div>
+                </div>
+            </div>
+
+            <div class="card p-6 mb-8 shadow-xl border-sky-500/20 bg-sky-900/10">
+                <h2 class="text-sky-400 font-bold mb-5 flex items-center"><i class="fa-solid fa-snowflake mr-2 text-xl"></i> เลขจำศีล (ไม่โผล่มานานที่สุด)</h2>
+                <div id="list-cold" class="grid grid-cols-2 md:grid-cols-5 gap-4"></div>
+            </div>
+
+            <div id="table-box" class="card p-6 overflow-hidden hidden shadow-xl">
+                <h2 class="text-white font-bold mb-4 text-lg">ผลการออกรางวัลย้อนหลัง <span id="table-year-txt" class="text-emerald-400 ml-1"></span></h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-slate-700/50 text-slate-300">
+                            <tr><th class="p-4 text-left rounded-tl-lg">งวดวันที่</th><th class="p-4">รางวัลที่ 1</th><th class="p-4">เลขหน้า 3 ตัว</th><th class="p-4">เลขท้าย 3 ตัว</th><th class="p-4 rounded-tr-lg">2 ตัวล่าง</th></tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // สร้างปี พ.ศ. ทันทีที่โหลด
+        window.onload = () => {
+            const select = document.getElementById('f-year');
+            const now = new Date().getFullYear();
+            for(let y = now; y >= 2006; y--) {
+                const opt = document.createElement('option');
+                opt.value = y; opt.text = `พ.ศ. ${y + 543}`;
+                select.add(opt);
+            }
+            analyze(); // โหลดครั้งแรก
+        };
+
+        async function analyze() {
+            const day = document.getElementById('f-day').value;
+            const month = document.getElementById('f-month').value;
+            const year = document.getElementById('f-year').value;
+            const btn = document.getElementById('btn-search');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> ค้นหา...';
+            btn.disabled = true;
+            document.getElementById('loading').classList.remove('hidden');
+            document.getElementById('results').classList.add('hidden');
+
+            try {
+                const res = await fetch(`/api/lotto/analyze?day=${day}&month=${month}&year=${year}`);
+                const data = await res.json();
+
+                if(data.status === "success") {
+                    document.getElementById('summary').innerHTML = `ดึงข้อมูลจากสถิติ <span class="text-amber-400 font-bold mx-1 text-xl">${data.total}</span> งวด`;
+                    
+                    // 🌟 จัดการสี 5 อันดับ แบบไล่เฉดนีออน
+                    const rankColors = [
+                        'from-amber-400 to-orange-500',  // อันดับ 1 ทอง/ส้ม
+                        'from-rose-400 to-pink-500',     // อันดับ 2 ชมพู
+                        'from-purple-400 to-fuchsia-500',// อันดับ 3 ม่วง
+                        'from-blue-400 to-indigo-500',   // อันดับ 4 น้ำเงิน
+                        'from-emerald-400 to-teal-500'   // อันดับ 5 เขียว
+                    ];
+
+                    const drawColorfulList = (list, target) => {
+                        document.getElementById(target).innerHTML = list.map((i, index) => {
+                            const grad = rankColors[index] || rankColors[0];
+                            return `
+                                <div class="flex items-center gap-4 bg-slate-800/40 p-3 rounded-2xl border border-slate-700/50 hover:bg-slate-700/50 transition-all hover:-translate-y-1 shadow-sm hover:shadow-lg">
+                                    <div class="w-16 h-16 shrink-0 rounded-xl bg-gradient-to-br ${grad} p-[2px] shadow-lg">
+                                        <div class="w-full h-full bg-[#0F172A] rounded-[10px] flex items-center justify-center">
+                                            <span class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br ${grad}">${i.number}</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <div class="flex justify-between text-sm mb-2">
+                                            <span class="text-slate-300">ออก <span class="font-bold text-white">${i.count}</span> ครั้ง</span>
+                                            <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r ${grad}">${i.percent}%</span>
+                                        </div>
+                                        <div class="w-full bg-slate-900 rounded-full h-2.5 overflow-hidden border border-slate-800">
+                                            <div class="h-full rounded-full bg-gradient-to-r ${grad} bar-animate relative" style="${i.w}">
+                                                <div class="absolute top-0 left-0 w-full h-full bg-white/20"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                    };
+
+                    drawColorfulList(data.top_top, 'list-top');
+                    drawColorfulList(data.top_bottom, 'list-bottom');
+
+                    // 🌟 จัดการกล่องตัวเลขจำศีล (Ice Blue Effect)
+                    document.getElementById('list-cold').innerHTML = data.colds.map(i => `
+                        <div class="bg-gradient-to-b from-sky-500/50 to-blue-900/50 p-[2px] rounded-xl hover:-translate-y-1 transition-transform shadow-lg">
+                            <div class="bg-[#0F172A] h-full p-4 rounded-[10px] text-center">
+                                <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-sky-200 to-sky-500 mb-1 drop-shadow-md">${i.n}</div>
+                                <div class="text-[10px] text-slate-500 mt-2 uppercase tracking-wider">ล่าสุดเมื่อ</div>
+                                <div class="text-xs text-sky-400 font-medium">${i.d}</div>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    // จัดการตาราง
+                    const tableBox = document.getElementById('table-box');
+                    if(year !== 'all') {
+                        document.getElementById('table-year-txt').innerText = `(ปี พ.ศ. ${Number(year) + 543})`;
+                        const hRes = await fetch(`/api/lotto/history?year=${year}`);
+                        const hData = await hRes.json();
+                        document.getElementById('table-body').innerHTML = hData.map(r => `
+                            <tr class="border-b border-slate-700/50 hover:bg-slate-800/80 transition-colors">
+                                <td class="p-4 text-emerald-400 whitespace-nowrap">${r.date_th}</td>
+                                <td class="p-4 text-center font-bold tracking-widest text-lg">${r.prize_1}</td>
+                                <td class="p-4 text-center text-slate-400">${r.prize_3digits_front1}, ${r.prize_3digits_front2}</td>
+                                <td class="p-4 text-center text-slate-400">${r.prize_3digits_back1}, ${r.prize_3digits_back2}</td>
+                                <td class="p-4 text-center font-bold text-amber-500 text-xl">${r.prize_2digits}</td>
+                            </tr>
+                        `).join('');
+                        tableBox.classList.remove('hidden');
+                    } else {
+                        tableBox.classList.add('hidden');
+                    }
+
+                    document.getElementById('results').classList.remove('hidden');
+                } else {
+                    document.getElementById('summary').innerHTML = "ไม่พบสถิติในเงื่อนไขที่คุณเลือก";
+                    document.getElementById('results').classList.remove('hidden');
+                    document.getElementById('list-top').innerHTML = "";
+                    document.getElementById('list-bottom').innerHTML = "";
+                    document.getElementById('list-cold').innerHTML = "";
+                    document.getElementById('table-box').classList.add('hidden');
+                }
+            } catch (e) { alert("เกิดข้อผิดพลาดในการดึงข้อมูล"); }
+            
+            document.getElementById('loading').classList.add('hidden');
+            btn.innerHTML = '<i class="fa-solid fa-magnifying-glass mr-1"></i> ค้นหาสถิติ';
+            btn.disabled = false;
+        }
+    </script>
+	<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

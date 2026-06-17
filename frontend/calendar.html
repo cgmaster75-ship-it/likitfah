@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ปฏิทินฤกษ์มงคล คำนวณวันดี วันธงชัย - ลิขิตฟ้า</title>
+    <meta name="description" content="เช็ควันธงชัย วันอธิบดี วันรับทรัพย์ และวันโลกาวินาศ ล่วงหน้า ด้วยปฏิทินฤกษ์มงคลสำหรับขึ้นบ้านใหม่ ออกรถ แต่งงาน เปิดกิจการ">
+    <meta name="keywords" content="ฤกษ์มงคล, ปฏิทินฤกษ์ยาม, วันธงชัย, วันอธิบดี, ฤกษ์ออกรถ, ฤกษ์แต่งงาน, วันโลกาวินาศ">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/calendar.html">
+    <meta property="og:title" content="ปฏิทินฤกษ์มงคล คำนวณวันดี วันธงชัย - ลิขิตฟ้า">
+    <meta property="og:description" content="หาฤกษ์งามยามดี เช็ควันธงชัย วันอธิบดี ล่วงหน้า สำหรับขึ้นบ้านใหม่ ออกรถ และเปิดกิจการ">
+    <meta property="og:image" content="https://likitfah.com/img/og-calendar.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ปฏิทินฤกษ์มงคล คำนวณวันดี วันธงชัย">
+    <meta name="twitter:description" content="หาฤกษ์งามยามดี เช็ควันธงชัย วันอธิบดี ล่วงหน้า สำหรับงานมงคล">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-calendar.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        mono: ['Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #0B0B1A;
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.6) 0%, rgba(0, 0, 0, 0.95) 100%),
+                radial-gradient(circle at 50% 30%, rgba(16, 185, 129, 0.15), transparent 60%), 
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        
+        .glass-panel { 
+            background: rgba(18, 18, 38, 0.7); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); 
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 45, 35, 0.6) 0%, rgba(15, 25, 20, 0.8) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .text-title-gradient { 
+            background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .glow-icon { filter: drop-shadow(0 0 10px currentColor); }
+
+        /* ซ่อน Scrollbar ของปฏิทินเผื่อล้น */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10 mb-20">
+        
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-900/40 border border-emerald-500/30 mb-4 shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                <i class="fa-regular fa-calendar-days text-3xl text-emerald-400 glow-icon"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg tracking-wide mb-2">ปฏิทินฤกษ์มงคล</h2>
+            <p class="text-emerald-200/70 font-light" id="calendar-name-display">คำนวณวันดี-วันร้าย ล่วงหน้า</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 md:p-8 border-t-2 border-t-emerald-500 shadow-[0_0_30px_rgba(16,185,129,0.1)] relative overflow-hidden">
+            <h3 class="text-xl font-bold text-emerald-400 mb-6 flex items-center"><i class="fa-solid fa-calendar-check mr-2"></i> Auspicious Calendar</h3>
+
+            <div class="glass-card rounded-2xl p-4 md:p-6 relative z-10">
+                
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="changeMonth(-1)" class="w-10 h-10 rounded-full bg-emerald-900/40 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-800/60 hover:text-white transition flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    
+                    <div class="text-center flex gap-2">
+                        <select id="monthSelect" onchange="renderCalendar()" class="bg-black/50 border border-emerald-500/30 text-emerald-300 font-bold rounded-lg px-3 py-2 outline-none appearance-none cursor-pointer text-sm md:text-base">
+                            </select>
+                        <select id="yearSelect" onchange="renderCalendar()" class="bg-black/50 border border-emerald-500/30 text-emerald-300 font-bold rounded-lg px-3 py-2 outline-none appearance-none cursor-pointer text-sm md:text-base">
+                            </select>
+                    </div>
+                    
+                    <button onclick="changeMonth(1)" class="w-10 h-10 rounded-full bg-emerald-900/40 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-800/60 hover:text-white transition flex items-center justify-center shadow-md">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-7 gap-1 md:gap-2 text-center text-[10px] md:text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">
+                    <div class="text-rose-400">อา.</div><div>จ.</div><div>อ.</div><div>พ.</div><div>พฤ.</div><div>ศ.</div><div class="text-blue-400">ส.</div>
+                </div>
+
+                <div id="calendarGrid" class="grid grid-cols-7 gap-1 md:gap-2 text-center">
+                    </div>
+
+                <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[10px] md:text-xs font-medium text-slate-300">
+                    <span class="flex items-center"><div class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399] mr-2"></div> มหาฤกษ์/อธิบดี</span>
+                    <span class="flex items-center"><div class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_8px_#a3e635] mr-2"></div> เสี่ยงโชค/รับทรัพย์</span>
+                    <span class="flex items-center"><div class="w-2.5 h-2.5 rounded-full bg-rose-400 shadow-[0_0_8px_#fb7185] mr-2"></div> วันชง/ขัดแย้ง</span>
+                    <span class="flex items-center"><div class="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_8px_#ef4444] mr-2"></div> โลกาวินาศ (ห้ามมงคล)</span>
+                </div>
+
+                <div id="dayDetails" class="mt-6 p-5 bg-black/40 border border-emerald-500/30 rounded-xl hidden animate-[fadeIn_0.3s_ease-out] shadow-inner">
+                    <div class="flex items-start gap-4">
+                        <div id="detailIcon" class="w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0 shadow-md"></div>
+                        <div class="flex-1">
+                            <h4 id="detailDate" class="text-xs font-bold text-slate-400 mb-1 tracking-widest uppercase">วันที่</h4>
+                            <p id="detailName" class="text-xl font-bold mb-2">วันธงชัย</p>
+                            <p id="detailDesc" class="text-sm text-slate-200 leading-relaxed bg-white/5 p-3 rounded-lg border border-white/10">รายละเอียด</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        let calCurrentMonth = new Date().getMonth();
+        let calCurrentYear = new Date().getFullYear();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('user_fullname');
+            if (!userName) {
+                window.location.href = 'index.html'; // กลับไปหน้าแรกถ้ายังไม่ Login
+                return;
+            }
+
+            document.getElementById('calendar-name-display').innerText = `สำหรับคุณ ${userName}`;
+            initCalendar(); 
+        });
+
+        function initCalendar() {
+            const mSelect = document.getElementById('monthSelect');
+            const thMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            thMonths.forEach((m, i) => {
+                mSelect.add(new Option(m, i));
+            });
+            
+            const ySelect = document.getElementById('yearSelect');
+            const currentY = new Date().getFullYear();
+            for(let i = 2024; i <= 2030; i++) {
+                ySelect.add(new Option(`พ.ศ. ${i + 543}`, i));
+            }
+
+            mSelect.value = calCurrentMonth;
+            ySelect.value = calCurrentYear;
+            
+            renderCalendar();
+        }
+
+        function changeMonth(dir) {
+            calCurrentMonth += dir;
+            if(calCurrentMonth > 11) { 
+                calCurrentMonth = 0; 
+                calCurrentYear++; 
+            }
+            if(calCurrentMonth < 0) { 
+                calCurrentMonth = 11; 
+                calCurrentYear--; 
+            }
+            
+            const ySelect = document.getElementById('yearSelect');
+            let yearOptionExists = false;
+            for (let i = 0; i < ySelect.options.length; i++) {
+                if (parseInt(ySelect.options[i].value) === calCurrentYear) yearOptionExists = true;
+            }
+            if (!yearOptionExists) ySelect.add(new Option(`พ.ศ. ${calCurrentYear + 543}`, calCurrentYear));
+
+            document.getElementById('monthSelect').value = calCurrentMonth;
+            document.getElementById('yearSelect').value = calCurrentYear;
+            
+            renderCalendar();
+        }
+
+        // อัปเกรด: ดึงข้อมูลจาก Database ผ่าน API
+        async function renderCalendar() {
+            calCurrentMonth = parseInt(document.getElementById('monthSelect').value);
+            calCurrentYear = parseInt(document.getElementById('yearSelect').value);
+            
+            const grid = document.getElementById('calendarGrid');
+            grid.innerHTML = '<div class="col-span-7 text-center text-emerald-400 py-8"><i class="fa-solid fa-circle-notch fa-spin text-3xl mb-2"></i><br>กำลังคำนวณฤกษ์ยาม...</div>';
+            
+            document.getElementById('dayDetails').classList.add('hidden');
+            
+            try {
+                // เรียก API (เดือนของ SQL จะเริ่มที่ 1 ดังนั้นต้องบวก 1)
+                const response = await fetch(`/api/calendar/events?month=${calCurrentMonth + 1}&year=${calCurrentYear}`);
+                const eventsData = await response.json();
+                
+                // แปลงเป็น Map ให้ค้นหาด้วยวันที่ง่ายๆ
+                const eventsMap = {};
+                eventsData.forEach(ev => {
+                    const evDate = new Date(ev.date);
+                    eventsMap[evDate.getDate()] = ev;
+                });
+
+                grid.innerHTML = '';
+                const firstDay = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
+                const daysInMonth = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
+                
+                // เติมช่องว่างของวันแรกในเดือน
+                for(let i=0; i<firstDay; i++) {
+                    grid.innerHTML += `<div class="p-2 md:p-3 min-h-[50px] md:min-h-[70px]"></div>`;
+                }
+                
+                const thMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+                const today = new Date();
+                
+                for(let d=1; d<=daysInMonth; d++) {
+                    const dbEvent = eventsMap[d];
+                    
+                    let bgClass = "bg-white/5 border border-white/10 hover:bg-white/20 text-slate-300";
+                    let badgeHtml = "";
+                    let hoverTextClass = "text-slate-400";
+                    
+                    let evtName = 'วันปกติ';
+                    let evtDesc = 'สามารถใช้ชีวิตประจำวันและทำงานได้ตามปกติ ไม่มีฤกษ์พิเศษโดดเด่นและไม่มีข้อห้ามร้ายแรง';
+                    let evtColor = 'slate';
+                    let evtIcon = 'fa-calendar-day';
+
+                    // ถ้ามีข้อมูลใน Database ให้ใช้สีตามนั้น
+                    if(dbEvent) {
+                        evtName = dbEvent.title;
+                        evtDesc = dbEvent.description;
+                        evtColor = dbEvent.color; // ดึงสีมาจาก API
+                        evtIcon = dbEvent.icon;
+                        
+                        if(evtColor === 'emerald') { 
+                            bgClass = "bg-emerald-900/40 border border-emerald-500/50 hover:bg-emerald-800/60 text-emerald-300 font-bold"; 
+                            badgeHtml = `<div class="w-2 h-2 rounded-full bg-emerald-400 mx-auto mt-1 md:mt-2 shadow-[0_0_8px_#34d399]"></div>`; 
+                            hoverTextClass = "text-emerald-400";
+                        }
+                        else if(evtColor === 'lime') { 
+                            bgClass = "bg-lime-900/40 border border-lime-500/50 hover:bg-lime-800/60 text-lime-300 font-bold"; 
+                            badgeHtml = `<div class="w-2 h-2 rounded-full bg-lime-400 mx-auto mt-1 md:mt-2 shadow-[0_0_8px_#a3e635]"></div>`; 
+                            hoverTextClass = "text-lime-400";
+                        }
+                        else if(evtColor === 'rose') { 
+                            bgClass = "bg-rose-900/40 border border-rose-500/50 hover:bg-rose-800/60 text-rose-300"; 
+                            badgeHtml = `<div class="w-2 h-2 rounded-full bg-rose-400 mx-auto mt-1 md:mt-2 shadow-[0_0_8px_#fb7185]"></div>`; 
+                            hoverTextClass = "text-rose-400";
+                        }
+                        else if(evtColor === 'red') { 
+                            bgClass = "bg-red-900/40 border border-red-500/50 hover:bg-red-800/60 text-red-300"; 
+                            badgeHtml = `<div class="w-2 h-2 rounded-full bg-red-500 mx-auto mt-1 md:mt-2 shadow-[0_0_8px_#ef4444]"></div>`; 
+                            hoverTextClass = "text-red-400";
+                        }
+                    }
+                    
+                    if(d === today.getDate() && calCurrentMonth === today.getMonth() && calCurrentYear === today.getFullYear()) {
+                        bgClass += " ring-2 ring-white shadow-[0_0_15px_rgba(255,255,255,0.5)]";
+                    }
+
+                    const dateStr = `${d} ${thMonths[calCurrentMonth]} ${calCurrentYear+543}`;
+                    
+                    grid.innerHTML += `
+                        <div onclick="showDayDetails('${dateStr}', '${evtName}', '${evtDesc}', '${evtColor}', '${evtIcon}')" 
+                             class="p-2 md:p-3 rounded-lg cursor-pointer transition-all ${bgClass} flex flex-col items-center justify-start min-h-[50px] md:min-h-[70px] shadow-sm relative group overflow-hidden">
+                            <span class="text-sm md:text-lg">${d}</span>
+                            ${badgeHtml}
+                            <div class="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex">
+                                <span class="text-[10px] text-center px-1 ${hoverTextClass} font-bold leading-tight">${evtName}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                grid.innerHTML = '<div class="col-span-7 text-center text-rose-400 py-8">ไม่สามารถเชื่อมต่อฐานข้อมูลได้ กรุณาตรวจสอบเซิร์ฟเวอร์</div>';
+            }
+        }
+        
+        function showDayDetails(dateStr, name, desc, colorTheme, icon) {
+            const detailsPanel = document.getElementById('dayDetails');
+            
+            detailsPanel.classList.remove('hidden');
+            detailsPanel.classList.remove('animate-[fadeIn_0.3s_ease-out]');
+            void detailsPanel.offsetWidth; 
+            detailsPanel.classList.add('animate-[fadeIn_0.3s_ease-out]');
+            
+            document.getElementById('detailDate').innerText = dateStr;
+            document.getElementById('detailName').innerText = name;
+            document.getElementById('detailDesc').innerText = desc;
+            
+            const iconContainer = document.getElementById('detailIcon');
+            iconContainer.innerHTML = `<i class="fa-solid ${icon}"></i>`;
+            
+            // Map สีเพื่อป้องกันปัญหา Tailwind ไม่รู้จัก Class ที่สร้างแบบ Dynamic
+            const colorClasses = {
+                'emerald': { bg: 'bg-emerald-900/50', border: 'border-emerald-500/50', text: 'text-emerald-400' },
+                'lime': { bg: 'bg-lime-900/50', border: 'border-lime-500/50', text: 'text-lime-400' }, // เพิ่มสี Lime แล้ว!
+                'rose': { bg: 'bg-rose-900/50', border: 'border-rose-500/50', text: 'text-rose-400' },
+                'red': { bg: 'bg-red-900/50', border: 'border-red-500/50', text: 'text-red-400' },
+                'slate': { bg: 'bg-slate-900/50', border: 'border-slate-500/50', text: 'text-slate-400' }
+            };
+
+            const styles = colorClasses[colorTheme] || colorClasses['slate'];
+            
+            iconContainer.className = `w-12 h-12 rounded-full flex items-center justify-center text-2xl shrink-0 shadow-md ${styles.bg} ${styles.text} ${styles.border}`;
+            document.getElementById('detailName').className = `text-xl font-bold mb-2 ${styles.text}`;
+            
+            detailsPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+	<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

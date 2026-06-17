@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ลิขิตฟ้า</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Prompt', sans-serif; background-color: #f8fafc; color: #334155; }
+        .glass-card { background: white; border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-slate-100">
+
+    <!-- 🔒 1. หน้า Login -->
+    <div id="login-section" class="w-full max-w-md p-8 glass-card">
+        <div class="text-center mb-8">
+            <i class="fa-solid fa-user-shield text-5xl text-purple-600 mb-4"></i>
+            <h2 class="text-2xl font-bold text-slate-800">ระบบจัดการผู้ดูแลระบบ</h2>
+            <p class="text-sm text-slate-500">Likit Fah Admin Dashboard</p>
+        </div>
+        <form onsubmit="handleLogin(event)" class="space-y-5">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">ชื่อผู้ใช้งาน</label>
+                <div class="relative">
+                    <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="admin-user" required class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 outline-none focus:border-purple-500">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1 uppercase">รหัสผ่าน</label>
+                <div class="relative">
+                    <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="password" id="admin-pass" required class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 outline-none focus:border-purple-500">
+                </div>
+            </div>
+            <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition-colors shadow-md">
+                เข้าสู่ระบบ
+            </button>
+        </form>
+    </div>
+
+    <!-- 📊 2. หน้า Dashboard (ซ่อนไว้ก่อน) -->
+    <div id="dashboard-section" class="hidden w-full h-screen flex flex-col md:flex-row absolute top-0 left-0 bg-slate-50 z-50">
+        
+        <!-- Sidebar -->
+        <aside class="w-full md:w-64 bg-slate-900 text-white flex flex-col">
+            <div class="p-6 border-b border-slate-800">
+                <h1 class="text-xl font-bold text-purple-400"><i class="fa-solid fa-book-journal-whills mr-2"></i>ลิขิตฟ้า Admin</h1>
+            </div>
+            <nav class="flex-grow p-4 space-y-2">
+                <a href="#" class="block px-4 py-3 bg-purple-600 text-white rounded-lg font-medium"><i class="fa-solid fa-plug mr-3"></i> เชื่อมต่อ API</a>
+                <a href="#" class="block px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-colors" onclick="alert('ฟีเจอร์นี้เตรียมไว้สำหรับอัปเดตในอนาคต')"><i class="fa-solid fa-users mr-3"></i> จัดการผู้ใช้งาน</a>
+                <a href="#" class="block px-4 py-3 text-slate-400 hover:bg-slate-800 hover:text-white rounded-lg transition-colors" onclick="alert('ฟีเจอร์นี้เตรียมไว้สำหรับอัปเดตในอนาคต')"><i class="fa-solid fa-database mr-3"></i> ฐานข้อมูลคำทำนาย</a>
+            </nav>
+            <div class="p-4 border-t border-slate-800">
+                <button onclick="handleLogout()" class="w-full text-left px-4 py-2 text-rose-400 hover:text-rose-300"><i class="fa-solid fa-right-from-bracket mr-2"></i> ออกจากระบบ</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow p-6 md:p-10 overflow-y-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-slate-800">การเชื่อมต่อระบบ (API Integration)</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 max-w-4xl">
+                <!-- ตั้งค่า Backend หลัก -->
+                <div class="glass-card p-6 border-l-4 border-l-purple-500">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2"><i class="fa-solid fa-server text-purple-500 mr-2"></i>1. Backend API (Node.js/MySQL)</h3>
+                    <p class="text-sm text-slate-500 mb-4">เชื่อมต่อฐานข้อมูลเบอร์โทรศัพท์และไพ่ทาโรต์ที่คุณตั้งค่าไว้ใน Hostinger</p>
+                    <div class="space-y-3">
+                        <label class="block text-xs font-bold text-slate-700">Endpoint URL</label>
+                        <input type="text" id="api-backend-url" class="w-full border border-slate-300 rounded-lg px-4 py-2 font-mono text-sm outline-none focus:border-purple-500" placeholder="https://likitfah.com/api">
+                    </div>
+                </div>
+
+                <!-- ตั้งค่า 3rd Party Astrology API -->
+                <div class="glass-card p-6 border-l-4 border-l-blue-500">
+                    <h3 class="text-lg font-bold text-slate-800 mb-2"><i class="fa-solid fa-globe text-blue-500 mr-2"></i>2. โหราศาสตร์ API (Third-Party)</h3>
+                    <p class="text-sm text-slate-500 mb-4">สำหรับคำนวณดวงชะตาเชิงลึก ลัคนา และดาวเคราะห์ (เช่น AstrologyAPI, Prokerala, Astro.com)</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">เลือกผู้ให้บริการ (Provider)</label>
+                            <select id="api-astro-provider" class="w-full border border-slate-300 rounded-lg px-4 py-2 text-sm outline-none focus:border-blue-500 bg-white">
+                                <option value="none">-- ปิดใช้งาน (ใช้สูตรคำนวณในตัวเว็บ) --</option>
+                                <option value="astrologyapi">AstrologyAPI.com (แนะนำ)</option>
+                                <option value="prokerala">Prokerala API</option>
+                                <option value="custom">Custom Swiss Ephemeris</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">API Key / Access Token</label>
+                            <input type="password" id="api-astro-key" class="w-full border border-slate-300 rounded-lg px-4 py-2 font-mono text-sm outline-none focus:border-blue-500" placeholder="กรอก API Key ที่ได้รับจากผู้ให้บริการ">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end mt-4">
+                    <button onclick="saveApiSettings()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition-colors">
+                        <i class="fa-solid fa-save mr-2"></i> บันทึกการตั้งค่า
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- ตรวจสอบสถานะ Login ---
+        if(sessionStorage.getItem('likitfah_admin_logged_in') === 'true') {
+            showDashboard();
+        }
+
+        // --- ระบบ Login ---
+        function handleLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value;
+            const pass = document.getElementById('admin-pass').value;
+
+            // รหัสผ่านสำหรับทดสอบ (เปลี่ยนได้ตามต้องการ)
+            if(user === 'admin' && pass === 'admin888') {
+                sessionStorage.setItem('likitfah_admin_logged_in', 'true');
+                showDashboard();
+            } else {
+                alert('ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง!');
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.remove('hidden');
+            
+            // โหลดข้อมูลเก่าที่เคยบันทึกไว้มาแสดง
+            document.getElementById('api-backend-url').value = localStorage.getItem('LikitFah_API_URL') || '/api';
+            document.getElementById('api-astro-provider').value = localStorage.getItem('LikitFah_Astro_Provider') || 'none';
+            document.getElementById('api-astro-key').value = localStorage.getItem('LikitFah_Astro_Key') || '';
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem('likitfah_admin_logged_in');
+            document.getElementById('dashboard-section').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+            document.getElementById('admin-pass').value = '';
+        }
+
+        // --- บันทึกการตั้งค่าลงเครื่อง (Shared with index.php) ---
+        function saveApiSettings() {
+            const backendUrl = document.getElementById('api-backend-url').value.trim();
+            const astroProvider = document.getElementById('api-astro-provider').value;
+            const astroKey = document.getElementById('api-astro-key').value.trim();
+
+            if(!backendUrl) return alert("กรุณาระบุ Backend URL");
+
+            // บันทึกลง LocalStorage ซึ่งหน้าเว็บ index.php จะมองเห็นค่านี้ด้วย
+            localStorage.setItem('LikitFah_API_URL', backendUrl);
+            localStorage.setItem('LikitFah_Astro_Provider', astroProvider);
+            localStorage.setItem('LikitFah_Astro_Key', astroKey);
+
+            alert('บันทึกการตั้งค่า API เรียบร้อยแล้ว!\nหน้าเว็บหลักจะเริ่มดึงข้อมูลจากแหล่งใหม่ทันที');
+        }
+    </script>
+</body>
+</html>

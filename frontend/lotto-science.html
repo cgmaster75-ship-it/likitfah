@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Lotto Science ศูนย์วิจัยนวัตกรรมสถิติพยากรณ์ & สูตรหวย AI | ลิขิตฟ้า</title>
+    <meta name="description" content="Likit Fah Lotto Science ระบบ AI วิเคราะห์สถิติหวยย้อนหลัง 36 ปี ทดสอบความแม่นยำสูตรหวยระดับโลก ค้นหาเลขเด่น และดูปฏิทินเลขเด็ด VIP ตลอดปี">
+    <meta name="keywords" content="สถิติหวย, วิเคราะห์หวย AI, สูตรหวยแม่นๆ, ทดสอบสูตรหวย, เลขเด็ด VIP, ปฏิทินหวย, ลิขิตฟ้า, คำนวณหวย">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/lotto-science.html">
+    <meta property="og:title" content="Lotto Science ศูนย์วิจัยสถิติพยากรณ์ & สูตรหวย AI">
+    <meta property="og:description" content="รัน Backtest พิสูจน์สูตรหวยด้วย AI จากฐานข้อมูลสถิติ 36 ปี พร้อมปฏิทินเลขเด่นระดับ VIP">
+    <meta property="og:image" content="https://likitfah.com/img/og-lotto-science.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lotto Science สถิติหวย AI - ลิขิตฟ้า">
+    <meta name="twitter:description" content="พิสูจน์สูตรหวยด้วย AI จากฐานข้อมูลสถิติ 36 ปี พร้อมปฏิทินเลขเด่นระดับ VIP">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-lotto-science.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&family=Libre+Barcode+39+Text&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            --navy-dark: #02040F; --navy-med: #050A1F;
+            --gold-primary: #D4AF37; --gold-soft: #F3E5AB;
+        }
+
+        body { 
+            background-color: var(--navy-dark);
+            background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%), url('https://www.transparenttextures.com/patterns/stardust.png');
+            color: #e2e8f0; font-family: 'Prompt', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .premium-glass { 
+            background: rgba(10, 22, 51, 0.7); backdrop-filter: blur(15px);
+            border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 1.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .gold-gradient-text { background: linear-gradient(to right, var(--gold-soft), var(--gold-primary), #996515); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .input-magic { background: rgba(0,0,0,0.5); border: 1px solid rgba(212, 175, 55, 0.3); color: var(--gold-soft); outline: none; transition: all 0.3s; }
+        .input-magic:focus { border-color: var(--gold-primary); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+
+        .vip-ticket { background-color: #0A0F24; border: 2px solid var(--gold-primary); border-radius: 16px; position: relative; box-shadow: 0 0 30px rgba(212, 175, 55, 0.2); overflow: hidden; }
+        .ticket-header { background: linear-gradient(to right, #D4AF37, #996515); color: #000; }
+        .barcode-font { font-family: 'Libre Barcode 39 Text', cursive; font-size: 2.5rem; letter-spacing: 2px; }
+        
+        .ticket-notch-left, .ticket-notch-right { position: absolute; top: 50%; width: 24px; height: 24px; background-color: var(--navy-dark); border-radius: 50%; border: 2px solid var(--gold-primary); transform: translateY(-50%); z-index: 10; }
+        .ticket-notch-left { left: -14px; border-left-color: transparent; border-top-color: transparent; transform: translateY(-50%) rotate(45deg); }
+        .ticket-notch-right { right: -14px; border-right-color: transparent; border-bottom-color: transparent; transform: translateY(-50%) rotate(45deg); }
+
+        select option { background-color: #050A1F; color: #fff; }
+        select optgroup { color: var(--gold-primary); font-weight: bold; background-color: #02040F; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-10">
+
+    <nav class="p-4 md:p-6 flex justify-between items-center max-w-7xl mx-auto w-full">
+        <a href="dashboard.html" class="text-gold-primary hover:text-white transition-colors flex items-center gap-2 text-xs md:text-sm font-medium bg-black/40 px-3 py-2 rounded-full border border-white/10">
+            <i class="fa-solid fa-chevron-left"></i> กลับสู่ศูนย์บัญชาการ
+        </a>
+        <div class="text-center">
+            <h1 class="text-xl md:text-3xl font-bold font-serif gold-gradient-text tracking-tight">LOTTO SCIENCE</h1>
+        </div>
+        <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-gold-primary/30 flex items-center justify-center bg-black/40">
+            <i class="fa-solid fa-atom text-gold-primary animate-[spin_10s_linear_infinite]"></i>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto w-full px-4 mt-2 md:mt-6 flex-grow">
+        <section class="premium-glass p-6 md:p-8 mb-12 border-t-4 border-t-gold-primary relative">
+            <div class="mb-8 text-center md:text-left border-b border-white/10 pb-4">
+                <h2 class="text-xl md:text-2xl font-bold text-white flex justify-center md:justify-start items-center">
+                    <i class="fa-solid fa-laptop-code text-gold-primary mr-3"></i> AI Formula Simulator
+                </h2>
+                <p class="text-xs md:text-sm text-slate-400 mt-2">ประมวลผลสูตรพยากรณ์จากฐานข้อมูลย้อนหลัง 36 ปี เฉพาะงวดที่กำลังจะมาถึง</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div class="lg:col-span-6 space-y-5">
+                    <div>
+                        <label class="text-xs text-slate-400 uppercase tracking-widest mb-2 block">1. เลือกแพทเทิร์นสูตร (TEMPLATES)</label>
+                        <select id="formula-template" class="input-magic w-full rounded-xl px-4 py-3 text-sm cursor-pointer" onchange="loadTemplate()">
+                            <option value="">-- ✍️ พิมพ์สูตรของคุณเองด้านล่าง --</option>
+                            <optgroup label="🌍 สถิติระดับโลก (Global Stats)">
+                                <option value="poisson">Poisson Probability (ทฤษฎีความน่าจะเป็น)</option>
+                                <option value="fibonacci">Fibonacci Sequence (ลำดับฟีโบนัชชี)</option>
+                                <option value="sd_filter">S.D. Filter (ส่วนเบี่ยงเบนมาตรฐาน)</option>
+                            </optgroup>
+                            <optgroup label="🇹🇭 ตำราไทย (Thai Astrology)">
+                                <option value="classic">สูตรคลาสสิก: สิบหน้า + หน่วยท้าย</option>
+                                <option value="day_power">อิทธิพลดาวกำเนิดวัน (กำลังวัน)</option>
+                                <option value="mahataksa">สูตรมหาทักษา</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="text-xs text-slate-400 uppercase tracking-widest mb-2 block">2. แก้ไขสมการสูตร (EDITOR)</label>
+                        <div class="relative">
+                            <input type="text" id="custom-formula" placeholder="ระบุสูตรที่ต้องการประมวลผล" class="input-magic w-full rounded-xl px-4 py-4 text-sm md:text-base font-mono tracking-wider font-bold">
+                            <button onclick="clearFormula()" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-rose-400"><i class="fa-solid fa-circle-xmark"></i></button>
+                        </div>
+                    </div>
+
+                    <button onclick="calculateFormula()" id="btn-calc" class="w-full bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-navy-dark font-extrabold text-lg py-4 rounded-xl shadow-[0_5px_20px_rgba(212,175,55,0.4)] transition-all flex justify-center items-center gap-2 transform active:scale-95 mt-4">
+                        <i class="fa-solid fa-microchip text-xl"></i> สั่งรัน AI ประมวลผลจาก DB 36 ปี
+                    </button>
+
+                    <div id="error-alert" class="hidden bg-rose-500/10 border border-rose-500/30 text-rose-400 text-sm p-3 rounded-lg text-center mt-2">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> ไม่สามารถเชื่อมต่อฐานข้อมูลได้
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 flex flex-col items-center justify-center">
+                    <div id="result-wrapper" class="w-full max-w-[360px] hidden animate-[fadeIn_0.5s_ease-in]">
+                        
+                        <div id="shareable-ticket" class="vip-ticket w-full pb-4">
+                            <div class="ticket-notch-left"></div>
+                            <div class="ticket-notch-right"></div>
+                            
+                            <div class="ticket-header py-3 px-4 text-center">
+                                <h2 class="font-serif text-xl font-bold tracking-widest"><i class="fa-solid fa-moon text-sm mr-1"></i> LIKIT FAH</h2>
+                                <p class="text-[9px] font-bold uppercase tracking-widest">AI Prediction Ticket</p>
+                            </div>
+
+                            <div class="p-6 text-center">
+                                <p class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">สูตรคำนวณที่ใช้</p>
+                                <p id="t-formula-name" class="text-sm font-bold text-gold-soft mb-4 pb-4 border-b border-dashed border-white/20">Custom Formula</p>
+
+                                <div class="mb-5">
+                                    <span id="t-target-draw" class="text-xs text-amber-400 font-bold tracking-widest border border-amber-500/30 bg-amber-500/10 py-1.5 px-4 rounded-full inline-block shadow-[0_0_10px_rgba(212,175,55,0.2)]">
+                                        <i class="fa-solid fa-calendar-day mr-1"></i> วิเคราะห์สำหรับงวด: --/--
+                                    </span>
+                                </div>
+
+                                <div class="flex justify-center gap-5 mb-6" id="t-numbers"></div>
+
+                                <div class="bg-black/50 p-3 rounded-lg border border-white/5 flex justify-between items-center mb-4">
+                                    <div class="text-left">
+                                        <p class="text-[9px] text-slate-400 uppercase">ความน่าจะเป็น (Probability)</p>
+                                        <p id="t-accuracy" class="text-xl font-bold text-emerald-400">0%</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <i class="fa-solid fa-database text-gold-primary text-xl"></i>
+                                        <p class="text-[8px] text-slate-500 mt-1">Verified by DB</p>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-white/10 pt-4 mt-2">
+                                    <p class="barcode-font text-slate-500 opacity-60">LIKITFAH2026AI</p>
+                                    <p id="t-date" class="text-[8px] text-slate-500 mt-1">Generated: --/--/----</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex justify-center w-full">
+                            <button onclick="downloadTicket()" id="btn-download" class="w-full bg-[#1877F2]/20 border border-[#1877F2]/50 text-blue-300 hover:bg-[#1877F2] hover:text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(24,119,242,0.2)]">
+                                <i class="fa-solid fa-download text-lg"></i> บันทึกสลิปลงมือถือ
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="wait-state" class="w-full h-full min-h-[300px] flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-white/10 rounded-2xl">
+                        <i class="fa-solid fa-database text-5xl mb-4 opacity-50"></i>
+                        <p class="text-sm font-medium">รอเชื่อมต่อฐานข้อมูล</p>
+                        <p class="text-xs mt-1 opacity-70">เลือกสูตรแล้วกดประมวลผล</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="likitfah-footer" class="mt-auto"></div>
+
+    <script>
+        function loadTemplate() {
+            const select = document.getElementById('formula-template');
+            const input = document.getElementById('custom-formula');
+            if(select.value !== "") {
+                input.dataset.formulaCode = select.value;
+                input.value = select.options[select.selectedIndex].text;
+            }
+        }
+
+        function clearFormula() {
+            const input = document.getElementById('custom-formula');
+            input.value = "";
+            input.dataset.formulaCode = "";
+            document.getElementById('formula-template').value = "";
+        }
+
+        async function calculateFormula() {
+            const input = document.getElementById('custom-formula');
+            const formulaText = input.value;
+            const formulaCode = input.dataset.formulaCode || 'custom'; 
+            
+            if(!formulaText.trim()) { 
+                alert("กรุณาป้อนสูตรหรือเลือกแพทเทิร์นก่อนครับ"); 
+                return; 
+            }
+
+            const btn = document.getElementById('btn-calc');
+            const resultWrapper = document.getElementById('result-wrapper');
+            const waitState = document.getElementById('wait-state');
+            const errorAlert = document.getElementById('error-alert');
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xl"></i> กำลังรัน Backtest 36 ปี...';
+            btn.disabled = true;
+            waitState.classList.remove('hidden');
+            resultWrapper.classList.add('hidden');
+            errorAlert.classList.add('hidden');
+
+            try {
+                const response = await fetch(`/api/v1/lotto-science?formula=${formulaCode}`);
+                if (!response.ok) throw new Error('API Request Failed');
+                
+                const data = await response.json();
+
+                const now = new Date();
+                const dateStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()} ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+                document.getElementById('t-formula-name').innerText = formulaText.length > 30 ? formulaText.substring(0, 30) + '...' : formulaText;
+                
+                const targetDrawDisplay = data.targetDraw ? data.targetDraw : '--/--';
+                document.getElementById('t-target-draw').innerHTML = `<i class="fa-solid fa-calendar-day mr-1"></i> วิเคราะห์สำหรับงวด: ${targetDrawDisplay}`;
+                
+                document.getElementById('t-accuracy').innerText = `${data.probability}%`;
+                
+                const accObj = document.getElementById('t-accuracy');
+                if(parseFloat(data.probability) > 80) accObj.className = "text-xl font-bold text-emerald-400";
+                else if(parseFloat(data.probability) > 50) accObj.className = "text-xl font-bold text-amber-400";
+                else accObj.className = "text-xl font-bold text-rose-400";
+
+                document.getElementById('t-date').innerText = `Generated: ${dateStr}`;
+                
+                document.getElementById('t-numbers').innerHTML = `
+                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#996515] border-2 border-[#F3E5AB] text-black font-black flex items-center justify-center text-4xl md:text-5xl shadow-[0_0_20px_rgba(212,175,55,0.6)]">${data.number1}</div>
+                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-gradient-to-br from-[#D4AF37] to-[#996515] border-2 border-[#F3E5AB] text-black font-black flex items-center justify-center text-4xl md:text-5xl shadow-[0_0_20px_rgba(212,175,55,0.6)]">${data.number2}</div>
+                `;
+                
+                waitState.classList.add('hidden');
+                resultWrapper.classList.remove('hidden');
+
+                if(window.innerWidth < 1024) resultWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            } catch (error) {
+                console.error("Lotto Science API Error:", error);
+                errorAlert.classList.remove('hidden');
+                waitState.classList.remove('hidden');
+                resultWrapper.classList.add('hidden');
+            } finally {
+                btn.innerHTML = '<i class="fa-solid fa-microchip text-xl"></i> ประมวลผลจาก DB 36 ปีอีกครั้ง';
+                btn.disabled = false;
+            }
+        }
+
+        function downloadTicket() {
+            const ticketElement = document.getElementById('shareable-ticket');
+            const btnDl = document.getElementById('btn-download');
+            
+            btnDl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังสร้างรูปภาพ...';
+            btnDl.disabled = true;
+
+            html2canvas(ticketElement, {
+                scale: 3, backgroundColor: '#0A0F24', logging: false, useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `LikitFah-LottoScience-${Date.now()}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                btnDl.innerHTML = '<i class="fa-solid fa-check"></i> บันทึกสำเร็จ!';
+                btnDl.classList.replace('bg-[#1877F2]/20', 'bg-emerald-500/20');
+                btnDl.classList.replace('text-blue-300', 'text-emerald-400');
+                
+                setTimeout(() => {
+                    btnDl.innerHTML = '<i class="fa-solid fa-download text-lg"></i> บันทึกสลิปลงมือถือ';
+                    btnDl.disabled = false;
+                    btnDl.classList.replace('bg-emerald-500/20', 'bg-[#1877F2]/20');
+                    btnDl.classList.replace('text-emerald-400', 'text-blue-300');
+                }, 3000);
+            }).catch(err => {
+                alert("เกิดข้อผิดพลาด แนะนำให้รันไฟล์ผ่านเซิร์ฟเวอร์ครับ");
+                btnDl.disabled = false;
+            });
+        }
+    </script>
+
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+  
+</body>
+</html>

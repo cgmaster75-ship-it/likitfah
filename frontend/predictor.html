@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ระบบเลขตาม (Predictor) สถิติหวยน่าจะเป็น - ลิขิตฟ้า</title>
+    <meta name="description" content="ค้นหาว่าเลขที่คุณสนใจมักจะออกตามหลังเลขอะไร เจาะลึกสถิติหวยย้อนหลังเพื่อหาความน่าจะเป็นของงวดถัดไปแบบเรียลไทม์">
+    <meta name="keywords" content="เลขตาม, สถิติหวย, วิเคราะห์หวย, เลขเด็ดน่าจะมา, ทำนายหวย">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/predictor.html">
+    <meta property="og:title" content="ระบบเลขตาม (Predictor) สถิติหวยน่าจะเป็น - ลิขิตฟ้า">
+    <meta property="og:description" content="เจาะลึกสถิติหวยย้อนหลังเพื่อหาความน่าจะเป็นของงวดถัดไป ว่าเลขไหนมักจะออกตามกัน">
+    <meta property="og:image" content="https://likitfah.com/img/og-predictor.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ระบบเลขตาม (Predictor) สถิติหวยน่าจะเป็น">
+    <meta name="twitter:description" content="ค้นหาความน่าจะเป็นของงวดถัดไป ว่าเลขไหนมักจะออกตามกัน">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-predictor.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #05050A; color: #fff; font-family: 'Prompt', sans-serif; min-height: 100vh; overflow-x: hidden; }
+        .space-font { font-family: 'Space Mono', monospace; }
+        
+        /* กล่องค้นหา */
+        .search-box {
+            background: rgba(15, 23, 42, 0.8);
+            border: 2px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+            transition: all 0.3s;
+        }
+        .search-box:focus-within { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59, 130, 246, 0.5); }
+        
+        .num-input {
+            background: transparent; border: none; outline: none; color: #fff;
+            font-size: 3rem; text-align: center; width: 120px; font-weight: bold;
+        }
+        
+        /* สวิตช์สลับโหมด */
+        .toggle-container { background: #111827; padding: 5px; border-radius: 50px; display: inline-flex; position: relative; border: 1px solid #374151; margin-bottom: 20px; }
+        .toggle-btn { padding: 8px 25px; border-radius: 40px; cursor: pointer; z-index: 2; transition: all 0.3s; font-weight: 600; width: 100px; text-align: center; font-size: 0.9rem; }
+        .toggle-btn.active { color: white; }
+        .toggle-btn:not(.active) { color: #6b7280; }
+        .toggle-slider { position: absolute; top: 5px; bottom: 5px; width: 90px; border-radius: 40px; z-index: 1; transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); }
+        .mode-bottom .toggle-slider { left: 5px; background: linear-gradient(135deg, #ef4444, #991b1b); box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+        .mode-top .toggle-slider { left: 105px; background: linear-gradient(135deg, #3b82f6, #1e3a8a); box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+
+        /* การ์ดผลลัพธ์ */
+        .result-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid #334155; border-radius: 16px; padding: 20px;
+            text-align: center; position: relative; overflow: hidden;
+            transition: all 0.3s;
+        }
+        .result-card:hover { transform: translateY(-5px); border-color: #f59e0b; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2); }
+        
+        .rank-badge {
+            position: absolute; top: 0; left: 0; background: #f59e0b; color: #000;
+            padding: 4px 12px; font-weight: bold; border-bottom-right-radius: 12px; font-size: 0.8rem;
+        }
+        
+        /* เหรียญทองสำหรับอันดับ 1 */
+        .rank-1 { border-color: #fbbf24; box-shadow: 0 0 20px rgba(251, 191, 36, 0.3); }
+        .rank-1 .rank-badge { background: linear-gradient(to right, #fbbf24, #d97706); color: white; }
+        .rank-1 .pred-num { color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.5); }
+    </style>
+</head>
+<body class="p-4 md:p-8 flex flex-col items-center">
+
+    <div class="max-w-4xl w-full mt-10">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+               <i class="fa-solid fa-magnet"></i> ระบบทำนาย "เลขตาม"
+            </h1>
+            <p class="text-gray-400 text-sm">ค้นหาแพทเทิร์นว่า "งวดถัดไป" มักจะออกเลขอะไรตามมา (สถิติย้อนหลัง 20 ปี)</p>
+        </div>
+
+        <div class="flex flex-col items-center mb-12">
+            <div class="toggle-container mode-bottom" id="toggle-container">
+                <div class="toggle-slider"></div>
+                <div class="toggle-btn active" id="btn-bottom" onclick="switchMode('bottom')">2 ตัวล่าง</div>
+                <div class="toggle-btn" id="btn-top" onclick="switchMode('top')">2 ตัวบน</div>
+            </div>
+
+            <div class="search-box rounded-3xl p-6 flex flex-col items-center">
+                <p class="text-gray-400 mb-2">พิมพ์เลขงวดล่าสุดที่เพิ่งออก</p>
+                <div class="flex items-center justify-center gap-4">
+                    <input type="text" id="target-number" class="num-input space-font" maxlength="2" placeholder="00" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                    <button onclick="scanPattern()" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold h-16 w-16 rounded-full shadow-[0_0_20px_rgba(79,70,229,0.5)] transition-all transform hover:scale-105 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-bolt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-container" class="hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold">สถิติพบเลข <span id="res-target" class="text-blue-400 space-font">XX</span> ออกมาแล้วทั้งหมด <span id="res-total" class="text-emerald-400">0</span> ครั้ง</h2>
+                <p class="text-gray-400 mt-2">และนี่คือ 5 อันดับเลขที่มักจะออก <span class="text-white font-bold underline">"ตามมาในงวดถัดไป"</span> บ่อยที่สุด!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="prediction-cards">
+                </div>
+        </div>
+        
+        <div id="loading-state" class="hidden text-center text-blue-400 py-10">
+            <i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4"></i>
+            <p class="space-font tracking-widest">SCANNING TIMELINE...</p>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'bottom';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const container = document.getElementById('toggle-container');
+            if (mode === 'bottom') {
+                container.className = 'toggle-container mode-bottom';
+                document.getElementById('btn-bottom').classList.add('active');
+                document.getElementById('btn-top').classList.remove('active');
+            } else {
+                container.className = 'toggle-container mode-top';
+                document.getElementById('btn-top').classList.add('active');
+                document.getElementById('btn-bottom').classList.remove('active');
+            }
+            // ซ่อนผลลัพธ์เก่าเมื่อเปลี่ยนโหมด
+            document.getElementById('results-container').classList.add('hidden');
+        }
+
+        async function scanPattern() {
+            const input = document.getElementById('target-number').value;
+            if (input.length !== 2) {
+                alert("กรุณาพิมพ์ตัวเลขให้ครบ 2 หลักครับ (เช่น 05, 50, 99)");
+                return;
+            }
+
+            document.getElementById('results-container').classList.add('hidden');
+            document.getElementById('loading-state').classList.remove('hidden');
+
+            try {
+                const response = await fetch(`/api/lotto/predict-next?target_number=${input}&mode=${currentMode}`);
+                const data = await response.json();
+                
+                document.getElementById('loading-state').classList.add('hidden');
+                
+                if (data.total_found === 0) {
+                    alert(`ยังไม่เคยมีสถิติเลข ${input} ออกในโหมดนี้เลยครับในรอบ 20 ปี!`);
+                    return;
+                }
+
+                // แสดงผลลัพธ์
+                document.getElementById('res-target').innerText = data.target;
+                document.getElementById('res-total').innerText = data.total_found;
+                document.getElementById('results-container').classList.remove('hidden');
+
+                const cardsContainer = document.getElementById('prediction-cards');
+                cardsContainer.innerHTML = '';
+
+                data.predictions.slice(0, 3).forEach((pred, index) => {
+                    const rank = index + 1;
+                    let rankClass = rank === 1 ? 'rank-1' : '';
+                    
+                    const card = `
+                        <div class="result-card ${rankClass}">
+                            <div class="rank-badge">อันดับ ${rank}</div>
+                            <p class="text-sm text-gray-400 mt-4">โอกาสออกตามมา</p>
+                            <h3 class="pred-num text-5xl font-bold space-font my-2">${pred.number}</h3>
+                            <div class="bg-slate-800 rounded-full h-2 w-full mt-4 mb-2 overflow-hidden">
+                                <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full" style="width: ${pred.percent}%"></div>
+                            </div>
+                            <p class="text-xs text-gray-400">เคยตามมาแล้ว <span class="text-white font-bold">${pred.count}</span> ครั้ง (${pred.percent}%)</p>
+                        </div>
+                    `;
+                    cardsContainer.innerHTML += card;
+                });
+
+            } catch (error) {
+                console.error("Predictor Error:", error);
+                alert("เกิดข้อผิดพลาดในการดึงข้อมูลครับ");
+                document.getElementById('loading-state').classList.add('hidden');
+            }
+        }
+
+        // กด Enter ในช่องกรอกตัวเลขเพื่อเริ่มค้นหา
+        document.getElementById('target-number').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') scanPattern();
+        });
+    </script>
+	<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

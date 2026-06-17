@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ดูกราฟชีวิต 12 ภพ ตำราพรหมชาติ - ลิขิตฟ้า</title>
+    <meta name="description" content="ตรวจสอบกราฟชีวิต 12 ภพ ตามตำราพรหมชาติโบราณ เจาะลึกดวงชะตา วาสนา ทรัพย์ การงาน คู่ครอง">
+    <meta name="keywords" content="ดูกราฟชีวิต, ตำราพรหมชาติ, ดูดวง, กราฟชีวิต 12 ภพ, ดูดวงแม่นๆ">
+    <meta name="author" content="Likit Fah">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body { 
+            background-color: #05050A; color: white; font-family: 'Prompt', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, transparent 60%);
+        }
+        
+        .mystic-card {
+            background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 1.5rem; backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(99, 102, 241, 0.05);
+        }
+
+        select { 
+            background-color: #0f172a; border: 1px solid #334155; color: #fbbf24; 
+            outline: none; transition: all 0.3s; 
+        }
+        select:focus { border-color: #6366f1; box-shadow: 0 0 15px rgba(99, 102, 241, 0.3); }
+        
+        /* กล่องรับค่าครู */
+        .donate-box {
+            background: linear-gradient(135deg, rgba(30,27,75,0.8), rgba(15,23,42,0.9));
+            border: 2px dashed #fbbf24; box-shadow: 0 0 30px rgba(251, 191, 36, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative pb-24">
+
+    <main class="flex-grow flex flex-col items-center w-full p-4">
+
+        <div class="max-w-3xl w-full relative z-10 my-8">
+            <div class="text-center mb-8">
+                <div class="inline-block p-4 rounded-full bg-indigo-900/30 border border-indigo-500/30 mb-4">
+                    <i class="fa-solid fa-chart-line text-4xl text-indigo-400 drop-shadow-[0_0_15px_rgba(99,102,241,0.5)]"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-amber-300">
+                    กราฟชีวิต ๑๒ ภพ
+                </h1>
+                <p class="text-slate-400 text-sm">ทำนายจุดรุ่งเรืองและจุดระวังของชีวิต ตามตำราพรหมชาติโบราณ</p>
+            </div>
+
+            <div id="input-section" class="mystic-card p-6 md:p-8 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2"><i class="fa-solid fa-sun text-amber-400 mr-2"></i>วันเกิด</label>
+                        <select id="dob-day" class="w-full rounded-xl px-4 py-3 text-lg font-medium cursor-pointer">
+                            <option value="">-- เลือกวัน --</option>
+                            <option value="1">วันอาทิตย์</option>
+                            <option value="2">วันจันทร์</option>
+                            <option value="3">วันอังคาร</option>
+                            <option value="4">วันพุธ</option>
+                            <option value="5">วันพฤหัสบดี</option>
+                            <option value="6">วันศุกร์</option>
+                            <option value="7">วันเสาร์</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2"><i class="fa-solid fa-moon text-amber-400 mr-2"></i>เดือนเกิด (แบบไทย)</label>
+                        <select id="dob-month" class="w-full rounded-xl px-4 py-3 text-lg font-medium cursor-pointer">
+                            <option value="">-- เลือกเดือน --</option>
+                            <option value="1">เดือน 1 (ธันวาคม)</option>
+                            <option value="2">เดือน 2 (มกราคม)</option>
+                            <option value="3">เดือน 3 (กุมภาพันธ์)</option>
+                            <option value="4">เดือน 4 (มีนาคม)</option>
+                            <option value="5">เดือน 5 (เมษายน)</option>
+                            <option value="6">เดือน 6 (พฤษภาคม)</option>
+                            <option value="7">เดือน 7 (มิถุนายน)</option>
+                            <option value="8">เดือน 8 (กรกฎาคม)</option>
+                            <option value="9">เดือน 9 (สิงหาคม)</option>
+                            <option value="10">เดือน 10 (กันยายน)</option>
+                            <option value="11">เดือน 11 (ตุลาคม)</option>
+                            <option value="12">เดือน 12 (พฤศจิกายน)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 text-sm mb-2"><i class="fa-solid fa-dragon text-amber-400 mr-2"></i>ปีนักษัตร</label>
+                        <select id="dob-year" class="w-full rounded-xl px-4 py-3 text-lg font-medium cursor-pointer">
+                            <option value="">-- เลือกปีนักษัตร --</option>
+                            <option value="1">ชวด (หนู)</option>
+                            <option value="2">ฉลู (วัว)</option>
+                            <option value="3">ขาล (เสือ)</option>
+                            <option value="4">เถาะ (กระต่าย)</option>
+                            <option value="5">มะโรง (มังกร)</option>
+                            <option value="6">มะเส็ง (งูเล็ก)</option>
+                            <option value="7">มะเมีย (งูใหญ่)</option>
+                            <option value="8">มะแม (ม้า)</option>
+                            <option value="9">วอก (แพะ)</option>
+                            <option value="10">ระกา (ลิง)</option>
+                            <option value="11">จอ (ไก่)</option>
+                            <option value="12">กุน (หมู)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button onclick="generateGraph()" id="btn-generate" class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> ผูกดวงสร้างกราฟชีวิต
+                </button>
+            </div>
+
+            <div id="result-section" class="hidden opacity-0 transition-all duration-700">
+                
+                <div class="mystic-card p-4 md:p-8 mb-8">
+                    <h2 class="text-xl font-bold mb-6 text-center text-indigo-300">ชะตากราฟชีวิตของคุณ</h2>
+                    <div class="relative w-full h-[300px] md:h-[400px] bg-[#0f172a] rounded-xl p-2">
+                        <canvas id="lifeChart"></canvas>
+                    </div>
+                    <p class="text-xs text-center text-slate-500 mt-4 mb-4">* กราฟยิ่งสูงแปลว่าส่งผลดี ยิ่งต่ำคือต้องระวังเป็นพิเศษ</p>
+                    
+                    <div class="flex justify-center">
+                        <button onclick="downloadGraphImage()" class="bg-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white border border-indigo-500/50 py-2 px-6 rounded-full text-sm transition-all shadow-[0_0_15px_rgba(99,102,241,0.2)]">
+                            <i class="fa-solid fa-download mr-2"></i> บันทึกรูปกราฟไปอวดเพื่อน
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mystic-card p-6 md:p-8 mb-8">
+                    <h3 class="text-lg font-bold mb-4 border-b border-slate-700 pb-2 text-white"><i class="fa-solid fa-book-open text-amber-400 mr-2"></i> สรุปคำทำนายชะตา</h3>
+                    <div id="analysis-content" class="space-y-4 text-slate-300 leading-relaxed text-sm md:text-base">
+                        </div>
+                </div>
+
+                <div class="donate-box p-6 md:p-8 rounded-2xl text-center relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-amber-500/10 text-9xl"><i class="fa-solid fa-coins"></i></div>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold text-amber-400 mb-2 relative z-10">สนับสนุนค่าครู / เลี้ยงกาแฟผู้ทำนาย ☕</h3>
+                    <p class="text-slate-300 text-sm mb-6 relative z-10">หากคำทำนายนี้เป็นประโยชน์และตรงใจคุณ สามารถร่วมทำบุญสนับสนุนเว็บไซต์ "ลิขิตฟ้า" เพื่อเป็นกำลังใจให้เราพัฒนาต่อไปครับ 🙏</p>
+                    
+                    <div class="bg-white p-4 rounded-xl inline-block mb-4 shadow-[0_0_20px_rgba(251,191,36,0.3)] relative z-10">
+                        <img src="img/your-promptpay-qr.jpg" alt="QR Code รับเงิน" class="w-48 h-48 md:w-56 md:h-56 object-cover rounded-lg" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg'">
+                    </div>
+                    
+                    <p class="text-amber-200 font-medium text-lg relative z-10">พร้อมเพย์: 08X-XXX-XXXX (ชื่อของคุณ)</p>
+                    <p class="text-slate-400 text-xs mt-2 relative z-10">ตามกำลังศรัทธา 9 บาท 19 บาท 99 บาท ขอให้ท่านเจริญรุ่งเรืองครับ</p>
+                </div>
+
+                <div class="text-center mt-8">
+                    <button onclick="resetForOthers()" class="text-slate-400 hover:text-white transition-colors underline"><i class="fa-solid fa-rotate-left mr-1"></i> ตรวจกราฟชีวิตให้คนอื่น</button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // 🌟 1. ดึงข้อมูลจากหน้า index.html อัตโนมัติ
+        window.onload = () => {
+            const dobString = localStorage.getItem('user_dob');
+            
+            if (dobString) {
+                const dobDate = new Date(dobString);
+                
+                const dayOfWeek = dobDate.getDay() + 1; 
+                const stdMonth = dobDate.getMonth() + 1;
+                let thaiMonth = stdMonth === 12 ? 1 : stdMonth + 1;
+                const yearCE = dobDate.getFullYear();
+                const zodiac = ((yearCE + 8) % 12) + 1;
+                
+                document.getElementById('dob-day').value = dayOfWeek;
+                document.getElementById('dob-month').value = thaiMonth;
+                document.getElementById('dob-year').value = zodiac;
+                
+                // สั่งรันกราฟโชว์ทันที
+                generateGraph();
+            }
+        };
+        
+        let lifeChartInstance = null;
+        const houses = ["วาสนา", "ทรัพย์", "เพื่อน", "ญาติ", "บริวาร", "ศัตรู", "คู่ครอง", "โรคภัย", "ความสุข", "การงาน", "ลาภยศ", "หายนะ"];
+
+        // 🌟 2. ฟังก์ชันสร้างกราฟ
+        function generateGraph() {
+            const day = parseInt(document.getElementById('dob-day').value);
+            const month = parseInt(document.getElementById('dob-month').value);
+            const year = parseInt(document.getElementById('dob-year').value);
+
+            if (!day || !month || !year) {
+                alert("กรุณาเลือก วัน เดือน และปีนักษัตร ให้ครบถ้วนครับ");
+                return;
+            }
+
+            const btn = document.getElementById('btn-generate');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> กำลังผูกดวงชะตา...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                calculateAndRender(day, month, year);
+                
+                const resultSection = document.getElementById('result-section');
+                resultSection.classList.remove('hidden');
+                setTimeout(() => {
+                    resultSection.classList.remove('opacity-0');
+                    resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 50);
+
+                btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> สร้างกราฟสำเร็จ';
+                btn.classList.replace('from-indigo-600', 'from-emerald-600');
+                btn.classList.replace('to-purple-600', 'to-teal-600');
+            }, 1000);
+        }
+
+        // 🌟 3. ฟังก์ชันวาดกราฟ
+        function calculateAndRender(day, month, year) {
+            let dataPoints = [];
+            
+            for (let i = 0; i < 12; i++) {
+                let r1 = ((day - 1 + i) % 7) + 1;
+                let r2 = ((month - 1 + i) % 12) + 1;
+                let r3 = ((year - 1 + i) % 12) + 1;
+                
+                let sum = r1 + r2 + r3;
+                dataPoints.push(sum);
+            }
+
+            const ctx = document.getElementById('lifeChart').getContext('2d');
+            
+            if (lifeChartInstance) { lifeChartInstance.destroy(); }
+
+            let gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(99, 102, 241, 0.8)'); 
+            gradient.addColorStop(1, 'rgba(99, 102, 241, 0.0)');
+
+            // ปลั๊กอินเสริมเพื่อให้พื้นหลังรูปที่โหลดออกมาเป็นสีเข้ม (ไม่โปร่งใส)
+            const customCanvasBackgroundColor = {
+                id: 'customCanvasBackgroundColor',
+                beforeDraw: (chart, args, options) => {
+                    const {ctx} = chart;
+                    ctx.save();
+                    ctx.globalCompositeOperation = 'destination-over';
+                    ctx.fillStyle = options.color || '#0f172a';
+                    ctx.fillRect(0, 0, chart.width, chart.height);
+                    ctx.restore();
+                }
+            };
+
+            lifeChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: houses,
+                    datasets: [{
+                        label: 'พลังชะตา',
+                        data: dataPoints,
+                        borderColor: '#818cf8', 
+                        backgroundColor: gradient, 
+                        borderWidth: 3,
+                        pointBackgroundColor: '#fbbf24', 
+                        pointBorderColor: '#fff',
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.4 
+                    }]
+                },
+                plugins: [customCanvasBackgroundColor],
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        customCanvasBackgroundColor: { color: '#0f172a' },
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 16, family: 'Prompt' },
+                            bodyFont: { size: 14, family: 'Prompt' },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) { return `แต้มชะตา: ${context.raw} คะแนน`; }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 35, 
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94a3b8' }
+                        },
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#cbd5e1', font: { family: 'Prompt' } }
+                        }
+                    }
+                }
+            });
+
+            generateAnalysis(dataPoints);
+        }
+
+        // 🌟 4. ฟังก์ชันทำนายผล
+        function generateAnalysis(dataPoints) {
+            let maxVal = Math.max(...dataPoints);
+            let minVal = Math.min(...dataPoints);
+            
+            let bestHouses = [];
+            let worstHouses = [];
+            
+            dataPoints.forEach((val, index) => {
+                if(val === maxVal) bestHouses.push(houses[index]);
+                if(val === minVal) worstHouses.push(houses[index]);
+            });
+
+            const content = document.getElementById('analysis-content');
+            
+            let html = `
+                <div class="bg-emerald-900/30 border border-emerald-500/30 p-4 rounded-xl mb-4">
+                    <h4 class="text-emerald-400 font-bold mb-1"><i class="fa-solid fa-arrow-trend-up mr-2"></i> จุดเด่นที่สุดในดวงชะตาของคุณ</h4>
+                    <p>กราฟชีวิตของคุณพุ่งสูงสุดในเรื่องของ <strong class="text-amber-300">${bestHouses.join(', ')}</strong> (ได้ ${maxVal} แต้ม) แปลว่าพื้นดวงของคุณจะมีความโดดเด่นและประสบความสำเร็จในเรื่องนี้เป็นพิเศษ เป็นจุดแข็งที่ควรนำมาใช้ประโยชน์ในชีวิตครับ</p>
+                </div>
+                
+                <div class="bg-rose-900/30 border border-rose-500/30 p-4 rounded-xl mb-4">
+                    <h4 class="text-rose-400 font-bold mb-1"><i class="fa-solid fa-arrow-trend-down mr-2"></i> จุดที่ต้องระมัดระวัง</h4>
+                    <p>จุดที่กราฟตกต่ำที่สุดคือเรื่อง <strong class="text-amber-300">${worstHouses.join(', ')}</strong> (ได้ ${minVal} แต้ม) สิ่งเหล่านี้คือ "วิบากกรรม" หรือจุดอ่อนที่คุณต้องใช้สติและระมัดระวังในการตัดสินใจให้มาก อย่าประมาทในเรื่องนี้นะครับ</p>
+                </div>
+            `;
+
+            const moneyIndex = houses.indexOf("ทรัพย์");
+            const workIndex = houses.indexOf("การงาน");
+            const loveIndex = houses.indexOf("คู่ครอง");
+
+            html += `<p class="mt-4"><span class="text-amber-400 font-bold">ด้านการเงิน (ทรัพย์):</span> ${dataPoints[moneyIndex] >= 20 ? 'กราฟสวยงาม หยิบจับอะไรก็เป็นเงินเป็นทอง มีเกณฑ์ตั้งตัวได้' : 'กราฟอยู่ระดับกลางถึงต่ำ ต้องวางแผนการใช้เงินให้ดี ระวังการค้ำประกันหรือให้ยืมเงิน'}</p>`;
+            html += `<p><span class="text-indigo-400 font-bold">ด้านการงาน:</span> ${dataPoints[workIndex] >= 20 ? 'กราฟการงานพุ่ง เจ้านายรัก มีโอกาสเลื่อนขั้นเลื่อนตำแหน่งสูง' : 'ระวังความเครียด หรือปัญหากับเพื่อนร่วมงาน อดทนฝ่าฟันแล้วจะดีขึ้นในระยะยาว'}</p>`;
+            html += `<p><span class="text-pink-400 font-bold">ด้านความรัก (คู่ครอง):</span> ${dataPoints[loveIndex] >= 20 ? 'ดวงคู่ครองเกื้อหนุน หากมีคู่จะส่งเสริมกันทำมาหากิน' : 'ความรักอาจมีอุปสรรค หรือได้คู่ที่ต่างวัยต่างถิ่น ต้องใช้ความเข้าใจกันให้มาก'}</p>`;
+
+            content.innerHTML = html;
+        }
+        
+        // 🌟 5. ฟังก์ชันรีเซ็ตเพื่อดูดวงให้คนอื่น
+        function resetForOthers() {
+            document.getElementById('dob-day').value = '';
+            document.getElementById('dob-month').value = '';
+            document.getElementById('dob-year').value = '';
+
+            const resultSection = document.getElementById('result-section');
+            resultSection.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                resultSection.classList.add('hidden');
+                document.getElementById('input-section').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 500);
+
+            const btn = document.getElementById('btn-generate');
+            btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i> ผูกดวงสร้างกราฟชีวิต';
+            btn.classList.remove('from-emerald-600', 'to-teal-600');
+            btn.classList.add('from-indigo-600', 'to-purple-600');
+            btn.disabled = false;
+        }
+
+        // 🌟 6. ฟังก์ชันดาวน์โหลดกราฟ
+        function downloadGraphImage() {
+            if (!lifeChartInstance) return;
+            
+            // ดึงไฟล์รูปจาก Chart.js เป็น Base64
+            const imgURL = lifeChartInstance.toBase64Image();
+            
+            // สร้างลิงก์ชั่วคราวเพื่อสั่งดาวน์โหลด
+            const link = document.createElement('a');
+            link.download = 'กราฟชีวิต-ลิขิตฟ้า.png';
+            link.href = imgURL;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+    
+    <script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

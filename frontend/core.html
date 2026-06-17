@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>เช็คดวงชะตาพื้นฐาน ปีชง และธาตุประจำตัว - ลิขิตฟ้า</title>
+    <meta name="description" content="คำนวณดวงชะตาพื้นฐาน เช็คปีชง พลังธาตุประจำตัว พร้อมสถานที่ทำบุญเสริมดวงและแก้เคล็ดตามหลักโหราศาสตร์">
+    <meta name="keywords" content="ดูดวง, ดวงชะตาพื้นฐาน, ปีชง, แก้ปีชง, ธาตุประจำตัว, โหราศาสตร์">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/core.html">
+    <meta property="og:title" content="เช็คดวงชะตาพื้นฐาน ปีชง และธาตุประจำตัว - ลิขิตฟ้า">
+    <meta property="og:description" content="คำนวณดวงชะตาพื้นฐาน เช็คปีชง พร้อมแนะนำสถานที่ทำบุญเสริมดวงและแก้เคล็ด">
+    <meta property="og:image" content="https://likitfah.com/img/og-core.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="เช็คดวงชะตาพื้นฐาน ปีชง และธาตุประจำตัว">
+    <meta name="twitter:description" content="คำนวณดวงชะตาพื้นฐาน เช็คปีชง พร้อมแนะนำสถานที่ทำบุญเสริมดวง">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-core.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #0B0B1A;
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%),
+                radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.1), transparent 60%),
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        
+        .glass-panel { 
+            background: rgba(18, 18, 38, 0.7); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); 
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 30, 45, 0.6) 0%, rgba(15, 15, 25, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .text-title-gradient { 
+            background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .glow-icon { filter: drop-shadow(0 0 10px currentColor); }
+
+        /* Loading Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+        }
+        .loader-ring { animation: pulse-ring 2s infinite; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-900/40 border border-amber-500/30 mb-4 shadow-[0_0_20px_rgba(251,191,36,0.3)]">
+                <i class="fa-solid fa-star text-3xl text-amber-400 glow-icon"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg tracking-wide mb-2">ดวงชะตาพื้นฐาน</h2>
+            <p class="text-amber-200/70 font-light" id="user-greeting">วิเคราะห์จากวันเดือนปีเกิดของคุณ</p>
+        </div>
+
+        <!-- หน้าจอ Loading รอโหลดข้อมูล -->
+        <div id="loading-screen" class="flex flex-col items-center justify-center py-20">
+            <div class="w-20 h-20 rounded-full bg-amber-500/20 border-4 border-amber-400 border-t-transparent animate-spin mb-6 loader-ring shadow-[0_0_30px_rgba(245,158,11,0.5)]"></div>
+            <h3 class="text-xl font-bold text-amber-400 animate-pulse tracking-widest">กำลังผูกดวงชะตาสวรรค์...</h3>
+            <p class="text-sm text-slate-400 mt-2">ประสานพลังงานดวงดาว 3 ศาสตร์</p>
+        </div>
+
+        <!-- กล่องแสดงผล (จะซ่อนไว้จนกว่าจะโหลดเสร็จ) -->
+        <div id="result-content" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6 pb-12">
+            
+            <!-- 1. โหราศาสตร์ไทย (Thai Astrology) -->
+            <div class="glass-panel rounded-3xl p-6 border-t-2 border-t-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.1)] relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-amber-500/10 text-8xl"><i class="fa-brands fa-pagelines"></i></div>
+                <h3 class="text-xl font-bold text-amber-400 mb-4 flex items-center"><i class="fa-brands fa-pagelines mr-2"></i>โหราศาสตร์ไทย</h3>
+                
+                <div class="glass-card p-5 rounded-2xl relative z-10 space-y-4">
+                    <div class="border-b border-white/10 pb-3">
+                        <p class="text-[10px] uppercase text-amber-500/70 font-bold tracking-widest mb-1">ลัคนาสถิต</p>
+                        <h4 class="text-2xl font-bold text-white" id="thai-title">ลัคนา...</h4>
+                    </div>
+                    <div class="text-sm text-slate-300 space-y-3">
+                        <p><strong class="text-emerald-400"><i class="fa-solid fa-circle-plus mr-1"></i> จุดแข็ง:</strong> <span id="thai-str">...</span></p>
+                        <p><strong class="text-rose-400"><i class="fa-solid fa-circle-minus mr-1"></i> จุดอ่อน:</strong> <span id="thai-weak">...</span></p>
+                        <p><strong class="text-blue-400"><i class="fa-solid fa-briefcase mr-1"></i> การงาน/การเงิน:</strong> <span id="thai-career">...</span></p>
+                        <p><strong class="text-pink-400"><i class="fa-solid fa-heart mr-1"></i> ความรัก:</strong> <span id="thai-love">...</span></p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4 relative z-10">
+                    <span class="text-xs bg-amber-900/60 border border-amber-500/30 text-amber-200 px-4 py-1.5 rounded-lg shadow-sm" id="thai-color"><i class="fa-solid fa-palette mr-1"></i> สีมงคล: ...</span>
+                    <span class="text-xs bg-amber-900/60 border border-amber-500/30 text-amber-200 px-4 py-1.5 rounded-lg shadow-sm" id="thai-num"><i class="fa-solid fa-hashtag mr-1"></i> เลขมงคล: ...</span>
+                </div>
+            </div>
+
+            <!-- 2. โหราศาสตร์สากล (Western Astrology) -->
+            <div class="glass-panel rounded-3xl p-6 border-t-2 border-t-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.1)] relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-cyan-500/10 text-8xl"><i class="fa-solid fa-globe"></i></div>
+                <h3 class="text-xl font-bold text-cyan-400 mb-4 flex items-center"><i class="fa-solid fa-globe mr-2"></i>โหราศาสตร์สากล <span class="text-[10px] ml-2 text-cyan-200/50 uppercase font-light">(Psychological)</span></h3>
+                
+                <div class="glass-card p-5 rounded-2xl relative z-10 space-y-4">
+                    <div class="border-b border-white/10 pb-3">
+                        <p class="text-[10px] uppercase text-cyan-500/70 font-bold tracking-widest mb-1">Sun Sign</p>
+                        <h4 class="text-2xl font-bold text-white" id="western-title">ราศี...</h4>
+                    </div>
+                    <div class="text-sm text-slate-300 space-y-4">
+                        <div>
+                            <strong class="block text-cyan-300 mb-1"><i class="fa-solid fa-bullseye mr-1"></i> แรงปรารถนาลึกๆ (Core Desire):</strong>
+                            <p id="western-desire" class="leading-relaxed">...</p>
+                        </div>
+                        <div>
+                            <strong class="block text-indigo-300 mb-1"><i class="fa-solid fa-user-ninja mr-1"></i> ด้านมืดในจิตใจ (Shadow Self):</strong>
+                            <p id="western-shadow" class="leading-relaxed">...</p>
+                        </div>
+                        <div class="bg-cyan-900/20 p-3 rounded-xl border border-cyan-500/20">
+                            <strong class="block text-emerald-400 mb-1"><i class="fa-solid fa-seedling mr-1"></i> คำแนะนำเพื่อเติบโต:</strong>
+                            <p id="western-advice" class="text-emerald-100">...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. ดวงจีนปาจื่อ (Bazi) - เต็มความกว้าง -->
+            <div class="glass-panel rounded-3xl p-6 border-t-2 border-t-rose-500 shadow-[0_0_20px_rgba(244,63,94,0.1)] lg:col-span-2 relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 text-rose-500/5 text-[15rem] leading-none"><i class="fa-solid fa-yin-yang"></i></div>
+                <h3 class="text-xl font-bold text-rose-400 mb-4 flex items-center"><i class="fa-solid fa-yin-yang mr-2"></i>ดวงจีนปาจื่อ (Bazi)</h3>
+                
+                <div class="glass-card p-6 rounded-2xl relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start">
+                    <!-- วงกลมธาตุ -->
+                    <div class="relative w-32 h-32 flex items-center justify-center shrink-0">
+                        <div class="absolute inset-0 rounded-full border-2 border-dashed border-rose-500/50 animate-[spin_10s_linear_infinite]"></div>
+                        <div class="absolute inset-2 rounded-full bg-gradient-to-br from-rose-900 to-red-950 shadow-[0_0_20px_rgba(244,63,94,0.4)] flex items-center justify-center border border-rose-400/50">
+                            <span class="text-5xl font-bold text-rose-200 drop-shadow-[0_0_10px_rgba(254,205,211,0.8)]" id="bazi-symbol">?</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 space-y-4 text-center md:text-left">
+                        <div class="border-b border-white/10 pb-3">
+                            <p class="text-[10px] uppercase text-rose-500/70 font-bold tracking-widest mb-1">ดิถีธาตุ (Day Master)</p>
+                            <h4 class="text-2xl font-bold text-white" id="bazi-title">วิเคราะห์ดิถี...</h4>
+                        </div>
+                        <div class="text-sm text-slate-300 space-y-3">
+                            <p><strong class="text-rose-300">ตัวตนที่แท้จริง:</strong> <span id="bazi-char">...</span></p>
+                            <p><strong class="text-amber-400">เส้นทางความมั่งคั่ง (Wealth Luck):</strong> <span id="bazi-wealth">...</span></p>
+                        </div>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-3 mt-4">
+                            <div class="bg-emerald-900/40 border border-emerald-500/30 px-4 py-2 rounded-xl">
+                                <p class="text-[10px] text-emerald-400 font-bold uppercase mb-0.5"><i class="fa-solid fa-arrow-trend-up"></i> ธาตุให้โชค (Favorable)</p>
+                                <p class="text-xs text-white" id="bazi-fav">...</p>
+                            </div>
+                            <div class="bg-rose-900/40 border border-rose-500/30 px-4 py-2 rounded-xl">
+                                <p class="text-[10px] text-rose-400 font-bold uppercase mb-0.5"><i class="fa-solid fa-triangle-exclamation"></i> ธาตุให้โทษ (Unfavorable)</p>
+                                <p class="text-xs text-white" id="bazi-unfav">...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ปีชง และ วิธีแก้ชง (Tai Sui) - เพิ่มใหม่ -->
+            <div class="glass-panel rounded-3xl p-6 border-t-2 border-t-red-600 shadow-[0_0_30px_rgba(220,38,38,0.15)] lg:col-span-2 relative overflow-hidden">
+                <div class="absolute -left-10 -top-10 text-red-500/10 text-9xl"><i class="fa-solid fa-vihara"></i></div>
+                <h3 class="text-xl font-bold text-red-500 mb-4 flex items-center"><i class="fa-solid fa-vihara mr-2"></i>วิเคราะห์ปีชง & ฝากดวงชะตา (ไท้ส่วยเอี๊ย)</h3>
+                
+                <div class="glass-card bg-gradient-to-br from-red-950/80 to-black p-6 rounded-2xl relative z-10 border border-red-900/50">
+                    <div class="flex flex-col md:flex-row gap-6 items-center md:items-start">
+                        
+                        <!-- ป้ายสถานะชง -->
+                        <div class="text-center bg-black/50 border border-red-500/30 p-4 rounded-2xl w-full md:w-1/3 shrink-0 shadow-inner">
+                            <p class="text-[10px] text-slate-400 uppercase tracking-widest mb-1">ปีเกิดของคุณคือ</p>
+                            <h4 class="text-2xl font-bold text-amber-400 mb-3" id="chong-zodiac">ปี...</h4>
+                            <div class="inline-block px-4 py-2 rounded-xl border font-bold text-lg w-full shadow-md" id="chong-status-badge">
+                                ตรวจสอบสถานะ...
+                            </div>
+                        </div>
+
+                        <!-- คำแนะนำและสถานที่ -->
+                        <div class="flex-1 space-y-4 w-full">
+                            <div class="bg-red-900/20 p-4 rounded-xl border border-red-500/20">
+                                <h5 class="text-sm font-bold text-red-400 mb-2"><i class="fa-solid fa-triangle-exclamation mr-1"></i> คำเตือน / วิธีแก้ชงเบื้องต้น</h5>
+                                <p class="text-sm text-slate-300 leading-relaxed" id="chong-advice">กำลังคำนวณอิทธิพลดวงดาว...</p>
+                            </div>
+                            
+                            <div class="bg-amber-900/20 p-4 rounded-xl border border-amber-500/20">
+                                <h5 class="text-sm font-bold text-amber-400 mb-2"><i class="fa-solid fa-map-location-dot mr-1"></i> สถานที่แนะนำสำหรับทำบุญฝากดวง</h5>
+                                <p class="text-sm text-amber-100/80 leading-relaxed whitespace-pre-line" id="chong-places">กำลังค้นหาสถานที่มงคล...</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // ใช้ค่าจาก LocalStorage (ถ้ามีการตั้งผ่านหน้า Admin) ถ้าไม่มีให้ใช้ '/api'
+        const API_URL = localStorage.getItem('LikitFah_API_URL') || '/api'; 
+
+        async function fetchWithTimeout(resource, options = {}) {
+            const { timeout = 8000 } = options;
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            const response = await fetch(resource, { ...options, signal: controller.signal });
+            clearTimeout(id);
+            return response;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const userName = localStorage.getItem('user_fullname');
+            const userDob = localStorage.getItem('user_dob');
+
+            if (!userName || !userDob) {
+                // ถ้าไม่มีข้อมูล ให้เด้งกลับไปหน้าแรกให้กรอกใหม่
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('user-greeting').innerText = `ดวงชะตาของ: คุณ ${userName}`;
+            
+            // เริ่มคำนวณและดึงข้อมูล
+            fetchAstrologyData(userDob);
+        });
+
+        async function fetchAstrologyData(dobStr) {
+            try {
+                const dateObj = new Date(dobStr);
+                const month = dateObj.getMonth() + 1; 
+                const day = dateObj.getDate(); 
+                const year = dateObj.getFullYear();
+                
+                // คำนวณ Index คร่าวๆ ตามหลักโหราศาสตร์สากลและไทย
+                let wIndex = month - 1; 
+                if (day < 21) wIndex = (wIndex - 1 + 12) % 12; 
+                let tIndex = (wIndex - 1 + 12) % 12;
+                
+                // Bazi (ใช้สูตรจำลองเพื่อสุ่มดิถีธาตุ 0-9 ให้คงที่สำหรับแต่ละคน)
+                const hash = (year + month + day) % 10;
+
+                // ดึงข้อมูลจาก API
+                const res = await fetchWithTimeout(`${API_URL}/astrology?t_idx=${tIndex}&w_idx=${wIndex}&b_idx=${hash}`);
+                const data = await res.json();
+
+                if(data.thai && data.western && data.bazi) {
+                    // --- ใส่ข้อมูลโหราศาสตร์ไทย ---
+                    document.getElementById('thai-title').innerText = `${data.thai.zodiac_name} (${data.thai.element})`;
+                    document.getElementById('thai-str').innerText = data.thai.trait_strengths;
+                    document.getElementById('thai-weak').innerText = data.thai.trait_weaknesses;
+                    document.getElementById('thai-career').innerText = data.thai.career_finance;
+                    document.getElementById('thai-love').innerText = data.thai.love_relationships;
+                    document.getElementById('thai-color').innerHTML = `<i class="fa-solid fa-palette mr-1"></i> สีมงคล: ${data.thai.lucky_colors}`;
+                    document.getElementById('thai-num').innerHTML = `<i class="fa-solid fa-hashtag mr-1"></i> เลข: ${data.thai.lucky_numbers}`;
+                    
+                    // --- ใส่ข้อมูลโหราศาสตร์สากล ---
+                    document.getElementById('western-title').innerText = `${data.western.zodiac_name}`;
+                    document.getElementById('western-desire').innerText = data.western.core_desire;
+                    document.getElementById('western-shadow').innerText = data.western.shadow_self;
+                    document.getElementById('western-advice').innerText = data.western.growth_advice;
+
+                    // --- ใส่ข้อมูลดวงจีน Bazi ---
+                    document.getElementById('bazi-symbol').innerText = data.bazi.symbol;
+                    document.getElementById('bazi-title').innerText = `${data.bazi.element_name} - ${data.bazi.polarity}`;
+                    document.getElementById('bazi-char').innerText = data.bazi.core_character;
+                    document.getElementById('bazi-wealth').innerText = data.bazi.wealth_luck;
+                    document.getElementById('bazi-fav').innerText = data.bazi.favorable_elements;
+                    document.getElementById('bazi-unfav').innerText = data.bazi.unfavorable_elements;
+
+                    // --- เรียกใช้ฟังก์ชันคำนวณปีชง ---
+                    calculateTaiSui(dobStr);
+
+                    // สลับหน้าจอจาก Loading เป็น Content โดยหน่วงเวลาไว้นิดนึงให้ดูขลัง
+                    setTimeout(() => {
+                        document.getElementById('loading-screen').classList.add('hidden');
+                        document.getElementById('result-content').classList.remove('hidden');
+                        // Animation fade in
+                        document.getElementById('result-content').classList.add('animate-[fadeIn_0.8s_ease-out]');
+                    }, 1200);
+                } else {
+                    throw new Error("ข้อมูลไม่ครบถ้วน");
+                }
+            } catch(e) { 
+                console.error("Astrology Fetch Error:", e); 
+                document.getElementById('loading-screen').innerHTML = `
+                    <i class="fa-solid fa-triangle-exclamation text-4xl text-rose-500 mb-4"></i>
+                    <p class="text-rose-400 font-bold">ไม่สามารถเชื่อมต่อห้วงจักรวาลได้ในขณะนี้</p>
+                    <p class="text-slate-400 text-sm mt-2">กรุณาตรวจสอบระบบ API หลังบ้านของคุณ</p>
+                    <button onclick="window.location.reload()" class="mt-6 px-6 py-2 bg-rose-900/50 border border-rose-500/50 text-white rounded-full text-sm">ลองใหม่อีกครั้ง</button>
+                `;
+            }
+        }
+
+        // ==========================================
+        // ฟังก์ชันคำนวณปีชง (Tai Sui Algorithm)
+        // ==========================================
+        function calculateTaiSui(dobStr) {
+            const birthYear = new Date(dobStr).getFullYear();
+            const currentYear = new Date().getFullYear();
+
+            // สูตรคำนวณปีนักษัตร (0 = ชวด ... 11 = กุน)
+            const zIdx = (birthYear + 8) % 12;
+            const curZIdx = (currentYear + 8) % 12;
+
+            const zodiacs = ["ชวด (หนู)", "ฉลู (วัว)", "ขาล (เสือ)", "เถาะ (กระต่าย)", "มะโรง (มังกร)", "มะเส็ง (งู)", "มะเมีย (ม้า)", "มะแม (แพะ)", "วอก (ลิง)", "ระกา (ไก่)", "จอ (หมา)", "กุน (หมู)"];
+            document.getElementById('chong-zodiac').innerText = `ปี${zodiacs[zIdx]}`;
+
+            let chongType = "รอดพ้นปีชง";
+            let advice = "ดวงชะตาปลอดโปร่ง ไม่ได้รับผลกระทบจากไท้ส่วยเอี๊ยในปีนี้ สามารถดำเนินชีวิตและประกอบการมงคลได้ราบรื่น";
+            let places = "สามารถทำบุญไหว้พระ ขอพรตามวัดใกล้บ้าน หรือบริจาคทานตามกำลังศรัทธาเพื่อเสริมสิริมงคล";
+            let badgeClass = "bg-emerald-900/40 text-emerald-400 border-emerald-500/50";
+
+            // คำนวณความชง
+            if (zIdx === (curZIdx + 6) % 12) {
+                // ชง 100% (ตรงข้ามกัน)
+                chongType = "ชงตรง 100%";
+                badgeClass = "bg-red-900/60 text-red-400 border-red-500 shadow-[0_0_15px_rgba(220,38,38,0.5)] animate-pulse";
+                advice = "ดวงชะตามีเกณฑ์เปลี่ยนแปลงครั้งใหญ่ ระวังอุบัติเหตุ ปัญหาสุขภาพ และหนี้สิน ควรหลีกเลี่ยงการไปงานศพ งานอวมงคล หรืองานเยี่ยมไข้ หากหลีกเลี่ยงไม่ได้ให้พกพริกติดตัว หรือเอากิ่งทับทิมแช่น้ำปัดตัวเมื่อกลับมา";
+                places = "1. วัดเล่งเน่ยยี่ (เยาวราช) - ทำพิธีปัดตัวและฝากดวงชะตาแก้ชง\n2. ศาลเจ้าพ่อเสือ (เสาชิงช้า) - ปัดเป่าอุปสรรค เสริมบารมี\n3. วัดทิพยวารีวิหาร - ขอพรเทพเจ้าไท้ส่วยเอี๊ย";
+            } else if (zIdx === curZIdx) {
+                // ชงร่วม (คัก) - ทับไท้ส่วย
+                chongType = "ชงร่วม (คัก - ทับดวง)";
+                badgeClass = "bg-orange-900/50 text-orange-400 border-orange-500/50";
+                advice = "ชีวิตอาจเจอเรื่องอึดอัดใจ มีความกดดัน มีคนนำปัญหามาให้แก้ ระวังเรื่องเอกสารสัญญาและการใช้อารมณ์ร้อน แนะนำให้งดการลงทุนที่มีความเสี่ยงสูง";
+                places = "1. ศาลเจ้าไต้ฮงกง (มูลนิธิป่อเต็กตึ๊ง) - ทำบุญโลงศพ บริจาคผ้าห่อศพ\n2. ศาลเจ้าพ่อกวนอู - ขอพรเรื่องความยุติธรรมและปัดเป่าคนพาล";
+            } else if (zIdx === (curZIdx + 3) % 12 || zIdx === (curZIdx + 9) % 12 || zIdx === (curZIdx + 4) % 12 || zIdx === (curZIdx + 8) % 12) {
+                // ชงร่วม (เฮ้ง/ผั่ว) - ทะเลาะ/แตกหัก/สุขภาพ (ใช้สูตรกว้างๆ คลุมชงร่วม)
+                // หมายเหตุ: ตามหลักจริงจะมีคู่เฉพาะ แต่เพื่อความครอบคลุมให้ใช้อัลกอริทึมเตือนชงร่วม
+                 chongType = "ชงร่วม (มีผลกระทบ 25-50%)";
+                 badgeClass = "bg-amber-900/50 text-amber-400 border-amber-500/50";
+                 advice = "อาจมีปัญหาจุกจิกกวนใจ สุขภาพเล็กน้อย ความขัดแย้งกับผู้ใหญ่ หรือถูกเอาเปรียบ ให้หมั่นทำสมาธิ ใจเย็น และทำบุญปล่อยสัตว์เพื่อสะเดาะเคราะห์";
+                 places = "1. ทำบุญปล่อยนก ปล่อยปลา หน้าเขียงตลาดสด\n2. บริจาคโลหิตที่สภากาชาดไทย (แก้เคล็ดเรื่องเลือดตกยางออก)\n3. ทำบุญโรงพยาบาลสงฆ์ หรือบริจาคเครื่องมือแพทย์";
+            }
+
+            const badge = document.getElementById('chong-status-badge');
+            badge.innerText = chongType;
+            badge.className = `inline-block px-4 py-2 rounded-xl border font-bold text-lg w-full shadow-md ${badgeClass}`;
+            
+            document.getElementById('chong-advice').innerText = advice;
+            document.getElementById('chong-places').innerText = places;
+        }
+    </script>
+	<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

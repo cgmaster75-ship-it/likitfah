@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ตรวจสลากกินแบ่งรัฐบาล สแกนอัจฉริยะ - ลิขิตฟ้า</title>
+    <meta name="description" content="ตรวจหวย ตรวจสลากกินแบ่งรัฐบาล งวดล่าสุด รวดเร็ว แม่นยำ พร้อมระบบสแกน Popup">
+    <meta name="keywords" content="ตรวจหวย, ตรวจสลาก, สลากกินแบ่งรัฐบาล, สแกนหวย, ตรวจรางวัล">
+    <meta name="author" content="Likit Fah">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        body { 
+            background-color: #0B1120; color: white; font-family: 'Prompt', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, #1e293b 0%, transparent 70%), 
+                              radial-gradient(circle at 50% 100%, #064e3b 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .mystic-card {
+            background: rgba(30, 41, 59, 0.6); border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 1.5rem; backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(16, 185, 129, 0.05);
+        }
+
+        .ticket-input {
+            width: 100%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; border-radius: 1rem;
+            color: #fbbf24; font-size: 2.5rem; text-align: center; letter-spacing: 0.3em; font-weight: 700;
+            outline: none; transition: all 0.3s; padding: 0.5rem 0; box-shadow: inset 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .ticket-input:focus { border-color: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3), inset 0 2px 10px rgba(0,0,0,0.5); }
+        .ticket-input::placeholder { color: rgba(255, 255, 255, 0.1); font-weight: 300; letter-spacing: 0.1em; }
+        .ticket-input.filled { border-color: #10b981; opacity: 1 !important; }
+
+        select option { background-color: #0B1120; color: #fbbf24; }
+        
+        #reader { border-radius: 1rem; overflow: hidden; border: 2px solid #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); background: #000; position: relative; }
+        #reader a { display: none !important; } 
+        
+        /* Animation สำหรับการแจ้งเตือน */
+        @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+        .animate-pop { animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative pb-24">
+
+    <main class="flex-grow flex flex-col items-center justify-center w-full p-4">
+
+        <div class="max-w-xl w-full relative z-10 my-8">
+            <div class="text-center mb-6">
+                <h1 class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-amber-300">
+                    ตรวจสลาก ลิขิตฟ้า <span class="text-xs bg-emerald-600 text-white px-2 py-0.5 rounded-full ml-1">v8.0</span>
+                </h1>
+                <p class="text-slate-400 text-sm">ระบบสแกนอัจฉริยะ (แก้ปัญหางวด 100%)</p>
+            </div>
+
+            <div id="main-box" class="mystic-card p-5 md:p-8 relative overflow-hidden">
+
+                <div class="mb-6 bg-slate-800/50 p-4 rounded-xl border border-slate-700/50">
+                    <label class="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wider">
+                        <i class="fa-regular fa-calendar text-amber-400 mr-2"></i>เลือกงวด (สำหรับพิมพ์เลขเอง)
+                    </label>
+                    <select id="draw-date-select" class="w-full bg-slate-900 border border-slate-600 text-amber-300 text-base md:text-lg rounded-lg px-4 py-3 outline-none focus:border-amber-400 cursor-pointer shadow-inner appearance-none font-bold">
+                        <option value="">กำลังโหลดข้อมูลงวด...</option>
+                    </select>
+                </div>
+
+                <button onclick="openCameraModal()" class="w-full bg-slate-700 hover:bg-slate-600 text-emerald-400 font-bold py-4 rounded-xl mb-8 flex items-center justify-center gap-3 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)] transition-all hover:scale-[1.02]">
+                    <i class="fa-solid fa-qrcode text-2xl"></i> <span class="text-lg">เปิดกล้องสแกนสลาก</span>
+                </button>
+
+                <div class="space-y-4 mb-8" id="input-group">
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">1</span>
+                        <input type="text" id="ticket-1" class="ticket-input" maxlength="6" placeholder="------" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <div id="badge-1" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] md:text-xs text-emerald-300 bg-emerald-900/80 px-2 py-1 rounded hidden border border-emerald-500/50 shadow-lg"></div>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">2</span>
+                        <input type="text" id="ticket-2" class="ticket-input opacity-60 focus:opacity-100" maxlength="6" placeholder="------" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <div id="badge-2" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] md:text-xs text-emerald-300 bg-emerald-900/80 px-2 py-1 rounded hidden border border-emerald-500/50 shadow-lg"></div>
+                    </div>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 font-bold">3</span>
+                        <input type="text" id="ticket-3" class="ticket-input opacity-60 focus:opacity-100" maxlength="6" placeholder="------" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        <div id="badge-3" class="absolute right-4 top-1/2 -translate-y-1/2 text-[10px] md:text-xs text-emerald-300 bg-emerald-900/80 px-2 py-1 rounded hidden border border-emerald-500/50 shadow-lg"></div>
+                    </div>
+                </div>
+
+                <button id="btn-scan" onclick="startCheckAll()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold py-4 rounded-xl text-lg transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-eye"></i> ตรวจชะตาสลาก
+                </button>
+            </div>
+
+            <div id="result-box" class="mystic-card mt-6 p-6 hidden opacity-0 transition-all duration-500">
+                <h2 class="text-xl font-bold mb-4 text-center border-b border-slate-700/50 pb-3 text-white">
+                    <i class="fa-solid fa-scroll text-amber-400 mr-2"></i> ผลคำทำนายสลาก
+                </h2>
+                <div id="result-list" class="space-y-4 mb-6"></div>
+                <button onclick="resetScanner()" class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 font-medium py-3 rounded-xl transition-colors">
+                    <i class="fa-solid fa-rotate-right mr-2"></i> ตรวจชุดใหม่
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="camera-modal" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-sm flex-col items-center justify-center p-4 transition-opacity">
+        <div class="relative w-full max-w-sm bg-[#0B1120] border border-emerald-500/50 rounded-2xl p-5 shadow-[0_0_40px_rgba(16,185,129,0.4)]">
+            
+            <div class="text-center mb-4">
+                <h3 class="text-emerald-400 font-bold text-xl"><i class="fa-solid fa-qrcode mr-2"></i> เล็ง QR Code กองสลาก</h3>
+            </div>
+            
+            <div id="reader-wrapper" class="relative w-full min-h-[250px] rounded-xl overflow-hidden border-2 border-emerald-500/30">
+                <div id="reader" class="w-full h-full bg-black"></div>
+                
+                <div id="manual-date-prompt" class="absolute inset-0 z-50 hidden flex-col items-center justify-center bg-slate-900/95 p-4 backdrop-blur-md animate-pop">
+                    <div class="text-amber-400 text-sm font-bold mb-1"><i class="fa-solid fa-check-circle text-emerald-400 mr-1"></i> พบเลขสลาก</div>
+                    <div id="prompt-ticket-num" class="text-white text-3xl font-bold tracking-[0.2em] mb-1">------</div>
+                    <div id="prompt-year-text" class="text-slate-400 text-xs mb-4">QR Code ไม่ระบุวันที่ กรุณาเลือกงวดครับ</div>
+                    
+                    <select id="modal-date-select" class="w-full bg-[#0B1120] border border-amber-500/50 text-amber-300 text-sm rounded-lg px-3 py-2.5 mb-4 outline-none focus:border-amber-400">
+                        </select>
+                    
+                    <button onclick="confirmModalDate()" class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold py-2.5 px-6 rounded-lg w-full shadow-lg">
+                        ยืนยันงวดนี้
+                    </button>
+                </div>
+            </div>
+            
+            <div id="modal-scan-status" class="mt-4 text-center bg-slate-800/80 rounded-xl p-3 border border-slate-700 min-h-[70px] flex flex-col justify-center">
+                <div class="text-amber-400 text-sm animate-pulse"><i class="fa-solid fa-camera mr-2"></i>รอการโฟกัสภาพ...</div>
+            </div>
+
+            <button onclick="closeCameraModal()" class="absolute -top-4 -right-4 bg-rose-600 hover:bg-rose-500 text-white w-12 h-12 rounded-full transition-all shadow-[0_0_15px_rgba(225,29,72,0.5)] border-4 border-[#0B1120] flex items-center justify-center text-2xl font-bold z-[60]">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let html5QrcodeScanner = null;
+        let scanCooldown = false;
+        
+        let ticketSpecificDates = [null, null, null];
+        let ticketSpecificTexts = ["", "", ""];
+        
+        let pendingTicketNumber = "";
+
+        window.onload = async () => {
+            try {
+                const res = await fetch('/api/lotto/dates');
+                const dates = await res.json();
+                
+                const selectMain = document.getElementById('draw-date-select');
+                const selectModal = document.getElementById('modal-date-select');
+                selectMain.innerHTML = ''; 
+                selectModal.innerHTML = '';
+                
+                const thaiMonths = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+                
+                // สำหรับกล่องพิมพ์เอง มีตัวเลือก "ล่าสุด"
+                const optionMain = document.createElement('option');
+                optionMain.value = dates[0].draw_date;
+                optionMain.textContent = `งวดล่าสุด (อัตโนมัติ)`;
+                selectMain.appendChild(optionMain);
+
+                dates.forEach((d) => {
+                    const dateObj = new Date(d.draw_date);
+                    const dateStr = `${dateObj.getDate()} ${thaiMonths[dateObj.getMonth()]} ${dateObj.getFullYear() + 543}`;
+                    
+                    const opt1 = document.createElement('option');
+                    opt1.value = d.draw_date; opt1.textContent = `งวดวันที่ ${dateStr}`;
+                    selectMain.appendChild(opt1);
+
+                    const opt2 = document.createElement('option');
+                    opt2.value = d.draw_date; opt2.textContent = `งวดวันที่ ${dateStr}`;
+                    selectModal.appendChild(opt2);
+                });
+            } catch (err) { 
+                console.error("Load dates failed", err);
+            }
+        };
+
+        function openCameraModal() {
+            const modal = document.getElementById('camera-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            document.getElementById('manual-date-prompt').classList.add('hidden');
+            document.getElementById('modal-scan-status').innerHTML = `<div class="text-amber-400 text-sm animate-pulse"><i class="fa-solid fa-camera mr-2"></i>รอการโฟกัสภาพ...</div>`;
+            
+            startScanner();
+        }
+
+        function closeCameraModal() {
+            const modal = document.getElementById('camera-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            stopScanner();
+            scanCooldown = false;
+        }
+
+        function startScanner() {
+            if (html5QrcodeScanner) return; 
+            
+            html5QrcodeScanner = new Html5Qrcode("reader");
+            html5QrcodeScanner.start(
+                { facingMode: "environment" }, 
+                { fps: 15, qrbox: { width: 250, height: 250 } },
+                (decodedText) => processQRCode(decodedText),
+                (error) => { }
+            ).catch(err => {
+                alert("⚠️ ไม่สามารถเปิดกล้องได้ กรุณาอนุญาตการเข้าถึงกล้อง");
+                closeCameraModal();
+            });
+        }
+
+        function stopScanner() {
+            if (html5QrcodeScanner) {
+                html5QrcodeScanner.stop().then(() => {
+                    html5QrcodeScanner.clear();
+                    html5QrcodeScanner = null;
+                }).catch(e => console.log(e));
+            }
+        }
+
+        // 🌟 รหัสถอด QR กองสลาก V8.0 (ฉลาดที่สุด)
+        function processQRCode(data) {
+            if (scanCooldown) return; 
+
+            let ticketNumber = "";
+            let qrYearBE = "";
+            let foundDateInQR = false;
+            let specificDateVal = null;
+            let specificDateText = "";
+
+            const rawDataStr = data.replace(/\D/g, ''); 
+
+            // 1. ดักจับแพทเทิร์น QR ใหม่ (เช่น 68-29-14-895776-7988)
+            const newFormatMatch = data.match(/(\d{2})-\d{2}-\d{2}-(\d{6})-\d{4}/);
+            if (newFormatMatch) {
+                qrYearBE = "25" + newFormatMatch[1]; // ดึงปีมาเลย เช่น 2568
+                ticketNumber = newFormatMatch[2]; // ดึงเลข 6 ตัว
+            } else {
+                const noDashMatch = data.match(/\b(\d{2})\d{2}\d{2}(\d{6})\d{4}\b/);
+                if (noDashMatch) {
+                    qrYearBE = "25" + noDashMatch[1];
+                    ticketNumber = noDashMatch[2];
+                } else {
+                    const fallback = data.match(/(?:^|[^\d])(\d{6})(?:[^\d]|$)/);
+                    if (fallback) ticketNumber = fallback[1];
+                }
+            }
+
+            if (!ticketNumber) return; 
+
+            const inputs = [
+                document.getElementById('ticket-1').value,
+                document.getElementById('ticket-2').value,
+                document.getElementById('ticket-3').value
+            ];
+            if (inputs.includes(ticketNumber)) return;
+
+            // 2. ลองควานหาวันที่เต็มๆ ใน QR ก่อน (เผื่อสลากรุ่นเก่ามีวันที่)
+            const selectModal = document.getElementById('modal-date-select');
+            for (let i = 0; i < selectModal.options.length; i++) {
+                const optVal = selectModal.options[i].value;
+                if(!optVal) continue;
+                
+                const d = new Date(optVal);
+                const dd = String(d.getDate()).padStart(2, '0');
+                const mm = String(d.getMonth() + 1).padStart(2, '0');
+                const yearFull = String(d.getFullYear() + 543);
+                
+                if (rawDataStr.includes(`${dd}${mm}${yearFull}`) || rawDataStr.includes(`${dd}${mm}${yearFull.slice(-2)}`)) {
+                    specificDateVal = optVal;
+                    specificDateText = `${dd}/${mm}/${yearFull.slice(-2)}`;
+                    foundDateInQR = true;
+                    break;
+                }
+            }
+
+            // 🌟 3. ถ้า QR โค้ด "ไม่มีวันที่" -> หยุดสแกนแล้วเด้งถามลูกค้าเลย!!
+            if (!foundDateInQR) {
+                scanCooldown = true; // หยุดสแกนชั่วคราว
+                pendingTicketNumber = ticketNumber;
+
+                // พยายามเลื่อน Dropdown ในกล่อง Popup ให้ตรงกับ "ปี" ที่เจอใน QR (เพื่อความรวดเร็ว)
+                if (qrYearBE) {
+                    document.getElementById('prompt-year-text').innerHTML = `สลากใบนี้เป็นของปี <strong class="text-amber-400">${qrYearBE}</strong> กรุณาเลือกวันที่ครับ`;
+                    for(let i=0; i<selectModal.options.length; i++) {
+                        if(selectModal.options[i].text.includes(qrYearBE)) {
+                            selectModal.selectedIndex = i;
+                            break;
+                        }
+                    }
+                } else {
+                    document.getElementById('prompt-year-text').innerText = `QR Code ไม่ระบุวันที่ กรุณาเลือกงวดครับ`;
+                }
+
+                document.getElementById('prompt-ticket-num').innerText = ticketNumber;
+                document.getElementById('modal-scan-status').innerHTML = `<div class="text-slate-400 text-sm"><i class="fa-solid fa-hand text-amber-400 mr-2"></i>พักการสแกนชั่วคราว...</div>`;
+                
+                // โชว์หน้าต่างบังกล้อง
+                document.getElementById('manual-date-prompt').classList.remove('hidden');
+                document.getElementById('manual-date-prompt').classList.add('flex');
+                
+                if (window.navigator.vibrate) window.navigator.vibrate(100);
+                return; // หยุดทำงาน รอให้ผู้ใช้กดยืนยันในฟังก์ชัน confirmModalDate()
+            }
+
+            // ถ้าเจอวันที่ใน QR ก็บันทึกได้เลยแบบปกติ
+            saveTicketToSlot(ticketNumber, specificDateVal, specificDateText);
+        }
+
+        // 🌟 4. ฟังก์ชันยืนยันวันที่จากการกด Popup ถาม
+        function confirmModalDate() {
+            const selectModal = document.getElementById('modal-date-select');
+            const val = selectModal.value;
+            const text = selectModal.options[selectModal.selectedIndex].text.replace('งวดวันที่ ', '');
+
+            document.getElementById('manual-date-prompt').classList.add('hidden');
+            document.getElementById('manual-date-prompt').classList.remove('flex');
+            
+            // บันทึกเลขและวันที่ลงช่อง
+            saveTicketToSlot(pendingTicketNumber, val, text);
+        }
+
+        // ฟังก์ชันช่วยนำข้อมูลลงกล่อง
+        function saveTicketToSlot(num, dateVal, dateText) {
+            let filledSlot = 0;
+            for(let i=1; i<=3; i++) {
+                const input = document.getElementById(`ticket-${i}`);
+                if(input.value === "") {
+                    input.value = num;
+                    input.classList.add('filled', 'border-emerald-500', 'shadow-[0_0_15px_rgba(16,185,129,0.5)]');
+                    setTimeout(() => input.classList.remove('border-emerald-500', 'shadow-[0_0_15px_rgba(16,185,129,0.5)]'), 1000);
+                    
+                    ticketSpecificDates[i-1] = dateVal;
+                    ticketSpecificTexts[i-1] = dateText;
+                    
+                    const badge = document.getElementById(`badge-${i}`);
+                    badge.innerHTML = `<i class="fa-solid fa-qrcode mr-1"></i> งวด ${dateText}`;
+                    badge.classList.remove('hidden');
+                    
+                    filledSlot = i;
+                    break;
+                }
+            }
+
+            const modalStatus = document.getElementById('modal-scan-status');
+            modalStatus.innerHTML = `
+                <div class="text-emerald-400 font-bold"><i class="fa-solid fa-check-circle"></i> ได้เลข ${num} (ใบที่ ${filledSlot})</div>
+                <div class="text-white text-xs mt-1">บันทึกเข้างวด ${dateText} เรียบร้อย</div>
+            `;
+
+            scanCooldown = true; 
+            if (filledSlot === 3) {
+                modalStatus.innerHTML += `<div class="text-amber-400 text-xs mt-2">ครบ 3 ใบแล้ว กำลังปิดกล้อง...</div>`;
+                setTimeout(() => { closeCameraModal(); }, 1500);
+            } else {
+                setTimeout(() => {
+                    modalStatus.innerHTML = `<div class="text-amber-400 text-sm animate-pulse"><i class="fa-solid fa-camera mr-2"></i>หยิบใบต่อไปมาส่องได้เลย...</div>`;
+                    scanCooldown = false; // เปิดให้สแกนใบต่อไปได้
+                }, 1500);
+            }
+        }
+
+        async function startCheckAll() {
+            const tickets = [];
+            const globalDateVal = document.getElementById('draw-date-select').value;
+
+            for(let i=1; i<=3; i++) {
+                const val = document.getElementById(`ticket-${i}`).value;
+                if(val && val.length === 6) {
+                    const dateToUse = ticketSpecificDates[i-1] || globalDateVal;
+                    const textToDisplay = ticketSpecificTexts[i-1] || "";
+                    tickets.push({ id: i, number: val, checkDate: dateToUse, displayText: textToDisplay });
+                }
+            }
+
+            if(tickets.length === 0) {
+                alert('กรุณากรอกหรือสแกนเลขสลากอย่างน้อย 1 ใบครับ');
+                return;
+            }
+
+            const btn = document.getElementById('btn-scan');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> กำลังตรวจชะตา...';
+
+            try {
+                let htmlResults = "";
+                
+                const fetchPromises = tickets.map(t => {
+                    const dateParam = t.checkDate ? `&date=${t.checkDate}` : '';
+                    return fetch(`/api/lotto/check?ticket=${t.number}${dateParam}`)
+                        .then(res => res.json())
+                        .then(data => ({ ...data, originalT: t })); 
+                });
+                
+                const results = await Promise.all(fetchPromises);
+
+                results.forEach(resData => {
+                    const dateToDisplay = resData.originalT.displayText ? `งวด ${resData.originalT.displayText}` : (resData.draw_date ? `งวด ${resData.draw_date}` : 'ตามวันที่เลือก');
+                    
+                    if (resData.isWin) {
+                        let prizeHtml = resData.prizes.map(p => `<span class="bg-amber-900/50 text-amber-300 text-[10px] px-2 py-0.5 rounded border border-amber-500/30">${p}</span>`).join(' ');
+                        htmlResults += `
+                            <div class="bg-emerald-900/30 border border-emerald-500/50 p-4 rounded-xl flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <i class="fa-solid fa-crown text-amber-400 text-xl"></i>
+                                    <div>
+                                        <div class="text-xl font-bold text-white">${resData.ticket}</div>
+                                        <div class="flex flex-wrap gap-1 mt-1">${prizeHtml}</div>
+                                        <div class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-qrcode mr-1"></i>${dateToDisplay}</div>
+                                    </div>
+                                </div>
+                            </div>`;
+                    } else {
+                        htmlResults += `
+                            <div class="bg-slate-800/40 border border-slate-700/50 p-4 rounded-xl opacity-60">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="text-xl font-bold text-slate-400 line-through">${resData.ticket}</div>
+                                        <div class="text-[10px] text-rose-400 mt-1">ยังไม่ถูกรางวัล</div>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400"><i class="fa-solid fa-qrcode mr-1"></i>${dateToDisplay}</div>
+                                </div>
+                            </div>`;
+                    }
+                });
+
+                document.getElementById('result-list').innerHTML = htmlResults;
+                document.getElementById('result-box').classList.remove('hidden');
+                setTimeout(() => document.getElementById('result-box').classList.remove('opacity-0'), 50);
+                
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i> ตรวจชะตาสลาก';
+
+            } catch (error) {
+                alert("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i> ตรวจชะตาสลาก';
+            }
+        }
+
+        function resetScanner() {
+            document.querySelectorAll('.ticket-input').forEach(el => {
+                el.value = "";
+                el.classList.remove('filled');
+            });
+            document.querySelectorAll('[id^="badge-"]').forEach(el => el.classList.add('hidden'));
+            ticketSpecificDates = [null, null, null];
+            ticketSpecificTexts = ["", "", ""];
+            
+            document.getElementById('result-box').classList.add('hidden', 'opacity-0');
+        }
+    </script>
+    <script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

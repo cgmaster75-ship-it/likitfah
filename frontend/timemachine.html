@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Machine ขุดหวย 36 ปี - ลิขิตฟ้า</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Prompt:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #05050A; color: #10b981; font-family: 'Space Mono', monospace; overflow-x: hidden; }
+        .terminal-box {
+            background: rgba(0, 0, 0, 0.9); border: 1px solid #10b981; border-radius: 10px;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2); height: 60vh; overflow-y: auto; padding: 20px;
+        }
+        .log-entry { margin-bottom: 5px; font-size: 14px; border-left: 2px solid transparent; padding-left: 10px; }
+        .log-success { color: #10b981; border-color: #10b981; }
+        .log-skip { color: #fbbf24; border-color: #fbbf24; }
+        .log-error { color: #ef4444; border-color: #ef4444; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-4xl w-full">
+        <div class="text-center mb-6 font-sans">
+            <h1 class="text-3xl font-bold text-emerald-400 mb-2 tracking-widest">
+                <i class="fa-solid fa-clock-rotate-left mr-2"></i> LIKIT FAH : DATA TIME MACHINE
+            </h1>
+            <p class="text-slate-400 text-sm">ระบบขุดฐานข้อมูลลอตเตอรี่ย้อนหลัง 36 ปี (Full Prize Data)</p>
+        </div>
+
+        <div class="bg-slate-900/80 border border-emerald-500/30 p-6 rounded-2xl mb-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-white text-lg font-bold font-sans" id="progress-text">สถานะ: รอการสั่งสแกนประวัติกาล...</p>
+                <p class="text-slate-400 text-xs font-sans mt-1">เป้าหมาย: ดึงข้อมูลทุกรางวัลเพื่อสร้างเรดาร์ 100 ประตู</p>
+            </div>
+            <button id="btn-start" onclick="startTimeMachine()" class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-3 px-10 rounded-xl font-sans transition-all shadow-[0_0_20px_rgba(16,185,129,0.4)] flex items-center gap-2">
+                <i class="fa-solid fa-bolt"></i> เริ่มขุดข้อมูล
+            </button>
+        </div>
+
+        <div class="w-full bg-slate-800 rounded-full h-4 mb-4 overflow-hidden border border-slate-700">
+            <div id="progress-bar" class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+        </div>
+
+        <div class="terminal-box" id="terminal">
+            <div class="log-entry">> [SYSTEM] INITIALIZING TIME MACHINE MODULE...</div>
+            <div class="log-entry">> [TARGET] 36 YEARS ARCHIVE DATA (SCANNING MODE)</div>
+            <div class="log-entry">> [NOTICE] SYSTEM WILL WAIT 2 SECONDS PER REQUEST TO PREVENT API BLOCK.</div>
+            <div class="log-entry">> [READY] WAITING FOR OPERATOR EXECUTION...</div>
+        </div>
+    </div>
+
+    <script>
+        // สร้างรายการวันที่ทั้งหมด (36 ปี)
+        function generateAllDates() {
+            // 🌟 แก้ไข: ให้เริ่มขุดจากปีปัจจุบันในระบบ (2569) ถอยหลังลงไป
+            const currentYearTH = 2569; 
+            const targetYearTH = currentYearTH - 36;
+            let allDates = [];
+
+            for (let year = currentYearTH; year >= targetYearTH; year--) {
+                const datesInYear = [
+                    `3012${year}`, `1612${year}`, `0112${year}`,
+                    `1611${year}`, `0111${year}`,
+                    `1610${year}`, `0110${year}`,
+                    `1609${year}`, `0109${year}`,
+                    `1608${year}`, `0108${year}`,
+                    `1607${year}`, `0107${year}`,
+                    `1606${year}`, `0106${year}`,
+                    `1605${year}`, `0205${year}`, `0105${year}`,
+                    `1604${year}`, `0104${year}`,
+                    `1603${year}`, `0103${year}`,
+                    `1602${year}`, `0102${year}`,
+                    `1701${year}`, `1601${year}`
+                ];
+                allDates = allDates.concat(datesInYear);
+            }
+            return allDates;
+        }
+
+        const datesToFetch = generateAllDates();
+        const totalDates = datesToFetch.length;
+        let currentIndex = 0;
+        let isRunning = false;
+
+        function logToTerminal(message, type = 'success') {
+            const terminal = document.getElementById('terminal');
+            const entry = document.createElement('div');
+            entry.className = `log-entry log-${type}`;
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+            entry.innerHTML = `[${time}] ${message}`;
+            terminal.appendChild(entry);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+
+        async function processNextDate() {
+            if (!isRunning) return;
+            
+            if (currentIndex >= totalDates) {
+                logToTerminal(">>> [COMPLETE] TIME MACHINE HAS REACHED THE END OF ARCHIVE.", "success");
+                document.getElementById('progress-text').innerText = "สถานะ: ภารกิจเสร็จสิ้น 100%";
+                document.getElementById('btn-start').innerText = "ขุดข้อมูลเสร็จสิ้น";
+                document.getElementById('btn-start').classList.replace('bg-slate-600', 'bg-blue-600');
+                return;
+            }
+
+            const currentDate = datesToFetch[currentIndex];
+            const pct = Math.round((currentIndex / totalDates) * 100);
+            
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+            document.getElementById('progress-text').innerText = `สถานะ: กำลังสแกนงวด ${currentDate} (${pct}%)`;
+
+            try {
+                // ยิงไปที่ API ข้อ 14 ที่เราเพิ่งอัปเกรดปีไป
+                const res = await fetch(`/api/lotto/sync-specific?ddmmyyyy=${currentDate}`);
+                const data = await res.json();
+
+                if (data.status === 'success') {
+                    logToTerminal(`DOWNLOADED: งวด ${data.date} (พ.ศ.${currentDate.slice(4)}) บันทึกครบทุกรางวัลสำเร็จ`, 'success');
+                } else if (data.status === 'already_exists') {
+                    logToTerminal(`SKIPPED: งวด ${data.date} มีข้อมูลสมบูรณ์ในระบบแล้ว`, 'skip');
+                } else if (data.status === 'not_found') {
+                    logToTerminal(`NOT FOUND: งวด ${currentDate} ไม่มีในฐานข้อมูลต้นทาง (ข้าม)`, 'error');
+                } else {
+                    logToTerminal(`WARNING: งวด ${currentDate} พบข้อขัดข้อง - ${data.message}`, 'error');
+                }
+            } catch (error) {
+                logToTerminal(`CRITICAL: การเชื่อมต่อฐานข้อมูลล้มเหลว (${currentDate})`, 'error');
+            }
+
+            currentIndex++;
+            
+            // 🌟 พัก 2 วินาทีเพื่อความปลอดภัย ไม่ให้โดน API แบน IP
+            setTimeout(processNextDate, 2000); 
+        }
+
+        function startTimeMachine() {
+            if (isRunning) return;
+            const btn = document.getElementById('btn-start');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-sync fa-spin mr-2"></i> กำลังขุดประวัติ...';
+            btn.classList.replace('bg-emerald-600', 'bg-slate-600');
+            
+            isRunning = true;
+            logToTerminal(">>> STARTING TEMPORAL DATA EXTRACTION...", "success");
+            logToTerminal(">>> WARNING: KEEP THIS WINDOW OPEN UNTIL COMPLETION.", "skip");
+            
+            processNextDate();
+        }
+    </script>
+</body>
+</html>

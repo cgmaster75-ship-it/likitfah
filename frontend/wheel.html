@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กงล้อพรหมชาติ ทำนายดวงชะตา พลิกชะตาฟ้า - ลิขิตฟ้า</title>
+    <meta name="description" content="กงล้อพรหมชาติ ศาสตร์ทำนายดวงชะตาโบราณแม่นยำด้วยดวงไฟพยากรณ์ ตรวจสอบดวงการงาน การเงิน ความรัก และสุขภาพประจำปีของคุณได้ฟรีที่ลิขิตฟ้า">
+    <meta name="keywords" content="กงล้อพรหมชาติ, ดูดวงพรหมชาติ, ดูดวงกงล้อ, ทำนายดวงชะตา, ดูดวงฟรี, ลิขิตฟ้า">
+    <meta name="author" content="Likit Fah">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/wheel.html">
+    <meta property="og:title" content="กงล้อพรหมชาติ ทำนายดวงชะตา พลิกชะตาฟ้า - ลิขิตฟ้า">
+    <meta property="og:description" content="ศาสตร์ทำนายดวงชะตาโบราณแม่นยำด้วยดวงไฟพยากรณ์ ตรวจดวงการงาน การเงิน ความรัก ประจำปีของคุณ">
+    <meta property="og:image" content="https://likitfah.com/img/og-wheel.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="กงล้อพรหมชาติ ทำนายดวงชะตา พลิกชะตาฟ้า">
+    <meta name="twitter:description" content="ศาสตร์ทำนายดวงชะตาโบราณแม่นยำด้วยดวงไฟพยากรณ์ ตรวจดวงประจำปีของคุณ">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-wheel.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold-light: #fde047;
+            --gold-main: #fbbf24;
+            --gold-dark: #b45309;
+            --bg-dark: #05050A;
+            --panel-bg: rgba(10, 10, 15, 0.9);
+        }
+
+        body { 
+            background-color: var(--bg-dark);
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 5, 10, 0.85) 0%, rgba(0, 0, 0, 0.98) 100%),
+                radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.1), transparent 60%),
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover; background-position: center top; background-attachment: fixed;
+            color: #e2e8f0; font-family: 'Prompt', sans-serif;
+        }
+        
+        .glass-panel { 
+            background: var(--panel-bg); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(251, 191, 36, 0.1); 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        input[type="date"] { color-scheme: dark; }
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer; opacity: 1;
+            filter: invert(74%) sepia(57%) saturate(629%) hue-rotate(351deg) brightness(101%) contrast(104%);
+            transform: scale(1.4); margin-right: 4px;
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover { opacity: 0.8; }
+
+        .wheel-wrapper {
+            width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem;
+            overflow: visible;
+        }
+        
+        .wheel-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 400px; 
+            aspect-ratio: 1 / 1; 
+            margin: 0 auto; 
+            border-radius: 50%;
+            flex-shrink: 0; 
+        }
+        @media (min-width: 768px) { 
+            .wheel-container { max-width: 480px; } 
+        }
+        
+        #wheel {
+            width: 100%; height: 100%; border-radius: 50%; 
+            background-color: #05050A; position: relative; overflow: hidden; 
+            box-shadow: 0 0 60px rgba(245, 158, 11, 0.2), inset 0 0 40px rgba(0,0,0,0.9);
+            border: 3px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .wheel-bg-image { 
+            position: absolute; inset: 0; width: 100%; height: 100%; 
+            object-fit: cover; z-index: 1; opacity: 0.8; 
+        }
+
+        .wheel-item {
+            position: absolute; top: 0; left: 50%; 
+            width: 22%; height: 50%; 
+            margin-left: -11%; 
+            transform-origin: bottom center;
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+            padding-top: 10%; 
+            z-index: 5;
+        }
+
+        .item-image {
+            width: 75%; height: auto; aspect-ratio: 225/290;
+            object-fit: contain; filter: drop-shadow(0 5px 12px rgba(0,0,0,0.95)); 
+            position: relative; z-index: 3; transition: transform 0.3s;
+        }
+
+        .item-mask {
+            position: absolute; top: 10%; left: 10%; width: 80%; height: 50%;
+            background: radial-gradient(circle, rgba(5,5,10,0.9) 20%, transparent 80%);
+            z-index: 1; filter: blur(3px); pointer-events: none;
+        }
+
+        .backlight-glow {
+            position: absolute; top: 2%; left: 50%; transform: translateX(-50%);
+            width: 120%; height: 60%;
+            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(251,191,36,0.8) 30%, transparent 75%);
+            border-radius: 50%; filter: blur(6px);
+            opacity: 0; transition: opacity 0.05s ease, transform 0.1s ease;
+            z-index: 2; pointer-events: none; mix-blend-mode: screen;
+            box-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
+        }
+        
+        .backlight-glow.active { opacity: 1; transform: translateX(-50%) scale(1.15); }
+        .backlight-glow.final-glow {
+            opacity: 1; transform: translateX(-50%) scale(1.4); filter: blur(8px);
+            animation: luxury-pulse 1.2s infinite;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(251,191,36,1) 25%, rgba(245,158,11,0.7) 50%, transparent 80%);
+            box-shadow: 0 0 50px rgba(251, 191, 36, 1), 0 0 100px rgba(245, 158, 11, 0.7);
+        }
+
+        @keyframes luxury-pulse {
+            0%, 100% { filter: blur(8px); opacity: 0.85; transform: translateX(-50%) scale(1.3); }
+            50% { filter: blur(12px); opacity: 1; transform: translateX(-50%) scale(1.5); }
+        }
+
+        .center-circle {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 20%; height: 20%; max-width: 80px; max-height: 80px;
+            background: linear-gradient(135deg, #18181b, #000000);
+            border-radius: 50%; z-index: 10; border: 2px solid rgba(251, 191, 36, 0.4);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.9), inset 0 0 15px rgba(251, 191, 36, 0.2);
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .gender-btn { 
+            background: rgba(0, 0, 0, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); 
+            transition: all 0.3s; cursor: pointer; color: #94a3b8; 
+        }
+        .gender-btn.active { 
+            background: linear-gradient(to bottom, rgba(251, 191, 36, 0.15), rgba(0,0,0,0.8)); 
+            border-color: var(--gold-main); color: var(--gold-main); 
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.1); 
+        }
+
+        .mystic-grid-card {
+            background: linear-gradient(145deg, rgba(15, 15, 20, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.15); border-radius: 1rem; padding: 1.25rem;
+            position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .mystic-grid-card .bg-icon {
+            position: absolute; right: -15px; bottom: -15px; font-size: 5rem; 
+            background: linear-gradient(to bottom right, rgba(251, 191, 36, 0.1), transparent);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; pointer-events: none;
+        }
+
+        .star-filled { color: var(--gold-main); filter: drop-shadow(0 0 4px rgba(251, 191, 36, 0.5)); }
+        .star-empty { color: #27272a; } 
+        
+        .title-gradient {
+            background: linear-gradient(to right, #fef08a, #fbbf24, #d97706);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .btn-audio { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .btn-audio:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(245, 158, 11, 0.3); }
+        .btn-audio:active { transform: translateY(0); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative pb-32 overflow-x-hidden">
+
+    <main class="flex-grow flex flex-col items-center justify-center w-full p-4 relative z-10">
+        <div class="max-w-3xl w-full my-8">
+            
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-5xl font-bold mb-3 title-gradient font-serif tracking-widest uppercase drop-shadow-lg">
+                    กงล้อพรหมชาติ
+                </h1>
+                <p class="text-amber-500/60 text-xs md:text-sm font-light tracking-[0.2em] uppercase">The Brahma Jati Destiny Wheel</p>
+            </div>
+
+            <div class="glass-panel p-6 md:p-12 rounded-[2rem] text-center relative overflow-hidden">
+                
+                <div id="inputBox" class="bg-black/60 border border-white/5 rounded-2xl p-6 mb-12 transition-all shadow-[inset_0_2px_20px_rgba(0,0,0,0.8)]">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-left">
+                            <label class="block text-[10px] md:text-xs text-slate-400 mb-2 font-medium tracking-widest uppercase">วัน/เดือน/ปีเกิด</label>
+                            <input type="date" id="user-dob" class="w-full bg-black/80 border border-white/10 text-amber-200 rounded-xl px-4 py-3 outline-none font-medium focus:border-amber-500/50 transition-colors cursor-pointer">
+                        </div>
+                        <div class="text-left">
+                            <label class="block text-[10px] md:text-xs text-slate-400 mb-2 font-medium tracking-widest uppercase">เพศ (มีผลต่อทิศการนับของดวงไฟ)</label>
+                            <div class="flex gap-3">
+                                <div id="btn-male" onclick="setGender('male')" class="gender-btn active flex-1 rounded-xl py-3 text-sm font-medium flex flex-col items-center justify-center">
+                                    <span><i class="fa-solid fa-mars mb-1"></i> ชาย</span>
+                                    <span class="text-[9px] opacity-50 tracking-wider">นับไปทางฉัตรเงิน</span>
+                                </div>
+                                <div id="btn-female" onclick="setGender('female')" class="gender-btn flex-1 rounded-xl py-3 text-sm font-medium flex flex-col items-center justify-center">
+                                    <span><i class="fa-solid fa-venus mb-1"></i> หญิง</span>
+                                    <span class="text-[9px] opacity-50 tracking-wider">นับย้อนไปทางนาคราช</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wheel-wrapper">
+                    <div class="wheel-container">
+                        <div id="wheel">
+                            <img src="img/wheel-base.png" class="wheel-bg-image" alt="Wheel Background" onerror="this.style.display='none'">
+                            <div id="wheel-items-container" class="absolute inset-0 z-10"></div>
+                        </div>
+                        <div class="center-circle pointer-events-none">
+                            <i class="fa-solid fa-dharmachakra text-amber-500/40 text-2xl md:text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="spinBtn" onclick="calculateAndSpin()" class="w-full bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-bold text-lg md:text-xl py-5 rounded-2xl shadow-[0_10px_30px_rgba(245,158,11,0.2)] transition-all active:scale-95 flex justify-center items-center gap-3">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> เริ่มทำนายดวงชะตา
+                </button>
+
+                <div id="resultBox" class="mt-12 hidden animate-[fadeIn_0.8s_ease-out]">
+                    
+                    <div class="text-center mb-8">
+                        <p class="text-slate-500 text-sm tracking-widest uppercase mb-2">คำทำนายปี <span id="resCurrentYear" class="text-amber-500"></span></p>
+                        
+                        <div class="inline-flex items-center justify-center gap-2 bg-black/60 border border-amber-500/20 px-6 py-2 rounded-full mb-6">
+                            <span id="resUserIcon" class="text-amber-500/70"></span>
+                            <span class="text-slate-300 text-sm font-light">อายุย่าง <strong id="resUserAge" class="text-amber-400 text-lg font-bold mx-1"></strong> ปี</span>
+                        </div>
+
+                        <h1 class="text-5xl md:text-6xl font-bold title-gradient mb-4 drop-shadow-[0_5px_15px_rgba(0,0,0,0.8)] font-serif" id="resTitle">
+                            ตก...
+                        </h1>
+
+                        <div class="mb-6" id="resOverallStars"></div>
+                        
+                        <div class="flex justify-center mb-6">
+                            <button onclick="toggleSpeech()" class="btn-audio px-6 py-2.5 rounded-full bg-amber-900/30 border border-amber-500/50 text-amber-300 hover:bg-amber-900/60 transition-colors flex items-center shadow-[0_0_15px_rgba(245,158,11,0.1)]">
+                                <i class="fa-solid fa-volume-high mr-2 text-lg" id="audioIcon"></i> 
+                                <span id="audioText" class="font-medium tracking-wide">ฟังคำทำนาย</span>
+                            </button>
+                        </div>
+                        
+                        <div class="bg-gradient-to-b from-amber-900/10 to-transparent border-t border-amber-500/20 pt-6 px-4 md:px-10 text-center">
+                            <p id="resSummary" class="text-amber-100/80 text-sm md:text-base leading-relaxed font-light"></p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10" id="resultRows"></div>
+
+                    <div class="bg-black/60 border border-amber-500/20 p-6 rounded-2xl text-center mb-10 shadow-[inset_0_2px_15px_rgba(0,0,0,0.8)]">
+                        <p id="resAdvice" class="text-amber-500/90 text-sm md:text-base font-medium italic leading-relaxed"></p>
+                    </div>
+
+                    <div class="flex justify-center pt-8 border-t border-white/5">
+                        <button onclick="resetForOthers()" class="px-10 py-4 rounded-xl bg-black/60 border border-amber-500/30 text-amber-400 hover:bg-black/80 hover:border-amber-400 font-medium transition-all flex items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.1)]">
+                            <i class="fa-solid fa-rotate-left mr-3"></i> เริ่มใหม่ / ดูให้คนอื่น
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2rem] p-6 md:p-8 mt-8 text-left shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                <h3 class="text-amber-400 font-bold text-xl md:text-2xl mb-4 border-b border-white/10 pb-4 flex items-center">
+                    <i class="fa-solid fa-book-journal-whills mr-3 text-2xl"></i> ศาสตร์แห่งไฟพยากรณ์
+                </h3>
+                <p class="text-sm text-slate-300 mb-6 leading-relaxed font-light">
+                    ระบบไม่ได้สุ่มดวงชะตาให้คุณมั่วๆ แต่ใช้ <strong>"ดวงไฟศักดิ์สิทธิ์"</strong> วิ่งรอบจักรราศีเพื่อจำลองการนับตามตำราโหราศาสตร์โบราณ โดยอ้างอิงจาก <strong>อายุย่าง และ เพศกำเนิด</strong> ของคุณครับ
+                </p>
+                <ul class="space-y-4 text-sm text-slate-300 font-light">
+                    <li class="flex items-start bg-white/5 p-4 rounded-xl border border-white/5">
+                        <i class="fa-solid fa-calculator text-emerald-400 mt-1 mr-4 text-xl w-5 text-center"></i>
+                        <div><strong class="text-white font-medium">1. คำนวณอายุย่าง:</strong> <br>ปีปัจจุบัน ลบ ปีเกิด แล้วบวก 1 (เช่น ปีนี้ 2569 ลบ ปีเกิด 2530 = 39 ขวบ + 1 = อายุย่าง 40 ปี)</div>
+                    </li>
+                    <li class="flex items-start bg-white/5 p-4 rounded-xl border border-white/5">
+                        <i class="fa-solid fa-bolt text-amber-400 mt-1 mr-4 text-xl w-5 text-center"></i>
+                        <div><strong class="text-white font-medium">2. ทำไมดวงไฟต้องวิ่ง?:</strong> <br>หมอดูโบราณจะใช้นิ้วชี้ "นับวน" ไปตามตาราง 12 ภพจนเท่ากับอายุ ดวงไฟของเราจำลองการนับนั้น เพื่อให้คุณเห็นผลทำนายที่แท้จริง</div>
+                    </li>
+                    <li class="flex items-start bg-white/5 p-4 rounded-xl border border-white/5">
+                        <i class="fa-solid fa-venus-mars text-purple-400 mt-1 mr-4 text-xl w-5 text-center"></i>
+                        <div class="w-full">
+                            <strong class="text-white font-medium">3. กฎของเพศ (ทิศทางการนับ):</strong>
+                            <div class="mt-3 space-y-2">
+                                <div class="bg-blue-900/20 p-3 rounded-lg border border-blue-500/20 flex items-center">
+                                    <i class="fa-solid fa-mars text-blue-400 mr-3 text-lg"></i> 
+                                    <span><strong class="text-blue-300">ผู้ชาย:</strong> เริ่ม 1 ที่เจดีย์ นับเวียนไปทาง <i class="fa-solid fa-arrow-right text-[10px] mx-1 text-slate-500"></i> ฉัตรเงิน <i class="fa-solid fa-arrow-right text-[10px] mx-1 text-slate-500"></i> คอขาด...</span>
+                                </div>
+                                <div class="bg-pink-900/20 p-3 rounded-lg border border-pink-500/20 flex items-center">
+                                    <i class="fa-solid fa-venus text-pink-400 mr-3 text-lg"></i> 
+                                    <span><strong class="text-pink-300">ผู้หญิง:</strong> เริ่ม 1 ที่เจดีย์ นับย้อนไปทาง <i class="fa-solid fa-arrow-right text-[10px] mx-1 text-slate-500"></i> นาคราช <i class="fa-solid fa-arrow-right text-[10px] mx-1 text-slate-500"></i> แม่มด...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        const brahmaData = [
+            { id: 0, name: "เจดีย์", img: "img/item-0.png", icon: "fa-solid fa-vihara",
+              summary: "คนที่ตก “เจดีย์” ท่านจะได้ใช้ชีวิตอย่างร่มเย็นเป็นสุข จะมีแต่ความสุขกายสบายใจ จะได้ทำบุญกุศล ปรารถนาสิ่งใดจะได้สมดั่งหวังทุกประการ",
+              work: "ราบรื่น ปรารถนาสิ่งใดก็สมหวัง มีความสุขในการทำงาน", money: "มั่นคง ไร้เรื่องร้อนใจ มีกินมีใช้ไม่ขาดมือ", health: "สุขภาพแข็งแรงสมบูรณ์ สบายกายสบายใจ", love: "ครอบครัวร่มเย็นเป็นสุข คนโสดพบรักที่บริสุทธิ์ใจ", advice: "หมั่นทำบุญไหว้พระ สวดมนต์ นั่งสมาธิ หรือร่วมบุญสร้างศาสนสถาน จะยิ่งหนุนนำให้ชะตาชีวิตพุ่งสูงสุด", rating: { overall: 5, work: 5, money: 4, health: 5, love: 5 } },
+            { id: 1, name: "ฉัตรเงิน", img: "img/item-1.png", icon: "fa-solid fa-umbrella text-slate-300",
+              summary: "คนที่ตก “ฉัตรเงิน” ท่านจะมีสุข จะมีโชคลาภเงินทองมากมาย จะมีผู้ใหญ่อุปถัมภ์ค้ำจุน ถ้าทำราชการหรือค้าขาย ก็จะมีความเจริญก้าวหน้ายิ่งขึ้น",
+              work: "เจริญก้าวหน้า ผู้ใหญ่อุปถัมภ์ค้ำชูเป็นอย่างดี", money: "โชคลาภเงินทองไหลมาเทมา ค้าขายได้กำไรงาม", health: "สมบูรณ์ แข็งแรง ไร้โรคภัยเบียดเบียน", love: "มีความสุข สดใส ได้รับการดูแลเอาใจใส่อย่างดี", advice: "ควรแสดงความกตัญญูและอ่อนน้อมถ่อมตนต่อผู้ใหญ่เสมอ การทำบุญกับบุพการีจะช่วยเปิดทางเศรษฐีให้กว้างขึ้น", rating: { overall: 5, work: 5, money: 5, health: 5, love: 4 } },
+            { id: 2, name: "คนคอขาด", img: "img/item-2.png", icon: "fa-solid fa-user-slash",
+              summary: "คนที่ตก “คนคอขาด” ท่านจะได้รับความเดือดร้อน จะได้รับความร้อนใจต่าง ๆ ซึ่งจะมีผู้ทำให้แก่ท่าน ทำให้ต้องเสียทรัพย์สินเงินทองอยู่เสมอ",
+              work: "มีผู้ทำให้เดือดร้อนใจ ระวังปัญหาวุ่นวายจากคนรอบข้าง", money: "เสียทรัพย์สินเงินทองอยู่เสมอ ระวังการถูกโกง", health: "ให้ระวังอุบัติเหตุรุนแรง หรือการเจ็บไข้ได้ป่วย", love: "มีความทุกข์ยากลำบากใจ ร้อนรุ่ม ทะเลาะเบาะแว้ง", advice: "รีบทำบุญสะเดาะเคราะห์ ปล่อยนกปล่อยปลา บริจาคโลงศพ หรือไถ่ชีวิตโคกระบือ และใช้ชีวิตด้วยความไม่ประมาท", rating: { overall: 1, work: 2, money: 1, health: 1, love: 1 } },
+            { id: 3, name: "เรือนหลวง", img: "img/item-3.png", icon: "fa-solid fa-chess-rook",
+              summary: "คนที่ตก “เรือนหลวง” ท่านจะได้รับแต่ความสุขสบาย มีความเจริญก้าวหน้าในกิจการทุกอย่าง ศัตรูที่คิดร้ายจะแพ้ภัยตัวเอง",
+              work: "เจริญก้าวหน้าในกิจการทุกอย่าง ศัตรูแพ้ภัยตัวเอง", money: "มีโชคลาภ ได้เงินทองเป็นกอบเป็นกำ", health: "ปลอดภัย แคล้วคลาด มีชีวิตที่สุขสบาย", love: "มีผู้อุปถัมภ์อย่างดียิ่ง ครอบครัวมั่นคง", advice: "เมื่อได้ดีแล้วอย่าลืมตน ให้แบ่งปันช่วยเหลือผู้น้อย และทำบุญเกี่ยวกับที่อยู่อาศัย เช่น ค่าน้ำค่าไฟวัด", rating: { overall: 5, work: 5, money: 5, health: 4, love: 5 } },
+            { id: 4, name: "ปราสาททอง", img: "img/item-4.png", icon: "fa-brands fa-fort-awesome",
+              summary: "คนที่ตก “ปราสาททอง” ชะตาชีวิตจะได้พบแต่ความสุข เจริญก้าวหน้า สมความปรารถนาทุกประการ ถ้าค้าขายจะร่ำรวย ถ้าเป็นโสดจะได้พบเนื้อคู่",
+              work: "กิจการที่ทำจะได้ผลประโยชน์เป็นที่พึงใจ สมปรารถนา", money: "ค้าขายจะร่ำรวย ได้ทรัพย์สิน", health: "สุขภาพแข็งแรงดีเยี่ยม ชีวิตมีแต่ความสดใส", love: "ถ้าเป็นโสดจะได้พบเนื้อคู่ คนมีคู่จะสุขสมบูรณ์", advice: "เป็นช่วงเวลาทองของชีวิต ให้รีบลงมือทำสิ่งที่ตั้งใจไว้ และหมั่นทำทานบารมีเพื่อรักษาความมั่งคั่งให้อยู่ยาวนาน", rating: { overall: 5, work: 5, money: 5, health: 5, love: 5 } },
+            { id: 5, name: "ราหู", img: "img/item-5.png", icon: "fa-solid fa-eclipse",
+              summary: "คนที่ตก “ราหู” ท่านจะได้รับความร้อนอกร้อนใจ จะเป็นถ้อยความผู้อื่นที่ทำให้ท่านร้อนใจ จะพบกับความวุ่นวายอย่างไม่รู้จบ",
+              work: "เกิดเป็นปากเสียงกับเพื่อนบ้านหรือเพื่อนร่วมงาน", money: "ต้องเสียทรัพย์สินเงินทอง คดีความทำให้ร้อนใจ", health: "จะเกิดการเจ็บป่วยขึ้นแก่ท่าน ควรดูแลตัวเองให้ดี", love: "พบกับความวุ่นวายไม่รู้จบ ระวังอารมณ์หงุดหงิด", advice: "งดเว้นการพนันและอบายมุขทุกชนิด ไหว้พระราหู ทำบุญด้วยของดำ หรือเติมน้ำมันตะเกียงเพื่อเพิ่มแสงสว่างให้ชีวิต", rating: { overall: 2, work: 2, money: 2, health: 2, love: 1 } },
+            { id: 6, name: "ฉัตรทอง", img: "img/item-6.png", icon: "fa-solid fa-umbrella text-yellow-400",
+              summary: "คนที่ตก “ฉัตรทอง” ท่านจะได้ประสบโชคลาภ มั่งมีด้วยทรัพย์สินเงินทอง พร้อมด้วยลาภยศมิตรสหาย ชะตาชีวิตในปีนี้จะมีแต่ความสบายใจ",
+              work: "มีความก้าวหน้า มีผู้ใหญ่คอยให้ความอุปถัมภ์เป็นอย่างดี", money: "ประสบโชคลาภ มั่งมีด้วยทรัพย์สินเงินทอง", health: "แข็งแรงสมบูรณ์ ชะตาชีวิตมีแต่ความสบายใจ", love: "พรั่งพร้อมด้วยมิตรสหายและคนรักที่ซื่อสัตย์", advice: "ทำบุญด้วยการถวายร่ม หรือทองคำเปลว ปิดทองพระพุทธรูป จะยิ่งเสริมสง่าราศีและบารมีให้โดดเด่นยิ่งขึ้น", rating: { overall: 5, work: 5, money: 5, health: 5, love: 4 } },
+            { id: 7, name: "เทวดาขี่เต่า", img: "img/item-7.png", icon: "fa-solid fa-hands-praying",
+              summary: "คนที่ตก “เทวดาขี่เต่า” ท่านจะมีความสุขพอประมาณ จะทำอะไรจงคิดให้รอบคอบเสียก่อน มิฉะนั้นจะเกิดผลผิดพลาดขึ้นได้",
+              work: "ค่อนข้างราบเรียบ จะทำสิ่งใดต้องคิดให้รอบคอบเสียก่อน", money: "การเงินการทองพอมีใช้มีจ่าย ไม่ถึงกับขัดสน", health: "แข็งแรงดี แต่อย่าประมาทในการใช้ชีวิต", love: "มีความสุขพอประมาณ ค่อยเป็นค่อยไปไม่หวือหวา", advice: "ความอดทนคือความสำเร็จ ห้ามใจร้อนวู่วามเด็ดขาด หมั่นทำบุญปล่อยเต่า หรือบริจาคทุนการศึกษา", rating: { overall: 3, work: 3, money: 3, health: 4, love: 4 } },
+            { id: 8, name: "คนต้องขื่อคา", img: "img/item-8.png", icon: "fa-solid fa-link",
+              summary: "คนที่ตก “คนต้องขื่อคา” จัดว่าชะตาตกอยู่ในฐานะมิสู้ดี จงมีความระวังในญาติพี่น้อง จะนำความเดือดร้อนใจมาให้ อย่าเดินทางไกล",
+              work: "ระวังจะได้รับโทษทัณฑ์อาญา หรือมีปัญหาเอกสารสัญญา", money: "มีเกณฑ์เสียทรัพย์ ระวังคดีความเดือดร้อน", health: "ระวังอันตราย เร่งจำศีลภาวนา ทำบุญสะเดาะเคราะห์", love: "คนรักมักจะเอาใจออกห่าง ญาติพี่น้องนำความเดือดร้อนมาให้", advice: "ระวังการเซ็นสัญญาทุกชนิด ทำบุญชำระหนี้สงฆ์ บริจาคเงินช่วยเหลือผู้ต้องขัง หรือผู้ป่วยยากไร้ตามโรงพยาบาล", rating: { overall: 1, work: 2, money: 1, health: 2, love: 1 } },
+            { id: 9, name: "พ่อหมอ", img: "img/item-9.png", icon: "fa-solid fa-user-tie",
+              summary: "คนที่ตก “พ่อหมอ” จะพบผู้ใหญ่อุปถัมภ์ค้ำชูแก่ท่าน ให้ยศศักดิ์ ท่านจะมีความสุขเจริญก้าวหน้า โพยภัยมิได้มีมาพ้องพานเลย",
+              work: "ผู้ใหญ่อุปถัมภ์ค้ำชูให้ยศศักดิ์ มีความเจริญก้าวหน้า", money: "จะมีโชคลาภมาสู่ท่าน เป็นที่พึงใจยิ่ง", health: "แคล้วคลาดปลอดภัย โพยภัยมิได้มีมาพ้องพาน", love: "ได้รับความเมตตาเอ็นดูจากคนรอบข้าง", advice: "ให้นำความรู้ที่มีไปช่วยเหลือผู้อื่น ทำบุญเกี่ยวกับการศึกษา บริจาคหนังสือ หรือสนับสนุนเครื่องมือแพทย์", rating: { overall: 4, work: 5, money: 4, health: 5, love: 4 } },
+            { id: 10, name: "แม่มด", img: "img/item-10.png", icon: "fa-solid fa-hat-wizard",
+              summary: "คนที่ตก “แม่มด” ท่านจะได้พบผู้เฒ่าเจ้านายค้ำชู คำพูดของท่านจะเป็นที่ไว้เนื้อเชื่อใจ จะไปแห่งใดมีแต่คนรักใคร่ แต่ต้องเหนื่อยกายใจบ้าง",
+              work: "คำพูดน่าเชื่อถือ ได้รับความค้ำชูจากเจ้านาย", money: "มีผู้นำโชคลาภมาให้แต่ไม่มากนัก", health: "ท่านจะต้องเหนื่อยกายและใจบ้าง ควรหาเวลาพักผ่อน", love: "ไปแห่งใดมีแต่คนรักใคร่ มีเสน่ห์จากวาจา", advice: "ใช้คำพูดในทางบวกจะยิ่งเรียกทรัพย์ หมั่นทำบุญเกี่ยวกับค่าน้ำไฟ หรือทำความสะอาดห้องน้ำวัดเพื่อลดทอนความเหน็ดเหนื่อย", rating: { overall: 4, work: 4, money: 3, health: 3, love: 5 } },
+            { id: 11, name: "นาคราช", img: "img/item-11.png", icon: "fa-solid fa-dragon",
+              summary: "คนที่ตก “นาคราช” จัดว่าร้าย จะมีผู้ปองร้าย จงจำศีลภาวนา อย่าเบียดเบียนสัตว์ ทุกข์จะบรรเทาโทษแล",
+              work: "ระวังศัตรู หรือมีผู้ปองร้ายในที่ทำงาน", money: "เสียทรัพย์ไปกับการรักษาตัว หรือเหตุไม่คาดฝัน", health: "ระวังพยาธิ เจ็บไข้ปวดร้าว ให้เกรงเขี้ยวงาและของมีคม เลือดออก", love: "มีความทุกข์ใจร้อนรุ่ม ควรหมั่นทำบุญตักบาตร", advice: "หมั่นจำศีลภาวนา สวดมนต์แผ่เมตตา อย่าเบียดเบียนสัตว์ บริจาคโลหิตเพื่อเป็นการแก้เคล็ดเรื่องเลือดตกยางออก", rating: { overall: 1, work: 2, money: 1, health: 1, love: 1 } }
+        ];
+
+        let userGender = 'male';
+        let isSpinning = false;
+        
+        let isSpeaking = false;
+        let predictionTextToRead = "";
+
+        function renderStaticWheel() {
+            const container = document.getElementById('wheel-items-container');
+            container.innerHTML = '';
+            
+            brahmaData.forEach((item, i) => {
+                // 🌟 แก้ไขแกนหมุนให้พลิกสลับด้านตรงกับภาพเป๊ะ 100% 🌟
+                const rotation = 180 - (i * 30); 
+                const el = document.createElement('div');
+                el.className = 'wheel-item';
+                el.style.transform = `rotate(${rotation}deg)`;
+                
+                el.innerHTML = `
+                    <div class="item-mask"></div>
+                    <div id="glow-${i}" class="backlight-glow"></div>
+                    <img src="${item.img}" class="item-image" alt="${item.name}" onerror="this.style.display='none'">
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        window.onload = () => {
+            renderStaticWheel();
+            const savedDob = localStorage.getItem('user_dob');
+            if (savedDob) document.getElementById('user-dob').value = savedDob;
+            document.getElementById('resCurrentYear').innerText = new Date().getFullYear() + 543;
+        };
+
+        function setGender(gender) {
+            if(isSpinning) return;
+            userGender = gender;
+            document.getElementById('btn-male').classList.remove('active');
+            document.getElementById('btn-female').classList.remove('active');
+            document.getElementById(`btn-${gender}`).classList.add('active');
+        }
+
+        function calculateAndSpin() {
+            if(isSpinning) return;
+            
+            const dobInput = document.getElementById('user-dob').value;
+            if (!dobInput) { alert("กรุณาระบุวัน/เดือน/ปีเกิด เพื่อผูกดวงชะตาครับ"); return; }
+
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            isSpeaking = false;
+
+            isSpinning = true;
+            const btn = document.getElementById('spinBtn');
+            btn.innerHTML = '<i class="fa-solid fa-bolt fa-fade"></i> กำลังเปิดคัมภีร์...';
+            btn.classList.add('opacity-80', 'pointer-events-none');
+            
+            document.getElementById('resultBox').classList.add('hidden');
+            document.getElementById('inputBox').classList.add('opacity-50', 'pointer-events-none');
+            
+            document.querySelectorAll('.backlight-glow').forEach(el => {
+                el.classList.remove('active', 'final-glow');
+            });
+
+            const birthYear = new Date(dobInput).getFullYear();
+            const currentYear = new Date().getFullYear();
+            const ageYang = (currentYear - birthYear) + 1;
+
+            let targetIndex = userGender === 'male' ? (ageYang - 1) % 12 : (12 - ((ageYang - 1) % 12)) % 12;
+            let direction = userGender === 'male' ? 1 : -1;
+            let stepsToTarget = direction === 1 ? targetIndex : (targetIndex === 0 ? 0 : 12 - targetIndex);
+            
+            const totalSteps = (12 * 4) + stepsToTarget; 
+            let currentStep = 0;
+            let currentLightIndex = 0;
+
+            function stepLight() {
+                document.querySelectorAll('.backlight-glow').forEach(el => el.classList.remove('active'));
+                document.getElementById(`glow-${currentLightIndex}`).classList.add('active');
+
+                currentStep++;
+                
+                if (currentStep <= totalSteps) {
+                    currentLightIndex = (currentLightIndex + direction + 12) % 12;
+                    let progress = currentStep / totalSteps;
+                    let easeOut = 1 - Math.pow(1 - progress, 3); 
+                    let nextDelay = 30 + (easeOut * 400); 
+                    setTimeout(stepLight, nextDelay);
+                } else {
+                    document.getElementById(`glow-${targetIndex}`).classList.add('final-glow');
+                    showResult(targetIndex, ageYang);
+                    
+                    btn.innerHTML = '<i class="fa-solid fa-dharmachakra"></i> ดูดวงชะตาอีกครั้ง';
+                    btn.classList.remove('opacity-80', 'pointer-events-none');
+                    document.getElementById('inputBox').classList.remove('opacity-50', 'pointer-events-none');
+                    isSpinning = false;
+                }
+            }
+            setTimeout(stepLight, 30);
+        }
+
+        function getStars(score) {
+            let starsHtml = '';
+            for(let i=1; i<=5; i++) {
+                if(i <= score) starsHtml += '<i class="fa-solid fa-star star-filled mx-0.5"></i>';
+                else starsHtml += '<i class="fa-solid fa-star star-empty mx-0.5"></i>';
+            }
+            return `<div class="flex">${starsHtml}</div>`;
+        }
+
+        function createMysticCard(title, content, iconClass, score) {
+            return `
+            <div class="mystic-grid-card">
+                <i class="${iconClass} bg-icon"></i>
+                <div class="flex justify-between items-center border-b border-white/5 pb-3 mb-3 relative z-10">
+                    <h4 class="text-amber-400 font-bold text-sm flex items-center">
+                        <i class="${iconClass} mr-2 opacity-80"></i> ${title}
+                    </h4>
+                    ${getStars(score)}
+                </div>
+                <p class="text-slate-300 text-xs md:text-sm leading-relaxed font-light relative z-10">${content}</p>
+            </div>`;
+        }
+
+        function showResult(idx, age) {
+            const data = brahmaData[idx];
+            const box = document.getElementById('resultBox');
+            
+            document.getElementById('resUserAge').innerText = age;
+            document.getElementById('resUserIcon').innerHTML = userGender === 'male' ? '<i class="fa-solid fa-mars"></i> ชาย' : '<i class="fa-solid fa-venus"></i> หญิง';
+            document.getElementById('resTitle').innerHTML = `ตก... ${data.name}`;
+            
+            let overallStars = '';
+            for(let i=1; i<=5; i++) {
+                if(i <= data.rating.overall) overallStars += '<i class="fa-solid fa-star star-filled text-2xl mx-1"></i>';
+                else overallStars += '<i class="fa-solid fa-star star-empty text-2xl mx-1 opacity-50"></i>';
+            }
+            document.getElementById('resOverallStars').innerHTML = overallStars;
+            document.getElementById('resSummary').innerText = data.summary;
+            
+            let rowsHtml = '';
+            rowsHtml += createMysticCard('หน้าที่การงาน', data.work, 'fa-solid fa-briefcase', data.rating.work);
+            rowsHtml += createMysticCard('การเงินและโชคลาภ', data.money, 'fa-solid fa-coins', data.rating.money);
+            rowsHtml += createMysticCard('สุขภาพและอุบัติเหตุ', data.health, 'fa-solid fa-heart-pulse', data.rating.health);
+            rowsHtml += createMysticCard('ความรักและครอบครัว', data.love, 'fa-solid fa-hand-holding-heart', data.rating.love);
+            document.getElementById('resultRows').innerHTML = rowsHtml;
+            
+            document.getElementById('resAdvice').innerHTML = `<span class="text-amber-500 font-bold mr-1">คำแนะนำ:</span> ${data.advice}`;
+            
+            predictionTextToRead = `คำทำนายกงล้อพรหมชาติของคุณในปีนี้ ตก${data.name} ข้อสรุปดวงชะตาคือ ${data.summary} ต่อไปเป็นคำทำนายแยกตามแต่ละด้าน ด้านหน้าที่การงาน ${data.work} ด้านการเงินและโชคลาภ ${data.money} ด้านสุขภาพและอุบัติเหตุ ${data.health} ด้านความรักและครอบครัว ${data.love} และคำแนะนำเพื่อเสริมดวงชะตาสำหรับคุณ ${data.advice}`;
+            
+            document.getElementById('audioIcon').className = "fa-solid fa-volume-high mr-2 text-lg";
+            document.getElementById('audioText').innerText = "ฟังคำทำนาย";
+            document.getElementById('audioIcon').classList.remove('text-rose-400');
+            isSpeaking = false;
+
+            box.classList.remove('hidden');
+            box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function toggleSpeech() {
+            if (!window.speechSynthesis) {
+                alert("ขออภัยครับ เบราว์เซอร์ของคุณไม่รองรับระบบอ่านออกเสียง");
+                return;
+            }
+
+            const icon = document.getElementById('audioIcon');
+            const text = document.getElementById('audioText');
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                icon.className = "fa-solid fa-volume-high mr-2 text-lg";
+                icon.classList.remove('text-rose-400');
+                text.innerText = "ฟังคำทำนาย";
+            } else {
+                window.speechSynthesis.cancel(); 
+                
+                const utterance = new SpeechSynthesisUtterance(predictionTextToRead);
+                utterance.lang = 'th-TH'; 
+                
+                let voices = window.speechSynthesis.getVoices();
+                let bestThaiVoice = null;
+                
+                bestThaiVoice = voices.find(voice => voice.lang.includes('th') && (voice.name.includes('Premium') || voice.name.includes('Kanya') || voice.name.includes('Narisa')));
+                if (!bestThaiVoice) bestThaiVoice = voices.find(voice => voice.lang.includes('th'));
+                if (bestThaiVoice) utterance.voice = bestThaiVoice;
+                
+                utterance.rate = 0.85; 
+                utterance.pitch = 0.95; 
+                
+                utterance.onend = function() {
+                    isSpeaking = false;
+                    icon.className = "fa-solid fa-volume-high mr-2 text-lg";
+                    icon.classList.remove('text-rose-400');
+                    text.innerText = "ฟังคำทำนาย";
+                };
+
+                window.speechSynthesis.speak(utterance);
+                isSpeaking = true;
+                icon.className = "fa-solid fa-circle-stop mr-2 text-lg text-rose-400";
+                text.innerText = "หยุดฟังคำทำนาย";
+            }
+        }
+        
+        if (window.speechSynthesis && window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+        }
+
+        function resetForOthers() {
+            if(isSpinning) return;
+            
+            if (window.speechSynthesis) window.speechSynthesis.cancel();
+            isSpeaking = false;
+
+            document.getElementById('user-dob').value = '';
+            setGender('male');
+            document.getElementById('resultBox').classList.add('hidden');
+            document.querySelectorAll('.backlight-glow').forEach(el => el.classList.remove('active', 'final-glow'));
+            document.getElementById('inputBox').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+
+    <script src="components/header.js"></script>
+    <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

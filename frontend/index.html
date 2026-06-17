@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>ลิขิตฟ้า (Likit Fah) - พลิกชะตาฟ้าลิขิต ด้วยศาสตร์แห่งตัวเลขและพยากรณ์</title>
+    <meta name="description" content="ศูนย์รวมศาสตร์พยากรณ์ ตรวจหวย ทำนายฝัน เซียมซี ไพ่ทาโรต์ และวิเคราะห์ตัวเลขมงคลครบวงจร แม่นยำด้วยสถิติและระบบ AI">
+    <meta name="keywords" content="ดูดวง, ตรวจหวย, ทำนายฝัน, เซียมซี, ไพ่ทาโรต์, เบอร์มงคล, ลิขิตฟ้า">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/index.html">
+    <meta property="og:title" content="ลิขิตฟ้า (Likit Fah) - พลิกชะตาฟ้าลิขิต ด้วยศาสตร์แห่งตัวเลข">
+    <meta property="og:description" content="ศูนย์รวมศาสตร์พยากรณ์ ตรวจหวย ทำนายฝัน เซียมซี และวิเคราะห์ตัวเลขมงคลครบวงจร">
+    <meta property="og:image" content="https://likitfah.com/img/og-index.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ลิขิตฟ้า (Likit Fah) - พลิกชะตาฟ้าลิขิต">
+    <meta name="twitter:description" content="ศูนย์รวมศาสตร์พยากรณ์ ตรวจหวย ทำนายฝัน เซียมซี และวิเคราะห์ตัวเลขมงคลครบวงจร">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-index.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #0B0B1A;
+            /* 🌟 รูปพื้นหลังจักรวาล เคลือบเงาดำมืดๆ ให้ฟอร์มโดดเด่น */
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.6) 0%, rgba(0, 0, 0, 0.9) 100%),
+                radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.15), transparent 60%),
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        
+        /* Dark Glass Panel */
+        .glass-panel { 
+            background: rgba(15, 15, 25, 0.7); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.2); 
+            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(251, 191, 36, 0.05); 
+        }
+        
+        .text-title-gradient { 
+            background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.4);
+        }
+        
+        .glow-icon { filter: drop-shadow(0 0 15px currentColor); }
+
+        /* แอนิเมชันลอยตัวแบบเวทมนตร์ */
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-12px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        /* วงเวทย์หมุนพื้นหลัง */
+        @keyframes spin-slow { 100% { transform: rotate(360deg); } }
+        @keyframes spin-slow-reverse { 100% { transform: rotate(-360deg); } }
+        .magic-circle { animation: spin-slow 40s linear infinite; opacity: 0.15; pointer-events: none; mix-blend-mode: screen; }
+
+        /* อินพุตสไตล์เวทมนตร์ */
+        .magic-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            color: #fef08a;
+            transition: all 0.3s ease;
+            color-scheme: dark; /* 🌟 ทำให้ปฏิทิน/เวลาเป็น Dark Mode และโชว์ไอคอนสว่าง */
+        }
+        .magic-input:focus {
+            border-color: rgba(251, 191, 36, 0.9);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.3), inset 0 0 10px rgba(251, 191, 36, 0.1);
+            background: rgba(20, 20, 30, 0.8);
+        }
+        .magic-input::placeholder { color: rgba(253, 230, 138, 0.4); font-weight: 300; }
+        
+        /* 🌟 ปรับแต่งไอคอนปฏิทินและเวลา ให้คลิกง่ายขึ้นและมีลูกเล่นเวลาเอาเมาส์ชี้ */
+        .magic-input::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            padding: 5px;
+        }
+        .magic-input::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
+        /* แก้ปัญหาสีพื้นหลังเวลา Autofill ใน Chrome ให้กลมกลืน */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus, 
+        input:-webkit-autofill:active{
+            -webkit-box-shadow: 0 0 0 30px #1a1a24 inset !important;
+            -webkit-text-fill-color: #fef08a !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 relative">
+
+    <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border-[1px] border-dashed border-amber-500/50 rounded-full magic-circle flex items-center justify-center z-0">
+        <div class="w-[600px] h-[600px] border-[2px] border-dotted border-yellow-600/60 rounded-full animate-[spin-slow-reverse_30s_linear_infinite]"></div>
+        <div class="absolute w-[400px] h-[400px] border-[1px] border-solid border-amber-300/30 rounded-full"></div>
+    </div>
+
+    <main class="w-full max-w-md relative z-10 my-auto">
+        <div class="text-center mb-8 animate-float">
+            <div class="relative inline-flex items-center justify-center mb-4">
+                <div class="absolute inset-0 bg-amber-500/30 blur-2xl rounded-full w-24 h-24 mx-auto"></div>
+                <div class="w-20 h-20 rounded-full border-2 border-amber-400 flex items-center justify-center bg-gradient-to-b from-amber-800 to-yellow-900 shadow-[0_0_20px_rgba(245,158,11,0.6)] relative z-10">
+                    <i class="fa-solid fa-moon text-4xl text-yellow-200 glow-icon"></i>
+                </div>
+            </div>
+            
+            <h2 class="text-5xl font-bold mb-2 text-title-gradient font-serif tracking-wide">ลิขิตฟ้า</h2>
+            <p class="text-amber-200/70 font-medium tracking-[0.3em] uppercase text-[10px] mb-2 mt-2">Premium Astrology</p>
+            <p class="text-yellow-400 text-sm font-bold drop-shadow-md">เปิดคัมภีร์สวรรค์ วิเคราะห์ชะตาชีวิต</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-8 shadow-[0_0_40px_rgba(245,158,11,0.15)] border-t-2 border-t-amber-500/60 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent opacity-50"></div>
+
+            <form id="astroForm" onsubmit="handleFormSubmit(event)">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-[11px] font-bold text-amber-500 mb-1.5 uppercase tracking-widest drop-shadow-sm"><i class="fa-solid fa-feather-pointed mr-1"></i> นามของผู้เปิดชะตา</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-amber-600/70"></i>
+                            <input type="text" id="fullname" placeholder="เช่น ณัฐวุฒิ ใจดี" required class="magic-input w-full rounded-xl pl-10 pr-4 py-3.5 font-bold shadow-inner">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+<label class="block text-[11px] font-bold text-amber-500 mb-1.5 uppercase tracking-widest drop-shadow-sm">
+    <i class="fa-solid fa-calendar-day mr-1"></i> วันก่อกำเนิด <span class="text-amber-200/70 lowercase tracking-normal">(ปี ค.ศ.)</span>
+</label>
+<input type="date" id="dob" required class="magic-input w-full rounded-xl px-4 py-3.5 font-bold shadow-inner text-sm cursor-pointer">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-amber-500 mb-1.5 uppercase tracking-widest drop-shadow-sm"><i class="fa-solid fa-hourglass-half mr-1"></i> เวลาตกฟาก</label>
+                            <input type="time" id="tob" value="12:00" class="magic-input w-full rounded-xl px-4 py-3.5 font-bold shadow-inner text-sm cursor-pointer">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="btn-submit" class="w-full mt-8 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-lg py-4 rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(253,224,71,0.7)] flex justify-center items-center group border border-yellow-300/50">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2 text-xl group-hover:animate-pulse"></i> เปิดประตูสวรรค์
+                    </button>
+
+                    <div class="text-center mt-4 text-xs md:text-sm text-slate-400 font-light">
+                        การกดปุ่มเปิดประตูสวรรค์ ถือว่าท่านยอมรับ 
+                        <a href="policy.html" target="_blank" class="text-emerald-400 hover:text-emerald-300 underline underline-offset-2 transition-colors inline-flex items-center">
+                            <i class="fa-solid fa-shield-halved mr-1"></i> นโยบายความเป็นส่วนตัว
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-center mt-8 text-xs text-amber-500/40 font-medium tracking-wider">
+            <p>&copy; 2026 LikitFah.com • The Mystic Oracle</p>
+        </div>
+    </main>
+
+    <script>
+        // ตรวจสอบว่าเคยเข้าสู่ระบบไว้หรือเปล่า ถ้าเคย ให้ดึงชื่อมาใส่กล่องให้เลย
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedName = localStorage.getItem('user_fullname');
+            if(savedName) {
+                document.getElementById('fullname').value = savedName;
+                document.getElementById('dob').value = localStorage.getItem('user_dob') || '';
+                document.getElementById('tob').value = localStorage.getItem('user_tob') || '12:00';
+            }
+        });
+
+        // เมื่อกดปุ่ม "เปิดคัมภีร์สวรรค์"
+        function handleFormSubmit(event) {
+            event.preventDefault(); 
+            
+            const btn = document.getElementById('btn-submit');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> กำลังเชื่อมต่อพลังงานดาว...';
+            btn.disabled = true;
+
+            // 1. ดึงค่าจากฟอร์ม
+            const fullname = document.getElementById('fullname').value.trim();
+            const dob = document.getElementById('dob').value;
+            const tob = document.getElementById('tob').value;
+
+            // 2. บันทึกข้อมูลลง LocalStorage
+            localStorage.setItem('user_fullname', fullname);
+            localStorage.setItem('user_dob', dob);
+            localStorage.setItem('user_tob', tob);
+
+            // แยกชื่อและนามสกุล เผื่อไว้ให้หน้า "ชื่อมงคล" ใช้
+            const nameParts = fullname.split(' ');
+            localStorage.setItem('user_firstname', nameParts[0] || '');
+            localStorage.setItem('user_lastname', nameParts.slice(1).join(' ') || '');
+
+            // 🌟 ส่วนที่เพิ่มใหม่: บันทึกการยอมรับคุกกี้อัตโนมัติ (แบนเนอร์คุกกี้จะได้ไม่เด้งขึ้นมาอีก)
+            localStorage.setItem('pdpa_consent_accepted', 'true');
+
+            // 3. หน่วงเวลา 0.8 วินาทีให้ดูขลังๆ แล้ววาร์ปไปหน้า Dashboard
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 800);
+        }
+    </script>
+    
+    <script src="components/tracking.js"></script>
+</body>
+</html>

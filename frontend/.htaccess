@@ -1,0 +1,38 @@
+# ======================================================================
+# 1. การตั้งค่าระบบหลังบ้าน (Node.js API) สำหรับ Hostinger (Passenger)
+# ======================================================================
+
+PassengerAppRoot /home/u198493848/domains/likitfah.com/nodejs
+PassengerAppType node
+PassengerNodejs /opt/alt/alt-nodejs22/root/bin/node
+PassengerStartupFile server.js
+
+# ⚠️ จุดนี้สำคัญที่สุด: บังคับให้ Node.js ทำงานเฉพาะเมื่อเข้า /api เท่านั้น
+PassengerBaseURI /api
+
+# ค่าที่ Hostinger สร้างขึ้นมาให้ (ปล่อยไว้เพื่อความเสถียร)
+PassengerRestartDir /home/u198493848/domains/likitfah.com/nodejs/tmp
+SetEnv NODE_OPTIONS "--require /home/u198493848/domains/likitfah.com/public_html/.builds/config/preload-timestamp.js"
+SetEnv LSNODE_CONSOLE_LOG console.log
+RewriteRule ^\.builds - [F,L]
+
+# ======================================================================
+# 2. การตั้งค่าหน้าเว็บหลัก (Frontend) และ ป้องกัน Error 404
+# ======================================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # กฎข้อที่ 1: ถ้า URL ขึ้นต้นด้วย /api/ ให้ปล่อยผ่านไปให้ Node.js จัดการ
+  RewriteCond %{REQUEST_URI} ^/api/
+  RewriteRule ^ - [L]
+  
+  # กฎข้อที่ 2: ถ้า URL ไม่ใช่ไฟล์ (-f) หรือโฟลเดอร์ (-d) ที่มีอยู่จริง 
+  # ให้โยนกลับมาแสดงผลที่หน้า index.html ของเราเสมอ
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# ป้องกันคนแอบดูโครงสร้างไฟล์ในโฟลเดอร์
+Options -Indexes

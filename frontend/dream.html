@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>คัมภีร์ทำนายฝันพรีเมียม ตีเลขเด็ดจากความฝัน - ลิขิตฟ้า</title>
+    <meta name="description" content="ค้นหาความหมายของความฝันด้วยคัมภีร์ทำนายฝันพรีเมียม พร้อมตีความเลขมงคลนำโชคจากความฝันของคุณอย่างแม่นยำ">
+    <meta name="keywords" content="ทำนายฝัน, ฝันเห็น, เลขเด็ดทำนายฝัน, ตีเลขจากฝัน, ความหมายความฝัน">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/dream.html">
+    <meta property="og:title" content="คัมภีร์ทำนายฝันพรีเมียม ตีเลขเด็ดจากความฝัน - ลิขิตฟ้า">
+    <meta property="og:description" content="ค้นหาความหมายของความฝัน พร้อมตีความเลขมงคลนำโชคอย่างแม่นยำ">
+    <meta property="og:image" content="https://likitfah.com/img/og-dream.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="คัมภีร์ทำนายฝันพรีเมียม ตีเลขเด็ดจากความฝัน">
+    <meta name="twitter:description" content="ค้นหาความหมายของความฝัน พร้อมตีความเลขนำโชค">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-dream.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { 
+            background-color: #030308;
+            color: white;
+            font-family: 'Prompt', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 10% 80%, rgba(88, 80, 236, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(225, 29, 72, 0.1) 0%, transparent 40%),
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle var(--duration) infinite alternate ease-in-out; }
+        @keyframes twinkle { 0% { opacity: 0.2; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px rgba(255,255,255,0.8); } }
+
+        .glass-panel {
+            background: rgba(15, 15, 25, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .search-container { position: relative; transition: all 0.4s ease; z-index: 50; }
+        .search-container:focus-within { transform: scale(1.02); filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.3)); }
+        
+        .search-input {
+            background: linear-gradient(90deg, rgba(20,20,30,0.9), rgba(30,30,45,0.9));
+            border: 2px solid rgba(251, 191, 36, 0.3); color: #FDE68A;
+        }
+        .search-input:focus { outline: none; border-color: rgba(251, 191, 36, 0.8); background: rgba(20,20,30,0.95); }
+        .search-input::placeholder { color: rgba(251, 191, 36, 0.4); }
+        
+        .btn-glow {
+            background: linear-gradient(135deg, #d97706, #b45309); box-shadow: 0 0 15px rgba(217, 119, 6, 0.5); transition: all 0.3s;
+        }
+        .btn-glow:hover { box-shadow: 0 0 25px rgba(251, 191, 36, 0.8); transform: translateY(-2px); }
+
+        /* 🌟 สไตล์สำหรับกล่องแนะนำคำ (Suggestion Dropdown) */
+        .suggestion-item {
+            padding: 14px 24px;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.1);
+            display: flex; align-items: center; gap: 12px;
+            transition: all 0.2s ease;
+            color: #FDE68A;
+        }
+        .suggestion-item:hover {
+            background: rgba(251, 191, 36, 0.15);
+            padding-left: 32px; /* ขยับข้อความไปทางขวานิดนึงตอนชี้ */
+        }
+        .suggestion-item:last-child { border-bottom: none; }
+
+        .result-card {
+            background: linear-gradient(to bottom, rgba(30,25,20,0.95), rgba(15,12,10,0.95));
+            border: 1px solid rgba(251, 191, 36, 0.4); position: relative; overflow: hidden;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; opacity: 0; transform: translateY(30px);
+        }
+        .result-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, transparent, #FBBF24, transparent);
+        }
+        
+        .corner-ornament { position: absolute; width: 40px; height: 40px; border: 1px solid rgba(251, 191, 36, 0.3); border-radius: 50%; }
+        .corner-tl { top: -20px; left: -20px; } .corner-br { bottom: -20px; right: -20px; }
+
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        .floating-moon { animation: float 6s ease-in-out infinite; filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.4)); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative pb-20">
+
+    <div class="stars" id="star-container"></div>
+
+    <div class="max-w-4xl mx-auto w-full p-4 md:p-8 relative z-10">
+        
+
+
+        <div class="text-center mb-12">
+            <div class="floating-moon text-7xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-600 mb-6">
+                <i class="fa-solid fa-moon"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 mb-4 tracking-wide">
+                คัมภีร์ทำนายฝัน
+            </h1>
+            <p class="text-amber-100/60 text-sm md:text-base max-w-xl mx-auto font-light">
+                พิมพ์สิ่งที่ท่านพบเห็นในความฝัน เพื่อถอดรหัสชะตาและเลขมงคล
+            </p>
+        </div>
+
+        <div class="search-container max-w-2xl mx-auto mb-12">
+            <div class="relative flex items-center">
+                <i class="fa-solid fa-cloud-moon absolute left-6 text-2xl text-amber-500/50 z-10"></i>
+                <input type="text" id="dream-input" placeholder="ตัวอย่าง: งู, ทอง, ฟันหัก, พระ..." autocomplete="off"
+                    class="search-input w-full rounded-full py-5 px-16 text-lg tracking-wide shadow-2xl transition-all relative z-0">
+                <button onclick="searchDream()" class="btn-glow absolute right-3 py-3 px-8 rounded-full text-white font-medium flex items-center gap-2 z-10">
+                    <span>ถอดรหัส</span>
+                    <i class="fa-solid fa-sparkles text-xs"></i>
+                </button>
+            </div>
+
+            <div id="suggestion-box" class="absolute top-[110%] left-4 right-4 bg-black/90 backdrop-blur-xl border border-amber-500/30 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.8)] hidden overflow-hidden z-50">
+                </div>
+        </div>
+
+        <div id="result-container" class="space-y-8 max-w-3xl mx-auto"></div>
+
+    </div>
+
+    <script>
+        const starContainer = document.getElementById('star-container');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px'; star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%'; star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            starContainer.appendChild(star);
+        }
+
+        // ==========================================
+        // 🌟 ระบบพิมพ์แล้วแนะนำคำ (Autocomplete)
+        // ==========================================
+        const inputEl = document.getElementById('dream-input');
+        const suggestionBox = document.getElementById('suggestion-box');
+        let typingTimer; 
+
+        inputEl.addEventListener('input', function() {
+            clearTimeout(typingTimer);
+            const query = inputEl.value.trim();
+            
+            if(!query) {
+                suggestionBox.classList.add('hidden');
+                return;
+            }
+
+            // หน่วงเวลา 300ms เพื่อไม่ให้ยิง API ถี่เกินไปตอนกำลังพิมพ์
+            typingTimer = setTimeout(async () => {
+                try {
+                    const res = await fetch(`/api/dream/search?q=${encodeURIComponent(query)}`);
+                    const data = await res.json();
+                    
+                    if(data.length > 0) {
+                        suggestionBox.innerHTML = data.map(item => `
+                            <div class="suggestion-item" onclick="selectSuggestion('${item.keyword}')">
+                                <i class="fa-solid fa-sparkles text-amber-500/40 text-xs"></i>
+                                <span class="font-medium text-lg tracking-wide">${item.keyword}</span>
+                                <span class="ml-auto text-xs text-amber-500/40 border border-amber-500/20 px-2 py-0.5 rounded-full">${item.category}</span>
+                            </div>
+                        `).join('');
+                        suggestionBox.classList.remove('hidden');
+                    } else {
+                        suggestionBox.classList.add('hidden');
+                    }
+                } catch (err) {
+                    console.error('Suggestion Error:', err);
+                }
+            }, 300); 
+        });
+
+        // เมื่อกดเลือกคำจาก Dropdown
+        function selectSuggestion(keyword) {
+            inputEl.value = keyword;
+            suggestionBox.classList.add('hidden');
+            searchDream(); // ค้นหาทันทีไม่ต้องกดปุ่ม
+        }
+
+        // ซ่อน Dropdown ถ้าย้ายไปคลิกที่อื่นบนหน้าจอ
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                suggestionBox.classList.add('hidden');
+            }
+        });
+
+        // ==========================================
+        // 🌟 ระบบค้นหาและแสดงผล (เหมือนเดิม)
+        // ==========================================
+        async function searchDream() {
+            const query = inputEl.value.trim();
+            const container = document.getElementById('result-container');
+            suggestionBox.classList.add('hidden'); // ซ่อน dropdown ตอนกดค้นหา
+            
+            if(!query) {
+                container.innerHTML = `<div class="text-center text-amber-500/80 p-8 glass-panel rounded-3xl border-amber-500/20"><i class="fa-solid fa-circle-exclamation text-3xl mb-3"></i><br>โปรดระบุภาพนิมิตในความฝันของท่าน</div>`;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="text-center py-16">
+                    <div class="relative w-24 h-24 mx-auto mb-4">
+                        <div class="absolute inset-0 border-4 border-amber-500/20 rounded-full"></div>
+                        <div class="absolute inset-0 border-4 border-amber-400 rounded-full border-t-transparent animate-spin"></div>
+                        <i class="fa-solid fa-eye absolute inset-0 flex items-center justify-center text-3xl text-amber-300 animate-pulse"></i>
+                    </div>
+                    <p class="text-amber-300/80 tracking-widest text-sm">กำลังเปิดหน้าคัมภีร์จักรวาล...</p>
+                </div>`;
+
+            try {
+                const res = await fetch(`/api/dream/search?q=${encodeURIComponent(query)}`);
+                const data = await res.json();
+
+                if(data.length === 0) {
+                    container.innerHTML = `
+                        <div class="result-card p-10 rounded-3xl text-center">
+                            <i class="fa-solid fa-book-journal-whills text-5xl text-slate-600 mb-4"></i>
+                            <h3 class="text-xl text-slate-300 mb-2">ยังไม่พบบันทึกในคัมภีร์</h3>
+                            <p class="text-slate-500 text-sm">ลองเปลี่ยนคำค้นหาเป็นคำที่สั้นลง หรือใช้คำพ้องความหมาย เช่น ฝันเห็น "สุนัข" ให้ลองพิมพ์ "หมา"</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = data.map((item, index) => `
+                    <div class="result-card p-8 md:p-10 rounded-[2.5rem] shadow-2xl" style="animation-delay: ${index * 0.15}s;">
+                        <div class="corner-ornament corner-tl"></div><div class="corner-ornament corner-br"></div>
+                        <div class="flex flex-col md:flex-row gap-6 items-start">
+                            <div class="w-full md:w-1/3 border-b md:border-b-0 md:border-r border-amber-500/20 pb-6 md:pb-0 md:pr-6 text-center md:text-left">
+                                <div class="inline-block px-3 py-1 bg-amber-900/40 border border-amber-500/30 rounded-full text-amber-400 text-xs mb-4">
+                                    <i class="fa-solid fa-tag mr-1"></i> ${item.category}
+                                </div>
+                                <h3 class="text-3xl font-bold font-serif text-white mb-2">ฝันเห็น${item.keyword}</h3>
+                                <div class="w-12 h-1 bg-amber-500 rounded-full mx-auto md:mx-0 mt-4 mb-4"></div>
+                            </div>
+                            <div class="w-full md:w-2/3">
+                                <p class="text-amber-50 leading-relaxed font-light text-lg mb-8 text-justify">
+                                    <i class="fa-solid fa-quote-left text-amber-500/40 text-2xl mr-2"></i>
+                                    ${item.meaning}
+                                    <i class="fa-solid fa-quote-right text-amber-500/40 text-xl ml-1"></i>
+                                </p>
+                                <div class="bg-black/50 border border-amber-500/30 rounded-2xl p-6 relative overflow-hidden group">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-amber-500/5 to-amber-500/0 group-hover:translate-x-full duration-1000 transition-transform"></div>
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xl shadow-[0_0_15px_rgba(251,191,36,0.3)]"><i class="fa-solid fa-gem"></i></div>
+                                        <div>
+                                            <span class="text-xs text-amber-200/60 block mb-1 uppercase tracking-widest font-semibold">เลขมงคลนำโชค</span>
+                                            <div class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-amber-500 tracking-wider">${item.lucky_numbers}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                container.innerHTML = `<div class="text-center text-red-400 p-8 glass-panel rounded-3xl border-red-500/20">เกิดข้อผิดพลาดในการเชื่อมต่อฐานข้อมูล</div>`;
+            }
+        }
+        
+        document.getElementById('dream-input').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') searchDream();
+        });
+    </script>
+	<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

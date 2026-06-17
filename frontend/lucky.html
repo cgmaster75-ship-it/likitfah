@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>ใบ้หวยและเลขเด็ดนำโชคประจำวัน - ลิขิตฟ้า</title>
+    <meta name="description" content="รับเลขเด็ดนำโชคประจำวัน พร้อมคำแนะนำฤกษ์มงคล เพื่อการเริ่มต้นเสี่ยงโชคที่สดใสและเต็มไปด้วยโชคลาภ">
+    <meta name="keywords" content="เลขเด็ด, ใบ้หวย, เลขนำโชค, เสี่ยงโชค, เลขมงคล">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/lucky.html">
+    <meta property="og:title" content="ใบ้หวยและเลขเด็ดนำโชคประจำวัน - ลิขิตฟ้า">
+    <meta property="og:description" content="รับเลขเด็ดนำโชคประจำวัน เพื่อการเริ่มต้นเสี่ยงโชคที่เต็มไปด้วยโชคลาภ">
+    <meta property="og:image" content="https://likitfah.com/img/og-lucky.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ใบ้หวยและเลขเด็ดนำโชคประจำวัน - ลิขิตฟ้า">
+    <meta name="twitter:description" content="รับเลขเด็ดนำโชคประจำวัน เสริมความมั่นใจก่อนเสี่ยงโชค">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-lucky.jpg">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ไลบรารีสำหรับเซฟรูป -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        mono: ['Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #0B0B1A;
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.6) 0%, rgba(0, 0, 0, 0.95) 100%),
+                radial-gradient(circle at 50% 30%, rgba(163, 230, 53, 0.15), transparent 60%),
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        
+        .glass-panel { 
+            background: rgba(18, 18, 38, 0.7); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); 
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 40, 30, 0.6) 0%, rgba(15, 25, 15, 0.8) 100%);
+            border: 1px solid rgba(163, 230, 53, 0.2);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .text-title-gradient { 
+            background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .glow-icon { filter: drop-shadow(0 0 10px currentColor); }
+
+        /* อนิเมชันตัวเลขวิ่ง */
+        @keyframes slot-spin {
+            0% { transform: translateY(-20px); opacity: 0; }
+            50% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0; }
+        }
+        .animate-slot { animation: slot-spin 0.1s infinite linear; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+   
+
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-lime-900/40 border border-lime-500/30 mb-4 shadow-[0_0_20px_rgba(163,230,53,0.3)]">
+                <i class="fa-solid fa-clover text-3xl text-lime-400 glow-icon"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg tracking-wide mb-2">เสี่ยงโชคและฤกษ์มงคล</h2>
+            <p class="text-lime-200/70 font-light">คำนวณฤกษ์รับทรัพย์รายวัน และสุ่มเลขนำโชค</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- ส่วนที่ 1: ฤกษ์มงคลวันนี้ (คำนวณจากวันเกิด + วันปัจจุบัน) -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border-t-2 border-t-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.1)] relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-amber-500/10 text-8xl"><i class="fa-solid fa-clock"></i></div>
+                
+                <h3 class="text-xl font-bold text-amber-400 mb-6 flex items-center"><i class="fa-solid fa-compass mr-2"></i> ฤกษ์เสี่ยงโชคประจำวัน</h3>
+                
+                <div class="glass-card rounded-2xl p-6 relative z-10 text-center mb-4">
+                    <p class="text-xs text-slate-400 mb-2 uppercase tracking-widest">คำนวณพลังงานดวงดาวสำหรับ</p>
+                    <p class="text-lg font-bold text-white mb-6 border-b border-white/10 pb-2" id="lucky-name-display">กำลังประมวลผล...</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="bg-black/40 border border-amber-500/30 rounded-xl p-4">
+                            <p class="text-[10px] text-amber-500 font-bold uppercase mb-1 tracking-widest">เวลารับทรัพย์</p>
+                            <p class="text-2xl font-bold text-amber-300 drop-shadow-md" id="lucky-time">--:-- น.</p>
+                        </div>
+                        <div class="bg-black/40 border border-emerald-500/30 rounded-xl p-4">
+                            <p class="text-[10px] text-emerald-400 font-bold uppercase mb-1 tracking-widest">ทิศมงคล</p>
+                            <p class="text-xl font-bold text-emerald-300 drop-shadow-md mt-1" id="lucky-direction">...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-900/30 border border-amber-500/20 rounded-xl p-4 text-left">
+                        <p class="text-xs text-amber-400 font-bold mb-1"><i class="fa-solid fa-lightbulb mr-1"></i> ทริคดึงดูดโชคลาภวันนี้:</p>
+                        <p class="text-sm text-slate-300" id="lucky-advice">...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ส่วนที่ 2: สุ่มเลขนำโชค -->
+            <div class="glass-panel rounded-3xl p-6 md:p-8 border-t-2 border-t-lime-500 shadow-[0_0_30px_rgba(163,230,53,0.1)] relative overflow-hidden">
+                <div class="absolute -right-6 -top-6 text-lime-500/10 text-8xl"><i class="fa-solid fa-ticket"></i></div>
+                
+                <h3 class="text-xl font-bold text-lime-400 mb-6 flex items-center"><i class="fa-solid fa-dice mr-2"></i> สุ่มตัวเลขนำโชค</h3>
+                
+                <div class="glass-card rounded-2xl p-6 relative z-10 text-center mb-6">
+                    <p class="text-xs text-slate-400 mb-4 uppercase tracking-widest">เลือกระดับการเสี่ยงโชค</p>
+                    
+                    <div class="flex justify-center gap-2 mb-6">
+                        <button onclick="setDigitMode(2)" id="btn-mode-2" class="digit-btn bg-lime-600 text-black px-4 py-2 text-sm font-bold rounded-lg transition-colors">2 ตัว</button>
+                        <button onclick="setDigitMode(3)" id="btn-mode-3" class="digit-btn bg-black/50 text-slate-300 border border-white/20 px-4 py-2 text-sm font-bold rounded-lg transition-colors">3 ตัว</button>
+                        <button onclick="setDigitMode(6)" id="btn-mode-6" class="digit-btn bg-black/50 text-slate-300 border border-white/20 px-4 py-2 text-sm font-bold rounded-lg transition-colors">รางวัลที่ 1</button>
+                    </div>
+                    
+                    <div class="bg-black/60 border-2 border-lime-500/50 rounded-xl p-6 mb-4 shadow-[inset_0_0_20px_rgba(163,230,53,0.2)] h-32 flex items-center justify-center overflow-hidden">
+                        <span id="random-number-display" class="text-5xl md:text-6xl font-mono tracking-[0.2em] text-white drop-shadow-[0_0_15px_rgba(163,230,53,0.8)] font-bold">--</span>
+                    </div>
+                </div>
+
+                <button onclick="startRandomLottery()" id="btn-roll" class="w-full bg-gradient-to-r from-lime-600 to-green-600 hover:from-lime-500 hover:to-green-500 text-black font-extrabold px-8 py-4 rounded-xl shadow-[0_0_20px_rgba(163,230,53,0.4)] transition-all hover:scale-105 border border-lime-300/50 text-lg">
+                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> สุ่มเลขรับทรัพย์
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 🌟 ส่วนที่ 3: Share Card ผลลัพธ์ (จะแสดงหลังสุ่มเลขเสร็จ) -->
+        <div id="lucky-share-container" class="hidden mt-10 animate-[fadeIn_0.8s_ease-out]">
+            
+            <div id="capture-card-lucky" class="relative bg-[#0B0B1A] border-2 border-lime-500/50 rounded-3xl p-6 md:p-10 shadow-[0_10px_40px_rgba(163,230,53,0.15)] overflow-hidden max-w-2xl mx-auto mb-6">
+                <!-- Background ภายใน Share Card -->
+                <div class="absolute inset-0 bg-[url('https://likitfah.com/img/9396.jpg')] bg-cover bg-center opacity-15"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-green-950/80 via-slate-900/90 to-slate-950/95"></div>
+                
+                <!-- Content ภายใน Share Card -->
+                <div class="relative z-10 text-center">
+                    <p class="text-[10px] text-lime-400 font-bold mb-1 uppercase tracking-[0.3em]"><i class="fa-solid fa-clover mr-1"></i> Likit Fah Premium</p>
+                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-md tracking-wide">เลขเด็ด & ฤกษ์รับทรัพย์</h3>
+                    
+                    <!-- 🌟 Timestamp -->
+                    <p class="text-[11px] text-lime-200/80 mb-6 bg-lime-900/30 inline-block px-4 py-1.5 rounded-full border border-lime-500/30" id="share-timestamp">
+                        บันทึกเมื่อ: --
+                    </p>
+                    
+                    <!-- โชว์เลขที่สุ่มได้ -->
+                    <div class="bg-black/50 border border-lime-500/40 rounded-2xl p-6 mb-6 backdrop-blur-sm shadow-inner">
+                        <p class="text-[10px] text-lime-500 font-bold uppercase mb-2 tracking-widest">เลขนำโชคของคุณ</p>
+                        <div class="text-5xl md:text-6xl font-mono text-lime-400 drop-shadow-[0_0_15px_rgba(163,230,53,0.8)] font-bold tracking-[0.2em] my-2" id="share-lucky-number">
+                            --
+                        </div>
+                    </div>
+
+                    <!-- โชว์ฤกษ์ประจำวัน -->
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                         <div class="bg-slate-900/60 border border-white/10 rounded-xl p-4 shadow-sm">
+                             <p class="text-[10px] text-amber-400 font-bold uppercase mb-1 tracking-widest">เวลารับทรัพย์</p>
+                             <p class="text-lg font-bold text-white" id="share-lucky-time">--:-- น.</p>
+                         </div>
+                         <div class="bg-slate-900/60 border border-white/10 rounded-xl p-4 shadow-sm">
+                             <p class="text-[10px] text-emerald-400 font-bold uppercase mb-1 tracking-widest">ทิศมงคล</p>
+                             <p class="text-lg font-bold text-white" id="share-lucky-dir">...</p>
+                         </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 border border-white/10 rounded-xl p-4 text-left text-sm text-slate-300 shadow-sm">
+                        <strong class="text-lime-400"><i class="fa-solid fa-lightbulb mr-1"></i> ทริคดึงดูดโชค:</strong> <span id="share-lucky-advice">...</span>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-white/10 text-[10px] text-lime-500/50 font-bold tracking-widest uppercase text-center">
+                        <i class="fa-solid fa-feather-pointed mr-1"></i> www.LikitFah.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- ปุ่มบันทึกภาพ -->
+            <div class="text-center pb-10">
+                <button onclick="downloadImage('capture-card-lucky', 'btn-download-lucky', 'LuckyDraw')" id="btn-download-lucky" class="bg-lime-600 hover:bg-lime-500 text-black font-bold py-4 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(163,230,53,0.4)] hover:shadow-[0_0_30px_rgba(163,230,53,0.6)] text-lg">
+                    <i class="fa-solid fa-download mr-2"></i> บันทึกภาพรับทรัพย์
+                </button>
+            </div>
+            
+        </div>
+
+    </main>
+
+    <script>
+        let currentDigits = 2; 
+        let isRolling = false;
+        let globalUserName = "";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // ดึงชื่อ (ดักจับทั้ง firstname และ fullname เพื่อกันพลาด)
+            const userName = localStorage.getItem('user_firstname') || localStorage.getItem('user_fullname');
+            // ดึงวันเกิด (ถ้าเขาไม่ได้กรอกวันเกิดมา ให้ใช้เวลาปัจจุบันแทน จะได้ไม่ค้าง)
+            const userDob = localStorage.getItem('user_dob') || new Date().toISOString().split('T')[0];
+
+            if (!userName) {
+                window.location.href = 'index.html'; // 🌟 แก้จาก index.php เป็น index.html
+                return;
+            }
+
+            globalUserName = userName;
+            document.getElementById('lucky-name-display').innerText = `คุณ ${userName}`;
+            calculateLuckyTime(userDob);
+        });
+
+        // ----------------------------------------------------
+        // ระบบคำนวณฤกษ์ (Algorithm ผสม วันเกิด + วันปัจจุบัน)
+        // ----------------------------------------------------
+        function calculateLuckyTime(dobStr) {
+            const dob = new Date(dobStr);
+            const today = new Date();
+            
+            const seed = dob.getDate() + dob.getMonth() + today.getDate() + today.getMonth() + today.getFullYear();
+            
+            const hour = 7 + (seed % 11);
+            let minute = (seed * 7) % 60;
+            minute = minute < 10 ? '0' + minute : minute;
+            const luckyTime = `${hour}:${minute} น.`;
+            document.getElementById('lucky-time').innerText = luckyTime;
+
+            const directions = ['ทิศเหนือ', 'ทิศตะวันออกเฉียงเหนือ', 'ทิศตะวันออก', 'ทิศตะวันออกเฉียงใต้', 'ทิศใต้', 'ทิศตะวันตกเฉียงใต้', 'ทิศตะวันตก', 'ทิศตะวันตกเฉียงเหนือ'];
+            const luckyDir = directions[seed % 8];
+            document.getElementById('lucky-direction').innerText = luckyDir;
+
+            const advices = [
+                "เสื้อผ้าโทนสว่างหรือสีสดใสจะดึงดูดทรัพย์ในวันนี้",
+                "ให้ซื้อกับคนขายเร่ที่อายุมากกว่า หรือคนที่มีลักษณะเป็นผู้ใหญ่",
+                "ขอพรพระในบ้าน หรือสิ่งศักดิ์สิทธิ์ที่เคารพก่อนตัดสินใจลงทุน",
+                "วันนี้เลขที่มีความหมายเกี่ยวกับยานพาหนะ หรือการเดินทางจะให้โชค",
+                "เสี่ยงโชคใกล้แหล่งน้ำ หรือร้านที่อยู่ใกล้แม่น้ำจะดีเป็นพิเศษ",
+                "ซื้อกับคนขายที่เป็นเพศหญิง หรือคนที่มีอัธยาศัยดีช่างพูดช่างคุย",
+                "วันนี้เลขที่เกี่ยวกับอายุ หรือวันเกิดของคนในครอบครัวจะนำโชคมาให้",
+                "ทำบุญหรือบริจาคทานเล็กๆ น้อยๆ ก่อนเสี่ยงโชค จะเปิดทางให้ปาฏิหาริย์เกิด"
+            ];
+            const luckyAdvice = advices[(seed * 3) % advices.length];
+            document.getElementById('lucky-advice').innerText = luckyAdvice;
+            
+            // เตรียมข้อมูลไว้เผื่อกดแชร์
+            document.getElementById('share-lucky-time').innerText = luckyTime;
+            document.getElementById('share-lucky-dir').innerText = luckyDir;
+            document.getElementById('share-lucky-advice').innerText = luckyAdvice;
+        }
+
+        // ----------------------------------------------------
+        // ระบบสุ่มตัวเลข (Slot Machine Effect)
+        // ----------------------------------------------------
+        function setDigitMode(digits) {
+            if(isRolling) return;
+            currentDigits = digits;
+            
+            document.querySelectorAll('.digit-btn').forEach(btn => {
+                btn.className = "digit-btn bg-black/50 text-slate-300 border border-white/20 px-4 py-2 text-sm font-bold rounded-lg transition-colors";
+            });
+            document.getElementById(`btn-mode-${digits}`).className = "digit-btn bg-lime-600 text-black border border-lime-400 px-4 py-2 text-sm font-bold rounded-lg transition-colors shadow-[0_0_10px_rgba(163,230,53,0.5)]";
+            
+            document.getElementById('random-number-display').innerText = "-".repeat(digits);
+            // ซ่อน Share Card เวลากดเปลี่ยนโหมดเพื่อสุ่มใหม่
+            document.getElementById('lucky-share-container').classList.add('hidden');
+        }
+
+        function startRandomLottery() {
+            if(isRolling) return;
+            isRolling = true;
+            
+            const display = document.getElementById('random-number-display');
+            const btnRoll = document.getElementById('btn-roll');
+            
+            // ซ่อน Share Card ระหว่างสุ่ม
+            document.getElementById('lucky-share-container').classList.add('hidden');
+            
+            display.classList.add('animate-slot');
+            btnRoll.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> กำลังหมุน...';
+            btnRoll.disabled = true;
+
+            let count = 0;
+            const interval = setInterval(() => {
+                let temp = '';
+                for(let i=0; i<currentDigits; i++) {
+                    temp += Math.floor(Math.random() * 10);
+                }
+                if(currentDigits === 6) temp = temp.slice(0,3) + " " + temp.slice(3);
+                display.innerText = temp;
+                
+                count++;
+                if(count > 30) {
+                    clearInterval(interval);
+                    display.classList.remove('animate-slot');
+                    
+                    // สุ่มผลลัพธ์สุดท้าย
+                    let finalResult = '';
+                    for(let i=0; i<currentDigits; i++) {
+                        finalResult += Math.floor(Math.random() * 10);
+                    }
+                    if(currentDigits === 6) finalResult = finalResult.slice(0,3) + " " + finalResult.slice(3);
+                    
+                    display.innerText = finalResult;
+                    display.classList.add('text-lime-300'); 
+                    
+                    // นำเลขและ Timestamp ไปใส่ใน Share Card
+                    document.getElementById('share-lucky-number').innerText = finalResult;
+                    generateTimestamp();
+
+                    setTimeout(() => { 
+                        display.classList.remove('text-lime-300'); 
+                        
+                        // โชว์ Share Card
+                        document.getElementById('lucky-share-container').classList.remove('hidden');
+                        document.getElementById('lucky-share-container').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }, 500);
+
+                    btnRoll.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i> สุ่มเลขรับทรัพย์อีกครั้ง';
+                    btnRoll.disabled = false;
+                    isRolling = false;
+                }
+            }, 50); 
+        }
+
+        // ----------------------------------------------------
+        // ระบบสร้าง Timestamp
+        // ----------------------------------------------------
+        function generateTimestamp() {
+            const now = new Date();
+            const thMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+            
+            const day = now.getDate();
+            const month = thMonths[now.getMonth()];
+            const year = now.getFullYear() + 543;
+            const h = now.getHours().toString().padStart(2, '0');
+            const m = now.getMinutes().toString().padStart(2, '0');
+
+            const timestampStr = `<i class="fa-solid fa-user-check mr-1"></i> สำหรับคุณ ${globalUserName} <br class="md:hidden"> <i class="fa-regular fa-clock ml-0 md:ml-3 mr-1 mt-1 md:mt-0"></i> ${day} ${month} ${year} เวลา ${h}:${m} น.`;
+            
+            document.getElementById('share-timestamp').innerHTML = timestampStr;
+        }
+
+        // ----------------------------------------------------
+        // ระบบบันทึกภาพ (html2canvas)
+        // ----------------------------------------------------
+        function downloadImage(cardId, btnId, filePrefix) {
+            const cardElement = document.getElementById(cardId);
+            const btn = document.getElementById(btnId);
+            const originalBtnHtml = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> กำลังสร้างภาพใบ้หวย...'; 
+            btn.disabled = true;
+
+            setTimeout(() => {
+                html2canvas(cardElement, { 
+                    scale: 3, 
+                    useCORS: true, 
+                    backgroundColor: '#0B0B1A',
+                    logging: false
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    const luckyNum = document.getElementById('share-lucky-number').innerText.replace(/\s+/g, '');
+                    link.download = `LikitFah_${filePrefix}_${luckyNum}.png`;
+                    link.href = canvas.toDataURL("image/png"); 
+                    link.click();
+                    
+                    btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> บันทึกสำเร็จ ขอให้โชคดี!';
+                    setTimeout(() => { 
+                        btn.innerHTML = originalBtnHtml; 
+                        btn.disabled = false; 
+                    }, 2000);
+                }).catch((err) => { 
+                    console.error("Canvas Error:", err);
+                    btn.innerHTML = originalBtnHtml; 
+                    btn.disabled = false; 
+                    alert("เกิดข้อผิดพลาดในการบันทึกภาพ");
+                });
+            }, 100);
+        }
+    </script>
+		<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>

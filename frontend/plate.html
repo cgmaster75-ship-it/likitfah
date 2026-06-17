@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>วิเคราะห์ทะเบียนรถ ทำนายผลรวม - ลิขิตฟ้า</title>
+    <meta name="description" content="ถอดรหัสพลังตัวเลข วิเคราะห์ผลรวมป้ายทะเบียนรถ เสริมดวงชะตา โชคลาภ บารมี ตามหลักเลขศาสตร์">
+    <meta name="keywords" content="วิเคราะห์ทะเบียนรถมงคล, ผลรวมทะเบียนรถ, เลขศาสตร์ ,ทะเบียนรถมงคล">
+    <meta name="author" content="Likit Fah">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://likitfah.com/number.html">
+    <meta property="og:title" content="วิเคราะห์เบอร์มงคล ทะเบียนรถ ทำนายผลรวม - ลิขิตฟ้า">
+    <meta property="og:description" content="ถอดรหัสพลังตัวเลข วิเคราะห์ผลรวมเบอร์โทรศัพท์และป้ายทะเบียนรถ เสริมดวงชะตา โชคลาภ">
+    <meta property="og:image" content="https://likitfah.com/img/og-plate.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="วิเคราะห์ทะเบียนรถ ทำนายผลรวม">
+    <meta name="twitter:description" content="ถอดรหัสพลังตัวเลข วิเคราะห์ผลรวมป้ายทะเบียนรถ">
+    <meta name="twitter:image" content="https://likitfah.com/img/og-plate.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ไลบรารีสำหรับเซฟรูป -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                        mono: ['Courier New', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { 
+            background-color: #0B0B1A;
+            background-image: 
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%),
+                radial-gradient(circle at 50% 30%, rgba(52, 211, 153, 0.1), transparent 60%), /* สีมรกตจางๆ */
+                url('https://likitfah.com/img/9396.jpg'); 
+            background-size: cover;
+            background-position: center top;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: #e2e8f0; 
+            overflow-x: hidden; 
+        }
+        
+        .glass-panel { 
+            background: rgba(18, 18, 38, 0.7); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6); 
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 30, 45, 0.6) 0%, rgba(15, 15, 25, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+        }
+        
+        .text-title-gradient { 
+            background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .glow-icon { filter: drop-shadow(0 0 10px currentColor); }
+
+        /* อินพุตสไตล์เวทมนตร์ */
+        .magic-input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: #a7f3d0;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .magic-input:focus {
+            border-color: rgba(52, 211, 153, 0.9);
+            box-shadow: 0 0 15px rgba(52, 211, 153, 0.3), inset 0 0 10px rgba(52, 211, 153, 0.1);
+            background: rgba(20, 30, 25, 0.8);
+            outline: none;
+        }
+        .magic-input::placeholder { color: rgba(167, 243, 208, 0.3); }
+
+        /* Loading Animation */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(52, 211, 153, 0); }
+            100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+        .loader-ring { animation: pulse-ring 2s infinite; }
+        
+        /* สไตล์ป้ายทะเบียนจำลอง */
+        .license-plate-style {
+            background: linear-gradient(to bottom, #ffffff 0%, #f0f0f0 100%);
+            border: 2px solid #333;
+            border-radius: 12px;
+            color: #111;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5), inset 0 2px 5px rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+        .license-plate-style::before {
+            content: 'THAILAND';
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #666;
+            margin-top: 4px;
+            margin-bottom: -4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative">
+
+   
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+        
+        <div class="text-center mb-10">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-900/40 border border-emerald-500/30 mb-4 shadow-[0_0_20px_rgba(52,211,153,0.3)]">
+                <i class="fa-solid fa-car text-3xl text-emerald-400 glow-icon"></i>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg tracking-wide mb-2">วิเคราะห์ทะเบียนรถ</h2>
+            <p class="text-emerald-200/70 font-light">ถอดรหัสพลังงานตัวเลขแห่งการเดินทาง</p>
+        </div>
+
+        <!-- ส่วนกรอกข้อมูลทะเบียนรถ -->
+        <div class="glass-panel rounded-3xl p-6 md:p-8 border-t-2 border-t-emerald-500 shadow-[0_0_30px_rgba(52,211,153,0.1)] relative overflow-hidden mb-8">
+            <div class="max-w-lg mx-auto text-center">
+                <form onsubmit="handleAnalyzePlate(event)" class="flex flex-col gap-4">
+                    <div class="flex gap-3">
+                        <div class="w-1/3">
+                            <label class="block text-xs font-bold text-emerald-400 mb-2 uppercase tracking-widest">หมวดอักษร</label>
+                            <input type="text" id="plateCharsMain" placeholder="กค" class="magic-input w-full rounded-xl px-4 py-4 text-xl font-bold uppercase">
+                        </div>
+                        <div class="w-2/3">
+                            <label class="block text-xs font-bold text-emerald-400 mb-2 uppercase tracking-widest">ตัวเลข</label>
+                            <input type="number" id="plateNumsMain" placeholder="9999" class="magic-input w-full rounded-xl px-4 py-4 text-2xl font-mono font-bold tracking-[0.2em]">
+                        </div>
+                    </div>
+                    <button type="submit" id="btn-plate" class="mt-2 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold px-8 py-4 rounded-xl shadow-[0_0_15px_rgba(52,211,153,0.4)] transition-all hover:scale-105 border border-emerald-400/50 w-full">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> วิเคราะห์พลังงานพาหนะ
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- หน้าจอ Loading -->
+        <div id="loading-screen" class="hidden flex-col items-center justify-center py-10">
+            <div class="w-16 h-16 rounded-full bg-emerald-500/20 border-4 border-emerald-400 border-t-transparent animate-spin mb-4 loader-ring shadow-[0_0_20px_rgba(52,211,153,0.5)]"></div>
+            <p class="text-emerald-400 font-bold animate-pulse tracking-widest">กำลังตรวจสอบพลังงานบนท้องถนน...</p>
+        </div>
+
+        <!-- ส่วนแสดงผลลัพธ์ -->
+        <div id="plateAnalysisResult" class="hidden animate-[fadeIn_0.5s_ease-out]">
+            
+            <!-- Share Card Container -->
+            <div id="capture-card-plate" class="relative bg-[#0B0B1A] border-2 border-emerald-500/50 rounded-3xl p-6 md:p-10 shadow-[0_10px_40px_rgba(52,211,153,0.15)] overflow-hidden max-w-2xl mx-auto mb-6">
+                <!-- Background ภายใน Share Card -->
+                <div class="absolute inset-0 bg-[url('https://likitfah.com/img/9396.jpg')] bg-cover bg-center opacity-10"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-slate-900/90 via-teal-950/90 to-slate-950/95"></div>
+                
+                <!-- Content ภายใน Share Card -->
+                <div class="relative z-10 text-center">
+                    <p class="text-[10px] text-emerald-400 font-bold mb-4 uppercase tracking-[0.3em]"><i class="fa-solid fa-car-side mr-1"></i> Auspicious License Plate</p>
+                    
+                    <!-- ป้ายทะเบียนจำลอง -->
+                    <div class="license-plate-style w-64 mx-auto mb-8 pb-3">
+                        <div class="text-5xl tracking-widest mt-1" id="share-plate-number">กค 9999</div>
+                    </div>
+                    
+                    <div class="flex justify-center items-end gap-4 mb-6 bg-black/40 py-5 rounded-2xl border border-emerald-500/30 backdrop-blur-sm mx-auto max-w-md">
+                        <div>
+                            <p class="text-[10px] text-emerald-200/70 font-bold uppercase mb-1 tracking-widest">พลังผลรวม</p>
+                            <div class="text-7xl font-serif text-emerald-400 leading-none drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]" id="share-plate-score">0</div>
+                        </div>
+                        <div class="pb-1.5">
+                            <span class="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-5 py-2 rounded-xl border border-emerald-300 shadow-md" id="share-plate-grade">เกรด -</span>
+                        </div>
+                    </div>
+                    
+                    <div class="text-left space-y-4 text-sm text-slate-200 bg-slate-900/60 p-6 rounded-2xl border border-white/10 backdrop-blur-md shadow-inner mt-6">
+                        <p class="leading-relaxed"><strong class="text-cyan-400 block mb-1"><i class="fa-solid fa-route w-5"></i> การเดินทาง:</strong> <span id="plateTravel">...</span></p>
+                        <p class="leading-relaxed"><strong class="text-amber-400 block mb-1"><i class="fa-solid fa-coins w-5"></i> บารมีโชคลาภ:</strong> <span id="plateWealth">...</span></p>
+                        <p class="leading-relaxed"><strong class="text-rose-400 block mb-1"><i class="fa-solid fa-triangle-exclamation w-5"></i> ข้อควรระวัง:</strong> <span id="plateWarning">...</span></p>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t border-white/10 text-xs text-emerald-500/50 font-bold tracking-widest uppercase">
+                        <i class="fa-solid fa-feather-pointed mr-1"></i> www.LikitFah.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- ปุ่มบันทึกภาพ -->
+            <div class="text-center">
+                <button onclick="downloadImage('capture-card-plate', 'btn-download-plate', 'Plate')" id="btn-download-plate" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-10 rounded-full transition-all shadow-[0_0_20px_rgba(52,211,153,0.4)] hover:shadow-[0_0_30px_rgba(52,211,153,0.6)] text-lg">
+                    <i class="fa-solid fa-download mr-2"></i> บันทึกภาพคำทำนาย
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const API_URL = localStorage.getItem('LikitFah_API_URL') || '/api'; 
+
+        async function fetchWithTimeout(resource, options = {}) {
+            const { timeout = 8000 } = options;
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            const response = await fetch(resource, { ...options, signal: controller.signal });
+            clearTimeout(id);
+            return response;
+        }
+
+        // เมื่อกดปุ่มวิเคราะห์
+        function handleAnalyzePlate(event) {
+            event.preventDefault();
+            const chars = document.getElementById('plateCharsMain').value.trim();
+            const nums = document.getElementById('plateNumsMain').value.trim();
+            if (!chars && !nums) return alert('กรุณากรอกหมวดอักษรหรือตัวเลขทะเบียน');
+            executeAnalysis(chars, nums);
+        }
+
+        async function executeAnalysis(chars, nums) {
+            // คำนวณผลรวม (ตัวอักษร + ตัวเลข)
+            let totalSum = 0;
+            // ตัวอักษร (แปลงค่า ก-ฮ ตามหลักเลขศาสตร์ไทย) - จำลองเบื้องต้น
+            for (let i = 0; i < chars.length; i++) {
+                const charCode = chars.charCodeAt(i);
+                // ค่าจำลองสำหรับตัวอักษรไทย (ในระบบจริงควรมีตารางแปลงค่า ก=1, ข=2 ฯลฯ)
+                if (charCode >= 3585 && charCode <= 3630) {
+                    totalSum += (charCode % 9) + 1; 
+                }
+            }
+            // ตัวเลข
+            for (let i = 0; i < nums.length; i++) {
+                totalSum += parseInt(nums[i]) || 0;
+            }
+
+            // ถ้าไม่มีตัวเลข หรือคำนวณแล้วได้ 0 
+            if (totalSum === 0) return alert('ข้อมูลไม่ถูกต้อง');
+
+            // แสดงหน้าจอ Loading
+            document.getElementById('plateAnalysisResult').classList.add('hidden');
+            document.getElementById('loading-screen').classList.remove('hidden');
+            document.getElementById('loading-screen').classList.add('flex');
+            
+            const btn = document.getElementById('btn-plate');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+            try {
+                // ดึงข้อมูลจาก API
+                const res = await fetchWithTimeout(`${API_URL}/plate/${totalSum}`);
+                const data = await res.json();
+                
+                // อัปเดตข้อมูลบนป้ายทะเบียนจำลอง
+                const plateText = `${chars ? chars + ' ' : ''}${nums}`;
+                document.getElementById('share-plate-number').innerText = plateText;
+                
+                document.getElementById('share-plate-score').innerText = totalSum;
+                document.getElementById('share-plate-grade').innerText = `เกรด: ${data.grade}`;
+                
+                // กำหนดสีตามเกรด
+                const gradeEl = document.getElementById('share-plate-grade');
+                const scoreEl = document.getElementById('share-plate-score');
+                if (data.grade.includes('A')) {
+                    gradeEl.className = "text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-500 text-white px-5 py-2 rounded-xl shadow-md border border-emerald-300";
+                    scoreEl.className = "text-7xl font-serif leading-none drop-shadow-[0_0_15px_rgba(52,211,153,0.6)] text-emerald-400";
+                } else if (data.grade.includes('B')) {
+                    gradeEl.className = "text-xl font-bold bg-gradient-to-r from-amber-500 to-yellow-400 text-black px-5 py-2 rounded-xl shadow-md border border-yellow-300";
+                    scoreEl.className = "text-7xl font-serif leading-none drop-shadow-[0_0_15px_rgba(251,191,36,0.6)] text-amber-400";
+                } else {
+                    gradeEl.className = "text-xl font-bold bg-gradient-to-r from-rose-600 to-red-500 text-white px-5 py-2 rounded-xl shadow-md border border-rose-300";
+                    scoreEl.className = "text-7xl font-serif leading-none drop-shadow-[0_0_15px_rgba(244,63,94,0.6)] text-rose-400";
+                }
+
+                document.getElementById('plateTravel').innerText = data.travel_luck;
+                document.getElementById('plateWealth').innerText = data.wealth_aura;
+                document.getElementById('plateWarning').innerText = data.accident_warning;
+                
+                // หน่วงเวลาให้ดูขลัง แล้วโชว์ผลลัพธ์
+                setTimeout(() => {
+                    document.getElementById('loading-screen').classList.add('hidden');
+                    document.getElementById('loading-screen').classList.remove('flex');
+                    document.getElementById('plateAnalysisResult').classList.remove('hidden');
+
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i>วิเคราะห์พลังงานใหม่';
+                }, 800);
+
+            } catch(e) { 
+                console.error(e);
+                alert("ไม่สามารถเชื่อมต่อคัมภีร์สวรรค์ได้ในขณะนี้ โปรดตรวจสอบระบบหลังบ้าน");
+                document.getElementById('loading-screen').classList.add('hidden');
+                document.getElementById('loading-screen').classList.remove('flex');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles mr-2"></i>วิเคราะห์พลังงานพาหนะ';
+            }
+        }
+
+        // ระบบบันทึกภาพ (html2canvas)
+        function downloadImage(cardId, btnId, filePrefix) {
+            const cardElement = document.getElementById(cardId);
+            const btn = document.getElementById(btnId);
+            const originalBtnHtml = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> กำลังสร้างภาพ...'; 
+            btn.disabled = true;
+
+            setTimeout(() => {
+                html2canvas(cardElement, { 
+                    scale: 3, 
+                    useCORS: true, 
+                    backgroundColor: '#0B0B1A',
+                    logging: false
+                }).then(canvas => {
+                    const link = document.createElement('a');
+                    const plateText = document.getElementById('share-plate-number').innerText.replace(/\s+/g, '_');
+                    link.download = `LikitFah_${filePrefix}_${plateText}.png`;
+                    link.href = canvas.toDataURL("image/png"); 
+                    link.click();
+                    
+                    btn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> บันทึกสำเร็จ!';
+                    setTimeout(() => { 
+                        btn.innerHTML = originalBtnHtml; 
+                        btn.disabled = false; 
+                    }, 2000);
+                }).catch((err) => { 
+                    console.error("Canvas Error:", err);
+                    btn.innerHTML = originalBtnHtml; 
+                    btn.disabled = false; 
+                    alert("เกิดข้อผิดพลาดในการบันทึกภาพ");
+                });
+            }, 100);
+        }
+    </script>
+		<script src="components/header.js"></script> <script src="components/tracking.js"></script>
+    <script src="components/navbar.js"></script>
+</body>
+</html>
