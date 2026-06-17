@@ -2,17 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const router = express.Router();
 
-const dbConfig = {
-    host: 'db',
-    user: 'root',
-    password: 'root', // ใส่รหัสผ่าน DB ของบอส
-    database: 'likitfah_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-};
-
-const pool = mysql.createPool(dbConfig);
+const pool = require('../db');
 
 // ฟังก์ชันคำนวณหางวดถัดไปอัตโนมัติ
 function getNextDrawDate() {

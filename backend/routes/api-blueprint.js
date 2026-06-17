@@ -2,20 +2,7 @@ const express = require('express');
 const mysql = require('mysql2/promise');
 const router = express.Router();
 
-// ==========================================
-// ⚙️ 1. ตั้งค่า Database (ใช้ host: 'db' สำหรับ Docker)
-// ==========================================
-const dbConfig = {
-    host: 'db',        // 👈 บังคับให้วิ่งไปหาคอนเทนเนอร์ Database
-    user: 'root',
-    password: 'root',      // ใส่รหัสผ่านของบอส (ถ้ามี)
-    database: 'likitfah_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-};
-
-const pool = mysql.createPool(dbConfig);
+const pool = require('../db');
 
 // ==========================================
 // ⚙️ 2. ฟังก์ชันดึงเลขที่ออกบ่อยที่สุด (Top 2 สถิติ)
