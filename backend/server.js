@@ -31,6 +31,7 @@ app.use(express.json());
 
 // 🌟 สั่งให้ Node.js อ่านไฟล์เว็บจากโฟลเดอร์ public (สำคัญมากสำหรับการรวมร่าง)
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('/api/health', (req, res) => res.send('API is running securely with Premium Data!'));
 
