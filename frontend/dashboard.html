@@ -17,6 +17,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="components/header.js"></script>
 
     <style>
         body { 
@@ -89,17 +90,25 @@
                 </div>
             </div>
             
-            <div class="px-6 py-3 rounded-2xl bg-black/40 border border-slate-700/50 flex items-center gap-3">
-                <i class="fa-solid fa-circle-user text-2xl text-indigo-400"></i>
-                <div class="text-sm">
-                    <p class="text-slate-400 text-xs">
-                        <span class="lang-th">ผู้ไขชะตา</span>
-                        <span class="lang-en">Seeker</span>
-                    </p>
-                    <p class="font-medium text-white">
-                        <span class="lang-th">คุณ</span>
-                        <span class="lang-en">Mr/Ms.</span> <span id="user_name" class="text-amber-300">...</span>
-                    </p>
+            <div class="flex items-center gap-3">
+                <!-- 🌐 Language Switcher Button -->
+                <button onclick="toggleGlobalLanguage()" class="text-[10px] md:text-xs px-2.5 py-1.5 rounded-full border border-slate-700 bg-slate-800/40 hover:bg-slate-700/60 text-slate-300 transition-all font-medium flex items-center gap-1 shadow-md" style="font-family: 'Prompt', sans-serif;">
+                    <i class="fa-solid fa-globe text-amber-400"></i>
+                    <span id="global-lang-btn-text">EN</span>
+                </button>
+
+                <div class="px-6 py-3 rounded-2xl bg-black/40 border border-slate-700/50 flex items-center gap-3">
+                    <i class="fa-solid fa-circle-user text-2xl text-indigo-400"></i>
+                    <div class="text-sm">
+                        <p class="text-slate-400 text-xs">
+                            <span class="lang-th">ผู้ไขชะตา</span>
+                            <span class="lang-en">Seeker</span>
+                        </p>
+                        <p class="font-medium text-white">
+                            <span class="lang-th">คุณ</span>
+                            <span class="lang-en">Mr/Ms.</span> <span id="user_name" class="text-amber-300">...</span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </header>
@@ -497,7 +506,7 @@
             document.getElementById('greeting-text').innerHTML = `<i class="fa-solid fa-sparkles text-amber-400 mr-1"></i> ${greeting}`;
         }
     </script>
-    <script src="navbar.js"></script>
+    <script src="components/navbar.js"></script>
     <script src="components/tracking.js"></script>
 </body>
 </html>

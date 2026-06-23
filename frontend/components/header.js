@@ -76,6 +76,17 @@ detectAndApplyLanguage();
 document.addEventListener("DOMContentLoaded", () => {
     // Robust check for index page based on existence of astroForm
     const isIndexPage = document.getElementById('astroForm') !== null;
+    const isDashboardPage = document.getElementById('greeting-text') !== null;
+
+    if (isDashboardPage) {
+        const currentLang = document.documentElement.lang || 'th';
+        const btnText = document.getElementById('global-lang-btn-text');
+        if (btnText) {
+            btnText.textContent = currentLang === 'th' ? 'EN' : 'TH';
+        }
+        return; // Skip top header injection on dashboard
+    }
+
     const logoOnClick = isIndexPage ? '' : `onclick="window.location.href='${pathPrefix}dashboard.html'"`;
     const logoCursorClass = isIndexPage ? '' : 'cursor-pointer';
 
