@@ -120,7 +120,7 @@ function getHtmlTemplate(title, description, category, imgUrl, contentHtml, sche
 <body class="min-h-screen flex flex-col pb-12">
 
     <!-- Global Top Header Component loaded via header.js -->
-    <script src="../components/header.js"></script>
+    <script src="../../components/header.js"></script>
 
     <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative mt-16">
         
@@ -139,9 +139,9 @@ function getHtmlTemplate(title, description, category, imgUrl, contentHtml, sche
         <main class="col-span-1 lg:col-span-8 bg-[#111827]/40 border border-white/10 rounded-3xl p-6 md:p-10 shadow-2xl backdrop-blur-md">
             
             <nav class="text-xs text-slate-400 mb-6 flex items-center gap-2">
-                <a href="../index.html" class="hover:text-amber-400">หน้าหลัก</a>
+                <a href="../../index.html" class="hover:text-amber-400">หน้าหลัก</a>
                 <i class="fa-solid fa-chevron-right text-[8px]"></i>
-                <a href="../blog.html" class="hover:text-amber-400">บทความ</a>
+                <a href="../../blog.html" class="hover:text-amber-400">บทความ</a>
                 <i class="fa-solid fa-chevron-right text-[8px]"></i>
                 <span class="text-slate-300 truncate">${title}</span>
             </nav>
@@ -195,8 +195,8 @@ function getHtmlTemplate(title, description, category, imgUrl, contentHtml, sche
     <div id="likitfah-footer" class="mt-12"></div>
 
     <!-- Scripts -->
-    <script src="../components/footer.js"></script>
-    <script src="../components/navbar.js"></script>
+    <script src="../../components/footer.js"></script>
+    <script src="../../components/navbar.js"></script>
 
     <!-- AdSense Load/Execute -->
     <script>

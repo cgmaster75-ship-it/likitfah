@@ -1,14 +1,15 @@
-// โค้ด HTML ของเมนูด้านล่าง และ Popup ออกจากระบบ
+const pathPrefix = window.location.pathname.includes('/blog/articles/') ? '../../' : '';
+
 const bottomNavigationHTML = `
     <nav id="global-bottom-nav" class="fixed bottom-4 left-0 right-0 z-[90] px-4 pointer-events-none transition-transform duration-300">
         <div class="max-w-[280px] mx-auto rounded-full p-1.5 flex justify-between items-center px-6 pointer-events-auto shadow-[0_10px_40px_rgba(0,0,0,0.8)]" style="background: rgba(15, 15, 25, 0.9); backdrop-filter: blur(20px); border: 1px solid rgba(251, 191, 36, 0.2);">
             
-            <div onclick="window.location.href='dashboard.html'" class="flex flex-col items-center p-2 text-slate-400 hover:text-amber-400 cursor-pointer transition-all hover:-translate-y-1">
+            <div onclick="window.location.href='${pathPrefix}dashboard.html'" class="flex flex-col items-center p-2 text-slate-400 hover:text-amber-400 cursor-pointer transition-all hover:-translate-y-1">
                 <i class="fa-solid fa-house text-lg"></i>
                 <span class="text-[9px] mt-1 font-medium" style="font-family: 'Prompt', sans-serif;">หน้าหลัก</span>
             </div>
             
-            <div onclick="window.location.href='donate.html'" class="flex flex-col items-center p-2 text-amber-500 hover:text-amber-300 cursor-pointer transition-all hover:-translate-y-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">
+            <div onclick="window.location.href='${pathPrefix}donate.html'" class="flex flex-col items-center p-2 text-amber-500 hover:text-amber-300 cursor-pointer transition-all hover:-translate-y-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">
                 <i class="fa-solid fa-hand-holding-dollar text-xl animate-pulse"></i>
                 <span class="text-[10px] mt-1 font-bold tracking-wide" style="font-family: 'Prompt', sans-serif;">ค่าครู</span>
             </div>
@@ -84,5 +85,6 @@ function closeGlobalLogoutModal() {
 
 function confirmGlobalLogout() {
     localStorage.clear(); 
-    window.location.href = 'index.html'; 
+    const pathPrefix = window.location.pathname.includes('/blog/articles/') ? '../../' : '';
+    window.location.href = pathPrefix + 'index.html'; 
 }

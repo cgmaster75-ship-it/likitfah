@@ -1,3 +1,5 @@
+const pathPrefix = window.location.pathname.includes('/blog/articles/') ? '../../' : '';
+
 const globalFooterHTML = `
     <!-- Google AdSense Footer Ad -->
     <div class="max-w-4xl mx-auto px-4 mb-6 text-center">
@@ -13,11 +15,11 @@ const globalFooterHTML = `
         <div class="max-w-7xl mx-auto px-4 text-center">
             <!-- Trust Pages Links -->
             <div class="flex flex-wrap justify-center gap-6 mb-6 text-xs md:text-sm font-medium text-slate-400">
-                <a href="about.html" class="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a>
-                <a href="contact.html" class="hover:text-amber-400 transition-colors">ติดต่อเรา</a>
-                <a href="policy.html" class="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
-                <a href="terms.html" class="hover:text-amber-400 transition-colors">ข้อตกลงการใช้งาน</a>
-                <a href="blog.html" class="hover:text-amber-400 transition-colors">บทความพยากรณ์</a>
+                <a href="${pathPrefix}about.html" class="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a>
+                <a href="${pathPrefix}contact.html" class="hover:text-amber-400 transition-colors">ติดต่อเรา</a>
+                <a href="${pathPrefix}policy.html" class="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
+                <a href="${pathPrefix}terms.html" class="hover:text-amber-400 transition-colors">ข้อตกลงการใช้งาน</a>
+                <a href="${pathPrefix}blog.html" class="hover:text-amber-400 transition-colors">บทความพยากรณ์</a>
             </div>
 
             <p class="text-xs text-slate-500 font-light tracking-wide leading-relaxed">
