@@ -65,6 +65,103 @@ function highlightKeywords(text) {
     return highlighted;
 }
 
+function getTarotImageUrl(cardId) {
+    if (!cardId) return 'https://likitfah.com/img/card/Front-Cover.webp';
+    const id = String(cardId).toUpperCase();
+    let folder = 'Arcana';
+    if (id.startsWith('W')) folder = 'Wands';
+    else if (id.startsWith('C')) folder = 'Cups';
+    else if (id.startsWith('S')) folder = 'Swords';
+    else if (id.startsWith('P')) folder = 'Pentacles';
+    
+    return `https://likitfah.com/img/card/${folder}/${id}.webp`;
+}
+
+function getZodiacImageUrl(index) {
+    const zodiacImages = [
+        "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1538370965046-79c0d6907d47?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=600&auto=format&fit=crop"
+    ];
+    return zodiacImages[index % 12];
+}
+
+function getWesternZodiacImageUrl(index) {
+    const westernZodiacImages = [
+        "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1517411032315-54ef2cb783bb?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1497294815431-9365093b7331?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=600&auto=format&fit=crop"
+    ];
+    return westernZodiacImages[index % 12];
+}
+
+function getBaziImageUrl(elementName, symbol) {
+    const el = String(elementName || '').toLowerCase();
+    const sym = String(symbol || '');
+    if (el.includes('ไม้') || sym === '甲' || sym === '乙') {
+        return "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=600&auto=format&fit=crop";
+    } else if (el.includes('ไฟ') || sym === '丙' || sym === '丁') {
+        return "https://images.unsplash.com/photo-1524135329990-07660cd5bf10?q=80&w=600&auto=format&fit=crop";
+    } else if (el.includes('ดิน') || sym === '戊' || sym === '己') {
+        return "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop";
+    } else if (el.includes('ทอง') || el.includes('โลหะ') || sym === '庚' || sym === '辛') {
+        return "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop";
+    } else if (el.includes('น้ำ') || sym === '壬' || sym === '癸') {
+        return "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop";
+    }
+    return "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop";
+}
+
+function getDreamImageUrl(keyword, id) {
+    const kw = String(keyword || '');
+    if (kw.includes('งู')) return "https://images.unsplash.com/photo-1545249390-6bdfa286032f?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('ทอง')) return "https://images.unsplash.com/photo-1589758438368-0ad531db3366?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('เสือ')) return "https://images.unsplash.com/photo-1508817628294-5a453fa0b8fb?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('แมว')) return "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('หมา') || kw.includes('สุนัข')) return "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('มังกร')) return "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('ฟัน')) return "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('น้ำ') || kw.includes('ทะเล')) return "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('ไฟ') || kw.includes('เพลิง')) return "https://images.unsplash.com/photo-1524135329990-07660cd5bf10?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('เงิน') || kw.includes('เหรียญ')) return "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('พระ') || kw.includes('เจดีย์') || kw.includes('วัด')) return "https://images.unsplash.com/photo-1460574283810-2aab119d8511?q=80&w=600&auto=format&fit=crop";
+    if (kw.includes('นก') || kw.includes('บิน')) return "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?q=80&w=600&auto=format&fit=crop";
+
+    const dreamFallbacks = [
+        "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1516339901601-2e1b62dc0c45?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1464802686167-b939a6910659?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=600&auto=format&fit=crop"
+    ];
+
+    const numId = parseInt(id) || 0;
+    return dreamFallbacks[numId % dreamFallbacks.length];
+}
+
 // เทมเพลตโครงสร้างหลักของหน้าบทความ (Static Page)
 function getHtmlTemplate(title, description, category, imgUrl, contentHtml, schemaJson, filename) {
     return `<!DOCTYPE html>
@@ -156,8 +253,8 @@ function getHtmlTemplate(title, description, category, imgUrl, contentHtml, sche
                 </div>
 
                 <!-- Featured Image -->
-                <div class="w-full rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-xl max-h-[400px]">
-                    <img src="${imgUrl}" alt="${title}" class="w-full h-full object-cover" loading="lazy">
+                <div class="w-full rounded-2xl overflow-hidden mb-8 border border-white/10 shadow-xl max-h-[400px] bg-slate-950/80 flex items-center justify-center">
+                    <img src="${imgUrl}" alt="${title}" class="w-full h-full ${category === 'ความหมายไพ่ยิปซี' ? 'object-contain max-h-[400px]' : 'object-cover'}" loading="lazy">
                 </div>
 
                 <!-- Content Body -->
@@ -240,7 +337,7 @@ async function run() {
             const filename = `tarot-card-${r.card_id}.html`;
             const title = `ความหมายไพ่ยิปซีพรีเมียม: ไพ่ ${r.name_en} (${r.name_th}) เจาะลึกคำทำนาย`;
             const desc = `ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ ${r.name_en} (${r.name_th}) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด`;
-            const imgUrl = r.image_url || `https://likitfah.com/img/card/Front-Cover.webp`;
+            const imgUrl = getTarotImageUrl(r.card_id);
             
             const content = `
                 <p>ไพ่ <strong>${r.name_en} (${r.name_th})</strong> เป็นหนึ่งในสัญลักษณ์ที่มีความลึกลับและอิทธิพลสูงในศาสตร์การพยากรณ์ไพ่ยิปซี โดยสถิติความเชื่อระบุว่าพลังงานของไพ่ใบนี้มักเชื่อมโยงกับธาตุ <strong>${r.element || 'ลม'}</strong> และมีสีมงคลประจำไพ่คือ <strong>${r.color_theme || 'ทอง'}</strong></p>
@@ -296,7 +393,7 @@ async function run() {
             const filename = `thai-zodiac-${r.id}.html`;
             const title = `เจาะลึกดวงชะตาและลักษณะนิสัยของราศี ${r.zodiac_name} ประจำปี 2569-2570`;
             const desc = `ศึกษาลักษณะเด่น จุดแข็ง จุดอ่อน ดวงความรัก การเงิน การงาน และวิธีเสริมดวงชะตาตามวันเกิดของชาวราศี ${r.zodiac_name}`;
-            const imgUrl = `https://images.unsplash.com/photo-1502481851512-e9e2529bbbf9?q=80&w=600&auto=format&fit=crop`; // Mystical Starry Sky
+            const imgUrl = getZodiacImageUrl(r.id);
             
             const content = `
                 <p>ชาวราศี <strong>${r.zodiac_name}</strong> จัดเป็นผู้อยู่ภายใต้การปกครองของธาตุ <strong>${r.element}</strong> และมีดาวเคราะห์ควบคุมคือดาว <strong>${r.ruler_planet}</strong> ส่งผลต่อวิสัยทัศน์และการมองโลก</p>
@@ -349,7 +446,7 @@ async function run() {
             const filename = `western-zodiac-${r.id}.html`;
             const title = `เจาะลึกจิตวิทยาและตัวตนที่แท้จริงของราศี ${r.zodiac_name} (Zodiac Energy)`;
             const desc = `วิเคราะห์ขั้วพลังงาน จิตวิทยา ความปรารถนาลึกๆ เงามืด และข้อแนะนำการพัฒนาตนเองของราศี ${r.zodiac_name} ตามศาสตร์สถิติจักรราศีตะวันตก`;
-            const imgUrl = `https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?q=80&w=600&auto=format&fit=crop`; // Mystical Nebula
+            const imgUrl = getWesternZodiacImageUrl(r.id);
             
             const content = `
                 <p>ในจิตวิทยาและการพยากรณ์ตะวันตก ราศี <strong>${r.zodiac_name}</strong> ถูกจัดประเภทอยู่ในกลุ่ม <strong>${r.modality}</strong> ซึ่งมีแรงขับเคลื่อนเฉพาะในการแสดงออกและเป้าหมาย</p>
@@ -396,7 +493,7 @@ async function run() {
             const filename = `chinese-bazi-${r.id}.html`;
             const title = `วิเคราะห์ดิถีและดวงชะตาบาจื่อ: ดิถี ${r.symbol} ธาตุ ${r.element_name} (${r.polarity})`;
             const desc = `เจาะลึกพลังงานหลัก ลักษณะเด่นตามธรรมชาติ ดวงชะตาความมั่งคั่งการเงิน และคู่ธาตุส่งเสริมตามวันเกิดของดิถี ${r.symbol}`;
-            const imgUrl = `https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=600&auto=format&fit=crop`; // Abstract elements energy
+            const imgUrl = getBaziImageUrl(r.element_name, r.symbol);
             
             const content = `
                 <p>ตามศาสตร์การดูลักษณะชะตาดวงจีนบาจื่อ (Bazi) พลังงานดิถีวันเกิดของคุณคือ <strong>ดิถี ${r.symbol} ธาตุ ${r.element_name}</strong> ซึ่งแสดงขั้วความร้อนเย็นเป็นแบบ <strong>${r.polarity}</strong></p>
@@ -446,7 +543,7 @@ async function run() {
             const filename = `dream-${r.id}.html`;
             const title = `ทำนายฝันพรีเมียม: ฝันเห็น "${r.keyword}" แปลว่าอะไร พร้อมตีความหมายเลขนำโชค`;
             const desc = `ไขความหมาย ทำนายลางบอกเหตุล่วงหน้าในชีวิต พร้อมวิเคราะห์ถอดตัวเลขนำโชคเชิงสถิติจากการฝันเห็น ${r.keyword}`;
-            const imgUrl = `https://images.unsplash.com/photo-1511289081367-46c54b4f88e4?q=80&w=600&auto=format&fit=crop`; // Mystical Dreamcatcher / Starry Sky
+            const imgUrl = getDreamImageUrl(r.keyword, r.id);
             
             const content = `
                 <p>ตามศาสตร์การทำนายฝันโบราณและสถิติตัวเลขนำโชคของลิขิตฟ้า การที่คุณฝันเห็น <strong>"${r.keyword}"</strong> นั้น ถูกจัดอยู่ในหมวดหมู่ทำนายฝันเรื่อง <strong>${r.category || 'โชคลาภทั่วไป'}</strong></p>
@@ -489,6 +586,70 @@ async function run() {
         // เขียนไฟล์บล็อกดัชนี blog-list.json
         console.log("💾 บันทึกไฟล์ดัชนีบทความ blog-list.json...");
         fs.writeFileSync(path.join(blogDir, 'blog-list.json'), JSON.stringify(articlesList, null, 2), 'utf8');
+
+        // 6. Generate sitemap.xml
+        console.log("💾 กำลังสร้างไฟล์ sitemap.xml...");
+        const domain = "https://likitfah.com";
+        const today = new Date().toISOString().split('T')[0];
+        
+        const staticPages = [
+            "",
+            "dashboard.html",
+            "blog.html",
+            "about.html",
+            "contact.html",
+            "policy.html",
+            "terms.html",
+            "donate.html",
+            "tarot.html",
+            "wheel.html",
+            "lucky.html",
+            "calendar.html",
+            "chinese-calendar.html",
+            "lotto.html",
+            "lotto-science.html",
+            "dream.html",
+            "name.html",
+            "naming.html",
+            "phone.html",
+            "plate.html",
+            "predictor.html",
+            "lifegraph.html",
+            "siemsi.html",
+            "timemachine.html",
+            "radar.html",
+            "scaner.html",
+            "core.html",
+            "oracle-blueprint.html"
+        ];
+        
+        let xml = `<?xml version="1.0" encoding="UTF-8"?>\n`;
+        xml += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+        
+        // Static root pages
+        for (const p of staticPages) {
+            xml += `  <url>\n`;
+            xml += `    <loc>${domain}/${p}</loc>\n`;
+            xml += `    <lastmod>${today}</lastmod>\n`;
+            xml += `    <changefreq>${p === '' || p === 'blog.html' ? 'daily' : 'weekly'}</changefreq>\n`;
+            xml += `    <priority>${p === '' ? '1.0' : '0.8'}</priority>\n`;
+            xml += `  </url>\n`;
+        }
+        
+        // Blog articles
+        for (const art of articlesList) {
+            xml += `  <url>\n`;
+            xml += `    <loc>${domain}/${art.url}</loc>\n`;
+            xml += `    <lastmod>${today}</lastmod>\n`;
+            xml += `    <changefreq>monthly</changefreq>\n`;
+            xml += `    <priority>0.6</priority>\n`;
+            xml += `  </url>\n`;
+        }
+        
+        xml += `</urlset>\n`;
+        
+        fs.writeFileSync(path.join(__dirname, '../../frontend/sitemap.xml'), xml, 'utf8');
+        console.log("🎉 บันทึก sitemap.xml สำเร็จ!");
 
         console.log(`🎉 [Scrip-Generator] เสร็จสมบูรณ์! เจนบทความทั้งหมด ${articlesList.length} ไฟล์สำเร็จ!`);
         process.exit(0);

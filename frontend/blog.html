@@ -204,9 +204,11 @@
             pageItems.forEach(art => {
                 const card = document.createElement('div');
                 card.className = 'article-card rounded-2xl overflow-hidden flex flex-col h-full shadow-lg';
+                const isTarot = art.category === 'ความหมายไพ่ยิปซี';
+                const imgClass = isTarot ? 'w-full h-full object-contain bg-slate-950/80' : 'w-full h-full object-cover';
                 card.innerHTML = `
-                    <div class="w-full h-40 overflow-hidden relative border-b border-white/5">
-                        <img src="${art.imgUrl}" alt="${art.title}" class="w-full h-full object-cover" loading="lazy">
+                    <div class="w-full h-40 overflow-hidden relative border-b border-white/5 flex items-center justify-center">
+                        <img src="${art.imgUrl}" alt="${art.title}" class="${imgClass}" loading="lazy">
                         <span class="absolute top-3 left-3 bg-black/80 border border-amber-500/30 text-[10px] text-amber-400 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${art.category}</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
