@@ -195,6 +195,14 @@
                             <span class="lang-en">Privacy Policy</span>
                         </a>
                     </div>
+
+                    <div id="logout-container" class="hidden text-center mt-3 pt-3 border-t border-white/5">
+                        <button type="button" onclick="clearProfile()" class="text-xs text-rose-400/80 hover:text-rose-300 transition-colors inline-flex items-center gap-1.5 font-medium">
+                            <i class="fa-solid fa-power-off"></i>
+                            <span class="lang-th">ล้างข้อมูลประวัติ (ออกจากระบบ)</span>
+                            <span class="lang-en">Clear Saved Profile (Logout)</span>
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
@@ -212,6 +220,7 @@
                 document.getElementById('fullname').value = savedName;
                 document.getElementById('dob').value = localStorage.getItem('user_dob') || '';
                 document.getElementById('tob').value = localStorage.getItem('user_tob') || '12:00';
+                document.getElementById('logout-container').classList.remove('hidden');
             }
             
             // Apply language specifics on load
@@ -225,6 +234,11 @@
                 nameInput.placeholder = isEn ? "e.g., John Doe" : "เช่น ณัฐวุฒิ ใจดี";
             }
         });
+
+        function clearProfile() {
+            localStorage.clear();
+            window.location.reload();
+        }
 
         // เมื่อกดปุ่ม "เปิดคัมภีร์สวรรค์"
         function handleFormSubmit(event) {
@@ -262,7 +276,7 @@
         }
     </script>
     
-    <script src="components/header.js"></script>
+    <script src="components/header.js?v=2"></script>
     <script src="components/tracking.js"></script>
 </body>
 </html>
