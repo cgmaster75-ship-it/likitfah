@@ -15,7 +15,7 @@ window.fetch = function(input, init) {
     if (typeof input === 'string' && input.includes('/api/')) {
         try {
             const isAbsolute = input.startsWith('http://') || input.startsWith('https://') || input.startsWith('//');
-            const url = new URL(input, isAbsolute ? undefined : window.location.origin);
+            const url = isAbsolute ? new URL(input) : new URL(input, window.location.origin);
             if (!url.searchParams.has('lang')) {
                 url.searchParams.set('lang', currentLang);
             }
