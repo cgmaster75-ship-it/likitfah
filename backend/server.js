@@ -29,6 +29,27 @@ const apiLimiter = rateLimit({
 app.use('/api/', apiLimiter);
 app.use(express.json());
 
+const translator = require('./utils/translator');
+// Initialize translation cache table in the background
+translator.setupCacheTable();
+
+// Translation Interceptor Middleware
+app.use(async (req, res, next) => {
+    if (req.path.startsWith('/api') && req.query.lang === 'en') {
+        const originalJson = res.json;
+        res.json = async function (body) {
+            try {
+                const translatedBody = await translator.translateObject(body, 'en');
+                return originalJson.call(this, translatedBody);
+            } catch (err) {
+                console.error("[Middleware Translator Error]:", err.message);
+                return originalJson.call(this, body);
+            }
+        };
+    }
+    next();
+});
+
 // 🌟 สั่งให้ Node.js อ่านไฟล์เว็บจากโฟลเดอร์ public (สำคัญมากสำหรับการรวมร่าง)
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../frontend')));

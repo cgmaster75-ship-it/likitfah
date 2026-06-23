@@ -8,6 +8,40 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// 1.1 Global Fetch Interceptor to append lang query param to all /api/ requests
+const originalFetch = window.fetch;
+window.fetch = function(input, init) {
+    const currentLang = localStorage.getItem('lang') || 'th';
+    if (typeof input === 'string' && input.includes('/api/')) {
+        try {
+            const isAbsolute = input.startsWith('http://') || input.startsWith('https://') || input.startsWith('//');
+            const url = new URL(input, isAbsolute ? undefined : window.location.origin);
+            if (!url.searchParams.has('lang')) {
+                url.searchParams.set('lang', currentLang);
+            }
+            input = isAbsolute ? url.toString() : url.pathname + url.search;
+        } catch (e) {
+            if (input.includes('?')) {
+                input += `&lang=${currentLang}`;
+            } else {
+                input += `?lang=${currentLang}`;
+            }
+        }
+    } else if (input && typeof input === 'object' && typeof input.url === 'string' && input.url.includes('/api/')) {
+        try {
+            const url = new URL(input.url);
+            if (!url.searchParams.has('lang')) {
+                url.searchParams.set('lang', currentLang);
+                const clonedRequest = new Request(url.toString(), input);
+                return originalFetch(clonedRequest, init);
+            }
+        } catch (e) {
+            console.error("Fetch interceptor Request object parsing failed:", e);
+        }
+    }
+    return originalFetch(input, init);
+};
+
 // 2. Helper to set language attribute on HTML document
 function setDocumentLanguage(lang) {
     document.documentElement.lang = lang;
