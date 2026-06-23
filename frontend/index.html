@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>ลิขิตฟ้า (Likit Fah) - พลิกชะตาฟ้าลิขิต ด้วยศาสตร์แห่งตัวเลขและพยากรณ์</title>
-    <meta name="description" content="ศูนย์รวมศาสตร์พยากรณ์ ตรวจหวย ทำนายฝัน เซียมซี ไพ่ทาโรต์ และวิเคราะห์ตัวเลขมงคลครบวงจร แม่นยำด้วยสถิติและระบบ AI">
-    <meta name="keywords" content="ดูดวง, ตรวจหวย, ทำนายฝัน, เซียมซี, ไพ่ทาโรต์, เบอร์มงคล, ลิขิตฟ้า">
+    <meta name="description" content="ศูนย์รวมศาสตร์พยากรณ์ ตรวจหวย ทำนายฝัน เซียมซี ไพ่ทาโรต์ และวิเคราะห์ตัวเลขมงคลครบวงจร แม่นยำด้วยสถิติและระบบคำนวณโหราศาสตร์">
+    <meta name="keywords" content="ดูดวง, ตรวจหวย, ทำนายฝัน, เซียมซี, ไพ่ทาโรต์, เบอร์มงคล, ลิขิตฟ้า, ปาจื่อ, บาจื่อ">
     <meta name="author" content="Likit Fah">
 
     <meta property="og:type" content="website">
@@ -43,9 +43,9 @@
         }
         body { 
             background-color: #0B0B1A;
-            /* 🌟 ปรับ Overlay ให้มืดเข้มขึ้นอีก 25% เพื่อลดการแย่งความสนใจของพื้นหลังราศี */
+            /* 🌟 ปรับ Overlay ให้เข้มขึ้นเป็น 88% เพื่อให้อักษรสีทองเด่นชัดบนอุปกรณ์ทุกขนาดและไม่โดนลายราศีพื้นหลังรบกวน */
             background-image: 
-                linear-gradient(to bottom, rgba(11, 11, 26, 0.85) 0%, rgba(0, 0, 0, 0.98) 100%),
+                linear-gradient(to bottom, rgba(11, 11, 26, 0.88) 0%, rgba(0, 0, 0, 0.99) 100%),
                 radial-gradient(circle at 50% 30%, rgba(245, 158, 11, 0.12), transparent 70%),
                 url('https://likitfah.com/img/9396.jpg'); 
             background-size: cover;
@@ -58,18 +58,18 @@
         
         /* Dark Glass Panel */
         .glass-panel { 
-            background: rgba(15, 15, 25, 0.75); 
+            background: rgba(15, 15, 25, 0.78); 
             backdrop-filter: blur(20px); 
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(251, 191, 36, 0.15); 
-            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(251, 191, 36, 0.03); 
+            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.85), inset 0 0 20px rgba(251, 191, 36, 0.03); 
         }
         
         .text-title-gradient { 
             background: linear-gradient(to right, #fde047, #f59e0b, #d97706); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.3);
+            text-shadow: 0px 0px 20px rgba(245, 158, 11, 0.35);
         }
         
         .glow-icon { filter: drop-shadow(0 0 15px currentColor); }
@@ -159,7 +159,7 @@
 
     <!-- Main Landing Page Container -->
     <main id="main-landing" class="w-full max-w-5xl relative z-10 flex flex-col items-center">
-        <!-- Hero Section (Compressed for UX Focus) -->
+        <!-- Hero Section (Compressed & Outcome-Driven for Premium Branding) -->
         <div class="text-center mt-8 mb-16 animate-float flex flex-col items-center">
             <div class="relative inline-flex items-center justify-center mb-6">
                 <div class="absolute inset-0 bg-amber-500/30 blur-2xl rounded-full w-24 h-24 mx-auto"></div>
@@ -172,19 +172,20 @@
                 <span class="lang-th">ลิขิตฟ้า</span>
                 <span class="lang-en">Likit Fah</span>
             </h2>
-            <p class="text-amber-200/70 font-medium tracking-[0.3em] uppercase text-[10px] mb-4 mt-2">AI Astrology Platform</p>
+            <p class="text-amber-200/70 font-medium tracking-[0.3em] uppercase text-[10px] mb-4 mt-2">Premium Astrology Platform</p>
             
             <h1 class="text-2xl md:text-4xl font-extrabold text-white mb-3 max-w-xl drop-shadow-md">
                 <span class="lang-th">เปิดประตูสู่ตัวตนที่แท้จริง</span>
                 <span class="lang-en">Open the Door to Your True Self</span>
             </h1>
-            <p class="text-yellow-400 text-sm md:text-base font-medium max-w-lg mb-8 drop-shadow-md">
-                <span class="lang-th">วิเคราะห์ดวงชะตาเชิงลึกด้วยโหราศาสตร์ไทย จีน และ AI</span>
-                <span class="lang-en">Deep destiny analysis powered by Thai, Chinese Astrology & AI</span>
+            <!-- Subtitle focused on Outcomes & core astrology (No AI references) -->
+            <p class="text-yellow-400 text-sm md:text-base font-medium max-w-xl mb-8 leading-relaxed drop-shadow-md px-4">
+                <span class="lang-th">ค้นพบทิศทาง การเงิน ความรัก อาชีพ และเส้นทางชีวิตของคุณ ผ่านการวิเคราะห์เฉพาะบุคคลจากวันเกิด เวลาเกิด และศาสตร์โหราศาสตร์เชิงลึก</span>
+                <span class="lang-en">Discover your wealth, love, career, and life path through personalized analysis computed from your exact birth date, birth time, and deep astrology.</span>
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md px-4">
-                <!-- 🔮 อัปเกรดปุ่มหลักให้แรงขึ้นตามคำแนะนำแบรนดิ้ง -->
+                <!-- 🔮 Branded main CTA button -->
                 <button onclick="openWizard()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-lg rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_30px_rgba(253,224,71,0.7)] flex justify-center items-center group border border-yellow-300/40">
                     <span class="lang-th">🔮 เปิดประตูสวรรค์</span>
                     <span class="lang-en">🔮 Open Celestial Gate</span>
@@ -311,18 +312,18 @@
             </div>
         </section>
 
-        <!-- Social Proof & Testimonials Section -->
+        <!-- Social Proof Section (Factual Trust & No Fake Testimonials) -->
         <section class="w-full px-4 mb-20 max-w-4xl">
             <div class="glass-panel rounded-3xl p-8 border border-amber-500/20 shadow-[0_0_30px_rgba(245,158,11,0.08)]">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
-                    <div class="md:border-r border-slate-700/50 pb-6 md:pb-0">
+                    <div class="md:border-r border-slate-700/50 pb-4 md:pb-0">
                         <h4 class="text-4xl font-extrabold text-title-gradient">23,481+</h4>
                         <p class="text-xs text-slate-400 uppercase tracking-widest mt-1 font-semibold">
-                            <span class="lang-th">ผู้เปิดคัมภีร์ดวงชะตา</span>
-                            <span class="lang-en">Destiny Seekers</span>
+                            <span class="lang-th">สร้างรายงานชะตาชีวิตแล้ว</span>
+                            <span class="lang-en">Personalized Charts Created</span>
                         </p>
                     </div>
-                    <div class="md:border-r border-slate-700/50 pb-6 md:pb-0">
+                    <div class="md:border-r border-slate-700/50 pb-4 md:pb-0">
                         <div class="flex items-center justify-center text-yellow-400 text-lg gap-1 mb-1">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -330,24 +331,27 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                         </div>
-                        <h4 class="text-2xl font-bold text-white">4.9 / 5</h4>
+                        <h4 class="text-2xl font-bold text-white">100% Unique</h4>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">
-                            <span class="lang-th">ระดับความพึงพอใจ</span>
-                            <span class="lang-en">User Rating</span>
+                            <span class="lang-th">ดวงเฉพาะบุคคลไม่ซ้ำแพตเทิร์น</span>
+                            <span class="lang-en">Completely Tailored to You</span>
                         </p>
                     </div>
                     <div class="px-2">
-                        <p class="text-sm text-slate-300 italic font-light">
-                            <span class="lang-th">"แม่นยำและเข้าถึงแก่นชีวิตมาก ได้แนวทางการปรับใช้ในชีวิตจริงได้ดีมาก"</span>
-                            <span class="lang-en">"Extremely accurate. Provided me with valuable guidance to align my life."</span>
+                        <h4 class="text-lg font-bold text-white mb-1">
+                            <span class="lang-th">แม่นยำสูงด้วยระบบพิกัดดาว</span>
+                            <span class="lang-en">Exact Planetary Coordinates</span>
+                        </h4>
+                        <p class="text-xs text-slate-400 font-light leading-relaxed">
+                            <span class="lang-th">ประมวลผลตำแหน่งดวงดาว ลัคนา และการคำนวณธาตุเกิดอย่างเป็นระบบตามเวลาตกฟากของท่าน</span>
+                            <span class="lang-en">Calculated based on precise planetary systems, ascendant positions, and element weights.</span>
                         </p>
-                        <p class="text-xs text-amber-500/80 font-bold mt-2">- Nida P. (Bangkok)</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sample Report Section (Upgraded for high visual desire) -->
+        <!-- Sample Report Section -->
         <section id="sample-report" class="w-full px-4 mb-20 max-w-4xl relative">
             <div class="text-center mb-10">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
@@ -466,11 +470,11 @@
                         <i class="fa-solid fa-lock text-yellow-300"></i>
                     </div>
                     <h4 class="text-xl md:text-2xl font-bold text-white mb-2">
-                        <span class="lang-th">รายงานฉบับเจาะลึกส่วนบุคคลยังไม่ถูกปลดล็อก</span>
+                        <span class="lang-th">รายงานเฉพาะบุคคลของคุณยังไม่ถูกปลดล็อก</span>
                         <span class="lang-en">Your Personalized Reading is Locked</span>
                     </h4>
                     <p class="text-xs text-slate-200 max-w-sm mb-6 leading-relaxed">
-                        <span class="lang-th">กรอกข้อมูล วัน เดือน ปีเกิด เพื่อปลดล็อกคำทำนายและกราฟชะตาชีวิตของคุณได้ฟรี</span>
+                        <span class="lang-th">กรอกข้อมูล วัน เดือน ปีเกิด และเวลาตกฟาก เพื่อปลดล็อกบทวิเคราะห์ชะตาชีวิตของคุณฟรี</span>
                         <span class="lang-en">Enter your birth details to generate and unlock your comprehensive destiny readings.</span>
                     </p>
                     <button onclick="openWizard()" class="px-6 py-3.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-sm rounded-xl transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.5)]">
@@ -481,7 +485,97 @@
             </div>
         </section>
 
-        <!-- Why Birth Time Matters Section (🌟 Added for UX Friction Reduction) -->
+        <!-- Astrology Methodologies Section (🌟 Priority 4: Trust & Methodology) -->
+        <section class="w-full px-4 mb-20 max-w-4xl">
+            <div class="text-center mb-10">
+                <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
+                    <span class="lang-th">ความน่าเชื่อถือทางหลักวิชา</span>
+                    <span class="lang-en">Astrological Foundations</span>
+                </h4>
+                <h3 class="text-2xl md:text-3xl font-bold text-white font-serif">
+                    <span class="lang-th">ศาสตร์โหราศาสตร์ที่ใช้ในการประมวลผล</span>
+                    <span class="lang-en">Methodologies & Wisdom Used</span>
+                </h3>
+                <div class="w-24 h-[1.5px] bg-gradient-to-r from-transparent via-amber-500 to-transparent mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-center">
+                <!-- Thai Astrology -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-star-and-crescent animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">โหราศาสตร์ไทย</span>
+                        <span class="lang-en">Thai Astrology</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">คำนวณสมผุสดาวและพิกัดดาวจักรราศีสากล</span>
+                        <span class="lang-en">Calculates planetary coordinates and zodiac nodes.</span>
+                    </p>
+                </div>
+                <!-- Bazi -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-yin-yang animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">ปาจื่อ (BaZi)</span>
+                        <span class="lang-en">BaZi (Chinese Bazi)</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">ดวงจีนสี่เสากำเนิด (ปี เดือน วัน เวลาเกิด)</span>
+                        <span class="lang-en">Four Pillars of Destiny (Year, Month, Day, Hour).</span>
+                    </p>
+                </div>
+                <!-- 5 Elements -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-circle-nodes animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">ความสมดุลธาตุทั้ง 5</span>
+                        <span class="lang-en">Five Elements Balance</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">ประมวลผลพลังงานธาตุ ดิน น้ำ ไม้ ไฟ ทอง</span>
+                        <span class="lang-en">Analyzes ratios of Wood, Fire, Earth, Metal, Water.</span>
+                    </p>
+                </div>
+                <!-- Natal Ascendant -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-compass animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">ลัคนากำเนิด</span>
+                        <span class="lang-en">Birth Ascendant</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">ตำแหน่งขอบฟ้าราสีเกิด ณ เวลาตกฟากที่แท้จริง</span>
+                        <span class="lang-en">Determined by exact horizon degree at birth.</span>
+                    </p>
+                </div>
+                <!-- 12 Stages -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-chart-line animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">วงจรอายุ 12 ภาค</span>
+                        <span class="lang-en">12 Life Stages</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">วิเคราะห์แนวโน้มกราฟชีวิตช่วงขึ้นและลงรายทศวรรษ</span>
+                        <span class="lang-en">Maps your rising and falling decades of life.</span>
+                    </p>
+                </div>
+                <!-- Interpretations Database -->
+                <div class="glass-panel p-5 rounded-2xl border border-white/5 bg-slate-900/20 hover:border-amber-500/20 transition-all duration-300">
+                    <div class="text-amber-400 text-3xl mb-3"><i class="fa-solid fa-database animate-pulse"></i></div>
+                    <h4 class="font-bold text-white text-sm md:text-base mb-1">
+                        <span class="lang-th">ฐานข้อมูลตีความเฉพาะคน</span>
+                        <span class="lang-en">Interpretation Database</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 font-light">
+                        <span class="lang-th">ระบบประมวลผลถอดรหัสชะตาตามพิกัดดาวเฉพาะตัว</span>
+                        <span class="lang-en">Maps unique birth coordinates to detailed readings.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Birth Time Matters Section -->
         <section class="w-full px-4 mb-20 max-w-4xl">
             <div class="text-center mb-10">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
@@ -519,8 +613,8 @@
                             <span class="lang-en">⭐ Full 4-Pillars Bazi Balance</span>
                         </h4>
                         <p class="text-xs md:text-sm text-slate-400 font-light leading-relaxed">
-                            <span class="lang-th">ดวงจีนประกอบด้วย เสาปี เสาเดือน เสาวัน และเสาเวลาเกิด (Time Pillar) หากไม่มีเวลาเกิดจะขาดการวิเคราะห์ไป 25%</span>
-                            <span class="lang-en">Bazi consists of Year, Month, Day, and Hour Pillars. Missing birth time leaves 25% of your chart incomplete.</span>
+                            <span class="lang-th">ดวงจีนประกอบด้วย เสาปี เสาเดือน เสาวัน และเสาเวลาเกิด (Hour Pillar) หากไม่มีเวลาเกิดจะขาดการวิเคราะห์เสาที่ 4 ไป</span>
+                            <span class="lang-en">Bazi consists of Year, Month, Day, and Hour Pillars. Missing birth time leaves the 4th pillar incomplete.</span>
                         </p>
                     </div>
                 </div>
@@ -538,17 +632,17 @@
                         </p>
                     </div>
                 </div>
-                <!-- Point 4 -->
+                <!-- Point 4 (No AI reference) -->
                 <div class="flex gap-4 p-5 rounded-2xl bg-slate-900/40 border border-white/5">
                     <div class="text-amber-400 text-2xl mt-0.5"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <div>
                         <h4 class="font-bold text-white text-base mb-1">
-                            <span class="lang-th">⭐ ระบบ AI ถอดโค้ดตามวินาทีเกิด</span>
-                            <span class="lang-en">⭐ AI Translation of Cosmic Nodes</span>
+                            <span class="lang-th">⭐ ถอดรหัสพิกัดตามวินาทีเกิด</span>
+                            <span class="lang-en">⭐ Celestial Translation of Cosmic Nodes</span>
                         </h4>
                         <p class="text-xs md:text-sm text-slate-400 font-light leading-relaxed">
-                            <span class="lang-th">ระบบปัญญาประดิษฐ์ของเรานำค่าพิกัดพวงดาว ณ วินาทีเกิดของคุณไปใช้เชื่อมโยงกับฐานข้อมูลสถิติเพื่อให้ได้ผลที่คัดสรรแล้ว</span>
-                            <span class="lang-en">Our AI engine processes the stellar alignment of your exact birth hour to select matching predictive nodes.</span>
+                            <span class="lang-th">ระบบประมวลผลดาราศาสตร์ใช้หน่วยเวลาเสี้ยววินาทีร่วมกับสถิติเพื่อจับคู่คำทำนายลัคนาชะตาชีวิตของคุณได้ตรงความจริงที่สุด</span>
+                            <span class="lang-en">Our astronomical calculations process exact seconds of your birth hour to match your true planetary alignment.</span>
                         </p>
                     </div>
                 </div>
@@ -656,7 +750,7 @@
                             <span class="lang-th">ย้อนกลับ</span>
                             <span class="lang-en">Back</span>
                         </button>
-                        <button type="button" onclick="nextStep()" class="bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-500 hover:to-yellow-400 text-black font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all duration-300 flex justify-center items-center gap-1.5 border border-yellow-300/30">
+                        <button type="button" onclick="nextStep()" class="bg-gradient-to-r from-amber-600 to-yellow-500 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-sm py-3.5 rounded-xl shadow-md transition-all duration-300 flex justify-center items-center gap-1.5 border border-yellow-300/30">
                             <span class="lang-th">ขั้นตอนถัดไป</span>
                             <span class="lang-en">Continue</span>
                             <i class="fa-solid fa-arrow-right"></i>
@@ -718,26 +812,54 @@
                     </div>
                 </div>
 
-                <!-- STEP 4: Loading Screen -->
+                <!-- STEP 4: Loading Screen (Checklist Style, Avg 6 seconds, No AI references) -->
                 <div id="step-loading" class="space-y-8 py-8 hidden text-center">
                     <!-- Cosmic animation spinner -->
                     <div class="relative w-28 h-28 mx-auto mb-6 flex items-center justify-center">
                         <div class="absolute inset-0 border-4 border-dashed border-amber-500/40 rounded-full animate-[spin_12s_linear_infinite]"></div>
                         <div class="absolute w-20 h-20 border-4 border-double border-yellow-400/30 rounded-full animate-[spin_6s_linear_infinite_reverse]"></div>
-                        <div class="w-12 h-12 bg-gradient-to-b from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse">
-                            <i class="fa-solid fa-star text-yellow-100 text-xl"></i>
+                        <div class="w-12 h-12 bg-gradient-to-b from-amber-500 to-yellow-600 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.6)]">
+                            <i class="fa-solid fa-star text-yellow-100 text-xl animate-pulse"></i>
                         </div>
                     </div>
 
                     <h3 class="text-2xl font-bold text-white tracking-wide">
-                        <span class="lang-th">กำลังเปิดประตูสวรรค์...</span>
-                        <span class="lang-en">Connecting to Stars...</span>
+                        <span class="lang-th">กำลังเปิดผังดวงชะตา...</span>
+                        <span class="lang-en">Calculating Celestial Chart...</span>
                     </h3>
 
-                    <!-- Status sequence text -->
-                    <div class="max-w-xs mx-auto pt-4 border-t border-white/5 min-h-[70px] flex flex-col justify-center">
-                        <div id="loading-status-th" class="text-amber-300 text-sm font-bold animate-pulse transition-opacity duration-300"></div>
-                        <div id="loading-status-en" class="text-slate-400 text-xs font-light tracking-wide transition-opacity duration-300 mt-1"></div>
+                    <!-- Checklist container -->
+                    <div class="max-w-xs mx-auto text-left space-y-2 pt-4 border-t border-white/10 font-mono text-xs md:text-sm">
+                        <!-- Step 1 -->
+                        <div id="check-step-1" class="text-slate-500 transition-colors duration-300 flex items-center gap-2">
+                            <span class="check-icon"><i class="fa-regular fa-circle"></i></span>
+                            <span class="lang-th">คำนวณพิกัดวันเกิด</span>
+                            <span class="lang-en">Computing birth date coordinates</span>
+                        </div>
+                        <!-- Step 2 -->
+                        <div id="check-step-2" class="text-slate-500 transition-colors duration-300 flex items-center gap-2">
+                            <span class="check-icon"><i class="fa-regular fa-circle"></i></span>
+                            <span class="lang-th">คำนวณมุมเวลาเกิดตกฟาก</span>
+                            <span class="lang-en">Computing birth time angle</span>
+                        </div>
+                        <!-- Step 3 -->
+                        <div id="check-step-3" class="text-slate-500 transition-colors duration-300 flex items-center gap-2">
+                            <span class="check-icon"><i class="fa-regular fa-circle"></i></span>
+                            <span class="lang-th">วิเคราะห์ลัคนากำเนิด</span>
+                            <span class="lang-en">Analyzing natal ascendant</span>
+                        </div>
+                        <!-- Step 4 -->
+                        <div id="check-step-4" class="text-slate-500 transition-colors duration-300 flex items-center gap-2">
+                            <span class="check-icon"><i class="fa-regular fa-circle"></i></span>
+                            <span class="lang-th">วิเคราะห์ความสมดุลธาตุทั้ง 5</span>
+                            <span class="lang-en">Checking 5 elements balance</span>
+                        </div>
+                        <!-- Step 5 -->
+                        <div id="check-step-5" class="text-slate-500 transition-colors duration-300 flex items-center gap-2">
+                            <span class="check-icon"><i class="fa-regular fa-circle"></i></span>
+                            <span class="lang-th">สร้างรายงานชะตาชีวิตเฉพาะบุคคล</span>
+                            <span class="lang-en">Generating unique destiny report</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -892,9 +1014,7 @@
             document.getElementById('wizard-policy-disclaimer').classList.add('hidden');
             document.getElementById('step-loading').classList.remove('hidden');
 
-            const isEn = document.documentElement.lang === 'en';
-
-            // บันทึกข้อมูล
+            // บันทึกข้อมูลลงเครื่องผู้ใช้
             const fullname = document.getElementById('fullname').value.trim();
             const dob = document.getElementById('dob').value;
             const tob = document.getElementById('tob').value;
@@ -908,41 +1028,41 @@
             localStorage.setItem('user_lastname', nameParts.slice(1).join(' ') || '');
             localStorage.setItem('pdpa_consent_accepted', 'true');
 
-            // ลำดับข้อความประมวลผลจักรวาล
-            const statuses = [
-                { th: "✨ วิเคราะห์พลังจักรวาล...", en: "✨ Analyzing cosmic energy..." },
-                { th: "✨ คำนวณพิกัดลัคนาชะตา...", en: "✨ Calculating ascendant coordinates..." },
-                { th: "✨ วิเคราะห์ค่าสมดุลธาตุบาจื่อ...", en: "✨ Checking Bazi elements balance..." },
-                { th: "✨ เปิดประตูคัมภีร์ลิขิตสวรรค์...", en: "✨ Opening celestial prophecy gates..." }
+            // ลำดับข้อความประมวลผลดวงดาวและติ๊กถูกเช็กลิสต์ (🌟 รันประมาณ 6 วินาทีเฉลี่ย)
+            const checkSteps = [
+                { id: "check-step-1" },
+                { id: "check-step-2" },
+                { id: "check-step-3" },
+                { id: "check-step-4" },
+                { id: "check-step-5" }
             ];
 
-            let index = 0;
-            const statusThEl = document.getElementById('loading-status-th');
-            const statusEnEl = document.getElementById('loading-status-en');
-
-            function showNextStatus() {
-                if (index < statuses.length) {
-                    statusThEl.style.opacity = 0;
-                    statusEnEl.style.opacity = 0;
-                    
-                    setTimeout(() => {
-                        statusThEl.textContent = statuses[index].th;
-                        statusEnEl.textContent = statuses[index].en;
-                        statusThEl.style.opacity = 1;
-                        statusEnEl.style.opacity = 1;
-                        index++;
-                        setTimeout(showNextStatus, 900);
-                    }, 200);
+            let stepIdx = 0;
+            function runChecklistAnimation() {
+                if (stepIdx < checkSteps.length) {
+                    const stepEl = document.getElementById(checkSteps[stepIdx].id);
+                    if (stepEl) {
+                        // เปลี่ยนเป็นสีทองและติ๊กถูก
+                        stepEl.classList.remove('text-slate-500');
+                        stepEl.classList.add('text-amber-400', 'font-bold');
+                        
+                        const iconSpan = stepEl.querySelector('.check-icon');
+                        if (iconSpan) {
+                            iconSpan.innerHTML = '<i class="fa-solid fa-circle-check animate-pulse"></i>';
+                        }
+                    }
+                    stepIdx++;
+                    setTimeout(runChecklistAnimation, 1100);
                 } else {
                     // วาร์ปไปหน้าหลักแดชบอร์ด
                     setTimeout(() => {
                         window.location.href = 'dashboard.html';
-                    }, 400);
+                    }, 500);
                 }
             }
 
-            // เริ่มการแอนิเมทสถานะดาว
-            showNextStatus();
+            // เริ่มการรันแอนิเมชันเช็กลิสต์ดวงดาว
+            setTimeout(runChecklistAnimation, 200);
         }
     </script>
     
