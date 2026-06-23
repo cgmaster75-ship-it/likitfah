@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา - ลิขิตฟ้า (Likit Fah)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { 
+            background-color: #0B0B1A; color: #e2e8f0; font-family: 'Prompt', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+        }
+        .glass-panel { 
+            background: rgba(20, 25, 40, 0.6); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0B1A; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #AA7C11; }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 sm:px-6">
+
+    <div class="max-w-4xl mx-auto glass-panel rounded-3xl p-6 md:p-12 shadow-2xl relative">
+        <a href="index.html" class="inline-flex items-center text-slate-400 hover:text-amber-400 transition mb-6">
+            <i class="fa-solid fa-arrow-left mr-2"></i> กลับหน้าหลัก
+        </a>
+
+        <div class="text-center mb-12 border-b border-slate-700/50 pb-8">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-800 border border-slate-600 mb-4 shadow-lg">
+                <i class="fa-solid fa-paper-plane text-3xl text-amber-400"></i>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-3 tracking-wide">ติดต่อเรา</h1>
+            <p class="text-slate-400 font-light text-sm md:text-base max-w-2xl mx-auto">
+                หากคุณมีข้อสงสัย ข้อเสนอแนะ หรือต้องการสอบถามเรื่องการโฆษณา ติดต่อเราได้ทันที
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm md:text-base text-slate-300 font-light leading-relaxed">
+            
+            <div class="space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-4">ข้อมูลติดต่อที่เป็นทางการ</h2>
+                    <p class="text-slate-400 mb-6">
+                        ทางเว็บไซต์ ลิขิตฟ้า ยินดีรับฟังความคิดเห็นจากผู้ใช้บริการทุกท่าน เพื่อนำไปพัฒนาบริการด้านคำทำนายและสถิติให้ดียิ่งขึ้น
+                    </p>
+                </div>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-900/40 border border-amber-500/30 flex items-center justify-center text-amber-400"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <p class="text-xs text-slate-500">อีเมลสำหรับติดต่อ</p>
+                            <p class="text-white font-medium">contact@likitfah.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-amber-900/40 border border-amber-500/30 flex items-center justify-center text-amber-400"><i class="fa-solid fa-clock"></i></div>
+                        <div>
+                            <p class="text-xs text-slate-500">เวลาทำการฝ่ายบริการลูกค้า</p>
+                            <p class="text-white font-medium">ทุกวัน 09:00 - 18:00 น.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ฟอร์มติดต่อจำลองแบบพรีเมียม -->
+            <div class="bg-slate-900/40 p-6 rounded-2xl border border-white/5 space-y-4">
+                <h3 class="text-white font-bold text-lg mb-2">ส่งข้อความหาเรา</h3>
+                
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">ชื่อของคุณ</label>
+                    <input type="text" placeholder="ระบุชื่อ" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-2.5 text-white text-xs md:text-sm outline-none focus:border-amber-500 transition">
+                </div>
+                
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">อีเมลติดต่อกลับ</label>
+                    <input type="email" placeholder="email@example.com" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-2.5 text-white text-xs md:text-sm outline-none focus:border-amber-500 transition">
+                </div>
+                
+                <div>
+                    <label class="block text-xs text-slate-400 mb-1">ข้อความของคุณ</label>
+                    <textarea rows="4" placeholder="พิมพ์ข้อความที่ต้องการส่ง..." class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-2.5 text-white text-xs md:text-sm outline-none focus:border-amber-500 transition resize-none"></textarea>
+                </div>
+                
+                <button type="button" class="w-full bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-black font-bold py-3 rounded-xl transition text-xs md:text-sm shadow-md">
+                    <i class="fa-solid fa-paper-plane mr-1.5"></i> ส่งข้อความ
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>บทความพยากรณ์และสถิตินำโชค | ลิขิตฟ้า (Likit Fah)</title>
+    <meta name="description" content="รวมบทความโหราศาสตร์พรีเมียม ความหมายไพ่ยิปซี เจาะลึกดวงราศีไทย-ตะวันตก บาจื่อ และทำนายฝันนำโชคถอดรหัสเชิงสถิติกว่า 36 ปี">
+    
+    <!-- Speed Optimization Meta -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --navy-dark: #02040F;
+            --gold-primary: #D4AF37;
+        }
+        body {
+            background-color: var(--navy-dark);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                url('https://www.transparenttextures.com/patterns/stardust.png');
+            color: #e2e8f0;
+            font-family: 'Prompt', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(to right, #F3E5AB, var(--gold-primary), #996515);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .article-card {
+            background: rgba(20, 25, 40, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            border-color: var(--gold-primary);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+            transform: translateY(-4px);
+        }
+        .filter-btn.active {
+            background: linear-gradient(to right, #D4AF37, #AA7C11);
+            color: #000;
+            border-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-12">
+
+    <!-- Global Top Header Component loaded via header.js -->
+    <script src="components/header.js"></script>
+
+    <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative mt-16 flex-grow w-full">
+        
+        <!-- Side Left Ad Column (Desktop only) -->
+        <aside class="hidden lg:block lg:col-span-2 sticky top-24 h-[600px] text-center">
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest">โฆษณา</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-4506936315719674"
+                 data-ad-slot="5799927093"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </aside>
+
+        <!-- Main Blog Content Column -->
+        <main class="col-span-1 lg:col-span-8 flex flex-col">
+            
+            <div class="text-center mb-10">
+                <h1 class="text-3xl md:text-5xl font-black font-serif gold-gradient-text tracking-widest uppercase mb-4">คัมภีร์พยากรณ์ศาสตร์</h1>
+                <p class="text-slate-400 text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed">
+                    แหล่งรวบรวมบทความทำนายฝันนำโชค ความหมายไพ่ยิปซี และการวิเคราะห์ศาสตร์ดวงชะตาพรีเมียมลิขิตฟ้า
+                </p>
+            </div>
+
+            <!-- Search and Filter Controls -->
+            <div class="space-y-4 mb-8">
+                <!-- Search Bar -->
+                <div class="relative max-w-md mx-auto w-full">
+                    <input type="text" id="search-input" placeholder="ค้นหาบทความนำโชค..." oninput="handleSearch()" class="w-full bg-slate-900/50 border border-white/10 rounded-full px-6 py-3.5 pl-12 text-white outline-none focus:border-amber-500 transition shadow-inner text-sm">
+                    <div class="absolute left-5 inset-y-0 flex items-center text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></div>
+                </div>
+
+                <!-- Category Filters (Scrollable on Mobile) -->
+                <div class="flex flex-wrap justify-center gap-2 pt-2" id="filter-container">
+                    <button onclick="filterCategory('all')" class="filter-btn active px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ทั้งหมด</button>
+                    <button onclick="filterCategory('ความหมายไพ่ยิปซี')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ความหมายไพ่ยิปซี</button>
+                    <button onclick="filterCategory('ดวงชะตาราศีไทย')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ดวงชะตาราศีไทย</button>
+                    <button onclick="filterCategory('ดวงชะตาราศีตะวันตก')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ดวงชะตาราศีตะวันตก</button>
+                    <button onclick="filterCategory('ศาสตร์ดวงจีนบาจื่อ')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ศาสตร์ดวงจีนบาจื่อ</button>
+                    <button onclick="filterCategory('ทำนายฝันนำโชค')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ทำนายฝันนำโชค</button>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="text-center py-20 text-amber-500 flex flex-col items-center">
+                <i class="fa-solid fa-circle-notch fa-spin text-5xl mb-4"></i>
+                <span class="text-sm uppercase tracking-widest animate-pulse">กำลังดึงข้อมูลบทความคุณภาพ...</span>
+            </div>
+
+            <!-- Articles Grid -->
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 hidden">
+                <!-- Cards injected here by JS -->
+            </div>
+
+            <!-- Empty Results -->
+            <div id="empty-state" class="hidden text-center py-16 text-slate-500">
+                <i class="fa-solid fa-folder-open text-5xl mb-4 opacity-50"></i>
+                <p class="text-sm">ไม่พบดัชนีบทความที่คุณต้องการค้นหา</p>
+            </div>
+
+            <!-- Pagination controls -->
+            <div id="pagination" class="flex justify-center items-center gap-4 mt-12 hidden">
+                <button onclick="prevPage()" id="prev-btn" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <span id="page-indicator" class="text-sm font-medium text-slate-400">หน้า 1/1</span>
+                <button onclick="nextPage()" id="next-btn" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 disabled:opacity-30 disabled:pointer-events-none transition">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Side Right Ad Column (Desktop only) -->
+        <aside class="hidden lg:block lg:col-span-2 sticky top-24 h-[600px] text-center">
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest">โฆษณา</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-4506936315719674"
+                 data-ad-slot="6455579395"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </aside>
+
+    </div>
+
+    <!-- Global Footer Element -->
+    <div id="likitfah-footer" class="mt-12"></div>
+
+    <!-- Scripts -->
+    <script src="components/footer.js"></script>
+    <script src="components/navbar.js"></script>
+
+    <!-- Page Logic -->
+    <script>
+        let allArticles = [];
+        let filteredArticles = [];
+        let currentPage = 1;
+        const itemsPerPage = 9;
+        let selectedCategory = 'all';
+        let searchQuery = '';
+
+        async function loadArticles() {
+            try {
+                const response = await fetch('blog/blog-list.json');
+                if (!response.ok) throw new Error("Could not load blog-list.json");
+                allArticles = await response.json();
+                filteredArticles = [...allArticles];
+                
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('articles-grid').classList.remove('hidden');
+                
+                renderArticles();
+            } catch (e) {
+                console.error(e);
+                document.getElementById('loading').innerHTML = `
+                    <i class="fa-solid fa-triangle-exclamation text-5xl text-rose-500 mb-4"></i>
+                    <p class="text-sm">ขออภัย เกิดข้อผิดพลาดในการโหลดบทความพยากรณ์</p>
+                `;
+            }
+        }
+
+        function renderArticles() {
+            const grid = document.getElementById('articles-grid');
+            const emptyState = document.getElementById('empty-state');
+            const paginationContainer = document.getElementById('pagination');
+            
+            grid.innerHTML = '';
+            
+            if (filteredArticles.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                paginationContainer.classList.add('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            if (currentPage > totalPages) currentPage = totalPages || 1;
+
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageItems = filteredArticles.slice(startIndex, endIndex);
+
+            pageItems.forEach(art => {
+                const card = document.createElement('div');
+                card.className = 'article-card rounded-2xl overflow-hidden flex flex-col h-full shadow-lg';
+                card.innerHTML = `
+                    <div class="w-full h-40 overflow-hidden relative border-b border-white/5">
+                        <img src="${art.imgUrl}" alt="${art.title}" class="w-full h-full object-cover" loading="lazy">
+                        <span class="absolute top-3 left-3 bg-black/80 border border-amber-500/30 text-[10px] text-amber-400 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${art.category}</span>
+                    </div>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h3 class="text-base font-bold text-white mb-2 line-clamp-2 hover:text-amber-400 transition cursor-pointer" onclick="window.location.href='${art.url}'">${art.title}</h3>
+                        <p class="text-xs text-slate-400 line-clamp-3 font-light mb-4 flex-grow">${art.desc}</p>
+                        <a href="${art.url}" class="w-full text-center bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/10 text-white font-medium py-2.5 rounded-xl transition text-xs">
+                            <i class="fa-solid fa-book-open mr-1"></i> อ่านบทความเต็ม
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // Update Pagination
+            if (totalPages > 1) {
+                paginationContainer.classList.remove('hidden');
+                document.getElementById('page-indicator').innerText = `หน้า ${currentPage}/${totalPages}`;
+                document.getElementById('prev-btn').disabled = currentPage === 1;
+                document.getElementById('next-btn').disabled = currentPage === totalPages;
+            } else {
+                paginationContainer.classList.add('hidden');
+            }
+        }
+
+        function filterCategory(cat) {
+            selectedCategory = cat;
+            currentPage = 1;
+            
+            // Toggle active filter button
+            const buttons = document.querySelectorAll('#filter-container .filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            applyFilter();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.trim().toLowerCase();
+            currentPage = 1;
+            applyFilter();
+        }
+
+        function applyFilter() {
+            filteredArticles = allArticles.filter(art => {
+                const matchesCategory = selectedCategory === 'all' || art.category === selectedCategory;
+                const matchesSearch = art.title.toLowerCase().includes(searchQuery) || art.desc.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+            renderArticles();
+        }
+
+        function prevPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                renderArticles();
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+            }
+        }
+
+        function nextPage() {
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderArticles();
+                window.scrollTo({ top: 300, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize
+        window.onload = () => {
+            loadArticles();
+        };
+    </script>
+
+    <!-- AdSense Load/Execute -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load AdSense main library if not present
+            if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
+                const adScript = document.createElement('script');
+                adScript.async = true;
+                adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4506936315719674";
+                adScript.setAttribute("crossorigin", "anonymous");
+                document.head.appendChild(adScript);
+            }
+            // Push all adsbygoogle elements on page
+            const adUnits = document.querySelectorAll('.adsbygoogle:not([data-adsbygoogle-status])');
+            adUnits.forEach(() => {
+                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+            });
+        });
+    </script>
+</body>
+</html>
