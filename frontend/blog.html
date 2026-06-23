@@ -49,6 +49,9 @@
             color: #000;
             border-color: transparent;
         }
+        /* Bilingual CSS hiding rules */
+        [lang="th"] .lang-en { display: none !important; }
+        [lang="en"] .lang-th { display: none !important; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col pb-12">
@@ -60,7 +63,8 @@
         
         <!-- Side Left Ad Column (Desktop only) -->
         <aside class="hidden lg:block lg:col-span-2 sticky top-24 h-[600px] text-center">
-            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest">โฆษณา</div>
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest lang-th">โฆษณา</div>
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest lang-en">Advertisement</div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-4506936315719674"
@@ -73,9 +77,13 @@
         <main class="col-span-1 lg:col-span-8 flex flex-col">
             
             <div class="text-center mb-10">
-                <h1 class="text-3xl md:text-5xl font-black font-serif gold-gradient-text tracking-widest uppercase mb-4">คัมภีร์พยากรณ์ศาสตร์</h1>
+                <h1 class="text-3xl md:text-5xl font-black font-serif gold-gradient-text tracking-widest uppercase mb-4">
+                    <span class="lang-th">คัมภีร์พยากรณ์ศาสตร์</span>
+                    <span class="lang-en">Oracle Chronicles</span>
+                </h1>
                 <p class="text-slate-400 text-sm md:text-base font-light max-w-xl mx-auto leading-relaxed">
-                    แหล่งรวบรวมบทความทำนายฝันนำโชค ความหมายไพ่ยิปซี และการวิเคราะห์ศาสตร์ดวงชะตาพรีเมียมลิขิตฟ้า
+                    <span class="lang-th">แหล่งรวบรวมบทความทำนายฝันนำโชค ความหมายไพ่ยิปซี และการวิเคราะห์ศาสตร์ดวงชะตาพรีเมียมลิขิตฟ้า</span>
+                    <span class="lang-en">A comprehensive premium archive of dream interpretations, Tarot readings, and astrological insights by Likit Fah.</span>
                 </p>
             </div>
 
@@ -89,19 +97,38 @@
 
                 <!-- Category Filters (Scrollable on Mobile) -->
                 <div class="flex flex-wrap justify-center gap-2 pt-2" id="filter-container">
-                    <button onclick="filterCategory('all')" class="filter-btn active px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ทั้งหมด</button>
-                    <button onclick="filterCategory('ความหมายไพ่ยิปซี')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ความหมายไพ่ยิปซี</button>
-                    <button onclick="filterCategory('ดวงชะตาราศีไทย')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ดวงชะตาราศีไทย</button>
-                    <button onclick="filterCategory('ดวงชะตาราศีตะวันตก')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ดวงชะตาราศีตะวันตก</button>
-                    <button onclick="filterCategory('ศาสตร์ดวงจีนบาจื่อ')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ศาสตร์ดวงจีนบาจื่อ</button>
-                    <button onclick="filterCategory('ทำนายฝันนำโชค')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">ทำนายฝันนำโชค</button>
+                    <button onclick="filterCategory('all')" class="filter-btn active px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ทั้งหมด</span>
+                        <span class="lang-en">All</span>
+                    </button>
+                    <button onclick="filterCategory('ความหมายไพ่ยิปซี')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ความหมายไพ่ยิปซี</span>
+                        <span class="lang-en">Tarot Meaning</span>
+                    </button>
+                    <button onclick="filterCategory('ดวงชะตาราศีไทย')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ดวงชะตาราศีไทย</span>
+                        <span class="lang-en">Thai Zodiac</span>
+                    </button>
+                    <button onclick="filterCategory('ดวงชะตาราศีตะวันตก')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ดวงชะตาราศีตะวันตก</span>
+                        <span class="lang-en">Western Zodiac</span>
+                    </button>
+                    <button onclick="filterCategory('ศาสตร์ดวงจีนบาจื่อ')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ศาสตร์ดวงจีนบาจื่อ</span>
+                        <span class="lang-en">Chinese Bazi</span>
+                    </button>
+                    <button onclick="filterCategory('ทำนายฝันนำโชค')" class="filter-btn px-4 py-2 rounded-full border border-white/10 text-xs md:text-sm font-medium hover:border-amber-500/50 transition duration-300">
+                        <span class="lang-th">ทำนายฝันนำโชค</span>
+                        <span class="lang-en">Dream Keys</span>
+                    </button>
                 </div>
             </div>
 
             <!-- Loading Indicator -->
             <div id="loading" class="text-center py-20 text-amber-500 flex flex-col items-center">
                 <i class="fa-solid fa-circle-notch fa-spin text-5xl mb-4"></i>
-                <span class="text-sm uppercase tracking-widest animate-pulse">กำลังดึงข้อมูลบทความคุณภาพ...</span>
+                <span class="text-sm uppercase tracking-widest animate-pulse lang-th">กำลังดึงข้อมูลบทความคุณภาพ...</span>
+                <span class="text-sm uppercase tracking-widest animate-pulse lang-en font-serif">Loading premium forecasts...</span>
             </div>
 
             <!-- Articles Grid -->
@@ -112,7 +139,8 @@
             <!-- Empty Results -->
             <div id="empty-state" class="hidden text-center py-16 text-slate-500">
                 <i class="fa-solid fa-folder-open text-5xl mb-4 opacity-50"></i>
-                <p class="text-sm">ไม่พบดัชนีบทความที่คุณต้องการค้นหา</p>
+                <p class="text-sm lang-th">ไม่พบดัชนีบทความที่คุณต้องการค้นหา</p>
+                <p class="text-sm lang-en">No articles found matching your search criteria.</p>
             </div>
 
             <!-- Pagination controls -->
@@ -130,7 +158,8 @@
 
         <!-- Side Right Ad Column (Desktop only) -->
         <aside class="hidden lg:block lg:col-span-2 sticky top-24 h-[600px] text-center">
-            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest">โฆษณา</div>
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest lang-th">โฆษณา</div>
+            <div class="text-[9px] text-slate-600 mb-2 uppercase tracking-widest lang-en">Advertisement</div>
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-4506936315719674"
@@ -161,18 +190,29 @@
             try {
                 const response = await fetch('blog/blog-list.json');
                 if (!response.ok) throw new Error("Could not load blog-list.json");
-                allArticles = await response.json();
+                const all = await response.json();
+                
+                const currentLang = document.documentElement.lang || 'th';
+                
+                // Filter articles for current language
+                allArticles = all.filter(art => art.lang === currentLang);
                 filteredArticles = [...allArticles];
                 
                 document.getElementById('loading').classList.add('hidden');
                 document.getElementById('articles-grid').classList.remove('hidden');
                 
+                // Set page details based on language
+                const isEn = currentLang === 'en';
+                document.getElementById('search-input').placeholder = isEn ? "Search lucky articles..." : "ค้นหาบทความนำโชค...";
+                document.title = isEn ? "Astrology Articles & Lucky Stats | Likit Fah" : "บทความพยากรณ์และสถิตินำโชค | ลิขิตฟ้า (Likit Fah)";
+                
                 renderArticles();
             } catch (e) {
                 console.error(e);
+                const isEn = document.documentElement.lang === 'en';
                 document.getElementById('loading').innerHTML = `
                     <i class="fa-solid fa-triangle-exclamation text-5xl text-rose-500 mb-4"></i>
-                    <p class="text-sm">ขออภัย เกิดข้อผิดพลาดในการโหลดบทความพยากรณ์</p>
+                    <p class="text-sm">${isEn ? "Apologies, there was an error loading the oracle articles." : "ขออภัย เกิดข้อผิดพลาดในการโหลดบทความพยากรณ์"}</p>
                 `;
             }
         }
@@ -201,21 +241,33 @@
             const endIndex = startIndex + itemsPerPage;
             const pageItems = filteredArticles.slice(startIndex, endIndex);
 
+            const isEn = document.documentElement.lang === 'en';
+            const categoryMapping = {
+                'ความหมายไพ่ยิปซี': 'Tarot Meaning',
+                'ดวงชะตาราศีไทย': 'Thai Zodiac',
+                'ดวงชะตาราศีตะวันตก': 'Western Zodiac',
+                'ศาสตร์ดวงจีนบาจื่อ': 'Chinese Bazi',
+                'ทำนายฝันนำโชค': 'Dream Keys'
+            };
+
             pageItems.forEach(art => {
                 const card = document.createElement('div');
                 card.className = 'article-card rounded-2xl overflow-hidden flex flex-col h-full shadow-lg';
                 const isTarot = art.category === 'ความหมายไพ่ยิปซี';
                 const imgClass = isTarot ? 'w-full h-full object-contain bg-slate-950/80' : 'w-full h-full object-cover';
+                const displayCategory = isEn ? (categoryMapping[art.category] || art.category) : art.category;
+                const buttonText = isEn ? 'Read Full Article' : 'อ่านบทความเต็ม';
+
                 card.innerHTML = `
                     <div class="w-full h-40 overflow-hidden relative border-b border-white/5 flex items-center justify-center">
                         <img src="${art.imgUrl}" alt="${art.title}" class="${imgClass}" loading="lazy">
-                        <span class="absolute top-3 left-3 bg-black/80 border border-amber-500/30 text-[10px] text-amber-400 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${art.category}</span>
+                        <span class="absolute top-3 left-3 bg-black/80 border border-amber-500/30 text-[10px] text-amber-400 font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">${displayCategory}</span>
                     </div>
                     <div class="p-5 flex flex-col flex-grow">
                         <h3 class="text-base font-bold text-white mb-2 line-clamp-2 hover:text-amber-400 transition cursor-pointer" onclick="window.location.href='${art.url}'">${art.title}</h3>
                         <p class="text-xs text-slate-400 line-clamp-3 font-light mb-4 flex-grow">${art.desc}</p>
                         <a href="${art.url}" class="w-full text-center bg-white/5 border border-white/10 hover:border-amber-500/50 hover:bg-amber-500/10 text-white font-medium py-2.5 rounded-xl transition text-xs">
-                            <i class="fa-solid fa-book-open mr-1"></i> อ่านบทความเต็ม
+                            <i class="fa-solid fa-book-open mr-1"></i> ${buttonText}
                         </a>
                     </div>
                 `;
@@ -225,7 +277,7 @@
             // Update Pagination
             if (totalPages > 1) {
                 paginationContainer.classList.remove('hidden');
-                document.getElementById('page-indicator').innerText = `หน้า ${currentPage}/${totalPages}`;
+                document.getElementById('page-indicator').innerText = isEn ? `Page ${currentPage}/${totalPages}` : `หน้า ${currentPage}/${totalPages}`;
                 document.getElementById('prev-btn').disabled = currentPage === 1;
                 document.getElementById('next-btn').disabled = currentPage === totalPages;
             } else {
@@ -240,7 +292,9 @@
             // Toggle active filter button
             const buttons = document.querySelectorAll('#filter-container .filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            const activeBtn = event.target.closest('.filter-btn') || event.target;
+            activeBtn.classList.add('active');
 
             applyFilter();
         }

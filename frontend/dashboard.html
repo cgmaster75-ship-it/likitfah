@@ -67,6 +67,9 @@
             margin-top: auto; padding: 6px 20px; border-radius: 99px; border: 1px solid;
             font-size: 11px; transition: all 0.3s ease; display: flex; align-items: center; gap: 4px;
         }
+        /* Bilingual CSS hiding rules */
+        [lang="th"] .lang-en { display: none !important; }
+        [lang="en"] .lang-th { display: none !important; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col pb-24">
@@ -82,221 +85,377 @@
                 </div>
                 <div>
                     <h1 class="text-3xl font-bold font-serif text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-200">Likit Fah</h1>
-                    <p id="greeting-text" class="text-slate-300 font-light tracking-wide mt-1"><i class="fa-solid fa-sparkles text-amber-400"></i> โหลดคำทักทาย...</p>
+                    <p id="greeting-text" class="text-slate-300 font-light tracking-wide mt-1"><i class="fa-solid fa-sparkles text-amber-400"></i> โหลดคำทักทาย... / Loading...</p>
                 </div>
             </div>
             
             <div class="px-6 py-3 rounded-2xl bg-black/40 border border-slate-700/50 flex items-center gap-3">
                 <i class="fa-solid fa-circle-user text-2xl text-indigo-400"></i>
                 <div class="text-sm">
-                    <p class="text-slate-400 text-xs">ผู้ไขชะตา</p>
-                    <p class="font-medium text-white">คุณ <span id="user_name" class="text-amber-300">...</span></p>
+                    <p class="text-slate-400 text-xs">
+                        <span class="lang-th">ผู้ไขชะตา</span>
+                        <span class="lang-en">Seeker</span>
+                    </p>
+                    <p class="font-medium text-white">
+                        <span class="lang-th">คุณ</span>
+                        <span class="lang-en">Mr/Ms.</span> <span id="user_name" class="text-amber-300">...</span>
+                    </p>
                 </div>
             </div>
         </header>
 
+        <!-- Main Astrological Tools (Top Grid - 12 Cards) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             
+            <!-- 1. Birth chart profile -->
             <div onclick="window.location.href='core.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-1 group hover:border-amber-400 hover:shadow-[0_15px_35px_rgba(251,191,36,0.2)]">
                 <div class="text-amber-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-compass"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">พื้นดวงชะตา</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">วิเคราะห์ดวงกำเนิด 3 ศาสตร์ ไทย จีน ตะวันตก</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">พื้นดวงชะตา</span>
+                    <span class="lang-en">Natal Profile</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">วิเคราะห์ดวงกำเนิด 3 ศาสตร์ ไทย จีน ตะวันตก</span>
+                    <span class="lang-en">Birth chart analysis in 3 systems: Thai, Chinese, Western.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-amber-400 group-hover:bg-amber-400/10 group-hover:text-amber-300">
-                    ผ่าดวงชะตา <i class="fa-solid fa-chevron-right text-[9px]"></i>
+                    <span class="lang-th">ผ่าดวงชะตา <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+                    <span class="lang-en">Reveal Destiny <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 2. Auspicious Calendar -->
             <div onclick="window.location.href='calendar.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-1 group hover:border-yellow-400 hover:shadow-[0_15px_35px_rgba(250,204,21,0.2)]">
                 <div class="text-yellow-400 text-5xl mb-4 icon-wrapper"><i class="fa-regular fa-calendar-days"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">ปฏิทินมงคล</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">เช็คฤกษ์ดี สีมงคล และเวลารับทรัพย์ประจำวัน</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">ปฏิทินมงคล</span>
+                    <span class="lang-en">Auspicious Calendar</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">เช็คฤกษ์ดี สีมงคล และเวลารับทรัพย์ประจำวัน</span>
+                    <span class="lang-en">Check daily colors, lucky timings, and wealth hours.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-yellow-400 group-hover:bg-yellow-400/10 group-hover:text-yellow-300">
-                    เปิดปฏิทิน <i class="fa-solid fa-calendar-check text-[9px]"></i>
+                    <span class="lang-th">เปิดปฏิทิน <i class="fa-solid fa-calendar-check text-[9px]"></i></span>
+                    <span class="lang-en">Open Calendar <i class="fa-solid fa-calendar-check text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 3. Life Graph -->
             <div onclick="window.location.href='lifegraph.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-1 group hover:border-purple-400 hover:shadow-[0_15px_35px_rgba(192,132,252,0.2)]">
                 <div class="text-purple-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-chart-line"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">กราฟชีวิต 12 ภพ</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">ทำนายจุดรุ่งเรืองและวิบากกรรม ตามตำราพรหมชาติโบราณ</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">กราฟชีวิต 12 ภพ</span>
+                    <span class="lang-en">Life Graph (12 Houses)</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ทำนายจุดรุ่งเรืองและวิบากกรรม ตามตำราพรหมชาติโบราณ</span>
+                    <span class="lang-en">Predict peaks and hurdles via ancient Thai astrology.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-purple-400 group-hover:bg-purple-400/10 group-hover:text-purple-300">
-                    ดูกราฟชะตา <i class="fa-solid fa-arrow-trend-up text-[9px]"></i>
+                    <span class="lang-th">ดูกราฟชะตา <i class="fa-solid fa-arrow-trend-up text-[9px]"></i></span>
+                    <span class="lang-en">View Life Graph <i class="fa-solid fa-arrow-trend-up text-[9px]"></i></span>
                 </div>
             </div>
 
-            <!-- 🌟 เมนูใหม่: กงล้อพรหมชาติ 🌟 -->
+            <!-- 4. Phrommachat Wheel -->
             <div onclick="window.location.href='wheel.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-1 group hover:border-orange-500 hover:shadow-[0_15px_35px_rgba(249,115,22,0.2)]">
                 <div class="text-orange-500 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-dharmachakra"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">กงล้อพรหมชาติ</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">ดวงไฟพยากรณ์ ทำนายชะตาชีวิตและโชคลาภประจำปี</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">กงล้อพรหมชาติ</span>
+                    <span class="lang-en">Phrommachat Wheel</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ดวงไฟพยากรณ์ ทำนายชะตาชีวิตและโชคลาภประจำปี</span>
+                    <span class="lang-en">Yearly fortune wheel forecast for luck and life paths.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-orange-500 group-hover:bg-orange-500/10 group-hover:text-orange-400">
-                    เปิดกงล้อ <i class="fa-solid fa-dharmachakra text-[9px]"></i>
+                    <span class="lang-th">เปิดกงล้อ <i class="fa-solid fa-dharmachakra text-[9px]"></i></span>
+                    <span class="lang-en">Spin Wheel <i class="fa-solid fa-dharmachakra text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 5. Tarot Reading -->
             <div onclick="window.location.href='tarot.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-2 group hover:border-rose-400 hover:shadow-[0_15px_35px_rgba(225,29,72,0.2)]">
                 <div class="text-rose-400 text-5xl mb-4 icon-wrapper flex gap-1 items-center">
                     <i class="fa-solid fa-hat-wizard text-3xl opacity-80"></i>
                     <i class="fa-solid fa-star text-5xl"></i>
-                    <i class="fa-solid fa-star-twinkle text-2xl opacity-80"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">เปิดไพ่ทาโรต์</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">สุ่มไพ่ยิปซีศักดิ์สิทธิ์ ถาม-ตอบ ทุกความสงสัย</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">เปิดไพ่ทาโรต์</span>
+                    <span class="lang-en">Tarot Reading</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">สุ่มไพ่ยิปซีศักดิ์สิทธิ์ ถาม-ตอบ ทุกความสงสัย</span>
+                    <span class="lang-en">Divine cards reading to answer any question.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-rose-400 group-hover:bg-rose-400/10 group-hover:text-rose-300">
-                    เปิดคำทำนาย <i class="fa-solid fa-cards text-[9px]"></i>
+                    <span class="lang-th">เปิดคำทำนาย <i class="fa-solid fa-cards text-[9px]"></i></span>
+                    <span class="lang-en">Start Reading <i class="fa-solid fa-cards text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 6. Name Analysis -->
             <div onclick="window.location.href='name.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-2 group hover:border-indigo-400 hover:shadow-[0_15px_35px_rgba(99,102,241,0.2)]">
                 <div class="text-indigo-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-signature"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">วิเคราะห์ชื่อ</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">ถอดรหัสพลังงานตัวอักษรเพื่อความเจริญรุ่งเรือง</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">วิเคราะห์ชื่อ</span>
+                    <span class="lang-en">Name Analysis</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ถอดรหัสพลังงานตัวอักษรเพื่อความเจริญรุ่งเรือง</span>
+                    <span class="lang-en">Decode name letters for auspicious frequencies.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-indigo-400 group-hover:bg-indigo-400/10 group-hover:text-indigo-300">
-                    ตรวจพลังชื่อ <i class="fa-solid fa-fingerprint text-[9px]"></i>
+                    <span class="lang-th">ตรวจพลังชื่อ <i class="fa-solid fa-fingerprint text-[9px]"></i></span>
+                    <span class="lang-en">Check Name <i class="fa-solid fa-fingerprint text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 7. Phone Numerology -->
             <div onclick="window.location.href='phone.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-2 group hover:border-teal-400 hover:shadow-[0_15px_35px_rgba(20,184,166,0.2)]">
                 <div class="text-teal-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-mobile-screen"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">เบอร์มงคล</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">ตรวจเช็คความหมายคู่ตัวเลขที่ส่งผลต่อชีวิต</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">เบอร์มงคล</span>
+                    <span class="lang-en">Phone Numerology</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ตรวจเช็คความหมายคู่ตัวเลขที่ส่งผลต่อชีวิต</span>
+                    <span class="lang-en">Verify the meaning of number pairs on your phone.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-teal-400 group-hover:bg-teal-400/10 group-hover:text-teal-300">
-                    ถอดรหัสเบอร์ <i class="fa-solid fa-hashtags text-[9px]"></i>
+                    <span class="lang-th">ถอดรหัสเบอร์ <i class="fa-solid fa-hashtags text-[9px]"></i></span>
+                    <span class="lang-en">Decode Number <i class="fa-solid fa-hashtags text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 8. Siemsi -->
             <div onclick="window.location.href='siemsi.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-2 group hover:border-red-500 hover:shadow-[0_15px_35px_rgba(239,68,68,0.2)]">
                 <div class="text-red-500 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-vihara"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">เสี่ยงเซียมซี</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">ขอพรและรับคำชี้แนะจากสิ่งศักดิ์สิทธิ์</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">เสี่ยงเซียมซี</span>
+                    <span class="lang-en">Siemsi Fortune</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ขอพรและรับคำชี้แนะจากสิ่งศักดิ์สิทธิ์</span>
+                    <span class="lang-en">Ask for blessings and warnings from temples.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-red-500 group-hover:bg-red-500/10 group-hover:text-red-300">
-                    เขย่าติ้ว <i class="fa-solid fa-hand-sparkles text-[9px]"></i>
+                    <span class="lang-th">เขย่าติ้ว <i class="fa-solid fa-hand-sparkles text-[9px]"></i></span>
+                    <span class="lang-en">Shake Cup <i class="fa-solid fa-hand-sparkles text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 9. Car License Plate -->
             <div onclick="window.location.href='plate.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-3 group hover:border-blue-400 hover:shadow-[0_15px_35px_rgba(59,130,246,0.2)]">
                 <div class="text-blue-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-car-side"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">ทะเบียนรถ</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">แคล้วคลาดปลอดภัย เสริมบารมีทุกเส้นทาง</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">ทะเบียนรถ</span>
+                    <span class="lang-en">Car License Plate</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">แคล้วคลาดปลอดภัย เสริมบารมีทุกเส้นทาง</span>
+                    <span class="lang-en">Evaluate driving safety and luck on roads.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-blue-400 group-hover:bg-blue-400/10 group-hover:text-blue-300">
-                    วิเคราะห์เลขรถ <i class="fa-solid fa-gauge-high text-[9px]"></i>
+                    <span class="lang-th">วิเคราะห์เลขรถ <i class="fa-solid fa-gauge-high text-[9px]"></i></span>
+                    <span class="lang-en">Check License <i class="fa-solid fa-gauge-high text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 10. Lucky Timing -->
             <div onclick="window.location.href='lucky.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-3 group hover:border-emerald-400 hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)]">
                 <div class="text-emerald-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-clover"></i></div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">ฤกษ์เสี่ยงโชค</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">หาวันและเวลาที่ดีที่สุดสำหรับการเสี่ยงดวง</p>
+                <h3 class="text-xl font-semibold mb-2 tracking-wide">
+                    <span class="lang-th">ฤกษ์เสี่ยงโชค</span>
+                    <span class="lang-en">Lucky Timing</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">หาวันและเวลาที่ดีที่สุดสำหรับการเสี่ยงดวง</span>
+                    <span class="lang-en">Find the best day and hour for speculative actions.</span>
+                </p>
                 <div class="btn-action border-slate-600 text-slate-300 group-hover:border-emerald-400 group-hover:bg-emerald-400/10 group-hover:text-emerald-300">
-                    หาฤกษ์เฮง <i class="fa-solid fa-calendar-check text-[9px]"></i>
+                    <span class="lang-th">หาฤกษ์เฮง <i class="fa-solid fa-calendar-check text-[9px]"></i></span>
+                    <span class="lang-en">Find Timing <i class="fa-solid fa-calendar-check text-[9px]"></i></span>
                 </div>
             </div>
 
+            <!-- 11. Dream Keys -->
             <div onclick="window.location.href='dream.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-3 dream-card hover:border-amber-300 hover:shadow-[0_15px_40px_rgba(251,191,36,0.3)]">
                 <div class="text-amber-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-moon"></i></div>
-                <h3 class="text-xl font-bold mb-2 text-white tracking-wide">ทำนายฝันพรีเมียม</h3>
-                <p class="text-amber-200/70 text-xs leading-relaxed mb-4">ถอดรหัสความฝัน พร้อมเปิดเลขเด็ดนำโชค</p>
+                <h3 class="text-xl font-bold mb-2 text-white tracking-wide">
+                    <span class="lang-th">ทำนายฝันพรีเมียม</span>
+                    <span class="lang-en">Dream Keys</span>
+                </h3>
+                <p class="text-amber-200/70 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">ถอดรหัสความฝัน พร้อมเปิดเลขเด็ดนำโชค</span>
+                    <span class="lang-en">Decode dream meanings with lucky digits.</span>
+                </p>
                 <div class="mt-auto px-5 py-1.5 rounded-full bg-amber-500/20 border border-amber-400 text-xs text-amber-300 font-medium">
-                    เปิดคัมภีร์ฝัน <i class="fa-solid fa-star text-[10px] ml-1"></i>
+                    <span class="lang-th">เปิดคัมภีร์ฝัน <i class="fa-solid fa-star text-[10px] ml-1"></i></span>
+                    <span class="lang-en">Decode Dream <i class="fa-solid fa-star text-[10px] ml-1"></i></span>
+                </div>
+            </div>
+
+            <!-- 12. Articles & Blogs (Moved up!) -->
+            <div onclick="window.location.href='blog.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-3 group hover:border-emerald-400 hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)]">
+                <div class="text-emerald-400 text-5xl mb-4 icon-wrapper"><i class="fa-solid fa-book-open"></i></div>
+                <h3 class="text-xl font-bold mb-2 text-white tracking-wide">
+                    <span class="lang-th">บทความพยากรณ์</span>
+                    <span class="lang-en">Articles & Blogs</span>
+                </h3>
+                <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <span class="lang-th">คลังบทความสถิติ โหราศาสตร์ และเคล็ดลับเสริมดวง</span>
+                    <span class="lang-en">Astrology articles, statistical guidelines, and remedies.</span>
+                </p>
+                <div class="btn-action border-slate-600 text-slate-300 group-hover:border-emerald-400 group-hover:bg-emerald-400/10 group-hover:text-emerald-300">
+                    <span class="lang-th">อ่านบทความ <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+                    <span class="lang-en">Read Articles <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
                 </div>
             </div>
 
         </div>
 
+        <!-- Lottery and Auspicious Numbers Section (Lower Grid) -->
         <div class="mt-10 mb-6 fade-in delay-4">
             <div class="flex items-center mb-5">
                 <h2 class="text-xl font-bold text-emerald-400 flex items-center">
-                    <i class="fa-solid fa-ticket-simple mr-3"></i> ศูนย์สลากและตัวเลขมงคล
+                    <i class="fa-solid fa-ticket-simple mr-3"></i>
+                    <span class="lang-th">ศูนย์สลากและตัวเลขมงคล</span>
+                    <span class="lang-en">Lottery & Numbers Center</span>
                 </h2>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 
+                <!-- Lotto Statistics -->
                 <a href="lotto.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-emerald-500 hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)] transition-all duration-300">
                     <div class="w-16 h-16 bg-emerald-900/40 rounded-2xl flex items-center justify-center text-emerald-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-emerald-400 transition-colors tracking-wide">สถิติหวยย้อนหลัง</h3>
-                        <p class="text-sm text-slate-400">วิเคราะห์เลข 2 ตัวบน-ล่าง</p>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-emerald-400 transition-colors tracking-wide">
+                            <span class="lang-th">สถิติหวยย้อนหลัง</span>
+                            <span class="lang-en">Lottery Stats</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">วิเคราะห์เลข 2 ตัวบน-ล่าง</span>
+                            <span class="lang-en">Track past 2-digit numbers</span>
+                        </p>
                     </div>
                 </a>
 
+                <!-- Check Lottery Tickets -->
                 <a href="scaner.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-amber-500 hover:shadow-[0_15px_35px_rgba(251,191,36,0.2)] transition-all duration-300">
                     <div class="w-16 h-16 bg-amber-900/40 rounded-2xl flex items-center justify-center text-amber-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-amber-400 transition-colors tracking-wide">ตรวจสลาก ลิขิตฟ้า</h3>
-                        <p class="text-sm text-slate-400">เช็คผลพร้อมรับคำทำนาย</p>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-amber-400 transition-colors tracking-wide">
+                            <span class="lang-th">ตรวจสลาก ลิขิตฟ้า</span>
+                            <span class="lang-en">Check Tickets</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">เช็คผลพร้อมรับคำทำนาย</span>
+                            <span class="lang-en">Check results & get fortune</span>
+                        </p>
                     </div>
                 </a>
 
+                <!-- Hot Number Radar -->
                 <a href="radar.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-rose-500 hover:shadow-[0_15px_35px_rgba(244,63,94,0.2)] transition-all duration-300">
                     <div class="w-16 h-16 bg-rose-900/40 rounded-2xl flex items-center justify-center text-rose-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
                         <i class="fa-solid fa-satellite-dish"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-rose-400 transition-colors tracking-wide">เรดาร์ 100 ประตู</h3>
-                        <p class="text-sm text-slate-400">สแกนความฮอตเลข 00-99</p>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-rose-400 transition-colors tracking-wide">
+                            <span class="lang-th">เรดาร์ 100 ประตู</span>
+                            <span class="lang-en">Hot Number Radar</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">สแกนความฮอตเลข 00-99</span>
+                            <span class="lang-en">Scan frequencies of 00-99</span>
+                        </p>
                     </div>
                 </a>
                 
+                <!-- Hot Number Tracker -->
                 <a href="predictor.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-purple-500 hover:shadow-[0_15px_35px_rgba(168,85,247,0.2)] transition-all duration-300">
                     <div class="w-16 h-16 bg-purple-900/40 rounded-2xl flex items-center justify-center text-purple-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-purple-400 transition-colors tracking-wide">ระบบทำนายเลขตาม</h3>
-                        <p class="text-sm text-slate-400">AI คำนวณเลขเด็ดงวดถัดไป</p>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-purple-400 transition-colors tracking-wide">
+                            <span class="lang-th">ระบบทำนายเลขตาม</span>
+                            <span class="lang-en">Hot Number Tracker</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">AI คำนวณเลขเด็ดงวดถัดไป</span>
+                            <span class="lang-en">AI prediction for next draw</span>
+                        </p>
                     </div>
                 </a>
-            <!-- New Oracle Blueprint menu card -->
-            <div onclick="window.location.href='oracle-blueprint.html'" class="menu-card rounded-3xl p-6 cursor-pointer flex flex-col items-center text-center fade-in delay-3 group hover:border-teal-400 hover:shadow-[0_15px_35px_rgba(13,148,136,0.2)]">
-                <div class="text-teal-400 text-5xl mb-4 icon-wrapper">
-                    <i class="fa-solid fa-lightbulb"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2 tracking-wide">Oracle Blueprint</h3>
-                <p class="text-slate-400 text-xs leading-relaxed mb-4">แผนผังความรู้เชิงลึกสำหรับการวิเคราะห์ข้อมูล</p>
-                <div class="btn-action border-slate-600 text-slate-300 group-hover:border-teal-400 group-hover:bg-teal-400/10 group-hover:text-teal-300">
-                    เข้าไปสำรวจ <i class="fa-solid fa-chevron-right text-[9px]"></i>
-                </div>
-            </div>
-            <!-- New Lotto‑Science menu card -->
-            <a href="lotto-science.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-orange-500 hover:shadow-[0_15px_35px_rgba(255,165,0,0.2)] transition-all duration-300">
-                <div class="w-16 h-16 bg-orange-900/40 rounded-2xl flex items-center justify-center text-orange-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
-                    <i class="fa-solid fa-calculator"></i>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-1 text-white group-hover:text-orange-400 transition-colors tracking-wide">สูตรคำนวนหวย</h3>
-                    <p class="text-sm text-slate-400">คำนวณสูตรชั้นสูงเพื่อเพิ่มโอกาสชนะ</p>
-                </div>
-            </a>
 
+                <!-- Oracle Blueprint -->
+                <a href="oracle-blueprint.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-teal-500 hover:shadow-[0_15px_35px_rgba(13,148,136,0.2)] transition-all duration-300">
+                    <div class="w-16 h-16 bg-teal-900/40 rounded-2xl flex items-center justify-center text-teal-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-teal-400 transition-colors tracking-wide">
+                            <span class="lang-th">Oracle Blueprint</span>
+                            <span class="lang-en">Oracle Blueprint</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">แผนผังความรู้เชิงลึกสำหรับการวิเคราะห์ข้อมูล</span>
+                            <span class="lang-en">Deep statistical maps & blueprints</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- Lottery Formula -->
+                <a href="lotto-science.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-orange-500 hover:shadow-[0_15px_35px_rgba(255,165,0,0.2)] transition-all duration-300">
+                    <div class="w-16 h-16 bg-orange-900/40 rounded-2xl flex items-center justify-center text-orange-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-orange-400 transition-colors tracking-wide">
+                            <span class="lang-th">สูตรคำนวนหวย</span>
+                            <span class="lang-en">Lottery Formula</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">คำนวณสูตรชั้นสูงเพื่อเพิ่มโอกาสชนะ</span>
+                            <span class="lang-en">Advanced computations for digits</span>
+                        </p>
+                    </div>
+                </a>
+
+                <!-- AI Analysis -->
                 <a href="analytics.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-cyan-500 hover:shadow-[0_15px_35px_rgba(6,182,212,0.2)] transition-all duration-300">
                     <div class="w-16 h-16 bg-cyan-900/40 rounded-2xl flex items-center justify-center text-cyan-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
                         <i class="fa-solid fa-microchip"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-cyan-400 transition-colors tracking-wide">AI วิเคราะห์หวย</h3>
-                        <p class="text-sm text-slate-400">ศูนย์บัญชาการข้อมูล 5 มิติ</p>
+                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-cyan-400 transition-colors tracking-wide">
+                            <span class="lang-th">AI วิเคราะห์หวย</span>
+                            <span class="lang-en">AI Lottery Analysis</span>
+                        </h3>
+                        <p class="text-sm text-slate-400">
+                            <span class="lang-th">ศูนย์บัญชาการข้อมูล 5 มิติ</span>
+                            <span class="lang-en">5D analytical data cockpit</span>
+                        </p>
                     </div>
                 </a>
-                <a href="blog.html" class="menu-card rounded-3xl p-6 cursor-pointer flex items-center group hover:border-emerald-500 hover:shadow-[0_15px_35px_rgba(16,185,129,0.2)] transition-all duration-300">
-                    <div class="w-16 h-16 bg-emerald-900/40 rounded-2xl flex items-center justify-center text-emerald-400 text-3xl mr-5 group-hover:scale-110 transition-transform icon-wrapper shadow-inner">
-                        <i class="fa-solid fa-book-open"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold mb-1 text-white group-hover:text-emerald-400 transition-colors tracking-wide">บทความพยากรณ์</h3>
-                        <p class="text-sm text-slate-400">คลังบทความสถิติและเสริมดวง</p>
-                    </div>
-                </a>
+
             </div>
         </div>
 		
-		<div class="mt-16 pt-8 border-t border-slate-800 text-center pb-8 fade-in delay-5">
+        <div class="mt-16 pt-8 border-t border-slate-800 text-center pb-8 fade-in delay-5">
             <h3 class="text-amber-500/80 font-serif text-xl mb-4 tracking-widest">LIKIT FAH</h3>
-            <p class="text-slate-500 text-xs mb-6">ติดตามข่าวสาร อัปเดตดวงชะตา และเลขเด็ดก่อนใคร</p>
+            <p class="text-slate-500 text-xs mb-6">
+                <span class="lang-th">ติดตามข่าวสาร อัปเดตดวงชะตา และเลขเด็ดก่อนใคร</span>
+                <span class="lang-en">Follow news, forecast updates, and lucky digits before anyone else.</span>
+            </p>
             
             <div class="flex justify-center gap-4 mb-8">
                 <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-blue-500 hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/50 hover:-translate-y-1">
@@ -314,19 +473,27 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script>
         window.onload = function() {
             const userName = localStorage.getItem('user_firstname') || 'ผู้ใช้งาน';
             document.getElementById('user_name').innerText = userName;
             updateGreeting();
+            
+            // Set page title dynamically based on active language
+            const isEn = document.documentElement.lang === 'en';
+            document.title = isEn 
+                ? "Oracle Hall - Likit Fah | Horoscopes, Lottery, Lucky Timing" 
+                : "ศาลาพยากรณ์ ลิขิตฟ้า - ดูดวง ตรวจหวย ฤกษ์มงคล ครบจบในที่เดียว";
         };
 
         function updateGreeting() {
             const hour = new Date().getHours();
-            let greeting = "ราตรีสวัสดิ์ ผู้ไขชะตา";
-            if (hour >= 5 && hour < 12) greeting = "อรุณสวัสดิ์ ผู้ไขชะตา";
-            else if (hour >= 12 && hour < 17) greeting = "สวัสดีตอนบ่าย ผู้ไขชะตา";
-            else if (hour >= 17 && hour < 22) greeting = "สวัสดีตอนเย็น ผู้ไขชะตา";
+            const isEn = document.documentElement.lang === 'en';
+            let greeting = isEn ? "Good night, Seeker" : "ราตรีสวัสดิ์ ผู้ไขชะตา";
+            if (hour >= 5 && hour < 12) greeting = isEn ? "Good morning, Seeker" : "อรุณสวัสดิ์ ผู้ไขชะตา";
+            else if (hour >= 12 && hour < 17) greeting = isEn ? "Good afternoon, Seeker" : "สวัสดีตอนบ่าย ผู้ไขชะตา";
+            else if (hour >= 17 && hour < 22) greeting = isEn ? "Good evening, Seeker" : "สวัสดีตอนเย็น ผู้ไขชะตา";
             document.getElementById('greeting-text').innerHTML = `<i class="fa-solid fa-sparkles text-amber-400 mr-1"></i> ${greeting}`;
         }
     </script>

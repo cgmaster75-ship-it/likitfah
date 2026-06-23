@@ -15,16 +15,37 @@ const globalFooterHTML = `
         <div class="max-w-7xl mx-auto px-4 text-center">
             <!-- Trust Pages Links -->
             <div class="flex flex-wrap justify-center gap-6 mb-6 text-xs md:text-sm font-medium text-slate-400">
-                <a href="${pathPrefix}about.html" class="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a>
-                <a href="${pathPrefix}contact.html" class="hover:text-amber-400 transition-colors">ติดต่อเรา</a>
-                <a href="${pathPrefix}policy.html" class="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a>
-                <a href="${pathPrefix}terms.html" class="hover:text-amber-400 transition-colors">ข้อตกลงการใช้งาน</a>
-                <a href="${pathPrefix}blog.html" class="hover:text-amber-400 transition-colors">บทความพยากรณ์</a>
+                <a href="${pathPrefix}about.html" class="hover:text-amber-400 transition-colors">
+                    <span class="lang-th">เกี่ยวกับเรา</span>
+                    <span class="lang-en">About Us</span>
+                </a>
+                <a href="${pathPrefix}contact.html" class="hover:text-amber-400 transition-colors">
+                    <span class="lang-th">ติดต่อเรา</span>
+                    <span class="lang-en">Contact Us</span>
+                </a>
+                <a href="${pathPrefix}policy.html" class="hover:text-amber-400 transition-colors">
+                    <span class="lang-th">นโยบายความเป็นส่วนตัว</span>
+                    <span class="lang-en">Privacy Policy</span>
+                </a>
+                <a href="${pathPrefix}terms.html" class="hover:text-amber-400 transition-colors">
+                    <span class="lang-th">ข้อตกลงการใช้งาน</span>
+                    <span class="lang-en">Terms of Use</span>
+                </a>
+                <a href="${pathPrefix}blog.html" class="hover:text-amber-400 transition-colors">
+                    <span class="lang-th">บทความพยากรณ์</span>
+                    <span class="lang-en">Articles</span>
+                </a>
             </div>
 
             <p class="text-xs text-slate-500 font-light tracking-wide leading-relaxed">
-                © ${new Date().getFullYear()} ลิขิตฟ้า (Likit Fah). All Rights Reserved.<br>
-                ระบบวิเคราะห์สถิติตัวเลขเพื่อความบันเทิงและการเรียนรู้ทางสถิติเท่านั้น
+                <span class="lang-th">
+                    &copy; ${new Date().getFullYear()} ลิขิตฟ้า (Likit Fah). สงวนลิขสิทธิ์.<br>
+                    ระบบวิเคราะห์สถิติตัวเลขเพื่อความบันเทิงและการเรียนรู้ทางสถิติเท่านั้น
+                </span>
+                <span class="lang-en">
+                    &copy; ${new Date().getFullYear()} Likit Fah. All Rights Reserved.<br>
+                    Numerology and statistics analytical system for entertainment and statistical learning purposes only.
+                </span>
             </p>
         </div>
     </footer>

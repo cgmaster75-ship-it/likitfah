@@ -6,17 +6,26 @@ const bottomNavigationHTML = `
             
             <div onclick="window.location.href='${pathPrefix}dashboard.html'" class="flex flex-col items-center p-2 text-slate-400 hover:text-amber-400 cursor-pointer transition-all hover:-translate-y-1">
                 <i class="fa-solid fa-house text-lg"></i>
-                <span class="text-[9px] mt-1 font-medium" style="font-family: 'Prompt', sans-serif;">หน้าหลัก</span>
+                <span class="text-[9px] mt-1 font-medium" style="font-family: 'Prompt', sans-serif;">
+                    <span class="lang-th">หน้าหลัก</span>
+                    <span class="lang-en">Home</span>
+                </span>
             </div>
             
             <div onclick="window.location.href='${pathPrefix}donate.html'" class="flex flex-col items-center p-2 text-amber-500 hover:text-amber-300 cursor-pointer transition-all hover:-translate-y-1 drop-shadow-[0_0_8px_rgba(245,158,11,0.6)]">
                 <i class="fa-solid fa-hand-holding-dollar text-xl animate-pulse"></i>
-                <span class="text-[10px] mt-1 font-bold tracking-wide" style="font-family: 'Prompt', sans-serif;">ค่าครู</span>
+                <span class="text-[10px] mt-1 font-bold tracking-wide" style="font-family: 'Prompt', sans-serif;">
+                    <span class="lang-th">ค่าครู</span>
+                    <span class="lang-en">Donate</span>
+                </span>
             </div>
             
             <div onclick="showGlobalLogoutModal()" class="flex flex-col items-center p-2 text-slate-400 hover:text-rose-400 cursor-pointer transition-all hover:-translate-y-1">
                 <i class="fa-solid fa-power-off text-lg"></i>
-                <span class="text-[9px] mt-1 font-medium" style="font-family: 'Prompt', sans-serif;">ออก</span>
+                <span class="text-[9px] mt-1 font-medium" style="font-family: 'Prompt', sans-serif;">
+                    <span class="lang-th">ออก</span>
+                    <span class="lang-en">Logout</span>
+                </span>
             </div>
 
         </div>
@@ -29,11 +38,23 @@ const bottomNavigationHTML = `
                 <div class="w-16 h-16 rounded-full bg-rose-500/10 text-rose-500 flex items-center justify-center text-3xl mx-auto mb-4 border border-rose-500/20">
                     <i class="fa-solid fa-door-open"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-2 text-white">ออกจากระบบ?</h3>
-                <p class="text-xs text-slate-400 mb-8 leading-relaxed">ข้อมูลส่วนตัวสำหรับการทำนายจะถูกล้างออกเพื่อรักษาความปลอดภัย</p>
+                <h3 class="text-2xl font-bold mb-2 text-white">
+                    <span class="lang-th">ออกจากระบบ?</span>
+                    <span class="lang-en">Logout?</span>
+                </h3>
+                <p class="text-xs text-slate-400 mb-8 leading-relaxed">
+                    <span class="lang-th">ข้อมูลส่วนตัวสำหรับการทำนายจะถูกล้างออกเพื่อรักษาความปลอดภัย</span>
+                    <span class="lang-en">Your personal prediction profile will be cleared for security.</span>
+                </p>
                 <div class="grid grid-cols-2 gap-4">
-                    <button onclick="closeGlobalLogoutModal()" class="py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition-colors">ยกเลิก</button>
-                    <button onclick="confirmGlobalLogout()" class="py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-500 hover:to-red-400 text-white text-sm font-medium transition-colors shadow-lg shadow-rose-500/30">ออกจากระบบ</button>
+                    <button onclick="closeGlobalLogoutModal()" class="py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-sm font-medium transition-colors">
+                        <span class="lang-th">ยกเลิก</span>
+                        <span class="lang-en">Cancel</span>
+                    </button>
+                    <button onclick="confirmGlobalLogout()" class="py-3 rounded-2xl bg-gradient-to-r from-rose-600 to-red-500 hover:from-rose-500 hover:to-red-400 text-white text-sm font-medium transition-colors shadow-lg shadow-rose-500/30">
+                        <span class="lang-th">ออกจากระบบ</span>
+                        <span class="lang-en">Logout</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -43,18 +64,15 @@ const bottomNavigationHTML = `
 document.addEventListener("DOMContentLoaded", () => {
     document.body.insertAdjacentHTML('beforeend', bottomNavigationHTML);
 
-    // ระบบ Auto-Hide ซ่อน/แสดง เมนูตอนเลื่อนจอ
+    // Auto-Hide bottom nav on scroll
     let lastScrollY = window.scrollY;
     const bottomNav = document.getElementById('global-bottom-nav');
     
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
-        // ถ้าเลื่อนลง ให้ซ่อน (ดันลงไปด้านล่าง 150%)
         if (currentScrollY > lastScrollY && currentScrollY > 50) {
             bottomNav.style.transform = 'translateY(150%)';
-        } 
-        // ถ้าเลื่อนขึ้น หรืออยู่บนสุด ให้แสดง
-        else {
+        } else {
             bottomNav.style.transform = 'translateY(0)';
         }
         lastScrollY = currentScrollY;

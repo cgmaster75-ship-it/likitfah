@@ -1,30 +1,138 @@
 const pathPrefix = window.location.pathname.includes('/blog/articles/') ? '../../' : '';
 
+// 1. Inject Bilingual CSS toggles instantly to prevent text flashing
+const style = document.createElement('style');
+style.textContent = `
+    [lang="th"] .lang-en { display: none !important; }
+    [lang="en"] .lang-th { display: none !important; }
+`;
+document.head.appendChild(style);
+
+// 2. Helper to set language attribute on HTML document
+function setDocumentLanguage(lang) {
+    document.documentElement.lang = lang;
+    const btnText = document.getElementById('global-lang-btn-text');
+    if (btnText) {
+        btnText.textContent = lang === 'th' ? 'EN' : 'TH';
+    }
+}
+
+// 3. Language Detection Engine
+function detectAndApplyLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlLang = urlParams.get('lang');
+
+    // Priority 1: URL query parameter
+    if (urlLang === 'th' || urlLang === 'en') {
+        localStorage.setItem('lang', urlLang);
+        setDocumentLanguage(urlLang);
+        return;
+    }
+
+    // Priority 2: Saved user preference
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang === 'th' || savedLang === 'en') {
+        setDocumentLanguage(savedLang);
+        return;
+    }
+
+    // Priority 3: Browser language default
+    const browserLang = navigator.language.startsWith('th') ? 'th' : 'en';
+    localStorage.setItem('lang', browserLang);
+    setDocumentLanguage(browserLang);
+
+    // Async Priority 4: Geolocation check (freeipapi is fast and CORS-friendly)
+    fetch('https://freeipapi.com/api/json')
+        .then(res => res.json())
+        .then(data => {
+            const geoLang = String(data.countryCode).toUpperCase() === 'TH' ? 'th' : 'en';
+            localStorage.setItem('lang', geoLang);
+            setDocumentLanguage(geoLang);
+        })
+        .catch(err => console.log('Geo detection fallback:', err));
+}
+
+// 4. Toggle Language Handler
+window.toggleGlobalLanguage = function() {
+    const currentLang = document.documentElement.lang || 'th';
+    const targetLang = currentLang === 'th' ? 'en' : 'th';
+    localStorage.setItem('lang', targetLang);
+    setDocumentLanguage(targetLang);
+
+    // Redirect to translated blog article if reading a blog post
+    const altLink = document.querySelector(`link[rel="alternate"][hreflang="${targetLang}"]`);
+    if (altLink && altLink.getAttribute('href')) {
+        window.location.href = altLink.getAttribute('href');
+    } else {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', targetLang);
+        window.location.href = url.toString();
+    }
+};
+
+// Initial invocation on script load to apply language before DOM renders
+detectAndApplyLanguage();
+
+const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/');
+const logoOnClick = isIndexPage ? '' : `onclick="window.location.href='${pathPrefix}dashboard.html'"`;
+const logoCursorClass = isIndexPage ? '' : 'cursor-pointer';
+
+const buttonsHTML = isIndexPage ? `
+    <!-- Language Switcher Button Only -->
+    <button onclick="toggleGlobalLanguage()" class="text-[10px] md:text-xs px-2.5 py-1.5 rounded-full border border-slate-700 bg-slate-800/40 hover:bg-slate-700/60 text-slate-300 transition-all font-medium flex items-center gap-1 shadow-md" style="font-family: 'Prompt', sans-serif;">
+        <i class="fa-solid fa-globe text-amber-400"></i>
+        <span id="global-lang-btn-text">EN</span>
+    </button>
+` : `
+    <!-- Language Switcher Button -->
+    <button onclick="toggleGlobalLanguage()" class="text-[10px] md:text-xs px-2.5 py-1.5 rounded-full border border-slate-700 bg-slate-800/40 hover:bg-slate-700/60 text-slate-300 transition-all font-medium flex items-center gap-1 shadow-md" style="font-family: 'Prompt', sans-serif;">
+        <i class="fa-solid fa-globe text-amber-400"></i>
+        <span id="global-lang-btn-text">EN</span>
+    </button>
+
+    <button onclick="window.location.href='${pathPrefix}donate.html'" class="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-rose-500/50 bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 transition-all font-medium flex items-center shadow-[0_0_10px_rgba(225,29,72,0.3)]" style="font-family: 'Prompt', sans-serif;">
+        <i class="fa-solid fa-mug-hot mr-1.5 text-rose-400"></i>
+        <span class="lang-th">เลี้ยงกาแฟ</span>
+        <span class="lang-en">Buy Coffee</span>
+    </button>
+
+    <button onclick="window.location.href='${pathPrefix}dashboard.html'" class="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 transition-all font-medium" style="font-family: 'Prompt', sans-serif;">
+        <i class="fa-solid fa-arrow-left-long mr-1 text-amber-400"></i>
+        <span class="lang-th">เมนู</span>
+        <span class="lang-en">Menu</span>
+    </button>
+`;
+
 const topHeaderHTML = `
     <nav id="global-top-header" class="fixed top-0 left-0 right-0 z-[90] transition-transform duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.5)] rounded-b-2xl border-b border-amber-500/20" style="background: rgba(11, 11, 26, 0.85); backdrop-filter: blur(16px);">
          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-             <div class="flex items-center justify-between h-14 md:h-16">
-                 <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='${pathPrefix}dashboard.html'">
-                     <img src="${pathPrefix}img/logo-likitfah.png" alt="ลิขิตฟ้า" class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.5)] object-cover">
-                     <h1 class="font-bold text-lg md:text-xl tracking-widest" style="background: linear-gradient(to right, #fde047, #f59e0b, #d97706); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Cinzel', serif;">ลิขิตฟ้า</h1>
-                 </div>
-                 <div class="flex items-center gap-2">
-                     <button onclick="window.location.href='${pathPrefix}donate.html'" class="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-rose-500/50 bg-rose-500/20 hover:bg-rose-500/40 text-rose-200 transition-all font-medium flex items-center shadow-[0_0_10px_rgba(225,29,72,0.3)]" style="font-family: 'Prompt', sans-serif;">
-                         <i class="fa-solid fa-mug-hot mr-1.5 text-rose-400"></i><span class="hidden sm:inline">เลี้ยงกาแฟ</span>
-                     </button>
- 
-                     <button onclick="window.location.href='${pathPrefix}dashboard.html'" class="text-[10px] md:text-xs px-3 py-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 transition-all font-medium" style="font-family: 'Prompt', sans-serif;">
-                         <i class="fa-solid fa-arrow-left mr-1"></i>เมนู
-                     </button>
-                 </div>
-             </div>
+              <div class="flex items-center justify-between h-14 md:h-16">
+                  <div class="flex items-center gap-3 ${logoCursorClass}" ${logoOnClick}>
+                      <img src="${pathPrefix}img/logo-likitfah.png" alt="ลิขิตฟ้า" class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.5)] object-cover">
+                      <h1 class="font-bold text-lg md:text-xl tracking-widest gold-gradient-text" style="font-family: 'Cinzel', serif;">
+                          <span class="lang-th">ลิขิตฟ้า</span>
+                          <span class="lang-en">Likit Fah</span>
+                      </h1>
+                  </div>
+                  <div class="flex items-center gap-2">
+                      ${buttonsHTML}
+                  </div>
+              </div>
          </div>
-     </nav>
-     <div class="h-16 md:h-20 w-full"></div>
+      </nav>
+      <div class="h-16 md:h-20 w-full"></div>
 `;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.body.insertAdjacentHTML('afterbegin', topHeaderHTML);
+    
+    // Set switcher text based on active lang after DOM loads
+    const currentLang = document.documentElement.lang || 'th';
+    const btnText = document.getElementById('global-lang-btn-text');
+    if (btnText) {
+        btnText.textContent = currentLang === 'th' ? 'EN' : 'TH';
+    }
+
     let lastScrollY = window.scrollY;
     const header = document.getElementById('global-top-header');
     window.addEventListener('scroll', () => {
