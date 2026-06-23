@@ -104,10 +104,204 @@ window.toggleGlobalLanguage = function() {
     }
 };
 
+// =========================================================================
+// 🌟 Dynamic DOM Translation Engine
+// =========================================================================
+
+// Regex patterns for dynamic strings
+const DYNAMIC_PATTERNS = [
+    { regex: /^สำหรับ\s+(.+)$/i, replace: "For $1" },
+    { regex: /^ตั้งสมาธิ\s+แล้วเลือกไพ่\s+(\d+)\s+/\s+(\d+)\s+ใบ$/i, replace: "Concentrate and choose $1 / $2 cards" },
+    { regex: /^เซียมซีใบที่\s+(.+)$/i, replace: "Siemsi Sheet No. $1" },
+    { regex: /^ชะตาของคุณตกที่\s+(.+)$/i, replace: "Your fortune lands on $1" },
+    { regex: /^ผลรวมตัวเลข\s+(.+)$/i, replace: "Total Sum: $1" },
+    { regex: /^ทะเบียนรถ\s+(.+)$/i, replace: "License Plate: $1" },
+    { regex: /^อายุ\s+(\d+)\s+ปี$/i, replace: "$1 years old" },
+    { regex: /^ผู้เสี่ยงทาย:\s+คุณ\s+(.+)$/i, replace: "Seeker: Mr/Ms $1" },
+    { regex: /^ผู้เสี่ยงทาย:\s+(.+)$/i, replace: "Seeker: $1" },
+    { regex: /^คำทำนายปี\s+(\d+)$/i, replace: "Year $1 Prophecy" },
+    { regex: /^อายุย่าง\s+(\d+)\s+ปี$/i, replace: "$1 years old" }
+];
+
+// Cache of translated texts to avoid multiple calls for the same text
+const localTranslationCache = new Map();
+
+// Low-level client call to the backend batch translation API
+async function fetchBatchTranslation(texts) {
+    if (texts.length === 0) return [];
+    try {
+        const response = await fetch('/api/translate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ texts })
+        });
+        if (response.ok) {
+            const data = await response.json();
+            return data.translated || [];
+        }
+    } catch (e) {
+        console.error("[DOM Translation API Error]:", e);
+    }
+    return texts;
+}
+
+// Translate all text nodes inside a root node
+async function translateDOM(root = document.body) {
+    const currentLang = localStorage.getItem('lang') || 'th';
+    if (currentLang !== 'en' || !root) return;
+
+    const walker = document.createTreeWalker(
+        root,
+        NodeFilter.SHOW_TEXT,
+        null,
+        false
+    );
+
+    const nodesToTranslate = [];
+    const textsToTranslate = [];
+
+    let node;
+    while (node = walker.nextNode()) {
+        const originalText = node.nodeValue.trim();
+        if (!originalText || !/[\u0E00-\u0E7F]/.test(originalText)) continue;
+
+        // Check local cache first
+        if (localTranslationCache.has(originalText)) {
+            node.nodeValue = node.nodeValue.replace(originalText, localTranslationCache.get(originalText));
+            continue;
+        }
+
+        // Check dynamic regex patterns
+        let matchedPattern = false;
+        for (const pattern of DYNAMIC_PATTERNS) {
+            if (pattern.regex.test(originalText)) {
+                // We need to translate the variable part (e.g. name or house)
+                const match = originalText.match(pattern.regex);
+                const variablePart = match[1];
+                
+                if (/[\u0E00-\u0E7F]/.test(variablePart)) {
+                    // Translate variable part first
+                    nodesToTranslate.push({ node, originalText, pattern, variablePart });
+                    textsToTranslate.push(variablePart);
+                } else {
+                    const translated = originalText.replace(pattern.regex, pattern.replace);
+                    localTranslationCache.set(originalText, translated);
+                    node.nodeValue = node.nodeValue.replace(originalText, translated);
+                }
+                matchedPattern = true;
+                break;
+            }
+        }
+
+        if (!matchedPattern) {
+            nodesToTranslate.push({ node, originalText });
+            textsToTranslate.push(originalText);
+        }
+    }
+
+    // Translate placeholder attributes in inputs
+    const inputs = root.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        const ph = input.getAttribute('placeholder');
+        if (ph && /[\u0E00-\u0E7F]/.test(ph)) {
+            if (localTranslationCache.has(ph)) {
+                input.setAttribute('placeholder', localTranslationCache.get(ph));
+            } else {
+                nodesToTranslate.push({ input, attribute: 'placeholder', originalText: ph });
+                textsToTranslate.push(ph);
+            }
+        }
+    });
+
+    // Run batch API translation
+    if (textsToTranslate.length > 0) {
+        // Collect unique texts to minimize request payload
+        const uniqueTexts = Array.from(new Set(textsToTranslate));
+        const translatedList = await fetchBatchTranslation(uniqueTexts);
+        
+        const tempMap = new Map();
+        uniqueTexts.forEach((text, i) => {
+            tempMap.set(text, translatedList[i] || text);
+        });
+
+        // Apply translations
+        nodesToTranslate.forEach(item => {
+            if (item.node) {
+                if (item.pattern) {
+                    const translatedVar = tempMap.get(item.variablePart);
+                    const translatedText = item.originalText.replace(item.pattern.regex, item.pattern.replace).replace(item.variablePart, translatedVar);
+                    localTranslationCache.set(item.originalText, translatedText);
+                    item.node.nodeValue = item.node.nodeValue.replace(item.originalText, translatedText);
+                } else {
+                    const translatedText = tempMap.get(item.originalText);
+                    localTranslationCache.set(item.originalText, translatedText);
+                    item.node.nodeValue = item.node.nodeValue.replace(item.originalText, translatedText);
+                }
+            } else if (item.input) {
+                const translatedText = tempMap.get(item.originalText);
+                localTranslationCache.set(item.originalText, translatedText);
+                item.input.setAttribute(item.attribute, translatedText);
+            }
+        });
+    }
+}
+
+// Setup MutationObserver to translate dynamically loaded/updated content
+let domObserver = null;
+function setupDOMTranslationObserver() {
+    const currentLang = localStorage.getItem('lang') || 'th';
+    if (currentLang !== 'en') return;
+
+    if (domObserver) domObserver.disconnect();
+
+    domObserver = new MutationObserver((mutations) => {
+        domObserver.disconnect();
+        
+        const addedElements = [];
+        mutations.forEach(mutation => {
+            if (mutation.type === 'childList') {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        addedElements.push(node);
+                    } else if (node.nodeType === Node.TEXT_NODE) {
+                        const text = node.nodeValue.trim();
+                        if (text && /[\u0E00-\u0E7F]/.test(text)) {
+                            translateDOM(node.parentNode || document.body);
+                        }
+                    }
+                });
+            } else if (mutation.type === 'characterData') {
+                const text = mutation.target.nodeValue.trim();
+                if (text && /[\u0E00-\u0E7F]/.test(text)) {
+                    translateDOM(mutation.target.parentNode || document.body);
+                }
+            }
+        });
+
+        // Translate added elements
+        addedElements.forEach(el => translateDOM(el));
+
+        domObserver.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
+    });
+
+    domObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+}
+
 // Initial invocation on script load to apply language before DOM renders
 detectAndApplyLanguage();
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Run translation immediately
+    translateDOM(document.body);
+    setupDOMTranslationObserver();
     // Robust check for index page based on existence of astroForm
     const isIndexPage = document.getElementById('astroForm') !== null;
     const isDashboardPage = document.getElementById('greeting-text') !== null;

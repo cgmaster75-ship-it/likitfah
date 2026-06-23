@@ -34,8 +34,8 @@ const translator = require('./utils/translator');
 translator.setupCacheTable();
 
 // Translation Interceptor Middleware
-app.use(async (req, res, next) => {
-    if (req.path.startsWith('/api') && req.query.lang === 'en') {
+app.use((req, res, next) => {
+    if (req.path.startsWith('/api') && req.path !== '/api/translate' && req.query.lang === 'en') {
         const originalJson = res.json;
         res.json = async function (body) {
             try {
@@ -55,6 +55,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 app.get('/api/health', (req, res) => res.send('API is running securely with Premium Data!'));
+
+app.post('/api/translate', async (req, res) => {
+    try {
+        const { texts } = req.body;
+        if (!texts || !Array.isArray(texts)) {
+            return res.status(400).json({ error: "Invalid texts array" });
+        }
+        // Safeguard limits to prevent DoS or abuse of translation API
+        if (texts.length > 300) {
+            return res.status(400).json({ error: "Too many texts to translate (limit 300)" });
+        }
+        const totalLen = texts.reduce((sum, t) => sum + (typeof t === 'string' ? t.length : 0), 0);
+        if (totalLen > 15000) {
+            return res.status(400).json({ error: "Total text length too long (limit 15000 chars)" });
+        }
+        
+        const translated = await translator.translateObject(texts, 'en');
+        res.json({ translated });
+    } catch (e) {
+        console.error("[POST /api/translate Error]:", e.message);
+        res.status(500).json({ error: e.message });
+    }
+});
 
 // ==========================================
 // 1-7. API: หมวดดูดวง (Astrology, Phone, Tarot, Plate, Siemsi, Name, Dream)
@@ -85,8 +108,13 @@ app.get('/api/phone/:number', async (req, res) => {
 });
 
 app.get('/api/tarot/draw', async (req, res) => {
-    try { const limit = parseInt(req.query.limit) || 3; const [rows] = await db.query(`SELECT * FROM tarot_cards_premium ORDER BY RAND() LIMIT ?`, [limit]); res.json({ cards: rows }); } 
-    catch (error) { res.status(500).json({ error: "Database error" }); }
+    try {
+        const limit = parseInt(req.query.limit) || parseInt(req.query.count) || 3;
+        const [rows] = await db.query(`SELECT * FROM tarot_cards_premium ORDER BY RAND() LIMIT ?`, [limit]);
+        res.json({ cards: rows });
+    } catch (error) {
+        res.status(500).json({ error: "Database error" });
+    }
 });
 
 app.get('/api/plate/:sum', async (req, res) => {
@@ -548,17 +576,7 @@ app.get('/api/dream/search', async (req, res) => {
 // ==========================================
 // 18. 🃏 API: สุ่มไพ่ทาโรต์ 
 // ==========================================
-app.get('/api/tarot/draw', async (req, res) => {
-    try {
-        const count = parseInt(req.query.count) || 1; 
-        const [cards] = await db.query(`SELECT * FROM tarot_cards_premium ORDER BY RAND() LIMIT ?`, [count]);
-        const drawnCards = cards.map(card => {
-            const isReversed = Math.random() < 0.3; 
-            return { ...card, isReversed: isReversed, active_meaning: isReversed ? card.meaning_reversed : card.meaning_upright };
-        });
-        res.json(drawnCards);
-    } catch (error) { res.status(500).json({ error: "Database error" }); }
-});
+// (Duplicate route removed - handled by the primary /api/tarot/draw endpoint at line 101)
 
 // ==========================================
 // 19. 📱 API: วิเคราะห์เบอร์มงคล 

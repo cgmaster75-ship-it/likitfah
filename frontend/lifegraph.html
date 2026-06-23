@@ -181,7 +181,10 @@
         };
         
         let lifeChartInstance = null;
-        const houses = ["วาสนา", "ทรัพย์", "เพื่อน", "ญาติ", "บริวาร", "ศัตรู", "คู่ครอง", "โรคภัย", "ความสุข", "การงาน", "ลาภยศ", "หายนะ"];
+        const currentLang = localStorage.getItem('lang') || 'th';
+        const houses = currentLang === 'en' ? 
+            ["Destiny", "Wealth", "Friends", "Relatives", "Followers", "Enemies", "Spouse", "Illness", "Happiness", "Career", "Fortune", "Disaster"] :
+            ["วาสนา", "ทรัพย์", "เพื่อน", "ญาติ", "บริวาร", "ศัตรู", "คู่ครอง", "โรคภัย", "ความสุข", "การงาน", "ลาภยศ", "หายนะ"];
 
         // 🌟 2. ฟังก์ชันสร้างกราฟ
         function generateGraph() {
@@ -253,7 +256,7 @@
                 data: {
                     labels: houses,
                     datasets: [{
-                        label: 'พลังชะตา',
+                        label: currentLang === 'en' ? 'Destiny Power' : 'พลังชะตา',
                         data: dataPoints,
                         borderColor: '#818cf8', 
                         backgroundColor: gradient, 
