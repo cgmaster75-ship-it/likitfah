@@ -111,7 +111,7 @@ window.toggleGlobalLanguage = function() {
 // Regex patterns for dynamic strings
 const DYNAMIC_PATTERNS = [
     { regex: /^สำหรับ\s+(.+)$/i, replace: "For $1" },
-    { regex: /^ตั้งสมาธิ\s+แล้วเลือกไพ่\s+(\d+)\s+/\s+(\d+)\s+ใบ$/i, replace: "Concentrate and choose $1 / $2 cards" },
+    { regex: /^ตั้งสมาธิ\s+แล้วเลือกไพ่\s+(\d+)\s+\/\s+(\d+)\s+ใบ$/i, replace: "Concentrate and choose $1 / $2 cards" },
     { regex: /^เซียมซีใบที่\s+(.+)$/i, replace: "Siemsi Sheet No. $1" },
     { regex: /^ชะตาของคุณตกที่\s+(.+)$/i, replace: "Your fortune lands on $1" },
     { regex: /^ผลรวมตัวเลข\s+(.+)$/i, replace: "Total Sum: $1" },
@@ -162,6 +162,10 @@ async function translateDOM(root = document.body) {
 
     let node;
     while (node = walker.nextNode()) {
+        // Skip translating elements that are already statically marked as th or en
+        if (node.parentElement && node.parentElement.closest && node.parentElement.closest('.lang-th, .lang-en')) {
+            continue;
+        }
         const originalText = node.nodeValue.trim();
         if (!originalText || !/[\u0E00-\u0E7F]/.test(originalText)) continue;
 
@@ -202,6 +206,10 @@ async function translateDOM(root = document.body) {
     // Translate placeholder attributes in inputs
     const inputs = root.querySelectorAll('input, textarea');
     inputs.forEach(input => {
+        // Skip translating inputs inside lang-th or lang-en containers
+        if (input.closest && input.closest('.lang-th, .lang-en')) {
+            return;
+        }
         const ph = input.getAttribute('placeholder');
         if (ph && /[\u0E00-\u0E7F]/.test(ph)) {
             if (localTranslationCache.has(ph)) {
