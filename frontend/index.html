@@ -132,16 +132,104 @@
             }
         }
         .cta-glow-button {
+            position: relative;
+            overflow: hidden;
             animation: pulse-glow 2.5s infinite ease-in-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cta-glow-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 140%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .cta-glow-button:hover::after {
+            left: 140%;
         }
 
         /* FAQ expanding animation */
         .faq-answer {
             transition: max-height 0.3s ease-out;
         }
+
+        /* Premium Visual Effects */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .star-twinkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle-pulse 4s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes twinkle-pulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.6; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(-45deg, #f59e0b, rgba(245, 158, 11, 0));
+            filter: drop-shadow(0 0 6px #f59e0b);
+            animation: tail 3s ease-in-out infinite, shooting 3s ease-in-out infinite;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        @keyframes tail {
+            0% { width: 0; }
+            30% { width: 80px; }
+            100% { width: 0; }
+        }
+        @keyframes shooting {
+            0% { transform: translateX(0) translateY(0) rotate(-45deg); }
+            100% { transform: translateX(250px) translateY(250px) rotate(-45deg); }
+        }
+
+        .float-slow {
+            animation: float-slow-anim 6s ease-in-out infinite;
+        }
+        @keyframes float-slow-anim {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .rotate-slow {
+            animation: rotate-slow-anim 40s linear infinite;
+        }
+        .rotate-slow-reverse {
+            animation: rotate-slow-anim-rev 30s linear infinite;
+        }
+        @keyframes rotate-slow-anim {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes rotate-slow-anim-rev {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
     </style>
 </head>
 <body class="min-h-screen relative pt-20 pb-16 flex flex-col items-center">
+
+    <!-- Mouse Glow background element -->
+    <div id="mouse-glow" class="pointer-events-none fixed -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-amber-500/5 blur-[100px] rounded-full z-0 transition-opacity duration-300 opacity-0 sm:opacity-100"></div>
 
     <!-- Rotating Magic Circle Background Elements -->
     <div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border-[1px] border-dashed border-amber-500/40 rounded-full magic-circle flex items-center justify-center z-0">
@@ -181,56 +269,114 @@
 
     <!-- Main Landing Page Container -->
     <main id="main-landing" class="w-full max-w-5xl relative z-10 flex flex-col items-center">
-        <!-- Hero Section (Compressed & Outcome-Driven for Premium Branding) -->
-        <div class="text-center mt-8 mb-16 animate-float flex flex-col items-center px-4">
-            <div class="relative inline-flex items-center justify-center mb-6">
-                <div class="absolute inset-0 bg-amber-500/30 blur-2xl rounded-full w-24 h-24 mx-auto"></div>
-                <div class="w-20 h-20 rounded-full border-2 border-amber-400 flex items-center justify-center bg-gradient-to-b from-amber-800 to-yellow-900 shadow-[0_0_20px_rgba(245,158,11,0.6)] relative z-10">
-                    <i class="fa-solid fa-moon text-4xl text-yellow-200 glow-icon"></i>
-                </div>
-            </div>
+        <!-- Hero Section (Premium Glass Container with Spacing & Structural Borders) -->
+        <div class="w-full mt-6 mb-16 px-4 md:px-6 relative overflow-hidden reveal">
+            <!-- Twinkling stars container inside -->
+            <div id="hero-stars" class="absolute inset-0 z-0 pointer-events-none"></div>
             
-            <h2 class="text-5xl md:text-6xl font-bold mb-2 text-title-gradient font-serif tracking-wide">
-                <span class="lang-th">ลิขิตฟ้า</span>
-                <span class="lang-en">Likit Fah</span>
-            </h2>
-            <p class="text-amber-200/70 font-medium tracking-[0.3em] uppercase text-[10px] mb-4 mt-2">Premium Astrology Platform</p>
-            
-            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 max-w-2xl drop-shadow-md leading-tight">
-                <span class="lang-th">วิเคราะห์เจาะลึก แผนผังชะตาชีวิตเฉพาะคุณ</span>
-                <span class="lang-en">Deeply Decode Your Personalized Destiny Map</span>
-            </h1>
-            
-            <div class="flex flex-col items-center gap-2.5 mb-8 text-yellow-400 text-sm md:text-base font-semibold max-w-xl px-4">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
-                    <span class="lang-th">ค้นพบจุดแข็งของชีวิตใน 3 นาที</span>
-                    <span class="lang-en">Discover your life's strengths in 3 minutes</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
-                    <span class="lang-th">รู้จังหวะชีวิต การงาน ความรัก การเงิน รายปี</span>
-                    <span class="lang-en">Know your life rhythm: career, love, and finance</span>
-                </div>
-            </div>
+            <!-- Large structural glass card wrapping the hero to prevent floating text look -->
+            <div class="glass-panel p-6 md:p-12 rounded-3xl border border-amber-500/20 shadow-[0_0_60px_rgba(245,158,11,0.08)] backdrop-blur-lg w-full relative overflow-hidden">
+                <!-- Golden inner border reflection line -->
+                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/40 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-amber-400/10 to-transparent"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+                    <!-- Left Side Content -->
+                    <div class="lg:col-span-7 flex flex-col items-start text-left">
+                        <!-- Pre-header emotional hook -->
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-4 animate-pulse">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                            </span>
+                            <span class="lang-th">ชีวิตคุณกำลังเดินมาถูกทางหรือไม่? ค้นพบศักยภาพของคุณ</span>
+                            <span class="lang-en">Is your life on the right path? Discover your potential</span>
+                        </div>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-lg px-4">
-                <!-- 🔮 Branded main CTA button -->
-                <button onclick="openWizard()" class="w-full sm:w-auto whitespace-nowrap px-6 py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-black font-extrabold text-sm sm:text-base rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.5)] transition-all duration-300 hover:scale-[1.04] cta-glow-button flex justify-center items-center gap-1.5 border border-yellow-300/40">
-                    <span class="lang-th">🔮 วิเคราะห์ดวงชะตาฟรี</span>
-                    <span class="lang-en">🔮 Free Reading</span>
-                    <i class="fa-solid fa-arrow-right text-xs sm:text-sm"></i>
-                </button>
-                <a href="#sample-report" class="w-full sm:w-auto whitespace-nowrap px-6 py-3.5 rounded-xl border border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/15 text-amber-300 font-bold text-sm sm:text-base transition-all duration-300 hover:border-amber-400 flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-eye text-amber-400 text-xs sm:text-sm"></i>
-                    <span class="lang-th">ดูตัวอย่างรายงาน</span>
-                    <span class="lang-en">View Sample Report</span>
-                </a>
+                        <h2 class="text-amber-200/70 font-semibold tracking-[0.2em] uppercase text-[9px] sm:text-[10px] mb-2">Premium Astrology Platform</h2>
+                        
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight font-serif mb-4">
+                            <span class="lang-th">ลิขิตฟ้า <br><span class="text-title-gradient">แผนผังชะตาชีวิตเฉพาะคุณ</span></span>
+                            <span class="lang-en">Likit Fah <br><span class="text-title-gradient">Your Cosmic Destiny Map</span></span>
+                        </h1>
+                        
+                        <p class="text-slate-300 text-xs sm:text-sm md:text-base font-light leading-relaxed mb-6 max-w-xl">
+                            <span class="lang-th">วิเคราะห์เจาะลึกอุปนิสัย เส้นทางอาชีพ ทิศทางทรัพย์ และความรัก ถอดรหัสพิกัดดาว ลัคนา และการคำนวณธาตุเกิดอย่างเป็นระบบตามเวลาตกฟากที่แท้จริง</span>
+                            <span class="lang-en">Deeply decode your personality, career, wealth, and love. Calculated based on precise planetary systems, ascendant positions, and element weights.</span>
+                        </p>
+                        
+                        <div class="flex flex-col items-start gap-2.5 mb-8 text-yellow-300/90 text-xs sm:text-sm font-semibold max-w-xl">
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-400 text-sm shrink-0"></i>
+                                <span class="lang-th">ค้นพบจุดแข็ง-จุดอ่อนที่แท้จริงของคุณใน 3 นาที</span>
+                                <span class="lang-en">Discover your true strengths and weaknesses in 3 minutes</span>
+                            </div>
+                            <div class="flex items-center gap-2.5">
+                                <i class="fa-solid fa-circle-check text-emerald-400 text-sm shrink-0"></i>
+                                <span class="lang-th">รู้ลึกจังหวะชีวิต การงาน การเงิน ความรัก รายปี</span>
+                                <span class="lang-en">Map your yearly life rhythms: career, wealth, and relationships</span>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-start gap-3 w-full max-w-md">
+                            <!-- 🔮 Branded main CTA button -->
+                            <button onclick="openWizard()" class="w-full sm:w-auto whitespace-nowrap px-6 py-4 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-black font-extrabold text-sm sm:text-base rounded-xl shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all duration-300 hover:scale-[1.04] cta-glow-button flex justify-center items-center gap-1.5 border border-yellow-300/40">
+                                <span class="lang-th">🔮 วิเคราะห์ดวงชะตาฟรี</span>
+                                <span class="lang-en">🔮 Free Reading</span>
+                                <i class="fa-solid fa-arrow-right text-xs sm:text-sm transition-transform duration-300 group-hover:translate-x-1"></i>
+                            </button>
+                            <a href="#sample-report" class="w-full sm:w-auto whitespace-nowrap px-6 py-4 rounded-xl border border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/15 text-amber-300 font-bold text-sm sm:text-base transition-all duration-300 hover:border-amber-400 flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-eye text-amber-400 text-xs sm:text-sm"></i>
+                                <span class="lang-th">ดูตัวอย่างรายงาน</span>
+                                <span class="lang-en">View Sample Report</span>
+                            </a>
+                        </div>
+                        
+                        <!-- Seeker Counter -->
+                        <div class="flex items-center gap-2.5 mt-6 text-slate-400 text-[10px] sm:text-[11px] font-medium tracking-wide">
+                            <i class="fa-solid fa-users text-amber-400"></i>
+                            <span>
+                                <span class="lang-th">มีผู้เปิดประตูสวรรค์แล้ว <span class="live-increment-counter text-white font-extrabold font-mono">23,481</span>+ คน</span>
+                                <span class="lang-en"><span class="live-increment-counter text-white font-extrabold font-mono">23,481</span>+ seekers have unlocked their fate</span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side Visual Moon -->
+                    <div class="lg:col-span-5 flex justify-center mt-8 lg:mt-0 relative">
+                        <div class="relative w-56 h-56 md:w-72 md:h-72 flex items-center justify-center float-slow">
+                            <!-- Background Glow Beams -->
+                            <div class="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-yellow-500/10 blur-3xl rounded-full opacity-60"></div>
+                            
+                            <!-- Outer Celestial Orbit Ring 1 -->
+                            <div class="absolute w-[95%] h-[95%] border border-dashed border-amber-500/20 rounded-full rotate-slow"></div>
+                            
+                            <!-- Inner Celestial Orbit Ring 2 -->
+                            <div class="absolute w-[80%] h-[80%] border border-dotted border-yellow-400/40 rounded-full rotate-slow-reverse flex items-center justify-center">
+                                <!-- Orbit nodes -->
+                                <div class="absolute top-0 w-2 h-2 rounded-full bg-amber-400 shadow-[0_0_8px_#fbbf24]"></div>
+                                <div class="absolute bottom-0 w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></div>
+                            </div>
+                            
+                            <!-- Center floating golden 3D Moon -->
+                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full border border-yellow-300/30 bg-gradient-to-b from-amber-900 via-amber-800 to-slate-950 shadow-[0_0_45px_rgba(245,158,11,0.55)] relative z-10 flex items-center justify-center overflow-hidden">
+                                <!-- Moon texture mockup -->
+                                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-yellow-100/20 via-transparent to-black/80"></div>
+                                <div class="absolute top-4 left-6 w-8 h-8 rounded-full bg-black/20 blur-[1px]"></div>
+                                <div class="absolute top-12 left-16 w-6 h-6 rounded-full bg-black/25 blur-[1px]"></div>
+                                <div class="absolute bottom-6 left-8 w-10 h-10 rounded-full bg-black/15 blur-[1px]"></div>
+                                
+                                <!-- Subtle inner light -->
+                                <i class="fa-solid fa-moon text-yellow-100 text-6xl md:text-7xl drop-shadow-[0_0_15px_rgba(253,230,138,0.7)] animate-pulse"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- What You Will Get Section -->
-        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)]">
+        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)] reveal">
             <div class="text-center mb-12">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
                     <span class="lang-th">ขอบเขตการถอดรหัส</span>
@@ -392,7 +538,7 @@
         </div>
 
         <!-- Sample Report Section -->
-        <section id="sample-report" class="w-full px-4 mb-20 max-w-4xl relative py-12 bg-gradient-to-b from-[#0A0A1F] to-[#070714] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)]">
+        <section id="sample-report" class="w-full px-4 mb-20 max-w-4xl relative py-12 bg-gradient-to-b from-[#0A0A1F] to-[#070714] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)] reveal">
             <div class="text-center mb-10">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
                     <span class="lang-th">สัมผัสประสบการณ์พรีเมียม</span>
@@ -408,7 +554,7 @@
                 </p>
             </div>
 
-            <!-- Crisp Mock Dashboard UI with 20% free / 80% locked parts -->
+            <!-- Crisp Mock Dashboard UI with Carousel Slider -->
             <div class="relative rounded-3xl overflow-hidden border border-amber-500/25 shadow-[0_0_55px_rgba(0,0,0,0.9)] bg-slate-950/60 p-4 md:p-6 space-y-6">
                 <!-- Header Simulation (Crisp, Unlocked) -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-white/10 pb-5 gap-4">
@@ -425,142 +571,150 @@
                     </div>
                 </div>
 
-                <!-- Unlocked Charts Grid (Row 1: Bazi, Tarot, Destiny index - 100% Crisp) -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Chart 1: Bazi Elements -->
-                    <div class="bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
-                        <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
-                            <i class="fa-solid fa-circle-nodes"></i>
-                            <span class="lang-th">ชาร์ตสมดุล 5 ธาตุ</span>
-                            <span class="lang-en">Bazi Elements Balance</span>
-                        </h5>
-                        <!-- Progress bars -->
-                        <div class="space-y-3">
-                            <div>
-                                <div class="flex justify-between text-xs mb-1"><span class="text-emerald-400 font-bold">Wood (ไม้)</span><span class="text-white font-mono">35%</span></div>
-                                <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-emerald-500 h-2 rounded-full shadow-[0_0_8px_#10b981]" style="width: 35%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs mb-1"><span class="text-orange-400 font-bold">Fire (ไฟ)</span><span class="text-white font-mono">22%</span></div>
-                                <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-orange-500 h-2 rounded-full shadow-[0_0_8px_#f97316]" style="width: 22%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs mb-1"><span class="text-yellow-600 font-bold">Earth (ดิน)</span><span class="text-white font-mono">15%</span></div>
-                                <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-yellow-600 h-2 rounded-full shadow-[0_0_8px_#ca8a04]" style="width: 15%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs mb-1"><span class="text-yellow-300 font-bold">Metal (ทอง)</span><span class="text-white font-mono">18%</span></div>
-                                <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-yellow-300 h-2 rounded-full shadow-[0_0_8px_#fde047]" style="width: 18%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-xs mb-1"><span class="text-cyan-400 font-bold">Water (น้ำ)</span><span class="text-white font-mono">10%</span></div>
-                                <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-cyan-500 h-2 rounded-full shadow-[0_0_8px_#06b6d4]" style="width: 10%"></div></div>
+                <!-- Carousel Slider Wrapper -->
+                <div class="relative overflow-hidden w-full">
+                    <div id="preview-carousel-track" class="flex transition-transform duration-500 ease-out w-full" style="transform: translateX(0%)">
+                        <!-- Slide 1: Bazi Elements (Width 100%, flex-shrink-0) -->
+                        <div class="w-full shrink-0 px-2">
+                            <div class="bg-black/40 p-6 rounded-2xl border border-white/5 shadow-inner min-h-[250px] flex flex-col justify-between">
+                                <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-circle-nodes"></i>
+                                    <span class="lang-th">ชาร์ตสมดุล 5 ธาตุ (ข้อมูลทั่วไป)</span>
+                                    <span class="lang-en">Bazi Elements Balance (Free Preview)</span>
+                                </h5>
+                                <div class="space-y-3">
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1"><span class="text-emerald-400 font-bold">Wood (ไม้)</span><span class="text-white font-mono">35%</span></div>
+                                        <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-emerald-500 h-2 rounded-full shadow-[0_0_8px_#10b981]" style="width: 35%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1"><span class="text-orange-400 font-bold">Fire (ไฟ)</span><span class="text-white font-mono">22%</span></div>
+                                        <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-orange-500 h-2 rounded-full shadow-[0_0_8px_#f97316]" style="width: 22%"></div></div>
+                                    </div>
+                                    <div>
+                                        <div class="flex justify-between text-xs mb-1"><span class="text-yellow-600 font-bold">Earth (ดิน)</span><span class="text-white font-mono">15%</span></div>
+                                        <div class="w-full bg-slate-800 rounded-full h-2"><div class="bg-yellow-600 h-2 rounded-full shadow-[0_0_8px_#ca8a04]" style="width: 15%"></div></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Chart 2: Tarot Card -->
-                    <div class="bg-black/40 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center shadow-inner">
-                        <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-1.5 self-start">
-                            <i class="fa-solid fa-box-open"></i>
-                            <span class="lang-th">ไพ่นำชะตาชีวิต</span>
-                            <span class="lang-en">Personal Tarot Card</span>
-                        </h5>
-                        <div class="w-24 h-36 rounded-xl border-2 border-amber-400 bg-gradient-to-b from-amber-950 to-slate-900 flex flex-col items-center justify-center p-3 relative shadow-[0_0_20px_rgba(245,158,11,0.3)] animate-pulse">
-                            <div class="absolute inset-0.5 border border-dashed border-amber-500/40 rounded-lg"></div>
-                            <i class="fa-solid fa-sun text-amber-400 text-4xl mb-2 glow-icon"></i>
-                            <div class="text-[10px] text-amber-200 font-bold uppercase tracking-wider mt-2">The Sun</div>
-                            <div class="text-[7px] text-slate-500 uppercase font-mono tracking-widest absolute bottom-2">XIX • อาทิตย์</div>
+                        <!-- Slide 2: Tarot Card & Destiny Index (Width 100%, flex-shrink-0) -->
+                        <div class="w-full shrink-0 px-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Card A: Tarot -->
+                            <div class="bg-black/40 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center shadow-inner min-h-[250px]">
+                                <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-1.5 self-start">
+                                    <i class="fa-solid fa-box-open"></i>
+                                    <span class="lang-th">ไพ่นำชะตาชีวิต</span>
+                                    <span class="lang-en">Personal Tarot Card</span>
+                                </h5>
+                                <div class="w-24 h-36 rounded-xl border-2 border-amber-400 bg-gradient-to-b from-amber-950 to-slate-900 flex flex-col items-center justify-center p-3 relative shadow-[0_0_20px_rgba(245,158,11,0.3)] animate-pulse">
+                                    <div class="absolute inset-0.5 border border-dashed border-amber-500/40 rounded-lg"></div>
+                                    <i class="fa-solid fa-sun text-amber-400 text-4xl mb-2 glow-icon"></i>
+                                    <div class="text-[10px] text-amber-200 font-bold uppercase tracking-wider mt-2">The Sun</div>
+                                    <div class="text-[7px] text-slate-500 uppercase font-mono tracking-widest absolute bottom-2">XIX • อาทิตย์</div>
+                                </div>
+                            </div>
+                            <!-- Card B: Destiny Power Index -->
+                            <div class="bg-black/40 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center shadow-inner min-h-[250px]">
+                                <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-1.5 self-start">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                    <span class="lang-th">ดัชนีพลังชะตา</span>
+                                    <span class="lang-en">Destiny Power Index</span>
+                                </h5>
+                                <div class="relative w-28 h-28 flex items-center justify-center">
+                                    <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                                        <circle cx="50" cy="50" r="40" stroke="rgba(245, 158, 11, 0.1)" stroke-width="8" fill="transparent" />
+                                        <circle cx="50" cy="50" r="40" stroke="url(#destinyGrad)" stroke-width="8" fill="transparent"
+                                            stroke-dasharray="251.2" stroke-dashoffset="37.68" stroke-linecap="round" />
+                                    </svg>
+                                    <div class="absolute flex flex-col items-center justify-center">
+                                        <span class="text-2xl font-black text-white font-mono leading-none">85<span class="text-xs text-amber-400">/100</span></span>
+                                        <span class="text-[9px] text-emerald-400 font-bold uppercase mt-1 tracking-wider">
+                                            <span class="lang-th">ดีเยี่ยม</span>
+                                            <span class="lang-en">Excellent</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Chart 3: Destiny Power Index -->
-                    <div class="bg-black/40 p-5 rounded-2xl border border-white/5 flex flex-col items-center justify-center shadow-inner">
-                        <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-3 flex items-center gap-1.5 self-start">
-                            <i class="fa-solid fa-gauge-high"></i>
-                            <span class="lang-th">ดัชนีพลังชะตา</span>
-                            <span class="lang-en">Destiny Power Index</span>
-                        </h5>
-                        <div class="relative w-28 h-28 flex items-center justify-center">
-                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
-                                <circle cx="50" cy="50" r="40" stroke="rgba(245, 158, 11, 0.1)" stroke-width="8" fill="transparent" />
-                                <circle cx="50" cy="50" r="40" stroke="url(#destinyGrad)" stroke-width="8" fill="transparent"
-                                    stroke-dasharray="251.2" stroke-dashoffset="37.68" stroke-linecap="round" />
-                                <defs>
-                                    <linearGradient id="destinyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#f59e0b" />
-                                        <stop offset="100%" stop-color="#10b981" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div class="absolute flex flex-col items-center justify-center">
-                                <span class="text-2xl font-black text-white font-mono leading-none">85<span class="text-xs text-amber-400">/100</span></span>
-                                <span class="text-[9px] text-emerald-400 font-bold uppercase mt-1 tracking-wider">
-                                    <span class="lang-th">ดีเยี่ยม</span>
-                                    <span class="lang-en">Excellent</span>
-                                </span>
+                        <!-- Slide 3: 100-Year Life Graph & Predictions (Width 100%, flex-shrink-0 - LOCKED) -->
+                        <div class="w-full shrink-0 px-2 relative rounded-2xl overflow-hidden">
+                            <!-- Locked content wrapper with blur -->
+                            <div class="filter blur-[7px] opacity-35 select-none pointer-events-none grid grid-cols-1 md:grid-cols-3 gap-6 p-1 min-h-[250px]">
+                                <!-- Life Graph -->
+                                <div class="md:col-span-1 bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+                                    <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                        <span class="lang-th">กราฟชะตาชีวิต 100 ปี</span>
+                                        <span class="lang-en">100-Year Life Graph</span>
+                                    </h5>
+                                    <div class="h-28 flex items-end justify-between gap-2.5 px-2 pb-1 border-b border-slate-800/80">
+                                        <div class="w-full bg-amber-500/20 h-[30%] rounded-t"></div>
+                                        <div class="w-full bg-amber-500/35 h-[50%] rounded-t"></div>
+                                        <div class="w-full bg-amber-500/80 h-[85%] rounded-t"></div>
+                                        <div class="w-full bg-amber-500/50 h-[60%] rounded-t"></div>
+                                        <div class="w-full bg-amber-500/90 h-[95%] rounded-t"></div>
+                                    </div>
+                                    <div class="flex justify-between text-[9px] text-slate-500 mt-2 px-1 font-mono">
+                                        <span>20s</span><span>30s</span><span>40s</span><span>50s</span><span>60s</span>
+                                    </div>
+                                </div>
+                                <!-- Predictions -->
+                                <div class="md:col-span-2 bg-black/40 p-5 rounded-2xl border border-white/5 space-y-3.5 flex flex-col justify-center">
+                                    <div class="h-4 w-full bg-slate-500/30 rounded"></div>
+                                    <div class="h-4 w-[90%] bg-slate-500/30 rounded"></div>
+                                    <div class="h-4 w-[95%] bg-slate-500/30 rounded"></div>
+                                    <div class="h-4 w-[85%] bg-slate-500/30 rounded"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Glass overlay lock (Crisp typography & Gold Lock icon over this sub-container) -->
+                            <div class="absolute inset-0 bg-slate-950/50 backdrop-blur-[1.5px] flex flex-col items-center justify-center p-6 text-center z-20">
+                                <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xl mb-3 shadow-[0_0_15px_rgba(245,158,11,0.25)]">
+                                    <i class="fa-solid fa-lock text-yellow-300"></i>
+                                </div>
+                                <h4 class="text-base md:text-lg font-bold text-white mb-1.5">
+                                    <span class="lang-th">กราฟชีวิต 100 ปี & คำทำนายแบบละเอียดถูกล็อกอยู่</span>
+                                    <span class="lang-en">100-Year Life Graph & Detailed Predictions Locked</span>
+                                </h4>
+                                <p class="text-[11px] text-slate-300 max-w-sm mb-4 leading-relaxed">
+                                    <span class="lang-th">กรอกข้อมูล วัน เดือน ปีเกิด และเวลาตกฟาก เพื่อปลดล็อกบทวิเคราะห์ชะตาชีวิตของคุณฟรี</span>
+                                    <span class="lang-en">Enter your birth details to generate and unlock your comprehensive destiny readings.</span>
+                                </p>
+                                <button onclick="openWizard()" class="px-5 py-2.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-xs rounded-xl transition-all duration-300 shadow-md hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] flex items-center gap-1.5">
+                                    <span class="lang-th">🔮 วิเคราะห์จุดแข็ง-กราฟชีวิตฟรี</span>
+                                    <span class="lang-en">🔮 Unlock Life Graph Free</span>
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Locked Container (Row 2: Life Graph & Detailed Predictions - Blurred & Locked) -->
-                <div class="relative rounded-2xl overflow-hidden mt-6">
-                    <!-- Locked content wrapper with blur -->
-                    <div class="filter blur-[6px] opacity-30 select-none pointer-events-none grid grid-cols-1 md:grid-cols-3 gap-6 p-1">
-                        <!-- Chart 4: Life Graph (Now Locked) -->
-                        <div class="md:col-span-1 bg-black/40 p-5 rounded-2xl border border-white/5 shadow-inner">
-                            <h5 class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-4 flex items-center gap-1.5">
-                                <i class="fa-solid fa-chart-line"></i>
-                                <span class="lang-th">กราฟชะตาชีวิต 100 ปี</span>
-                                <span class="lang-en">100-Year Life Graph</span>
-                            </h5>
-                            <div class="h-28 flex items-end justify-between gap-2.5 px-2 pb-1 border-b border-slate-800/80">
-                                <div class="w-full bg-amber-500/20 h-[30%] rounded-t"></div>
-                                <div class="w-full bg-amber-500/35 h-[50%] rounded-t"></div>
-                                <div class="w-full bg-amber-500/80 h-[85%] rounded-t"></div>
-                                <div class="w-full bg-amber-500/50 h-[60%] rounded-t"></div>
-                                <div class="w-full bg-amber-500/90 h-[95%] rounded-t"></div>
-                            </div>
-                            <div class="flex justify-between text-[9px] text-slate-500 mt-2 px-1 font-mono">
-                                <span>20s</span><span>30s</span><span>40s</span><span>50s</span><span>60s</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Predictions (Now Locked) -->
-                        <div class="md:col-span-2 bg-black/40 p-5 rounded-2xl border border-white/5 space-y-3.5 flex flex-col justify-center">
-                            <div class="h-4 w-full bg-slate-500/30 rounded"></div>
-                            <div class="h-4 w-[90%] bg-slate-500/30 rounded"></div>
-                            <div class="h-4 w-[95%] bg-slate-500/30 rounded"></div>
-                            <div class="h-4 w-[85%] bg-slate-500/30 rounded"></div>
-                        </div>
+                <!-- Carousel Navigation Controls -->
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <!-- Left Arrow -->
+                    <button type="button" onclick="slideCarousel(-1)" class="w-9 h-9 rounded-full bg-slate-900 border border-white/10 hover:border-amber-500/40 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                    </button>
+                    <!-- Dot Indicators -->
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="setCarouselSlide(0)" class="carousel-dot w-2 h-2 rounded-full bg-amber-500 transition-all duration-300" aria-label="Slide 1"></button>
+                        <button type="button" onclick="setCarouselSlide(1)" class="carousel-dot w-2 h-2 rounded-full bg-slate-700 transition-all duration-300" aria-label="Slide 2"></button>
+                        <button type="button" onclick="setCarouselSlide(2)" class="carousel-dot w-2 h-2 rounded-full bg-slate-700 transition-all duration-300" aria-label="Slide 3"></button>
                     </div>
-                    
-                    <!-- Glass overlay lock (Crisp typography & Gold Lock icon over this sub-container) -->
-                    <div class="absolute inset-0 bg-slate-950/40 backdrop-blur-[1.5px] flex flex-col items-center justify-center p-6 text-center">
-                        <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 text-xl mb-3 shadow-[0_0_15px_rgba(245,158,11,0.25)]">
-                            <i class="fa-solid fa-lock text-yellow-300"></i>
-                        </div>
-                        <h4 class="text-base md:text-lg font-bold text-white mb-1.5">
-                            <span class="lang-th">กราฟชีวิต 100 ปี & คำทำนายแบบละเอียดถูกล็อกอยู่</span>
-                            <span class="lang-en">100-Year Life Graph & Detailed Predictions Locked</span>
-                        </h4>
-                        <p class="text-xs text-slate-300 max-w-sm mb-4 leading-relaxed">
-                            <span class="lang-th">กรอกข้อมูล วัน เดือน ปีเกิด และเวลาตกฟาก เพื่อปลดล็อกบทวิเคราะห์ชะตาชีวิตของคุณฟรี</span>
-                            <span class="lang-en">Enter your birth details to generate and unlock your comprehensive destiny readings.</span>
-                        </p>
-                        <button onclick="openWizard()" class="px-5 py-2.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-black font-extrabold text-xs rounded-xl transition-all duration-300 shadow-md hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] flex items-center gap-1.5">
-                            <span class="lang-th">🔮 วิเคราะห์จุดแข็ง-กราฟชีวิตฟรี</span>
-                            <span class="lang-en">🔮 Unlock Life Graph Free</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </button>
-                    </div>
+                    <!-- Right Arrow -->
+                    <button type="button" onclick="slideCarousel(1)" class="w-9 h-9 rounded-full bg-slate-900 border border-white/10 hover:border-amber-500/40 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300">
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
                 </div>
             </div>
         </section>
 
         <!-- Astrology Methodologies Section (🌟 Priority 4: Trust & Methodology) -->
-        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)]">
+        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)] reveal">
             <div class="text-center mb-10">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
                     <span class="lang-th">ความน่าเชื่อถือทางหลักวิชา</span>
@@ -742,7 +896,8 @@
         </div>
 
         <!-- Testimonials Section -->
-        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)]">
+        <!-- Testimonials Section -->
+        <section class="w-full px-4 mb-20 max-w-4xl py-12 bg-gradient-to-b from-[#070714] to-[#0A0A1F] rounded-3xl border border-white/5 shadow-[0_0_35px_rgba(0,0,0,0.4)] reveal">
             <div class="text-center mb-10">
                 <h4 class="text-[11px] font-bold text-amber-500 uppercase tracking-widest mb-2">
                     <span class="lang-th">ความประทับใจจากผู้ใช้งาน</span>
@@ -762,9 +917,9 @@
                         <div class="flex items-center gap-1 text-amber-400 mb-3 text-xs">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4">
-                            <span class="lang-th">"แม่นยำจนน่าตกใจค่ะ! ระบบสามารถวิเคราะห์เรื่องทิศทางสายงานได้ตรงกับสิ่งที่เป็นอยู่ตอนนี้มาก กราฟชีวิตช่วยให้เห็นจังหวะชีวิตในการวางแผนปีนี้ได้ดีจริงๆ"</span>
-                            <span class="lang-en">"Shockingly accurate! The system analyzed my career direction exactly as it is now. The life graph really helped me see my life's rhythm for planning this year."</span>
+                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4 min-h-[48px]">
+                            <span class="lang-th">"แม่นยำจนน่าตกใจค่ะ! วิเคราะห์สายงานตรงกับชีวิตจริงมาก ช่วยให้เห็นจังหวะชีวิตในการวางแผนปีนี้ได้ดีจริงๆ"</span>
+                            <span class="lang-en">"Shockingly accurate! The career guidance is spot on and helped me map out my plans for this year with absolute clarity."</span>
                         </p>
                     </div>
                     <div class="flex items-center gap-3 pt-3 border-t border-white/5">
@@ -788,9 +943,9 @@
                         <div class="flex items-center gap-1 text-amber-400 mb-3 text-xs">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4">
-                            <span class="lang-th">"ชอบการออกแบบที่พรีเมียมและกราฟฟิกสวยมากครับ อ่านง่าย ไม่ใช่มีแค่ตัวหนังสือยาวๆ เหมือนเจ้าอื่น การแบ่ง 5 ธาตุทำให้เข้าใจง่ายขึ้นเยอะ"</span>
-                            <span class="lang-en">"I love the premium design and beautiful graphics! It's so easy to read, unlike long texts from other sites. The 5 elements breakdown makes it much easier to understand."</span>
+                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4 min-h-[48px]">
+                            <span class="lang-th">"ชอบการออกแบบที่พรีเมียมและอ่านง่ายมากครับ การจัดโซนธาตุและเกจคะแนนทำให้ดูเข้าใจง่ายขึ้นเยอะเลย"</span>
+                            <span class="lang-en">"Premium design and extremely easy to read! The element balance and score gauge make destiny analysis simple."</span>
                         </p>
                     </div>
                     <div class="flex items-center gap-3 pt-3 border-t border-white/5">
@@ -814,13 +969,13 @@
                         <div class="flex items-center gap-1 text-amber-400 mb-3 text-xs">
                             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
-                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4">
-                            <span class="lang-th">"ปกติไม่ค่อยเชื่อเรื่องพวกนี้ แต่พอได้ลองเปิดคำทำนายแล้วตรงมากจนต้องแชร์ให้เพื่อนๆ ลองด้วยเลยค่ะ โดยเฉพาะจุดแข็ง-จุดอ่อนที่เตือนมาคือกรงกับตัวเราจริงๆ"</span>
-                            <span class="lang-en">"Usually I don't believe in these things, but after checking my destiny, it was so accurate I had to share with my friends. The warnings about strengths and weaknesses are spot on."</span>
+                        <p class="text-slate-300 text-xs md:text-sm font-light leading-relaxed mb-4 min-h-[48px]">
+                            <span class="lang-th">"กราฟทศวรรษตรงมากค่ะ โดยเฉพาะคำเตือนจุดอ่อนสะกิดใจได้ดี คุ้มค่าและอยากแนะนำให้ทุกคนลองเปิดดวงกัน"</span>
+                            <span class="lang-en">"Decade analysis is incredibly accurate. The warnings about my personal weaknesses are spot on. Must try!"</span>
                         </p>
                     </div>
                     <div class="flex items-center gap-3 pt-3 border-t border-white/5">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-white text-xs font-bold font-mono">NL</div>
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-500 to-yellow-600 flex items-center justify-center text-white text-xs font-bold font-mono font-serif">NL</div>
                         <div>
                             <h5 class="text-white text-xs font-bold">
                                 <span class="lang-th">นลินี เลิศวิจิตร</span>
@@ -910,6 +1065,91 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button type="button" onclick="toggleFAQ(4)" class="w-full px-5 py-4 text-left flex justify-between items-center text-white hover:text-amber-300 font-bold transition-colors text-sm sm:text-base gap-4">
+                        <span>
+                            <span class="lang-th">4. ระบบนี้ใช้ศาสตร์ทางโหราศาสตร์ด้านใดในการคำนวณ?</span>
+                            <span class="lang-en">4. Which astrological methodology does this platform use?</span>
+                        </span>
+                        <i id="faq-icon-4" class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-4" class="faq-answer max-h-0 overflow-hidden bg-slate-900/10 transition-all duration-300">
+                        <div class="px-5 pb-5 pt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed border-t border-white/5">
+                            <span class="lang-th">ระบบของเราผสานรวมโหราศาสตร์ตะวันตก (โหราศาสตร์เชิงดาราศาสตร์ระดับพิกัดจริง) เข้ากับศาสตร์แห่งธาตุทั้ง 5 ของตะวันออก เพื่อให้ได้การวิเคราะห์ที่ครอบคลุม ทั้งด้านการกระทำ ธาตุตัวตน และแนวโน้มพลังงานประจำปี</span>
+                            <span class="lang-en">Our platform integrates Western astrology (based on precise astronomical coordinates) with the Eastern 5 Elements (Bazi) system. This provides a comprehensive reading of your core elements and yearly energy cycles.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button type="button" onclick="toggleFAQ(5)" class="w-full px-5 py-4 text-left flex justify-between items-center text-white hover:text-amber-300 font-bold transition-colors text-sm sm:text-base gap-4">
+                        <span>
+                            <span class="lang-th">5. ผลลัพธ์จากการวิเคราะห์มีความแม่นยำสูงแค่ไหน?</span>
+                            <span class="lang-en">5. How accurate is the personal destiny report?</span>
+                        </span>
+                        <i id="faq-icon-5" class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-5" class="faq-answer max-h-0 overflow-hidden bg-slate-900/10 transition-all duration-300">
+                        <div class="px-5 pb-5 pt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed border-t border-white/5">
+                            <span class="lang-th">ความแม่นยำขึ้นอยู่กับการป้อนเวลาตกฟากที่ถูกต้องเป็นนาที ระบบของเราใช้คลังข้อมูลพิกัดดวงดาวตามจริงทางดาราศาสตร์เพื่อความเที่ยงตรงสูงสุด อย่างไรก็ตามดวงชะตาบอกแนวโน้มและความถนัดภายนอก ส่วนการเลือกทางชีวิตและการลงมือทำเป็นปัจจัยหลักในการลิขิตชีวิตจริง</span>
+                            <span class="lang-en">Accuracy relies on entering your exact birth details down to the minute. The system cross-references real-time astronomical datasets for highest alignment. However, astrology maps tendencies and potentials; your choices define your reality.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button type="button" onclick="toggleFAQ(6)" class="w-full px-5 py-4 text-left flex justify-between items-center text-white hover:text-amber-300 font-bold transition-colors text-sm sm:text-base gap-4">
+                        <span>
+                            <span class="lang-th">6. รายงานฉบับเต็ม (Full Report) มีข้อมูลแตกต่างจากฉบับเบื้องต้นอย่างไร?</span>
+                            <span class="lang-en">6. How does the Full Report differ from the free reading?</span>
+                        </span>
+                        <i id="faq-icon-6" class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-6" class="faq-answer max-h-0 overflow-hidden bg-slate-900/10 transition-all duration-300">
+                        <div class="px-5 pb-5 pt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed border-t border-white/5">
+                            <span class="lang-th">รายงานฉบับพรีเมียมตัวเต็มจะมีวิเคราะห์เจาะลึก 100 ปีอายุขัยเป็นช่วงๆ แบบละเอียดสูงสุด, แผนผังธาตุปรับสมดุลรายวันเพื่อดึงดูดโชคลาภ, คำพยากรณ์ความรักเจาะจงเนื้อคู่, และคำแนะนำแนวทางอาชีพที่ถูกจุด พร้อมวิธีแก้อุปสรรคช่วงอายุวัย</span>
+                            <span class="lang-en">The premium Full Report includes a detailed decade-by-decade 100-year life curve, daily elemental balances to attract wealth, specific love compatibility metrics, and targeted career paths with customized mitigation steps.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 7 -->
+                <div class="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button type="button" onclick="toggleFAQ(7)" class="w-full px-5 py-4 text-left flex justify-between items-center text-white hover:text-amber-300 font-bold transition-colors text-sm sm:text-base gap-4">
+                        <span>
+                            <span class="lang-th">7. มีการรับประกันความพึงพอใจและการคืนเงินหรือไม่?</span>
+                            <span class="lang-en">7. Is there a satisfaction guarantee or refund policy?</span>
+                        </span>
+                        <i id="faq-icon-7" class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-7" class="faq-answer max-h-0 overflow-hidden bg-slate-900/10 transition-all duration-300">
+                        <div class="px-5 pb-5 pt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed border-t border-white/5">
+                            <span class="lang-th">เรามุ่งมั่นนำเสนอบริการที่ดีที่สุด หากคุณพบข้อผิดพลาดของข้อมูล หรือหากคุณไม่พึงพอใจในผลลัพธ์รายงานฉบับเต็ม สามารถติดต่อฝ่ายสนับสนุนภายใน 7 วันเพื่อแจ้งเรื่องและทำรายการพิจารณาการขอคืนเงินได้เต็มจำนวน</span>
+                            <span class="lang-en">We strive to deliver the highest quality. If you experience technical errors or are dissatisfied with the premium Full Report, you can contact our support within 7 days for a review and a full refund.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 8 -->
+                <div class="glass-panel rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
+                    <button type="button" onclick="toggleFAQ(8)" class="w-full px-5 py-4 text-left flex justify-between items-center text-white hover:text-amber-300 font-bold transition-colors text-sm sm:text-base gap-4">
+                        <span>
+                            <span class="lang-th">8. ระบบมีการนำปัญญาประดิษฐ์ (AI) เข้ามาใช้ร่วมกับศาสตร์ดวงชะตาหรือไม่?</span>
+                            <span class="lang-en">8. Does the system use Artificial Intelligence (AI) for predictions?</span>
+                        </span>
+                        <i id="faq-icon-8" class="fa-solid fa-chevron-down text-amber-400 text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq-ans-8" class="faq-answer max-h-0 overflow-hidden bg-slate-900/10 transition-all duration-300">
+                        <div class="px-5 pb-5 pt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed border-t border-white/5">
+                            <span class="lang-th">ใช่ค่ะ ระบบใช้ AI อัจฉริยะในการเรียบเรียงผลลัพธ์การจัดวางตำแหน่งดวงดาวและสมดุลธาตุที่คำนวณออกมาเป็นตัวเลขวิชาการ ให้เป็นคำพยากรณ์ภาษาเขียนที่สวยงาม เข้าใจง่าย และปรับแต่งเฉพาะบุคคลเสมือนได้พูดคุยกับซินแสระดับปรมาจารย์</span>
+                            <span class="lang-en">Yes! The system uses advanced AI engines to translate mathematical planetary layouts and element weights into beautiful, highly personalized, and easily readable textual guidance, similar to a custom consultation.</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -935,9 +1175,65 @@
             </button>
         </section>
 
-        <div class="text-center mt-4 text-xs text-amber-500/40 font-medium tracking-wider">
-            <p>&copy; 2026 LikitFah.com • The Mystic Oracle</p>
+    <!-- Comprehensive Premium Footer -->
+    <footer class="w-full bg-[#05050f]/80 border-t border-amber-500/15 py-12 px-6 mt-20 relative z-10 rounded-t-3xl">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-slate-400">
+            <!-- Col 1: Brand & Desc -->
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full border border-amber-500/50 shadow-[0_0_8px_rgba(245,158,11,0.4)] flex items-center justify-center bg-gradient-to-b from-amber-900 to-slate-900">
+                        <i class="fa-solid fa-moon text-amber-400 text-sm"></i>
+                    </div>
+                    <span class="font-bold text-lg tracking-widest text-title-gradient font-serif">ลิขิตฟ้า</span>
+                </div>
+                <p class="text-xs font-light leading-relaxed">
+                    <span class="lang-th">พลิกชะตาฟ้าลิขิต ด้วยศาสตร์แห่งตัวเลขและพยากรณ์เชิงลึกระดับพรีเมียม</span>
+                    <span class="lang-en">Shape your destiny with premium astrology, numerology, and cosmic coordinates.</span>
+                </p>
+            </div>
+            <!-- Col 2: Services -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold text-white uppercase tracking-widest">
+                    <span class="lang-th">บริการของเรา</span>
+                    <span class="lang-en">Services</span>
+                </h5>
+                <ul class="text-xs font-light space-y-2.5">
+                    <li><a href="dashboard.html" class="hover:text-amber-400 transition-colors"><span class="lang-th">แดชบอร์ดรายงาน</span><span class="lang-en">Report Dashboard</span></a></li>
+                    <li><a href="chinese-calendar.html" class="hover:text-amber-400 transition-colors"><span class="lang-th">ปฏิทินจีนบาจื่อ</span><span class="lang-en">Chinese Bazi Calendar</span></a></li>
+                    <li><a href="tarot.html" class="hover:text-amber-400 transition-colors"><span class="lang-th">ทำนายไพ่ยิปซี</span><span class="lang-en">Tarot Readings</span></a></li>
+                    <li><a href="siemsi.html" class="hover:text-amber-400 transition-colors"><span class="lang-th">เซียมซีนำทาง</span><span class="lang-en">Siemsi Oracle</span></a></li>
+                </ul>
+            </div>
+            <!-- Col 3: Legal & Policy -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold text-white uppercase tracking-widest">
+                    <span class="lang-th">นโยบายและสิทธิ์</span>
+                    <span class="lang-en">Policies & Legal</span>
+                </h5>
+                <ul class="text-xs font-light space-y-2.5">
+                    <li><a href="policy.html" target="_blank" class="hover:text-amber-400 transition-colors"><span class="lang-th">นโยบายความเป็นส่วนตัว</span><span class="lang-en">Privacy Policy</span></a></li>
+                    <li><a href="terms.html" target="_blank" class="hover:text-amber-400 transition-colors"><span class="lang-th">ข้อตกลงการใช้งาน</span><span class="lang-en">Terms of Use</span></a></li>
+                    <li><a href="donate.html" class="hover:text-amber-400 transition-colors"><span class="lang-th">สนับสนุนผู้พัฒนา</span><span class="lang-en">Support Us</span></a></li>
+                </ul>
+            </div>
+            <!-- Col 4: Contact & Socials -->
+            <div class="space-y-3">
+                <h5 class="text-xs font-bold text-white uppercase tracking-widest">
+                    <span class="lang-th">ติดต่อ & ติดตาม</span>
+                    <span class="lang-en">Contact & Connect</span>
+                </h5>
+                <p class="text-xs font-light">Email: support@likitfah.com</p>
+                <div class="flex gap-4 pt-1.5 text-base">
+                    <a href="#" class="text-slate-400 hover:text-amber-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-amber-400 transition-colors"><i class="fa-brands fa-line"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-amber-400 transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
         </div>
+        <div class="border-t border-white/5 mt-10 pt-6 text-center text-[10px] text-slate-500 font-medium">
+            <p>&copy; 2026 LikitFah.com • The Mystic Oracle. All Rights Reserved.</p>
+        </div>
+    </footer>
     </main>
 
     <!-- Interactive Step Wizard Modal -->
@@ -1410,8 +1706,8 @@
                 ans.style.maxHeight = '0px';
                 icon.style.transform = 'rotate(0deg)';
             } else {
-                // Close all first to make it a true accordion
-                for (let i = 1; i <= 3; i++) {
+                // Close all first to make it a true accordion (1 to 8 items)
+                for (let i = 1; i <= 8; i++) {
                     const otherAns = document.getElementById(`faq-ans-${i}`);
                     const otherIcon = document.getElementById(`faq-icon-${i}`);
                     if (otherAns && otherAns !== ans) {
@@ -1457,6 +1753,20 @@
         // Initialize on page load
         window.addEventListener('DOMContentLoaded', () => {
             initLiveActivity();
+
+            // Sticky Mobile CTA visibility scroll handler
+            window.addEventListener('scroll', () => {
+                const mobileCta = document.getElementById('sticky-mobile-cta');
+                if (mobileCta) {
+                    if (window.scrollY > 400) {
+                        mobileCta.classList.remove('translate-y-20', 'opacity-0');
+                        mobileCta.classList.add('translate-y-0', 'opacity-100');
+                    } else {
+                        mobileCta.classList.add('translate-y-20', 'opacity-0');
+                        mobileCta.classList.remove('translate-y-0', 'opacity-100');
+                    }
+                }
+            });
         });
     </script>
     
@@ -1470,6 +1780,14 @@
             <span class="lang-th">มีผู้ใช้งานกำลังวิเคราะห์ดวงอยู่ <span class="live-user-count text-emerald-400 font-bold font-mono">18</span> คน</span>
             <span class="lang-en"><span class="live-user-count text-emerald-400 font-bold font-mono">18</span> seekers are decoding destiny now</span>
         </span>
+    </div>
+
+    <!-- Sticky Mobile CTA -->
+    <div id="sticky-mobile-cta" class="fixed bottom-0 left-0 right-0 z-[90] bg-[#0b0b1a]/95 backdrop-blur-md border-t border-amber-500/25 px-4 py-3.5 shadow-[0_-5px_25px_rgba(0,0,0,0.6)] flex sm:hidden justify-center items-center transition-all duration-300 translate-y-20 opacity-0">
+        <button onclick="openWizard()" class="w-full py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-black font-extrabold text-sm rounded-xl shadow-[0_0_15px_rgba(245,158,11,0.3)] flex justify-center items-center gap-1.5 border border-yellow-300/40">
+            <span class="lang-th">🔮 วิเคราะห์ดวงชะตาฟรี →</span>
+            <span class="lang-en">🔮 Free Reading →</span>
+        </button>
     </div>
 
     <script src="components/header.js?v=4"></script>
