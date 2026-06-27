@@ -27,7 +27,6 @@ import {
   Activity,
   Award,
   Zap,
-  Phone,
   BookOpen
 } from "lucide-react";
 
@@ -39,14 +38,63 @@ export default function Home() {
   const [liveUserCount, setLiveUserCount] = useState(18);
   const [previewTab, setPreviewTab] = useState<"bazi" | "tarot" | "graph">("bazi");
 
-  // Live Interactive Calculator States (Inside Hero Showcase!)
+  // Animated Counter States
+  const [stats, setStats] = useState({
+    seekers: 23400,
+    reports: 120100,
+    rating: 4.5
+  });
+
+  useEffect(() => {
+    const duration = 1200; // 1.2 seconds count-up duration
+    const steps = 35;
+    const stepTime = duration / steps;
+    let step = 0;
+
+    const interval = setInterval(() => {
+      step++;
+      setStats({
+        seekers: Math.min(23481, Math.floor(23400 + (81 / steps) * step)),
+        reports: Math.min(120490, Math.floor(120100 + (390 / steps) * step)),
+        rating: parseFloat(Math.min(4.9, 4.5 + (0.4 / steps) * step).toFixed(1))
+      });
+
+      if (step >= steps) {
+        clearInterval(interval);
+      }
+    }, stepTime);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Scroll Reveal Observer
+  const [scrolledSections, setScrolledSections] = useState<string[]>([]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["features-sec", "preview-sec", "testimonials-sec", "faq-sec"];
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.85) {
+            setScrolledSections(prev => prev.includes(id) ? prev : [...prev, id]);
+          }
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Trigger once on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Live Interactive Calculator States
   const [calcName, setCalcName] = useState("");
   const [calcDob, setCalcDob] = useState("1994-06-23");
   const [calcTob, setCalcTob] = useState("15:30");
   const [calcNoTime, setCalcNoTime] = useState(false);
   const [isLiveCalculating, setIsLiveCalculating] = useState(false);
 
-  // Simulated Bazi Elements derived from inputs
+  // Simulated Bazi Elements
   const [elements, setElements] = useState({
     wood: 35,
     fire: 22,
@@ -62,7 +110,6 @@ export default function Home() {
     hour: { stem: "己", branch: "亥", stemName: "Yin Earth", branchName: "Pig" }
   });
 
-  // Calculate live values whenever inputs change
   useEffect(() => {
     setIsLiveCalculating(true);
     const timer = setTimeout(() => {
@@ -141,8 +188,9 @@ export default function Home() {
       
       heroTitle: "ชีวิตคุณกำลังเดินมาถูกทางหรือไม่?",
       heroSubtitle: "วิเคราะห์จุดแข็ง-จุดอ่อน และระดับกำลังธาตุเกิดเฉพาะบุคคลด้วยสถิติดาราศาสตร์ประยุกต์และเวลาเกิดที่แท้จริงของคุณ",
-      bullet1: "วิเคราะห์สมดุลธาตุใน 3 นาที",
-      bullet2: "รู้ลึกจังหวะการงาน การเงิน ความรักรายปี",
+      bullet1: "⏱️ ใช้เวลาเพียง 3 นาที",
+      bullet2: "📊 ครอบคลุมกว่า 50 หัวข้อชีวิต",
+      bullet3: "📄 รายงานวิเคราะห์ความยาวกว่า 30 หน้า",
       btnHeroCta: "🔮 เริ่มวิเคราะห์ดวงชะตาฟรี",
       btnHeroSample: "ดูตัวอย่างรายงาน",
       seekersCount: "มีผู้ตรวจสอบดวงชะตาแล้วกว่า 23,481+ คน",
@@ -201,7 +249,7 @@ export default function Home() {
       q3: "ข้อมูลส่วนตัวของฉันจะถูกเก็บไว้ปลอดภัยหรือไม่?",
       a3: "ปลอดภัยสูงสุดแน่นอน ข้อมูลวันเดือนปีเกิดจะถูกประมวลผลสดในหน้าบราวเซอร์เพื่อวาดชาร์ตคำนวณ และจะไม่มีการจัดเก็บหรือส่งข้อมูลไปเผยแพร่ใดๆ ทั้งสิ้น",
       q4: "ศาสตร์ที่ระบบใช้คำนวณอ้างอิงจากหลักการใด?",
-      a4: "ระบบผสานพิกัดองศาดาวจริงทางดาราศาสตร์สากลเข้ากับวิชาพลัง 5 ธาตุและปฏิทินจีนบาจื่อดั้งเดิมเพื่อความครอบคลุมและแม่นยำที่สุด",
+      a4: "ระบบผสมผสานตำแหน่งพิกัดองศาดาวจริงทางดาราศาสตร์สากลเข้ากับวิชาพลัง 5 ธาตุและปฏิทินจีนบาจื่อดั้งเดิมเพื่อความครอบคลุมและแม่นยำที่สุด",
       q5: "ทำไมผลการคำนวณถึงให้ความสำคัญกับเวลาตกฟากมาก?",
       a5: "เพราะเวลาตกฟาก (นาทีเกิด) เป็นจุดตัดสินตำแหน่งลัคนาและองศาดาวที่ขยับตัวตลอดเวลา การระบุชั่วโมงเกิดจึงช่วยเจาะลึกพลังดวงชะตาได้ดีที่สุด",
       q6: "กราฟชีวิต 100 ปีวิเคราะห์แนวโน้มชะตาจากจุดใด?",
@@ -226,7 +274,7 @@ export default function Home() {
       btnNext: "ขั้นตอนถัดไป",
       btnPrev: "ย้อนกลับ",
       btnSubmit: "🔮 เริ่มคำนวณดวงชะตา",
-      disclaimer: "ข้อมูลความปลอดภัยได้รับการวิเคราะห์เฉพาะบนเบราว์เซอร์และเป็นส่วนตัว 100%",
+      disclaimer: "ข้อมูลความปลอดภัยได้รับการวิเคราะห์เฉพาะบนเบราบรเซอร์และเป็นส่วนตัว 100%",
       loadingTitle: "ระบบเซิร์ฟเวอร์ดวงดาวกำลังถอดรหัส...",
       loadingS1: "ตรวจสอบพิกัดองศาดาว ณ วันและเวลาเกิด",
       loadingS2: "คำนวณสมดุลองศาลัคนาและดาวเจ้าเรือน",
@@ -246,8 +294,9 @@ export default function Home() {
       
       heroTitle: "Is Your Life Heading in the Right Direction?",
       heroSubtitle: "Discover your cosmic blueprint and five elements balance computed from precise astronomical calculations.",
-      bullet1: "Analyze elements balance in 3 minutes",
-      bullet2: "Decode career, wealth & love yearly transits",
+      bullet1: "⏱️ Analyze elements balance in 3 mins",
+      bullet2: "📊 Over 50 life parameters parsed",
+      bullet3: "📄 Detailed report length over 30 pages",
       btnHeroCta: "🔮 Begin Free Analysis",
       btnHeroSample: "View Sample Report",
       seekersCount: "Over 23,481+ seekers have checked their charts",
@@ -290,7 +339,7 @@ export default function Home() {
       rev1: "The career alignment is spot-on. The element balance helped me plan out my year with absolute clarity.",
       rev1User: "Kanda Promraksa",
       rev1Role: "Digital Marketer • Bangkok",
-      rev2: "I love the clean, modern dashboard design. Visualizing Bazi coordinates makes it easy to digest.",
+      rev2: "I love the clean, modern dashboard design. Visualizing Bazi coordinates makes it easy to understand.",
       rev2User: "Somchai Tangwittaya",
       rev2Role: "Business Owner • Chiang Mai",
       rev3: "Decade transition curve is highly accurate. High-end colors and typography. Highly recommended!",
@@ -458,9 +507,11 @@ export default function Home() {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Hero Left Content (5 columns) */}
           <div className="lg:col-span-5 flex flex-col gap-6 text-left items-start">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/25 text-violet-400 text-[10px] font-bold uppercase tracking-wider animate-pulse-subtle">
+            
+            {/* Animated Trust Signal Tag */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/25 text-violet-400 text-[10px] font-bold uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-              <span>Celestial Algorithm v2.0</span>
+              <span>⭐ 4.9/5 ({stats.seekers.toLocaleString()}+ ผู้ใช้งาน) | {stats.reports.toLocaleString()}+ วิเคราะห์แล้ว</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white font-serif tracking-tight leading-tight lg:leading-[1.1] text-saas-gradient">
@@ -471,6 +522,7 @@ export default function Home() {
               {currentTranslations.heroSubtitle}
             </p>
 
+            {/* Tangible benefits bullets */}
             <div className="flex flex-col gap-3 text-xs text-slate-300 font-semibold w-full">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -480,6 +532,10 @@ export default function Home() {
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>{currentTranslations.bullet2}</span>
               </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{currentTranslations.bullet3}</span>
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full pt-2">
@@ -488,7 +544,7 @@ export default function Home() {
                   setWizardOpen(true);
                   setCurrentStep(1);
                 }}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-black font-extrabold text-xs shadow-[0_4px_25px_rgba(245,158,11,0.25)] transition-all hover:scale-[1.02] flex justify-center items-center gap-2 border border-yellow-300/30 cursor-pointer"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:via-yellow-300 hover:to-amber-400 text-black font-extrabold text-xs transition-all hover:scale-[1.02] flex justify-center items-center gap-2 border border-yellow-300/30 cursor-pointer shadow-[0_4px_30px_rgba(245,158,11,0.35)] hover:shadow-[0_4px_45px_rgba(245,158,11,0.55)]"
               >
                 <span>{currentTranslations.btnHeroCta}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -501,114 +557,114 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Hero Right Content - Interactive Bazi Calculator Showcase (7 columns) */}
-          <div className="lg:col-span-7 bg-[#0b0c16]/60 rounded-2xl border border-white/10 p-6 md:p-7 flex flex-col gap-5 relative overflow-hidden shadow-2xl backdrop-blur-md">
+          {/* Hero Right Content - Interactive Bazi Calculator Showcase (7 columns - ENHANCED SIZE BY ~18%) */}
+          <div className="lg:col-span-7 bg-[#0b0c16]/60 rounded-2xl border border-white/10 p-7 md:p-8 flex flex-col gap-6 relative overflow-hidden shadow-[0_20px_60px_rgba(139,92,246,0.18)] backdrop-blur-md min-h-[380px] w-full">
             {/* Spinning subtle astrology circles background */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] border border-dashed border-white/5 rounded-full pointer-events-none animate-spin-slow opacity-15"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] border border-dashed border-white/5 rounded-full pointer-events-none animate-spin-slow opacity-20"></div>
 
-            <div className="flex items-center justify-between border-b border-white/5 pb-3 gap-4 relative z-10">
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
-                  {isLiveCalculating ? <Loader2 className="w-4.5 h-4.5 animate-spin" /> : <Activity className="w-4.5 h-4.5 animate-pulse" />}
+            <div className="flex items-center justify-between border-b border-white/5 pb-4 gap-4 relative z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-violet-600/10 border border-violet-500/20 flex items-center justify-center text-violet-400">
+                  {isLiveCalculating ? <Loader2 className="w-5 h-5 animate-spin" /> : <Activity className="w-5 h-5 animate-pulse" />}
                 </div>
                 <div>
-                  <h4 className="text-white font-bold text-xs">{calcName ? calcName : (lang === "en" ? "Guest Seeker" : "ผู้เข้าตรวจดวงชะตา")}</h4>
-                  <p className="text-[9px] text-slate-500 font-mono">
-                    Element: <span className="text-emerald-400 font-bold uppercase">{pillars.day.stemName} ({pillars.day.stem})</span>
+                  <h4 className="text-white font-bold text-xs md:text-sm">{calcName ? calcName : (lang === "en" ? "Guest Seeker" : "ผู้เข้าตรวจดวงชะตา")}</h4>
+                  <p className="text-[10px] md:text-[11px] text-slate-550 font-mono">
+                    Element: <span className="text-emerald-450 font-bold uppercase">{pillars.day.stemName} ({pillars.day.stem})</span>
                   </p>
                 </div>
               </div>
-              <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[9px] font-bold">Interactive Sandbox</span>
+              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-bold">Interactive Sandbox</span>
             </div>
 
-            {/* Sandbox Inputs integrated directly above Bazi output inside the card */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 relative z-10">
+            {/* Sandbox Inputs */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 relative z-10">
               <div className="flex flex-col gap-1">
-                <label className="text-[8px] font-bold text-slate-500 uppercase tracking-wider">Seeker Name</label>
+                <label className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Seeker Name</label>
                 <input 
                   type="text" 
                   value={calcName}
                   onChange={(e) => setCalcName(e.target.value)}
                   placeholder="ณัฐวุฒิ ใจดี"
-                  className="w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all"
+                  className="w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2.5 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[8px] font-bold text-slate-500 uppercase tracking-wider">Birth Date (ค.ศ.)</label>
+                <label className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Birth Date (ค.ศ.)</label>
                 <input 
                   type="date" 
                   value={calcDob}
                   onChange={(e) => setCalcDob(e.target.value)}
-                  className="w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all cursor-pointer"
+                  className="w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2.5 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all cursor-pointer"
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[8px] font-bold text-slate-500 uppercase tracking-wider">Birth Time</label>
+                <label className="text-[9px] font-bold text-slate-500 uppercase tracking-wider">Birth Time</label>
                 <input 
                   type="time" 
                   value={calcTob}
                   disabled={calcNoTime}
                   onChange={(e) => setCalcTob(e.target.value)}
-                  className={`w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all ${calcNoTime ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}`}
+                  className={`w-full bg-slate-950/60 border border-white/5 rounded-lg px-3 py-2.5 text-[11px] text-yellow-100 font-bold focus:outline-none focus:border-violet-500 transition-all ${calcNoTime ? "opacity-30 cursor-not-allowed" : "cursor-pointer"}`}
                 />
               </div>
             </div>
 
             {/* Sandbox Bazi Results */}
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 relative z-10 items-stretch">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10 items-stretch">
               {/* 4 Pillars Table */}
-              <div className="md:col-span-5 bg-black/40 p-3 rounded-xl border border-white/5 flex flex-col gap-2.5">
-                <h5 className="text-[9px] font-bold text-amber-500/80 uppercase tracking-wider">Bazi 4 Pillars</h5>
-                <div className="grid grid-cols-4 gap-1.5 text-center">
-                  <div className="bg-slate-900/60 p-2 rounded-lg border border-white/5">
-                    <div className="text-[7px] text-slate-500 font-bold uppercase">Year</div>
-                    <div className="text-sm font-bold text-white mt-0.5">{pillars.year.stem}</div>
-                    <div className="text-[11px] font-bold text-slate-400">{pillars.year.branch}</div>
-                    <div className="text-[6px] text-slate-600 uppercase font-mono mt-1 leading-none">{pillars.year.branchName}</div>
+              <div className="md:col-span-5 bg-black/40 p-4 rounded-xl border border-white/5 flex flex-col gap-3">
+                <h5 className="text-[10px] font-bold text-amber-500/80 uppercase tracking-wider">Bazi 4 Pillars</h5>
+                <div className="grid grid-cols-4 gap-2 text-center">
+                  <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+                    <div className="text-[8px] text-slate-500 font-bold uppercase">Year</div>
+                    <div className="text-base font-bold text-white mt-1">{pillars.year.stem}</div>
+                    <div className="text-xs font-bold text-slate-400">{pillars.year.branch}</div>
+                    <div className="text-[7px] text-slate-600 uppercase font-mono mt-1.5 leading-none">{pillars.year.branchName}</div>
                   </div>
-                  <div className="bg-slate-900/60 p-2 rounded-lg border border-white/5">
-                    <div className="text-[7px] text-slate-500 font-bold uppercase">Month</div>
-                    <div className="text-sm font-bold text-white mt-0.5">{pillars.month.stem}</div>
-                    <div className="text-[11px] font-bold text-slate-400">{pillars.month.branch}</div>
-                    <div className="text-[6px] text-slate-600 uppercase font-mono mt-1 leading-none">{pillars.month.branchName}</div>
+                  <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+                    <div className="text-[8px] text-slate-500 font-bold uppercase">Month</div>
+                    <div className="text-base font-bold text-white mt-1">{pillars.month.stem}</div>
+                    <div className="text-xs font-bold text-slate-400">{pillars.month.branch}</div>
+                    <div className="text-[7px] text-slate-600 uppercase font-mono mt-1.5 leading-none">{pillars.month.branchName}</div>
                   </div>
-                  <div className="bg-slate-900/60 p-2 rounded-lg border border-white/5">
-                    <div className="text-[7px] text-slate-500 font-bold uppercase">Day</div>
-                    <div className="text-sm font-bold text-emerald-400 mt-0.5">{pillars.day.stem}</div>
-                    <div className="text-[11px] font-bold text-slate-400">{pillars.day.branch}</div>
-                    <div className="text-[6px] text-slate-600 uppercase font-mono mt-1 leading-none">{pillars.day.branchName}</div>
+                  <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+                    <div className="text-[8px] text-slate-500 font-bold uppercase">Day</div>
+                    <div className="text-base font-bold text-emerald-400 mt-1">{pillars.day.stem}</div>
+                    <div className="text-xs font-bold text-slate-400">{pillars.day.branch}</div>
+                    <div className="text-[7px] text-slate-600 uppercase font-mono mt-1.5 leading-none">{pillars.day.branchName}</div>
                   </div>
-                  <div className="bg-slate-900/60 p-2 rounded-lg border border-white/5">
-                    <div className="text-[7px] text-slate-500 font-bold uppercase">Hour</div>
-                    <div className="text-sm font-bold text-white mt-0.5">{pillars.hour.stem}</div>
-                    <div className="text-[11px] font-bold text-slate-400">{pillars.hour.branch}</div>
-                    <div className="text-[6px] text-slate-600 uppercase font-mono mt-1 leading-none">{pillars.hour.branchName}</div>
+                  <div className="bg-slate-900/60 p-2.5 rounded-lg border border-white/5">
+                    <div className="text-[8px] text-slate-500 font-bold uppercase">Hour</div>
+                    <div className="text-base font-bold text-white mt-1">{pillars.hour.stem}</div>
+                    <div className="text-xs font-bold text-slate-400">{pillars.hour.branch}</div>
+                    <div className="text-[7px] text-slate-600 uppercase font-mono mt-1.5 leading-none">{pillars.hour.branchName}</div>
                   </div>
                 </div>
               </div>
 
               {/* Elements Strength Balance */}
-              <div className="md:col-span-7 bg-black/40 p-3 rounded-xl border border-white/5 flex flex-col gap-2 justify-between">
-                <h5 className="text-[9px] font-bold text-amber-500/80 uppercase tracking-wider">5 Elements Strengths</h5>
-                <div className="space-y-1.5">
+              <div className="md:col-span-7 bg-black/40 p-4 rounded-xl border border-white/5 flex flex-col gap-3 justify-between">
+                <h5 className="text-[10px] font-bold text-amber-500/80 uppercase tracking-wider">5 Elements Strengths</h5>
+                <div className="space-y-2">
                   <div>
-                    <div className="flex justify-between text-[9px] mb-0.5"><span className="text-emerald-400 font-bold">Wood</span><span className="text-white font-mono">{elements.wood}%</span></div>
+                    <div className="flex justify-between text-[10px] mb-0.5"><span className="text-emerald-400 font-bold">Wood</span><span className="text-white font-mono">{elements.wood}%</span></div>
                     <div className="w-full bg-slate-800 rounded-full h-1"><div className="bg-emerald-500 h-1 rounded-full transition-all duration-500" style={{ width: `${elements.wood}%` }}></div></div>
                   </div>
                   <div>
-                    <div className="flex justify-between text-[9px] mb-0.5"><span className="text-orange-400 font-bold">Fire</span><span className="text-white font-mono">{elements.fire}%</span></div>
+                    <div className="flex justify-between text-[10px] mb-0.5"><span className="text-orange-400 font-bold">Fire</span><span className="text-white font-mono">{elements.fire}%</span></div>
                     <div className="w-full bg-slate-800 rounded-full h-1"><div className="bg-orange-500 h-1 rounded-full transition-all duration-500" style={{ width: `${elements.fire}%` }}></div></div>
                   </div>
                   <div>
-                    <div className="flex justify-between text-[9px] mb-0.5"><span className="text-yellow-600 font-bold">Earth</span><span className="text-white font-mono">{elements.earth}%</span></div>
+                    <div className="flex justify-between text-[10px] mb-0.5"><span className="text-yellow-600 font-bold">Earth</span><span className="text-white font-mono">{elements.earth}%</span></div>
                     <div className="w-full bg-slate-800 rounded-full h-1"><div className="bg-yellow-600 h-1 rounded-full transition-all duration-500" style={{ width: `${elements.earth}%` }}></div></div>
                   </div>
                   <div>
-                    <div className="flex justify-between text-[9px] mb-0.5"><span className="text-slate-300 font-bold">Metal</span><span className="text-white font-mono">{elements.metal}%</span></div>
+                    <div className="flex justify-between text-[10px] mb-0.5"><span className="text-slate-350 font-bold">Metal</span><span className="text-white font-mono">{elements.metal}%</span></div>
                     <div className="w-full bg-slate-800 rounded-full h-1"><div className="bg-zinc-400 h-1 rounded-full transition-all duration-500" style={{ width: `${elements.metal}%` }}></div></div>
                   </div>
                   <div>
-                    <div className="flex justify-between text-[9px] mb-0.5"><span className="text-sky-400 font-bold">Water</span><span className="text-white font-mono">{elements.water}%</span></div>
+                    <div className="flex justify-between text-[10px] mb-0.5"><span className="text-sky-400 font-bold">Water</span><span className="text-white font-mono">{elements.water}%</span></div>
                     <div className="w-full bg-slate-800 rounded-full h-1"><div className="bg-sky-500 h-1 rounded-full transition-all duration-500" style={{ width: `${elements.water}%` }}></div></div>
                   </div>
                 </div>
@@ -618,8 +674,8 @@ export default function Home() {
             {/* Live Calculating Overlay */}
             {isLiveCalculating && (
               <div className="absolute inset-0 bg-[#03040c]/45 backdrop-blur-[1px] flex items-center justify-center z-25">
-                <div className="flex items-center gap-2 bg-slate-900 border border-white/10 px-3.5 py-1.5 rounded-lg text-[10px] text-violet-400 font-bold">
-                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                <div className="flex items-center gap-2 bg-slate-900 border border-white/10 px-4 py-2 rounded-xl text-xs text-violet-400 font-bold">
+                  <Loader2 className="w-4 h-4 animate-spin" />
                   <span>{currentTranslations.liveCalculating}</span>
                 </div>
               </div>
@@ -671,7 +727,10 @@ export default function Home() {
         </div>
 
         {/* Report Features Showcase Info */}
-        <section className="flex flex-col gap-10">
+        <section 
+          id="features-sec" 
+          className={`flex flex-col gap-10 transition-all duration-700 transform ${scrolledSections.includes("features-sec") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
           <div className="text-center flex flex-col gap-2">
             <h2 className="text-xl md:text-2xl font-bold text-white font-serif">{currentTranslations.featuresTitle}</h2>
             <p className="text-slate-400 text-xs">{currentTranslations.featuresSub}</p>
@@ -703,7 +762,10 @@ export default function Home() {
         </section>
 
         {/* Tabbed Report Preview Section */}
-        <section className="flex flex-col gap-8 scroll-mt-24">
+        <section 
+          id="preview-sec" 
+          className={`flex flex-col gap-8 scroll-mt-24 transition-all duration-700 transform ${scrolledSections.includes("preview-sec") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
           <div className="text-center flex flex-col gap-2">
             <h2 className="text-xl md:text-2xl font-bold text-white font-serif">{currentTranslations.previewTitle}</h2>
             <p className="text-slate-400 text-xs">{currentTranslations.previewSub}</p>
@@ -821,7 +883,10 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="flex flex-col gap-10">
+        <section 
+          id="testimonials-sec" 
+          className={`flex flex-col gap-10 transition-all duration-700 transform ${scrolledSections.includes("testimonials-sec") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
           <div className="text-center flex flex-col gap-2">
             <h2 className="text-xl md:text-2xl font-bold text-white font-serif">{currentTranslations.testimonialsTitle}</h2>
             <p className="text-slate-400 text-xs">{currentTranslations.testimonialsSub}</p>
@@ -887,7 +952,10 @@ export default function Home() {
         </div>
 
         {/* FAQ Accordion */}
-        <section className="flex flex-col gap-12">
+        <section 
+          id="faq-sec" 
+          className={`flex flex-col gap-12 transition-all duration-700 transform ${scrolledSections.includes("faq-sec") ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
           <div className="text-center flex flex-col gap-2">
             <h2 className="text-2xl md:text-3xl font-bold text-white font-serif">{currentTranslations.faqTitle}</h2>
             <p className="text-slate-400 text-xs">{currentTranslations.faqSub}</p>
@@ -1020,7 +1088,7 @@ export default function Home() {
             setWizardOpen(true);
             setCurrentStep(1);
           }}
-          className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-black font-extrabold text-xs rounded-xl shadow-md flex justify-center items-center gap-1.5 cursor-pointer"
+          className="w-full py-3.5 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-black font-extrabold text-xs rounded-xl shadow-[0_-2px_15px_rgba(245,158,11,0.25)] flex justify-center items-center gap-1.5 cursor-pointer"
         >
           <span>{lang === "th" ? "🔮 วิเคราะห์ดวงชะตาฟรี →" : "🔮 Free Reading →"}</span>
         </button>
