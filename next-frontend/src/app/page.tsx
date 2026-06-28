@@ -28,10 +28,11 @@ import {
   Award,
   Zap,
   BookOpen,
-  Phone
+  Phone,
+  Bell,
+  Menu
 } from "lucide-react";
 
-// Translation dictionary
 const t = {
   th: {
     brand: "ลิขิตฟ้า",
@@ -106,7 +107,7 @@ const t = {
     q2: "หากไม่รู้เวลาเกิดที่แน่นอน จะคำนวณชะตาได้หรือไม่?",
     a2: "คำนวณได้ครับ โดยระบบจะใช้ค่ากึ่งกลางวันเฉลี่ยทำการประมวลผล อย่างไรก็ตามจุดคำนวณลัคนาราศีเกิดอาจมีสัดส่วนความแม่นยำลดลงเล็กน้อย",
     q3: "ข้อมูลส่วนตัวของฉันจะถูกเก็บไว้ปลอดภัยหรือไม่?",
-    a3: "ปลอดภัยสูงสุดแน่นอน ข้อมูลวันเดือนปีเกิดจะถูกประมวลผลสดในหน้าบราวเซอร์เพื่อวาดชาร์ตคำนวณ และจะไม่มีการจัดเก็บหรือส่งข้อมูลไปเผยแพร่ใดๆ ทั้งสิ้น",
+    a3: "ปลอดภัยสูงสุดแน่นอน ข้อมูลวันเดือนปีเกิดจะถูกประมวลผลสด in หน้าบราวเซอร์เพื่อวาดชาร์ตคำนวณ และจะไม่มีการจัดเก็บหรือส่งข้อมูลไปเผยแพร่ใดๆ ทั้งสิ้น",
     q4: "ศาสตร์ที่ระบบใช้คำนวณอ้างอิงจากหลักการใด?",
     a4: "ระบบผสมผสานตำแหน่งพิกัดองศาดาวจริงทางดาราศาสตร์สากลเข้ากับวิชาพลัง 5 ธาตุและปฏิทินจีนบาจื่อดั้งเดิมเพื่อความครอบคลุมและแม่นยำที่สุด",
     q5: "ทำไมผลการคำนวณถึงให้ความสำคัญกับเวลาตกฟากมาก?",
@@ -260,38 +261,7 @@ export default function Home() {
   const currentTranslations = t[lang];
   const [wizardOpen, setWizardOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [faqOpen, setFaqOpen] = useState<number | null>(null);
   const [liveUserCount, setLiveUserCount] = useState(18);
-  const [previewTab, setPreviewTab] = useState<"bazi" | "tarot" | "graph">("bazi");
-
-  // Animated Counter States
-  const [stats, setStats] = useState({
-    seekers: 23400,
-    reports: 120100,
-    rating: 4.5
-  });
-
-  useEffect(() => {
-    const duration = 1200; 
-    const steps = 35;
-    const stepTime = duration / steps;
-    let step = 0;
-
-    const interval = setInterval(() => {
-      step++;
-      setStats({
-        seekers: Math.min(23481, Math.floor(23400 + (81 / steps) * step)),
-        reports: Math.min(120490, Math.floor(120100 + (390 / steps) * step)),
-        rating: parseFloat(Math.min(4.9, 4.5 + (0.4 / steps) * step).toFixed(1))
-      });
-
-      if (step >= steps) {
-        clearInterval(interval);
-      }
-    }, stepTime);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Form Wizard states
   const [fullName, setFullName] = useState("");
@@ -302,6 +272,17 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionProgress, setSubmissionProgress] = useState(0);
   const [completedAnimationSteps, setCompletedAnimationSteps] = useState<number[]>([]);
+
+  // Simulation of live active seekers
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveUserCount(prev => {
+        const delta = Math.floor(Math.random() * 5) - 2;
+        return Math.max(8, Math.min(45, prev + delta));
+      });
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleNextStep = () => {
     setFormError("");
@@ -351,425 +332,468 @@ export default function Home() {
     });
   };
 
-  // Sticky Mobile CTA scroll observer
-  const [showStickyCta, setShowStickyCta] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowStickyCta(true);
-      } else {
-        setShowStickyCta(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-[#050510] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black relative">
+    <div className="min-h-screen bg-[#060214] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black relative pb-16 md:pb-0">
       
-      {/* 1. White Navbar Header matching the design reference layout */}
-      <header className="sticky top-0 z-50 w-full bg-white border-b border-slate-200 py-3.5 px-6 md:px-12 flex justify-between items-center text-slate-700 shadow-xs">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-b from-amber-500 to-amber-700 flex items-center justify-center border border-amber-500/20 shadow-xs">
+      {/* Mystical Nebula Glow Ambient Backgrounds */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[800px] overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-transparent rounded-full blur-[140px]"></div>
+        <div className="absolute top-[250px] right-[5%] w-[350px] h-[350px] bg-amber-500/5 rounded-full blur-[100px]"></div>
+      </div>
+
+      {/* Floating Dark Navbar matching the mockup header */}
+      <header className="sticky top-0 z-50 w-full bg-[#060214]/80 backdrop-blur-md border-b border-purple-950/20 py-4.5 px-6 md:px-12 flex justify-between items-center text-slate-200">
+        <div className="flex items-center gap-4">
+          <button className="text-slate-350 hover:text-white transition-colors cursor-pointer" aria-label="Menu">
+            <Menu className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Center Logo matching mockup */}
+        <div className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 flex items-center justify-center border border-amber-500/30">
             <Moon className="w-4 h-4 text-white" />
           </div>
-          <div>
-            <span className="font-serif font-black text-lg tracking-wider text-slate-900">{currentTranslations.brand}</span>
-            <p className="text-[7px] text-slate-400 uppercase tracking-widest mt-0.5 font-bold">{currentTranslations.subtitle}</p>
+          <div className="text-center">
+            <span className="font-serif font-black text-sm md:text-base tracking-wider text-title-gradient">Likit Fah</span>
+            <p className="text-[6px] text-slate-500 uppercase tracking-widest mt-0.5 font-bold">ศาลาพยากรณ์</p>
           </div>
         </div>
 
-        {/* Navigation links matching the design reference style */}
-        <nav className="hidden md:flex items-center gap-8 text-xs font-semibold text-slate-500">
-          <a href="index.html" className="text-amber-600 hover:text-amber-700 transition-colors">หน้าแรก</a>
-          <a href="chinese-calendar.html" className="hover:text-slate-900 transition-colors flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{currentTranslations.srvBazi}</a>
-          <a href="tarot.html" className="hover:text-slate-900 transition-colors flex items-center gap-1"><Sparkles className="w-3.5 h-3.5" />{currentTranslations.srvTarot}</a>
-          <a href="dashboard.html" className="hover:text-slate-900 transition-colors">{currentTranslations.navDashboard}</a>
-        </nav>
-
-        {/* Right buttons matching the design reference details */}
-        <div className="flex items-center gap-4 text-xs font-medium text-slate-400">
-          <div className="hidden lg:flex items-center gap-2.5 border-r border-slate-250 pr-4">
-            <span className="cursor-pointer hover:text-slate-650 text-[10px]">A-</span>
-            <span className="cursor-pointer hover:text-slate-650 font-bold text-slate-700">A</span>
-            <span className="cursor-pointer hover:text-slate-650 text-[13px]">A+</span>
-          </div>
-
+        {/* Right tools matching mockup */}
+        <div className="flex items-center gap-4">
           <button 
             onClick={() => setLang(prev => prev === "th" ? "en" : "th")}
-            className="w-12 py-1 rounded border border-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-500 hover:text-slate-800 hover:bg-slate-50 transition-all"
+            className="text-[10px] font-bold text-slate-400 hover:text-amber-400 transition-all border border-purple-950/40 rounded px-1.5 py-0.5"
           >
-            {lang === "th" ? "TH / EN" : "EN / TH"}
+            {lang === "th" ? "EN" : "TH"}
           </button>
           
-          <button 
-            onClick={() => {
-              setWizardOpen(true);
-              setCurrentStep(1);
-            }}
-            className="px-4.5 py-2.5 text-xs font-extrabold rounded-lg bg-[#d97706] hover:bg-[#b45309] text-white shadow-md hover:scale-[1.01] transition-all cursor-pointer"
-          >
-            {currentTranslations.navGetStarted}
+          <button className="relative text-slate-350 hover:text-white transition-colors cursor-pointer" aria-label="Notifications">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-amber-500"></span>
           </button>
+          
+          <a href="profile.html" className="w-7 h-7 rounded-full bg-slate-900 border border-purple-950/50 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
+            <User className="w-4 h-4" />
+          </a>
         </div>
       </header>
 
-      {/* 2. Deep Navy Blue Hero Section matching the image split screen exactly */}
-      <section className="bg-[#0a0f24] text-white py-16 md:py-24 px-6 md:px-12 relative overflow-hidden">
-        {/* Star orbit glow lines */}
-        <div className="absolute inset-0 z-0 bg-cover bg-center bg-fixed opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: "url('https://likitfah.com/img/9396.jpg')" }}
-        ></div>
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-amber-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      {/* Main Content Container with Mockup Layout */}
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8 md:py-12 relative z-10 flex flex-col gap-12">
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        {/* 1. Hero Section - Mystic cosmic background and rotating zodiac */}
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-gradient-to-b from-[#120a2e]/30 to-transparent rounded-3xl p-6 md:p-8 border border-purple-950/20 relative overflow-hidden">
+          {/* Subtle cosmic particle overlay */}
+          <div className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: "url('/zodiac_bg.png')" }}></div>
           
-          {/* Hero Left Content (7 columns) */}
-          <div className="lg:col-span-7 flex flex-col gap-6 text-left items-start">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[10px] font-semibold tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-              <span>⭐ Likit Fah Advisor & Astrology Consultant</span>
-            </div>
-
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black font-serif tracking-tight leading-tight lg:leading-[1.2] text-white">
-              {currentTranslations.heroTitle.split(" ").map((w, idx) => (
-                <span key={idx} className={w.includes("ชะตาชีวิต") || w.includes("Cosmic") ? "text-amber-400 block sm:inline" : ""}>
-                  {w}{" "}
-                </span>
-              ))}
+          {/* Left Text Column */}
+          <div className="md:col-span-7 flex flex-col gap-5 text-left items-start z-10">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-white font-serif tracking-tight leading-tight">
+              ค้นพบคำตอบ <br />
+              <span className="text-amber-400">ที่จักรวาลอยากบอกคุณ</span>
             </h1>
-
-            <p className="text-xs md:text-sm text-slate-350 font-light leading-relaxed max-w-xl">
-              {currentTranslations.heroSubtitle}
+            
+            <p className="text-xs text-slate-400 font-light leading-relaxed max-w-md">
+              ดูดวง แม่นยำ โดยนักพยากรณ์มืออาชีพ พร้อมให้คำแนะนำในทุกเรื่องของชีวิตและแผนผังธาตุกำเนิด
             </p>
 
-            {/* Bullets */}
-            <div className="flex flex-col gap-3.5 text-xs text-slate-200 font-semibold w-full">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
-                <span>{currentTranslations.bullet1}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
-                <span>{currentTranslations.bullet2}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
-                <span>{currentTranslations.bullet3}</span>
-              </div>
-            </div>
-
-            {/* Buttons matching the law layout styling */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full pt-3">
+            <div className="flex items-center gap-3.5 w-full pt-1">
               <button 
                 onClick={() => {
                   setWizardOpen(true);
                   setCurrentStep(1);
                 }}
-                className="w-full sm:w-auto px-7 py-4 rounded-lg bg-[#d97706] hover:bg-[#b45309] text-white font-extrabold text-xs transition-all hover:scale-[1.02] flex justify-center items-center gap-2 cursor-pointer shadow-[0_4px_25px_rgba(217,119,6,0.3)]"
+                className="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs transition-all hover:scale-[1.02] shadow-[0_4px_25px_rgba(245,158,11,0.25)] flex items-center gap-1.5 cursor-pointer"
               >
-                <span>{currentTranslations.btnHeroCta}</span>
-                <ArrowRight className="w-4 h-4" />
+                <Sparkles className="w-3.5 h-3.5 text-black" />
+                <span>ดูดวงของฉันเลย</span>
               </button>
               
-              <a 
-                href="#services-sec"
-                className="w-full sm:w-auto px-7 py-4 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-white font-bold text-xs transition-all flex justify-center items-center gap-2 cursor-pointer"
+              <button 
+                onClick={() => setWizardOpen(true)}
+                className="px-6 py-3 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
               >
-                <span>{currentTranslations.btnHeroSample}</span>
-              </a>
+                <span>ปรึกษาเรื่องที่กังวล</span>
+              </button>
             </div>
 
-            <div className="flex items-center gap-2 text-slate-500 text-[10px] font-semibold mt-1">
-              <Users className="w-3.5 h-3.5 text-amber-400" />
-              <span>มีผู้ร่วมเดินทางตรวจสอบดวงชะตาแล้วกว่า 23,481+ คน</span>
+            {/* Mockup Trust Indicators underneath Hero */}
+            <div className="grid grid-cols-3 gap-3 border-t border-purple-950/30 pt-5 mt-3 w-full">
+              <div className="flex items-start gap-2 text-left">
+                <ShieldCheck className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-[10px] text-white font-bold">แม่นยำ</div>
+                  <div className="text-[7.5px] text-slate-500">โดยนักพยากรณ์มืออาชีพ</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 text-left">
+                <Lock className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-[10px] text-white font-bold">ปลอดภัย</div>
+                  <div className="text-[7.5px] text-slate-500">ข้อมูลของคุณเป็นความลับ</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 text-left">
+                <Award className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-[10px] text-white font-bold">ครบทุกศาสตร์</div>
+                  <div className="text-[7.5px] text-slate-500">ไพ่ยิปซี, ฮวงจุ้ย, บาจื่อ</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Hero Right Content (5 columns) - Astrologer Portrait & Overlapping Badges exactly like the law layout */}
-          <div className="lg:col-span-5 flex justify-center relative">
-            <div className="relative w-full max-w-sm aspect-[3.2/4] rounded-2xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              {/* Astrologer image loaded locally */}
+          {/* Right Zodiac Wheel Image Column */}
+          <div className="md:col-span-5 flex justify-center items-center relative z-10">
+            <div className="relative w-48 h-48 md:w-56 md:h-56">
+              {/* Star dust halo */}
+              <div className="absolute inset-[-10px] bg-purple-650/10 rounded-full blur-2xl animate-pulse"></div>
+              {/* Glowing Zodiac Background Rotating */}
               <img 
-                src="/astrologer.png" 
-                alt="Astrologer Specialist" 
+                src="/zodiac_bg.png" 
+                alt="Astrology Zodiac Chart Wheel" 
+                className="w-full h-full object-contain animate-spin-slow filter drop-shadow-[0_0_20px_rgba(245,158,11,0.2)]"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* AdSense Top Ad Slot Placeholder */}
+        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-650 uppercase tracking-widest min-h-[90px] relative overflow-hidden">
+          <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Top Banner</div>
+          <span>Google AdSense Advertisement</span>
+          <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
+        </div>
+
+        {/* 2. Services Grid Section (บริการของเรา) - 8 circular mystical services */}
+        <section className="flex flex-col gap-4">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-base md:text-lg font-serif font-black text-white">บริการของเรา</h2>
+            <a href="chinese-calendar.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            
+            {/* Service 1: Tarot Card */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-amber-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all">
+                <Sparkles className="w-6 h-6 text-amber-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ดูดวงไพ่ยิปซี</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ไพ่คำทำนายด้วยไพ่ยิปซี 78 ใบ</p>
+            </div>
+
+            {/* Service 2: Bazi Calendar / Monthly */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-indigo-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all">
+                <Compass className="w-6 h-6 text-indigo-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ดูดวงรายเดือน</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ทำนายดวงชะตา 12 ราศีเจาะลึก</p>
+            </div>
+
+            {/* Service 3: Love */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-pink-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(244,114,182,0.15)] group-hover:shadow-[0_0_20px_rgba(244,114,182,0.25)] transition-all">
+                <Moon className="w-6 h-6 text-pink-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ดูดวงความรัก</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">เช็คดวงความรัก เนื้อคู่ คนโสด</p>
+            </div>
+
+            {/* Service 4: Personal Expert */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-cyan-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(34,211,238,0.15)] group-hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-all">
+                <User className="w-6 h-6 text-cyan-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ดูดวงส่วนตัว</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ปรึกษาส่วนตัวกับนักพยากรณ์</p>
+            </div>
+
+            {/* Service 5: Money & Career */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-orange-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(251,146,60,0.15)] group-hover:shadow-[0_0_20px_rgba(251,146,60,0.25)] transition-all">
+                <Activity className="w-6 h-6 text-orange-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">การเงิน การงาน</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">วิเคราะห์เจาะลึกตำแหน่งกระแสดวง</p>
+            </div>
+
+            {/* Service 6: Feng Shui */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-emerald-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(52,211,153,0.15)] group-hover:shadow-[0_0_20px_rgba(52,211,153,0.25)] transition-all">
+                <ShieldCheck className="w-6 h-6 text-emerald-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ฮวงจุ้ย</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ปรับดวงชะตาสถานที่อยู่อาศัย</p>
+            </div>
+
+            {/* Service 7: Auspicious Timing */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-red-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(248,113,113,0.15)] group-hover:shadow-[0_0_20px_rgba(248,113,113,0.25)] transition-all">
+                <Calendar className="w-6 h-6 text-red-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ฤกษ์มงคล</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">เลือกเวลาฤกษ์เริ่มสิ่งสำคัญ</p>
+            </div>
+
+            {/* Service 8: Palmistry */}
+            <div 
+              onClick={() => {
+                setWizardOpen(true);
+                setCurrentStep(1);
+              }}
+              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
+            >
+              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-teal-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(45,212,191,0.15)] group-hover:shadow-[0_0_20px_rgba(45,212,191,0.25)] transition-all">
+                <BookOpen className="w-6 h-6 text-teal-400" />
+              </div>
+              <h3 className="text-xs font-bold text-white mb-1">ลายมือ</h3>
+              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ถอดลายมือวิเคราะห์เส้นชีวิต</p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* 3. Recommendation Highlight Section (แนะนำสำหรับคุณ) */}
+        <section className="flex flex-col gap-4">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-base md:text-lg font-serif font-black text-white">แนะนำสำหรับคุณ</h2>
+            <a href="tarot.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
+          </div>
+
+          {/* Horizontal Highlight Card matching mockup */}
+          <div className="bg-[#0b061e]/40 rounded-2xl border border-purple-950/30 overflow-hidden flex flex-col sm:flex-row gap-5 p-4 items-center">
+            {/* Left side image banner */}
+            <div className="w-full sm:w-1/3 aspect-[1.8/1] sm:aspect-[1.5/1] rounded-xl overflow-hidden relative border border-purple-950/20 shrink-0">
+              <img 
+                src="/tarot_banner.png" 
+                alt="Tarot recommended banner" 
                 className="w-full h-full object-cover"
               />
-              
-              {/* Astrologer image overlay dark gradient at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0b061e]/20"></div>
+            </div>
 
-              {/* Floating Badge 1 (Top Left) */}
-              <div className="absolute top-6 -left-4 z-20 bg-slate-950/80 backdrop-blur-md border border-amber-500/30 px-3.5 py-2.5 rounded-xl flex items-center gap-2.5 shadow-lg">
-                <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-black text-xs font-black">99%</div>
-                <div>
-                  <div className="text-[9px] text-white font-bold">{lang === "th" ? "ความแม่นยำดวงชะตา" : "Cosmic Accuracy"}</div>
-                  <div className="text-[8px] text-slate-400">{lang === "th" ? "อิงองศาดาวจริง" : "Celestial Aligned"}</div>
+            {/* Right side copy and CTA */}
+            <div className="flex-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full text-left">
+              <div className="space-y-1">
+                <h3 className="text-sm font-bold text-white">เปิดไพ่พลังจักรวาล</h3>
+                <p className="text-[10px] text-slate-450 leading-relaxed font-light">เปิดไพ่ 3 ใบ รับคำแนะนำจากจักรวาล เพื่อค้นพบแนวทางที่ดีที่สุดสำหรับคุณในการดำเนินชีวิต</p>
+                <div className="flex items-center gap-2.5 pt-1">
+                  <span className="text-amber-400 font-black text-xs">199.-</span>
+                  <span className="text-slate-500 line-through text-[9px]">299.-</span>
                 </div>
               </div>
-
-              {/* Floating Badge 2 (Bottom Right) */}
-              <div className="absolute bottom-16 -right-4 z-20 bg-[#0a0f24]/90 border border-emerald-500/30 px-3.5 py-2.5 rounded-xl flex items-center gap-2.5 shadow-lg">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                  <Check className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[9px] text-white font-bold">{lang === "th" ? "วิเคราะห์รายลัคนา" : "Ascendant Report"}</div>
-                  <div className="text-[8px] text-slate-400">{lang === "th" ? "ประมวลผลด่วน 100%" : "Processed Instantly"}</div>
-                </div>
-              </div>
-
-              {/* Nameplate Overlay Card (Bottom Center) */}
-              <div className="absolute bottom-4 left-4 right-4 z-20 bg-white/95 backdrop-blur-md px-4 py-3 rounded-xl flex justify-between items-center shadow-lg border border-slate-200">
-                <div className="text-left">
-                  <h4 className="text-slate-900 font-serif font-black text-xs md:text-sm">{lang === "th" ? "อ. รินลดา โพธิ์ทอง" : "Linda Phothong"}</h4>
-                  <p className="text-[9px] text-slate-500 mt-0.5 font-semibold uppercase tracking-wider">{lang === "th" ? "ผู้เชี่ยวชาญศาสตร์จีนสากล" : "Bazi Specialist & Advisor"}</p>
-                </div>
-                <div className="w-7 h-7 rounded-full bg-amber-550/10 flex items-center justify-center text-amber-600 border border-amber-500/20">
-                  <Award className="w-4 h-4" />
-                </div>
-              </div>
+              <button 
+                onClick={() => {
+                  setWizardOpen(true);
+                  setCurrentStep(1);
+                }}
+                className="px-5 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-[10px] shadow-sm flex items-center gap-1.5 cursor-pointer shrink-0"
+              >
+                <span>ดูรายละเอียด 👈</span>
+              </button>
             </div>
           </div>
+        </section>
 
+        {/* AdSense Mid-Feed Ad Slot Placeholder */}
+        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-650 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
+          <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Mid Banner</div>
+          <span>Google AdSense Advertisement</span>
+          <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
-      </section>
 
-      {/* 3. Services / Oracles Section (Light Theme with White Cards on Light Gray Background) */}
-      <section id="services-sec" className="bg-[#f8fafc] text-slate-800 py-16 md:py-24 px-6 md:px-12 relative z-10 scroll-mt-16">
-        <div className="max-w-6xl mx-auto flex flex-col gap-12">
-          
-          <div className="text-center flex flex-col gap-2">
-            <h2 className="text-2xl md:text-3xl font-serif font-black text-slate-900">{currentTranslations.servicesTitle}</h2>
-            <p className="text-slate-500 text-xs md:text-sm font-medium">{currentTranslations.servicesSub}</p>
-            <div className="w-12 h-0.5 bg-[#d97706] mx-auto mt-2 rounded-full"></div>
+        {/* 4. Articles & Guides Section (บทความ & คู่มือ) */}
+        <section className="flex flex-col gap-4">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-base md:text-lg font-serif font-black text-white">บทความ & คู่มือ</h2>
+            <a href="dreams.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
           </div>
 
-          {/* 6 Grid cards matching the layout and detail indicators */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             
-            {/* Card 1: Bazi */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <Calendar className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvBazi}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvBaziDesc}</p>
+            {/* Article 1 */}
+            <a href="chinese-calendar.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
+                <img src="/zodiac_bg.png" alt="Zodiac Forecast Article" className="w-full h-full object-cover" />
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ ฟรีตลอดชีพ</span>
-                <a href="chinese-calendar.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">วิเคราะห์เลย →</a>
+              <div className="p-3 text-left space-y-1">
+                <h4 className="text-[10px] font-bold text-white line-clamp-2">เช็คดวงรายเดือนทั้ง 12 ราศี</h4>
+                <span className="text-[7px] text-slate-500 block">20 พ.ค. 2567</span>
               </div>
-            </div>
+            </a>
 
-            {/* Card 2: Tarot */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvTarot}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvTarotDesc}</p>
+            {/* Article 2 */}
+            <a href="dreams.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
+                <img src="/art_coins.png" alt="Wealth Article" className="w-full h-full object-cover" />
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ เปิดไพ่ฟรี</span>
-                <a href="tarot.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">ทำนายเลย →</a>
+              <div className="p-3 text-left space-y-1">
+                <h4 className="text-[10px] font-bold text-white line-clamp-2">5 วิธีเสริมดวงการเงินให้ปังตลอดปี 2567</h4>
+                <span className="text-[7px] text-slate-500 block">18 พ.ค. 2567</span>
               </div>
-            </div>
+            </a>
 
-            {/* Card 3: Siemsi */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <Compass className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvSiemsi}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvSiemsiDesc}</p>
+            {/* Article 3 */}
+            <a href="tarot.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
+                <img src="/art_love.png" alt="Love Article" className="w-full h-full object-cover" />
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ แม่นยำสูง</span>
-                <a href="siemsi.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">เสี่ยงเซียมซี →</a>
+              <div className="p-3 text-left space-y-1">
+                <h4 className="text-[10px] font-bold text-white line-clamp-2">ดูดวงความรัก คนโสด vs คนมีคู่</h4>
+                <span className="text-[7px] text-slate-500 block">15 พ.ค. 2567</span>
               </div>
-            </div>
+            </a>
 
-            {/* Card 4: Dreams */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <BookOpen className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvDreams}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvDreamsDesc}</p>
+            {/* Article 4 */}
+            <a href="dreams.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
+                <img src="/art_bedroom.png" alt="Bedroom Feng Shui Article" className="w-full h-full object-cover" />
               </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ ฟรีไม่มีกั๊ก</span>
-                <a href="dreams.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">ดูคำทำนาย →</a>
+              <div className="p-3 text-left space-y-1">
+                <h4 className="text-[10px] font-bold text-white line-clamp-2">ฮวงจุ้ยห้องนอน เสริมรัก เสริมโชค</h4>
+                <span className="text-[7px] text-slate-500 block">10 พ.ค. 2567</span>
               </div>
-            </div>
-
-            {/* Card 5: Mobile Num */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvMobileNum}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvMobileNumDesc}</p>
-              </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ เสริมดวงการค้า</span>
-                <a href="mobile-analysis.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">วิเคราะห์เบอร์ →</a>
-              </div>
-            </div>
-
-            {/* Card 6: Life Graph */}
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-xs hover:shadow-md hover:translate-y-[-2px] transition-all duration-300 flex flex-col justify-between min-h-[230px]">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-550/10 flex items-center justify-center text-amber-600 mb-4 border border-amber-550/10">
-                  <Activity className="w-5 h-5" />
-                </div>
-                <h3 className="font-serif font-black text-slate-900 text-sm md:text-base mb-2">{currentTranslations.srvGraph}</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-light">{currentTranslations.srvGraphDesc}</p>
-              </div>
-              <div className="flex justify-between items-center pt-4 border-t border-slate-100 mt-4 text-[11px] font-bold">
-                <span className="text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">🏷️ วิเคราะห์เจาะลึก</span>
-                <a href="dashboard.html" className="text-slate-700 hover:text-slate-950 flex items-center gap-1 transition-colors">ดูตัวอย่าง →</a>
-              </div>
-            </div>
+            </a>
 
           </div>
+        </section>
+
+        {/* AdSense Bottom Ad Slot Placeholder */}
+        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-655 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
+          <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Bottom Banner</div>
+          <span>Google AdSense Advertisement</span>
+          <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
-      </section>
 
-      {/* AdSense In-Feed Ad Slot Placeholder */}
-      <div className="w-full max-w-4xl mx-auto rounded-xl border border-white/5 bg-slate-900/10 p-3 flex flex-col items-center justify-center text-[9px] text-slate-650 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-4 z-10">
-        <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Mid Banner</div>
-        <span>Google AdSense Advertisement</span>
-        <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
-      </div>
+        {/* 5. Promotion Membership Banner at the bottom */}
+        <section className="bg-gradient-to-r from-purple-950/30 via-[#120a2e]/60 to-purple-950/30 border border-purple-500/20 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden">
+          {/* Glowing stardust overlay decoration */}
+          <div className="absolute top-0 right-0 w-44 h-full pointer-events-none opacity-20 select-none">
+            <img src="/tarot_banner.png" alt="Tarot cards promo art overlay" className="w-full h-full object-cover" />
+          </div>
 
-      {/* 4. Deep Navy Blue Footer Section matching the reference layout exactly */}
-      <footer className="w-full bg-[#0a0f24] text-slate-400 py-16 px-6 md:px-12 relative z-10 border-t border-white/5">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-xs leading-relaxed">
+          <div className="text-left space-y-3 z-10">
+            <span className="text-[8px] font-bold uppercase tracking-wider text-amber-500">สมัครสมาชิกวันนี้</span>
+            <h2 className="text-lg md:text-xl font-serif font-black text-white">รับสิทธิพิเศษทันที!</h2>
+            
+            <div className="flex flex-col gap-1.5 text-[10px] text-slate-300 font-medium">
+              <div className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>ดูดวงรายวันไม่จำกัด</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>ส่วนลดบริการคำพากย์พิเศษ 10%</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+                <span>สิทธิ์ปรึกษารายวันพิเศษราคาเฉพาะสมาชิก</span>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            onClick={() => {
+              setWizardOpen(true);
+              setCurrentStep(1);
+            }}
+            className="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center gap-1.5 cursor-pointer z-10 shrink-0"
+          >
+            <span>สมัครสมาชิก ✛</span>
+          </button>
+        </section>
+
+      </main>
+
+      {/* Real Footer with Social Media Links */}
+      <footer className="w-full bg-[#020108] border-t border-purple-950/20 py-8 px-6 md:px-12 mt-12 relative z-10 text-slate-500 text-xs">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[10px] font-medium">&copy; 2026 Likit Fah ศาลาพยากรณ์ All rights reserved.</p>
           
-          {/* Col 1: Logo & Brief Description */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-b from-amber-500 to-amber-700 flex items-center justify-center border border-amber-500/20 shadow-xs">
-                <Moon className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-serif font-black text-lg tracking-wider text-white">{currentTranslations.brand}</span>
-            </div>
-            <p className="text-slate-450 leading-relaxed font-light text-[11px]">{currentTranslations.footerDesc}</p>
-          </div>
-
-          {/* Col 2: เมนูด่วน (Quick Menu) */}
-          <div className="space-y-3.5">
-            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">เมนูด่วน</h5>
-            <ul className="space-y-2.5 font-light">
-              <li><a href="index.html" className="hover:text-amber-400 transition-colors">หน้าแรก</a></li>
-              <li><a href="chinese-calendar.html" className="hover:text-amber-400 transition-colors">ปฏิทินจีนบาจื่อ</a></li>
-              <li><a href="tarot.html" className="hover:text-amber-400 transition-colors">ทำนายไพ่ยิปซี</a></li>
-              <li><a href="siemsi.html" className="hover:text-amber-400 transition-colors">เสี่ยงเซียมซีนำทาง</a></li>
-              <li><a href="dreams.html" className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3: บริการหลัก (Main Services) */}
-          <div className="space-y-3.5">
-            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">บริการหลัก</h5>
-            <ul className="space-y-2.5 font-light">
-              <li><a href="chinese-calendar.html" className="hover:text-amber-400 transition-colors">ถอดรหัส 5 ธาตุเกิด</a></li>
-              <li><a href="dashboard.html" className="hover:text-amber-400 transition-colors">กราฟชีวิต 100 ปี</a></li>
-              <li><a href="mobile-analysis.html" className="hover:text-amber-400 transition-colors">วิเคราะห์เบอร์โทรศัพท์</a></li>
-              <li><a href="policy.html" className="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a></li>
-              <li><a href="terms.html" className="hover:text-amber-400 transition-colors">ข้อตกลงการใช้งาน</a></li>
-            </ul>
-          </div>
-
-          {/* Col 4: ติดต่อสอบถาม (Contact Panel matching the reference UI boxes) */}
-          <div className="space-y-4">
-            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">ติดต่อสอบถาม</h5>
-            <div className="flex flex-col gap-3">
-              <a 
-                href="tel:0896636592" 
-                className="bg-slate-900/60 hover:bg-slate-900/90 border border-white/5 hover:border-amber-500/20 px-4 py-3 rounded-lg flex items-center gap-3 transition-all text-slate-200"
-              >
-                <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
-                  <Phone className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">สายตรงเปิดดวง</div>
-                  <div className="text-xs font-black font-mono">089-663-6592</div>
-                </div>
-              </a>
-
-              <a 
-                href="mailto:support@likitfah.com" 
-                className="bg-slate-900/60 hover:bg-slate-900/90 border border-white/5 hover:border-amber-500/20 px-4 py-3 rounded-lg flex items-center gap-3 transition-all text-slate-200"
-              >
-                <div className="w-8 h-8 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 border border-amber-500/20">
-                  <Mail className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">ส่งอีเมลติดต่อ</div>
-                  <div className="text-xs font-semibold font-mono">support@likitfah.com</div>
-                </div>
-              </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="max-w-6xl mx-auto border-t border-white/5 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-slate-550 font-medium">
-          <p>&copy; 2026 JK LAW Advisor. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <span>•</span>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <div className="flex gap-4 text-base">
+            <a href="#" className="hover:text-white transition-colors" aria-label="Facebook"><Share2 className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors" aria-label="Line"><Mail className="w-4 h-4" /></a>
+            <a href="#" className="hover:text-white transition-colors" aria-label="Instagram"><Globe className="w-4 h-4" /></a>
           </div>
         </div>
       </footer>
 
-      {/* Floating Live Activity Widget */}
-      <div id="live-activity-widget" className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-[80] bg-[#03040c]/90 px-4 py-2.5 rounded-full border border-amber-500/20 shadow-lg flex items-center gap-2.5 transition-all hover:scale-[1.02]">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-        </span>
-        <span className="text-[10px] sm:text-xs text-slate-300 font-semibold">
-          {lang === "th" ? (
-            <>มีผู้ใช้งานกำลังทำนายดวงอยู่ <span className="text-amber-400 font-bold font-mono">{liveUserCount}</span> คน</>
-          ) : (
-            <><span className="text-amber-400 font-bold font-mono">{liveUserCount}</span> seekers are checking fortunes now</>
-          )}
-        </span>
-      </div>
-
-      {/* Sticky Mobile CTA */}
-      <div 
-        id="sticky-mobile-cta" 
-        className={`fixed bottom-0 left-0 right-0 z-[90] bg-white border-t border-slate-200 px-4 py-3.5 shadow-2xl flex sm:hidden justify-center items-center transition-all duration-300 ${showStickyCta ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
-      >
-        <button 
-          onClick={() => {
-            setWizardOpen(true);
-            setCurrentStep(1);
-          }}
-          className="w-full py-3.5 bg-[#d97706] hover:bg-[#b45309] text-white font-extrabold text-xs rounded-lg shadow-md flex justify-center items-center gap-1.5 cursor-pointer"
-        >
-          <span>{lang === "th" ? "🔮 ทำนายดวงชะตาสวรรค์ฟรี →" : "🔮 Free Destiny Reading →"}</span>
-        </button>
+      {/* 6. Sticky Mobile Bottom Navigation Bar matching mockup */}
+      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-[#060214]/90 backdrop-blur-md border-t border-purple-950/20 py-2.5 px-4 flex justify-around items-center text-slate-400 text-[10px] md:hidden shadow-[0_-2px_15px_rgba(0,0,0,0.4)]">
+        <a href="index.html" className="flex flex-col items-center gap-1 text-amber-500">
+          <span>🏠</span>
+          <span className="font-bold text-[9px]">หน้าหลัก</span>
+        </a>
+        <a href="dashboard.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+          <span>⭐</span>
+          <span className="font-bold text-[9px]">ดูดวงของฉัน</span>
+        </a>
+        <a href="chinese-calendar.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+          <span>㗊</span>
+          <span className="font-bold text-[9px]">บริการ</span>
+        </a>
+        <a href="dreams.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+          <span>📖</span>
+          <span className="font-bold text-[9px]">บทความ</span>
+        </a>
+        <a href="profile.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+          <span>👤</span>
+          <span className="font-bold text-[9px]">โปรไฟล์</span>
+        </a>
       </div>
 
       {/* Interactive Step Wizard Modal (Overlay Dialog) */}
       {wizardOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#03040c]/90 backdrop-blur-xs">
+        <div className="fixed inset-0 z-[105] flex items-center justify-center p-4 bg-[#03040c]/90 backdrop-blur-xs">
           <div className="absolute inset-0" onClick={() => setWizardOpen(false)}></div>
           
-          <div className="bg-[#0b0c16]/95 w-full max-w-md rounded-2xl p-6 md:p-8 relative border border-amber-500/20 shadow-2xl z-10 flex flex-col gap-6 backdrop-blur-md">
+          <div className="bg-[#0b0c16]/95 w-full max-w-md rounded-2xl p-6 md:p-8 relative border border-purple-500/20 shadow-2xl z-10 flex flex-col gap-6 backdrop-blur-md">
             
             {/* Close Button */}
             <button 
@@ -785,7 +809,7 @@ export default function Home() {
                 {/* Stepper circles */}
                 <div className="flex items-center justify-between relative px-2 mb-2">
                   <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-0.5 bg-slate-800 z-0">
-                    <div className="h-full bg-amber-500 transition-all duration-300" style={{ width: `${((currentStep - 1) / 2) * 100}%` }}></div>
+                    <div className="h-full bg-amber-550 transition-all duration-300" style={{ width: `${((currentStep - 1) / 2) * 100}%` }}></div>
                   </div>
                   
                   {[1, 2, 3].map(stepNum => {
@@ -965,7 +989,7 @@ export default function Home() {
                       >
                         <div className="shrink-0">
                           {isCompleted ? (
-                            <CheckCircle2 className="w-4 h-4 text-amber-500" />
+                            <CheckCircle2 className="w-4 h-4 text-amber-555" />
                           ) : isActive ? (
                             <Loader2 className="w-4 h-4 text-amber-555 animate-spin" />
                           ) : (
