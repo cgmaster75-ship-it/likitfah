@@ -52,7 +52,7 @@ const t = {
     heroTitleHighlight: "ที่จักรวาลอยากบอกคุณ",
     heroSubtitle: "ดูดวงแม่นยำ ด้วยศาสตร์โหราศาสตร์หลายแขนง พร้อม AI วิเคราะห์เฉพาะบุคคลโดยผู้เชี่ยวชาญศาสตร์พลังธาตุจีนและดาราศาตร์สากล",
     btnHeroCta: "🔮 วิเคราะห์ดวงชะตาของฉัน",
-    btnHeroSample: "💬 ติดต่อเรา / ปรึกษาคำถาม",
+    btnHeroSample: "☕ เลี้ยงกาแฟทีมงาน",
     seekersCount: "มีผู้เปิดดวงชะตาแล้วกว่า 23,481+ คน",
     bullet1: "✨ ตรวจสมดุล 5 ธาตุและสีมงคลประจำตัว",
     bullet2: "🃏 เปิดไพ่ยิปซีพยากรณ์ความรักและการงาน",
@@ -120,7 +120,7 @@ const t = {
     heroTitleHighlight: "The Universe Has For You",
     heroSubtitle: "High-precision calculations and multi-branch astrology reports powered by personalized AI.",
     btnHeroCta: "🔮 Reveal My Destiny",
-    btnHeroSample: "💬 Contact Us / Consult Questions",
+    btnHeroSample: "☕ Buy Us a Coffee",
     seekersCount: "Over 23,481+ seekers have checked their charts",
     bullet1: "✨ Analyze your 5-element strengths & colors",
     bullet2: "🃏 Access tarot roadmap for love & work",
@@ -568,22 +568,22 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Buttons */}
+            {/* Buttons with premium high-contrast glow */}
             <div className="flex flex-col sm:flex-row items-center gap-4 w-full pt-4">
               <button 
                 onClick={() => {
                   setWizardOpen(true);
                   setCurrentStep(1);
                 }}
-                className="w-full sm:w-auto px-10 py-5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-black text-[16px] md:text-[17px] transition-all hover:scale-[1.02] shadow-[0_4px_30px_rgba(233,196,106,0.3)] cursor-pointer flex justify-center items-center gap-2"
+                className="w-full sm:w-auto px-10 py-5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 hover:from-amber-300 hover:to-yellow-200 text-slate-950 font-black text-[16px] md:text-[17px] transition-all hover:scale-[1.02] shadow-[0_0_35px_rgba(245,158,11,0.45)] border border-amber-300/30 cursor-pointer flex justify-center items-center gap-2"
               >
                 <span>{currentTranslations.btnHeroCta}</span>
-                <ArrowRight className="w-5 h-5 text-black" />
+                <ArrowRight className="w-5 h-5 text-slate-950 font-bold" />
               </button>
               
               <a 
-                href={getLink("contact.html")}
-                className="w-full sm:w-auto px-10 py-5 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-[16px] md:text-[17px] transition-all flex justify-center items-center gap-2 cursor-pointer text-center"
+                href={getLink("donate.html")}
+                className="w-full sm:w-auto px-10 py-5 rounded-full border border-rose-500/40 bg-rose-500/10 hover:bg-rose-500/20 text-rose-250 font-extrabold text-[16px] md:text-[17px] transition-all hover:scale-[1.02] shadow-[0_0_25px_rgba(244,63,94,0.25)] flex justify-center items-center gap-2 cursor-pointer text-center"
               >
                 <span>{currentTranslations.btnHeroSample}</span>
               </a>
