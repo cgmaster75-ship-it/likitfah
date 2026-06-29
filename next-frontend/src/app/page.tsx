@@ -51,8 +51,8 @@ const t = {
     heroTitle: "ค้นพบคำตอบ",
     heroTitleHighlight: "ที่จักรวาลอยากบอกคุณ",
     heroSubtitle: "ดูดวงแม่นยำ ด้วยศาสตร์โหราศาสตร์หลายแขนง พร้อม AI วิเคราะห์เฉพาะบุคคลโดยผู้เชี่ยวชาญศาสตร์พลังธาตุจีนและดาราศาตร์สากล",
-    btnHeroCta: "🔮 ดูดวงของฉันเลย",
-    btnHeroSample: "💬 ปรึกษาเรื่องที่กังวล",
+    btnHeroCta: "🔮 วิเคราะห์ดวงชะตาของฉัน",
+    btnHeroSample: "💬 ติดต่อเรา / ปรึกษาคำถาม",
     seekersCount: "มีผู้เปิดดวงชะตาแล้วกว่า 23,481+ คน",
     bullet1: "✨ ตรวจสมดุล 5 ธาตุและสีมงคลประจำตัว",
     bullet2: "🃏 เปิดไพ่ยิปซีพยากรณ์ความรักและการงาน",
@@ -75,17 +75,17 @@ const t = {
     widgetLuckyNum: "เลขนำโชค",
     widgetLuckyColor: "สีมงคลประจำตัว",
     widgetLuckyTime: "ช่วงเวลาดีที่สุด",
-    widgetLink: "[ ดูคำทำนายทั้งหมดแบบละเอียด ]",
+    widgetLink: "[ เจาะลึกเวลาดีและทิศมงคลในปฏิทินมงคล ]",
 
     popularTitle: "บริการยอดนิยม",
     popularSub: "ศาสตร์ยอดฮิตที่มีผู้ใช้งานและวิเคราะห์เฉลี่ยต่อวันสูงสุดในระบบศาลาพยากรณ์",
 
     servicesTitle: "บริการพยากรณ์ทั้งหมด",
     servicesSub: "เลือกใช้งานศาสตร์และเครื่องมือวิเคราะห์ชะตาชีวิตอัจฉริยะแบบฟรีไม่มีค่าใช้จ่าย",
-    viewAll: "ดูทั้งหมด",
+    viewAll: "ดูบริการทั้งหมด",
 
     bottomTitle: "พร้อมถอดรหัสและค้นพบแผนผังชะตาชีวิตของคุณหรือยัง?",
-    bottomCta: "🔮 เริ่มถอดรหัสดวงชะตาฟรี",
+    bottomCta: "🔮 เริ่มถอดรหัอดวงชะตาฟรี",
     footerDesc: "พลิกชะตาฟ้าลิขิต ด้วยศาสตร์พยากรณ์ตัวเลขดาราศาสตร์และแผนผังธาตุจีนอัจฉริยะวิเคราะห์เฉพาะบุคคล",
     footerCol1: "ฟีเจอร์พยากรณ์",
     footerCol2: "ข้อตกลงและนโยบาย",
@@ -120,7 +120,7 @@ const t = {
     heroTitleHighlight: "The Universe Has For You",
     heroSubtitle: "High-precision calculations and multi-branch astrology reports powered by personalized AI.",
     btnHeroCta: "🔮 Reveal My Destiny",
-    btnHeroSample: "💬 Ask a Specialist",
+    btnHeroSample: "💬 Contact Us / Consult Questions",
     seekersCount: "Over 23,481+ seekers have checked their charts",
     bullet1: "✨ Analyze your 5-element strengths & colors",
     bullet2: "🃏 Access tarot roadmap for love & work",
@@ -143,14 +143,14 @@ const t = {
     widgetLuckyNum: "Lucky Number",
     widgetLuckyColor: "Lucky Color",
     widgetLuckyTime: "Lucky Time",
-    widgetLink: "[ View Detailed Predictions ]",
+    widgetLink: "[ Explore Auspicious Calendar Hours ]",
 
     popularTitle: "Popular Services",
     popularSub: "Our most requested and highly calculated astrology categories.",
 
     servicesTitle: "All Astrology Services",
     servicesSub: "Choose from our suite of professional destiny calculators and interactive readings free of charge.",
-    viewAll: "View All",
+    viewAll: "View All Services",
 
     bottomTitle: "Ready to Reveal Your Cosmic Blueprint?",
     bottomCta: "🔮 Begin Free Calculation",
@@ -178,6 +178,94 @@ const t = {
   }
 };
 
+// Fallback real articles from blog-list.json (to display when JSON fetch is unavailable)
+const realBlogFallback = {
+  th: [
+    {
+      title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Fool (การผจญภัยครั้งใหม่) เจาะลึกคำทำนาย",
+      desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Fool (การผจญภัยครั้งใหม่) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
+      category: "ความหมายไพ่ยิปซี",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA00.webp",
+      url: "blog/articles/tarot-the-fool-meaning.html",
+      readTime: "อ่าน 5 นาที",
+      author: "พยัคฆ์ทาโรต์",
+      views: "10,481 วิว"
+    },
+    {
+      title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Magician (ผู้เนรมิตโชคชะตา) เจาะลึกคำทำนาย",
+      desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Magician (ผู้เนรมิตโชคชะตา) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
+      category: "ความหมายไพ่ยิปซี",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA01.webp",
+      url: "blog/articles/tarot-the-magician-meaning.html",
+      readTime: "อ่าน 5 นาที",
+      author: "พยัคฆ์ทาโรต์",
+      views: "8,391 วิว"
+    },
+    {
+      title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The High Priestess (ราชินีพระจันทร์) เจาะลึกคำทำนาย",
+      desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The High Priestess (ราชินีพระจันทร์) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
+      category: "ความหมายไพ่ยิปซี",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA02.webp",
+      url: "blog/articles/tarot-the-high-priestess-meaning.html",
+      readTime: "อ่าน 6 นาที",
+      author: "พยัคฆ์ทาโรต์",
+      views: "12,042 วิว"
+    },
+    {
+      title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Empress (พระมารดาอุดมสมบูรณ์) เจาะลึกคำทำนาย",
+      desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Empress (พระมารดาอุดมสมบูรณ์) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
+      category: "ความหมายไพ่ยิปซี",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA03.webp",
+      url: "blog/articles/tarot-the-empress-meaning.html",
+      readTime: "อ่าน 5 นาที",
+      author: "พยัคฆ์ทาโรต์",
+      views: "9,881 วิว"
+    }
+  ],
+  en: [
+    {
+      title: "Premium Tarot Card Meaning: The Fool Deep Interpretation",
+      desc: "Explore the history, secrets, and forecast of the The Fool card for love, career, finance, health, advice, and reversed meanings.",
+      category: "Tarot Meanings",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA00.webp",
+      url: "blog/articles/tarot-the-fool-meaning-en.html",
+      readTime: "5 min read",
+      author: "Pyak Tarot",
+      views: "1,241 views"
+    },
+    {
+      title: "Premium Tarot Card Meaning: The Magician Deep Interpretation",
+      desc: "Explore the history, secrets, and forecast of the The Magician card for love, career, finance, health, advice, and reversed meanings.",
+      category: "Tarot Meanings",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA01.webp",
+      url: "blog/articles/tarot-the-magician-meaning-en.html",
+      readTime: "5 min read",
+      author: "Pyak Tarot",
+      views: "981 views"
+    },
+    {
+      title: "Premium Tarot Card Meaning: The High Priestess Deep Interpretation",
+      desc: "Explore the history, secrets, and forecast of the The High Priestess card for love, career, finance, health, advice, and reversed meanings.",
+      category: "Tarot Meanings",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA02.webp",
+      url: "blog/articles/tarot-the-high-priestess-meaning-en.html",
+      readTime: "6 min read",
+      author: "Pyak Tarot",
+      views: "2,042 views"
+    },
+    {
+      title: "Premium Tarot Card Meaning: The Empress Deep Interpretation",
+      desc: "Explore the history, secrets, and forecast of the The Empress card for love, career, finance, health, advice, and reversed meanings.",
+      category: "Tarot Meanings",
+      imgUrl: "https://likitfah.com/img/card/Arcana/MA03.webp",
+      url: "blog/articles/tarot-the-empress-meaning-en.html",
+      readTime: "5 min read",
+      author: "Pyak Tarot",
+      views: "1,104 views"
+    }
+  ]
+};
+
 export default function Home() {
   const [lang, setLang] = useState<"th" | "en">("th");
   const currentTranslations = t[lang];
@@ -200,6 +288,9 @@ export default function Home() {
   // Popular Services Carousel Interactive State
   const [popularActiveFilter, setPopularActiveFilter] = useState<"all" | "love" | "money" | "cards">("all");
 
+  // Dynamic Blog Articles state fetched from the real blog-list.json
+  const [blogArticles, setBlogArticles] = useState<any[]>([]);
+
   // Live Interactive Widget state (calculated dynamically based on user input or defaults)
   const [widgetName, setWidgetName] = useState("");
   const [widgetDob, setWidgetDob] = useState("1995-06-23");
@@ -220,6 +311,37 @@ export default function Home() {
 
   // FAQ Accordion State
   const [faqOpenIndex, setFaqOpenIndex] = useState<number | null>(0);
+
+  // Load Real Blog Articles from blog-list.json
+  useEffect(() => {
+    const loadRealBlogs = async () => {
+      try {
+        const response = await fetch(getLink("blog/blog-list.json"));
+        if (response.ok) {
+          const list = await response.json();
+          // Filter by language and grab first 4 entries
+          const filtered = list
+            .filter((item: any) => item.lang === lang)
+            .slice(0, 4)
+            .map((item: any) => ({
+              ...item,
+              readTime: lang === "en" ? "5 min read" : "อ่าน 5 นาที",
+              author: lang === "en" ? "Pyak Tarot" : "พยัคฆ์ทาโรต์",
+              views: lang === "en" ? "1,200 views" : "10,240 วิว"
+            }));
+          if (filtered.length > 0) {
+            setBlogArticles(filtered);
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to fetch real blog-list.json, using fallback mock", e);
+      }
+      // Fallback
+      setBlogArticles(realBlogFallback[lang]);
+    };
+    loadRealBlogs();
+  }, [lang]);
 
   // Update Horoscope Widget values on input changes
   useEffect(() => {
@@ -311,16 +433,20 @@ export default function Home() {
     });
   };
 
-  // List of all services (completely free of pricing tags to align with request)
+  // List of all REAL services in Likit Fah system (matching exact HTML files)
   const servicesList = [
-    { id: 1, title: "ดูดวงรายวัน (Daily Horoscope)", desc: "เช็คทิศทางโชคลาภรายธาตุและดัชนีดาวจรวันต่อวันฟรี", badge: "ยอดนิยม", rating: 5, category: "love", icon: <Sun className="w-6 h-6" /> },
-    { id: 2, title: "ดูดวงรายเดือน (Monthly Horoscope)", desc: "ตรวจลัคนาราศีวิเคราะห์ลึก 12 ราศีพร้อมทรานสิตปี", badge: "แนะนำ", rating: 5, category: "love", icon: <Calendar className="w-6 h-6" /> },
-    { id: 3, title: "ดูดวงความรัก (Love Horoscope)", desc: "เจาะลึกเกณฑ์เนื้อคู่ คนโสด คนมีคู่ และองศาดาวแห่งคู่ครอง", badge: "Hot", rating: 5, category: "love", icon: <Heart className="w-6 h-6" /> },
-    { id: 4, title: "ปฏิทินจีนบาจื่อ (Bazi Chart)", desc: "ตรวจวิเคราะห์สัดส่วนกำลังสมดุล 5 ธาตุหลักประจำวันเกิด", badge: "AI Recommended", rating: 5, category: "money", icon: <Compass className="w-6 h-6" /> },
-    { id: 5, title: "ทำนายไพ่ยิปซี (Tarot Readings)", desc: "เปิดไพ่พยากรณ์สากล 78 ใบคลายข้อสงสัยชีวิตเฉพาะด้าน", badge: "NEW", rating: 5, category: "cards", icon: <Sparkles className="w-6 h-6" /> },
-    { id: 6, title: "ฮวงจุ้ยบ้าน & โต๊ะทำงาน (Feng Shui)", desc: "ปรับสมดุลทิศทางและตำแหน่งเพื่อส่งเสริมพลังบวกโชคลาภ", badge: "Premium", rating: 5, category: "money", icon: <ShieldCheck className="w-6 h-6" /> },
-    { id: 7, title: "เลขนำโชคเบอร์โทรศัพท์ (Lucky Numbers)", desc: "วิเคราะห์ความหมายคู่ตัวเลขเบอร์โทรศัพท์มือถือที่ใช้หนุนชีวิต", badge: "NEW", rating: 4, category: "money", icon: <Phone className="w-6 h-6" /> },
-    { id: 8, title: "ทำนายฝันพยากรณ์ (Dream Decode)", desc: "ถอดรหัสเหตุการณ์ในฝันเป็นคำเตือนภัยและเลขนำโชคประจำวัน", badge: "Popular", rating: 4, category: "all", icon: <BookOpen className="w-6 h-6" /> }
+    { id: 1, title: "ตรวจพื้นดวงชะตา (Natal Profile)", desc: "ผ่าดวงกำเนิดอย่างละเอียดผสมผสาน 3 ศาสตร์ ไทย จีน และดาราศาสตร์สากล", badge: "แนะนำ", rating: 5, category: "love", path: "core.html", icon: <Compass className="w-6 h-6" /> },
+    { id: 2, title: "ทำนายไพ่ยิปซี (Tarot Readings)", desc: "เปิดสุ่มไพ่ยิปซีศักดิ์สิทธิ์ 78 ใบ เพื่อหาทางออกในทุกเรื่องของชะตาชีวิต", badge: "ยอดนิยม", rating: 5, category: "cards", path: "tarot.html", icon: <Sparkles className="w-6 h-6" /> },
+    { id: 3, title: "ปฏิทินมงคลฤกษ์ดี (Auspicious Calendar)", desc: "เช็คสีมงคลประจำตัว ช่วงเวลารับโชค และวันฤกษ์มงคลแบบวันต่อวัน", badge: "Hot", rating: 5, category: "money", path: "calendar.html", icon: <Calendar className="w-6 h-6" /> },
+    { id: 4, title: "กราฟชีวิต 12 ภพ (Life Graph)", desc: "ดูเส้นทางดวงรุ่งโรจน์และช่วงอุปสรรคชะตา ตามคัมภีร์พรหมชาติโบราณ", badge: "แม่นยำสูง", rating: 5, category: "love", path: "lifegraph.html", icon: <TrendingUp className="w-6 h-6" /> },
+    { id: 5, title: "ทำนายฝันพรีเมียม (Dream Keys)", desc: "ถอดรหัสความฝัน แปลความหมายเตือนชะตาพร้อมตัวเลขโชคลาภเฉพาะวัน", badge: "วิเคราะห์ลึก", rating: 5, category: "cards", path: "dream.html", icon: <Moon className="w-6 h-6" /> },
+    { id: 6, title: "วิเคราะห์พลังชื่อ (Name Analysis)", desc: "ถอดรหัสความหมายตัวอักษรและกำลังพลังตัวเลขที่เหมาะสมกับดวงกำเนิด", badge: "ใหม่", rating: 4, category: "love", path: "name.html", icon: <User className="w-6 h-6" /> },
+    { id: 7, title: "ถอดรหัสเบอร์มงคล (Phone Numerology)", desc: "ตรวจประเมินเลขศาสตร์คู่เบอร์มือถือของคุณเพื่อหนุนการทำงานและการเงิน", badge: "ยอดฮิต", rating: 5, category: "money", path: "phone.html", icon: <Phone className="w-6 h-6" /> },
+    { id: 8, title: "เสี่ยงเซียมซีวัดดัง (Siemsi Fortune)", desc: "เขย่าติ้วรับคำทำนายและคำชี้แนะเสมือนไปไหว้พระขอพร ณ สถานที่จริง", badge: "ดั้งเดิม", rating: 4, category: "cards", path: "siemsi.html", icon: <BookOpen className="w-6 h-6" /> },
+    { id: 9, title: "วิเคราะห์เลขทะเบียนรถ (Car Plate)", desc: "วิเคราะห์คู่เลขทะเบียนรถเพื่อส่งพลังความปลอดภัย โชคลาภ และบารมี", badge: "ความปลอดภัย", rating: 4, category: "money", path: "plate.html", icon: <Activity className="w-6 h-6" /> },
+    { id: 10, title: "ฤกษ์เสี่ยงโชคลาภ (Lucky Timing)", desc: "คำนวณหาวันเวลาที่ดีที่สุดสำหรับการลุ้นรางวัลและการทำธุรกรรมเก็งกำไร", badge: "ลาภลอย", rating: 5, category: "money", path: "lucky.html", icon: <DollarSign className="w-6 h-6" /> },
+    { id: 11, title: "ปฏิทินจีนบาจื่อ (Bazi Calendar)", desc: "คำนวณหากำลังพลังของ 5 ธาตุประจำชะตากำเนิดเพื่อการปรับฮวงจุ้ยชีวิต", badge: "ธาตุจีน", rating: 5, category: "money", path: "chinese-calendar.html", icon: <Layers className="w-6 h-6" /> },
+    { id: 12, title: "กงล้อพรหมชาติประจำปี (Phrommachat Wheel)", desc: "คำนวณจุดชะตาปีตามตำราไทยโบราณ ตกที่รูปภาพคน สัตว์ หรือเจดีย์", badge: "ยอดนิยม", rating: 5, category: "cards", path: "wheel.html", icon: <Sliders className="w-6 h-6" /> }
   ];
 
   // Filtered list for popular services carousel
@@ -381,7 +507,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content Layout with 1440px max width constraints - Reduced spacing by 25% (now gap-12 to gap-16) */}
+      {/* Main Content Layout with 1440px max width constraints */}
       <main className="flex-1 max-w-[1440px] mx-auto w-full px-8 md:px-14 py-12 md:py-16 relative z-10 flex flex-col gap-12 md:gap-16">
 
         {/* AdSense Top Ad Slot Placeholder */}
@@ -391,7 +517,7 @@ export default function Home() {
           <div className="text-[9px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
 
-        {/* 2. Hero Section - Purple Nebula space with 30% larger rotating zodiac wheel & 20-30% larger font */}
+        {/* 2. Hero Section - Purple Nebula space with 30% larger rotating zodiac wheel */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-10 md:p-16 relative overflow-hidden backdrop-blur-md min-h-[580px]">
           {/* Subtle star particle background */}
           <div className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: "url('/zodiac_bg.png')" }}></div>
@@ -445,12 +571,12 @@ export default function Home() {
                 <ArrowRight className="w-5 h-5 text-black" />
               </button>
               
-              <button 
-                onClick={() => setWizardOpen(true)}
-                className="w-full sm:w-auto px-10 py-5 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-[16px] md:text-[17px] transition-all flex justify-center items-center gap-2 cursor-pointer"
+              <a 
+                href={getLink("contact.html")}
+                className="w-full sm:w-auto px-10 py-5 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-[16px] md:text-[17px] transition-all flex justify-center items-center gap-2 cursor-pointer text-center"
               >
                 <span>{currentTranslations.btnHeroSample}</span>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -520,7 +646,7 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Dynamic display block matching category (Increased card padding by 20% -> p-8) */}
+          {/* Dynamic display block matching category */}
           <div className="bg-white/[0.03] border border-white/[0.08] rounded-3xl p-8 md:p-10 relative overflow-hidden flex flex-col lg:flex-row items-center gap-8 justify-between shadow-lg">
             <div className="flex items-center gap-5 text-left">
               <div className="w-14 h-14 rounded-2xl bg-purple-550/15 border border-purple-550/25 flex items-center justify-center text-purple-400 shrink-0">
@@ -550,7 +676,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 4. Simplified Today's Horoscope Widget (Increased typography and card padding) */}
+        {/* 4. Simplified Today's Horoscope Widget */}
         <section className="flex flex-col gap-6 text-left">
           <div className="flex flex-col gap-2">
             <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[40px] font-serif font-black text-white leading-tight">{currentTranslations.widgetTitle}</h2>
@@ -592,22 +718,19 @@ export default function Home() {
               
               {/* Bottom View All Link spans full grid bottom */}
               <div className="col-span-3 pt-4.5 border-t border-white/[0.04] text-center md:text-left">
-                <button 
-                  onClick={() => {
-                    setWizardOpen(true);
-                    setCurrentStep(1);
-                  }}
+                <a 
+                  href={getLink("calendar.html")}
                   className="text-[15px] md:text-[16px] text-amber-400 hover:text-amber-300 font-extrabold cursor-pointer transition-all hover:underline"
                 >
                   {currentTranslations.widgetLink}
-                </button>
+                </a>
               </div>
             </div>
 
           </div>
         </section>
 
-        {/* 5. Why Choose Us Section (4 premium feature cards - Taller height, Learn more link, Increased padding & font) */}
+        {/* 5. Why Choose Us Section (4 premium feature cards - Taller height, Learn more link) */}
         <section className="flex flex-col gap-8 text-left">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <span className="text-[12px] font-black uppercase tracking-widest text-purple-400">Our Value Proposition</span>
@@ -625,9 +748,9 @@ export default function Home() {
                 <h3 className="text-[20px] md:text-[22px] font-serif font-black text-white leading-snug">{currentTranslations.why1Title}</h3>
                 <p className="text-[16px] md:text-[17px] text-slate-400 leading-relaxed font-light">{currentTranslations.why1Desc}</p>
               </div>
-              <button onClick={() => setWizardOpen(true)} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
+              <a href={getLink("about.html")} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
-              </button>
+              </a>
             </div>
             {/* Card 2 */}
             <div className="bg-white/[0.03] border border-white/[0.08] p-8 md:p-9.5 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[250px] shadow-md group">
@@ -638,9 +761,9 @@ export default function Home() {
                 <h3 className="text-[20px] md:text-[22px] font-serif font-black text-white leading-snug">{currentTranslations.why2Title}</h3>
                 <p className="text-[16px] md:text-[17px] text-slate-400 leading-relaxed font-light">{currentTranslations.why2Desc}</p>
               </div>
-              <button onClick={() => setWizardOpen(true)} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
+              <a href={getLink("policy.html")} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
-              </button>
+              </a>
             </div>
             {/* Card 3 */}
             <div className="bg-white/[0.03] border border-white/[0.08] p-8 md:p-9.5 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[250px] shadow-md group">
@@ -651,9 +774,9 @@ export default function Home() {
                 <h3 className="text-[20px] md:text-[22px] font-serif font-black text-white leading-snug">{currentTranslations.why3Title}</h3>
                 <p className="text-[16px] md:text-[17px] text-slate-400 leading-relaxed font-light">{currentTranslations.why3Desc}</p>
               </div>
-              <button onClick={() => setWizardOpen(true)} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
+              <a href={getLink("chinese-calendar.html")} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
-              </button>
+              </a>
             </div>
             {/* Card 4 */}
             <div className="bg-white/[0.03] border border-white/[0.08] p-8 md:p-9.5 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[250px] shadow-md group">
@@ -664,14 +787,14 @@ export default function Home() {
                 <h3 className="text-[20px] md:text-[22px] font-serif font-black text-white leading-snug">{currentTranslations.why4Title}</h3>
                 <p className="text-[16px] md:text-[17px] text-slate-400 leading-relaxed font-light">{currentTranslations.why4Desc}</p>
               </div>
-              <button onClick={() => setWizardOpen(true)} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
+              <a href={getLink("team.html")} className="text-[14px] text-amber-500 hover:text-amber-400 font-black self-start mt-6 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
-              </button>
+              </a>
             </div>
           </div>
         </section>
 
-        {/* 6. Popular Services Carousel Section (Increased typography scale) */}
+        {/* 6. Popular Services Carousel Section (With real paths) */}
         <section className="flex flex-col gap-6 text-left">
           <div className="flex flex-col gap-2">
             <span className="text-[12px] font-black uppercase tracking-widest text-amber-500">Trending Astrology</span>
@@ -718,9 +841,9 @@ export default function Home() {
           {/* Carousel container (swipeable grid layout) */}
           <div className="flex gap-6 overflow-x-auto pb-4 pt-1 snap-x scrollbar-thin">
             {filteredPopularServices.map(srv => (
-              <div 
+              <a 
                 key={srv.id}
-                onClick={() => setWizardOpen(true)}
+                href={getLink(srv.path)}
                 className="min-w-[300px] md:min-w-[320px] bg-white/[0.03] border border-white/[0.08] p-6.5 rounded-2xl flex flex-col justify-between min-h-[220px] snap-start hover:border-purple-500/20 hover:translate-y-[-2px] transition-all cursor-pointer relative group"
               >
                 <div>
@@ -742,7 +865,7 @@ export default function Home() {
                   <span className="text-emerald-450 bg-emerald-500/5 px-2.5 py-1 rounded border border-emerald-500/10">เริ่มต้น ฟรี</span>
                   <span className="text-slate-400 group-hover:text-white transition-colors">วิเคราะห์ดวงเลย →</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -751,17 +874,14 @@ export default function Home() {
         <section className="flex flex-col gap-6 text-left">
           <div className="flex justify-between items-center px-1">
             <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[40px] font-serif font-black text-white leading-tight">{currentTranslations.servicesTitle}</h2>
-            <a href={getLink("chinese-calendar.html")} className="text-[14px] md:text-[15px] text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+            <a href={getLink("dashboard.html")} className="text-[14px] md:text-[15px] text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {servicesList.map(srv => (
-              <div 
+              <a 
                 key={srv.id}
-                onClick={() => {
-                  setWizardOpen(true);
-                  setCurrentStep(1);
-                }}
+                href={getLink(srv.path)}
                 className="bg-white/[0.03] border border-white/[0.08] p-7 rounded-3xl hover:border-purple-550/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[280px] cursor-pointer relative group overflow-hidden shadow-md"
               >
                 {/* Glow circle overlay inside cards */}
@@ -803,7 +923,7 @@ export default function Home() {
                     ทำนายฟรี →
                   </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
@@ -843,18 +963,18 @@ export default function Home() {
                 </div>
               </div>
               
-              <button 
-                onClick={() => setWizardOpen(true)}
-                className="w-full sm:w-auto px-10 py-5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-black text-[16px] md:text-[17px] shadow-lg transition-all hover:scale-[1.01] cursor-pointer flex justify-center items-center gap-2"
+              <a 
+                href={getLink("tarot.html")}
+                className="w-full sm:w-auto px-10 py-5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-black text-[16px] md:text-[17px] shadow-lg transition-all hover:scale-[1.01] cursor-pointer flex justify-center items-center gap-2 text-center"
               >
                 <span>🔮 เปิดไพ่พยากรณ์ชะตาชีวิตฟรี</span>
                 <ArrowRight className="w-5 h-5 text-black" />
-              </button>
+              </a>
             </div>
           </div>
         </section>
 
-        {/* 9. Trust & Statistics Section - Custom Typography 48px to 60px */}
+        {/* 9. Trust & Statistics Section */}
         <section className="bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-10 md:p-12 text-center relative overflow-hidden backdrop-blur-md">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="flex flex-col items-center gap-2">
@@ -876,91 +996,51 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 10. Articles Section (Enhanced with metadata) */}
+        {/* 10. Articles Section (Dynamically loaded real blog-list.json articles) */}
         <section className="flex flex-col gap-6 text-left">
           <div className="flex justify-between items-center px-1">
             <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[40px] font-serif font-black text-white leading-tight">บทความ & คู่มือ</h2>
-            <a href={getLink("dreams.html")} className="text-[14px] md:text-[15px] text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+            <a href={getLink("blog.html")} className="text-[14px] md:text-[15px] text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            
-            {/* Article 1 */}
-            <a href={getLink("chinese-calendar.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
-              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/zodiac_bg.png" alt="12 Zodiac Forecast Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
-              </div>
-              <div className="p-5 text-left space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-bold text-purple-400 uppercase tracking-wider">
-                  <span>โหราศาสตร์จีน</span>
-                  <span className="text-slate-500">อ่าน 5 นาที</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {blogArticles.map((article, idx) => (
+              <a 
+                key={idx}
+                href={getLink(article.url)}
+                className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group"
+              >
+                <div className="aspect-[1.5/1] overflow-hidden w-full relative bg-purple-950/20">
+                  <img 
+                    src={article.imgUrl} 
+                    alt={article.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" 
+                    onError={(e) => {
+                      // Fallback image if custom remote webp is not loading
+                      (e.target as HTMLImageElement).src = "/zodiac_bg.png";
+                    }}
+                  />
                 </div>
-                <h4 className="text-[15px] font-bold text-white leading-snug line-clamp-2">เช็คดวงรายเดือนทั้ง 12 ราศีดวงดาวทรานสิทปี</h4>
-                <div className="flex justify-between items-center text-[11px] text-slate-500 pt-2 font-mono">
-                  <span>ผู้เขียน: พรหมลิขิต</span>
-                  <span>10,481 วิว</span>
+                <div className="p-5 text-left space-y-2 flex-1 flex flex-col justify-between">
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center text-[11px] font-bold text-purple-400 uppercase tracking-wider">
+                      <span>{article.category}</span>
+                      <span className="text-slate-500">{article.readTime}</span>
+                    </div>
+                    <h4 className="text-[15px] font-bold text-white leading-snug line-clamp-2">{article.title}</h4>
+                    <p className="text-[13px] text-slate-400 line-clamp-2 font-light">{article.desc}</p>
+                  </div>
+                  <div className="flex justify-between items-center text-[11px] text-slate-500 pt-3 border-t border-white/[0.03] font-mono mt-3">
+                    <span>{article.author}</span>
+                    <span>{article.views}</span>
+                  </div>
                 </div>
-              </div>
-            </a>
-
-            {/* Article 2 */}
-            <a href={getLink("dreams.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
-              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_coins.png" alt="Wealth & Prosperity Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
-              </div>
-              <div className="p-5 text-left space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-bold text-purple-400 uppercase tracking-wider">
-                  <span>เสริมดวงการเงิน</span>
-                  <span className="text-slate-500">อ่าน 4 นาที</span>
-                </div>
-                <h4 className="text-[15px] font-bold text-white leading-snug line-clamp-2">5 วิธีเสริมดวงการเงินให้มีกินใช้ตลอดปี 2567</h4>
-                <div className="flex justify-between items-center text-[11px] text-slate-500 pt-2 font-mono">
-                  <span>ผู้เขียน: ซินแสอู๋</span>
-                  <span>8,391 วิว</span>
-                </div>
-              </div>
-            </a>
-
-            {/* Article 3 */}
-            <a href={getLink("tarot.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
-              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_love.png" alt="Relationship Forecast Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
-              </div>
-              <div className="p-5 text-left space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-bold text-purple-400 uppercase tracking-wider">
-                  <span>ความสัมพันธ์</span>
-                  <span className="text-slate-500">อ่าน 6 นาที</span>
-                </div>
-                <h4 className="text-[15px] font-bold text-white leading-snug line-clamp-2">ดูดวงความรัก คนโสดพบลัคนา คนมีคู่เสริมพลังบวก</h4>
-                <div className="flex justify-between items-center text-[11px] text-slate-500 pt-2 font-mono">
-                  <span>ผู้เขียน: เมลทาโรต์</span>
-                  <span>12,042 วิว</span>
-                </div>
-              </div>
-            </a>
-
-            {/* Article 4 */}
-            <a href={getLink("dreams.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
-              <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_bedroom.png" alt="Bedroom Feng Shui Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
-              </div>
-              <div className="p-5 text-left space-y-2">
-                <div className="flex justify-between items-center text-[11px] font-bold text-purple-400 uppercase tracking-wider">
-                  <span>ฮวงจุ้ยที่พัก</span>
-                  <span className="text-slate-500">อ่าน 5 นาที</span>
-                </div>
-                <h4 className="text-[15px] font-bold text-white leading-snug line-clamp-2">ฮวงจุ้ยห้องนอน ปลดล็อกพลังธาตุนอนรับโชค</h4>
-                <div className="flex justify-between items-center text-[11px] text-slate-500 pt-2 font-mono">
-                  <span>ผู้เขียน: ซินแสอู๋</span>
-                  <span>9,881 วิว</span>
-                </div>
-              </div>
-            </a>
-
+              </a>
+            ))}
           </div>
         </section>
 
-        {/* 11. FAQ accordion section (Before footer - helpful for SEO) */}
+        {/* 11. FAQ accordion section (Before footer) */}
         <section className="flex flex-col gap-6 text-left max-w-4xl mx-auto w-full">
           <div className="text-center md:text-left space-y-2">
             <span className="text-[12px] font-black uppercase tracking-widest text-amber-500">Frequently Asked Questions</span>
@@ -1037,7 +1117,7 @@ export default function Home() {
 
       </main>
 
-      {/* 13. Expanded Footer Section (Company, Services, Horoscope, Legal, Support, Contact, Download App) */}
+      {/* 13. Expanded Footer Section */}
       <footer className="w-full bg-[#020208] border-t border-white/[0.04] py-20 px-8 md:px-14 mt-16 relative z-10 text-slate-500 text-[14px] text-left">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-8">
           
@@ -1078,7 +1158,7 @@ export default function Home() {
               <li><a href={getLink("chinese-calendar.html")} className="hover:text-amber-400 transition-colors">ปฏิทินจีนบาจื่อ</a></li>
               <li><a href={getLink("tarot.html")} className="hover:text-amber-400 transition-colors">ทำนายไพ่ยิปซี</a></li>
               <li><a href={getLink("siemsi.html")} className="hover:text-amber-400 transition-colors">เสี่ยงเซียมซีนำทาง</a></li>
-              <li><a href={getLink("dreams.html")} className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
+              <li><a href={getLink("dream.html")} className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
             </ul>
           </div>
 
@@ -1120,11 +1200,11 @@ export default function Home() {
           <span className="text-[16px]">㗊</span>
           <span className="font-bold text-[11px]">บริการ</span>
         </a>
-        <a href={getLink("dreams.html")} className="flex flex-col items-center gap-1.5 hover:text-white transition-colors">
+        <a href={getLink("blog.html")} className="flex flex-col items-center gap-1.5 hover:text-white transition-colors">
           <span className="text-[16px]">📖</span>
           <span className="font-bold text-[11px]">บทความ</span>
         </a>
-        <a href={getLink("profile.html")} className="flex flex-col items-center gap-1.5 hover:text-white transition-colors">
+        <a href={getLink("dashboard.html")} className="flex flex-col items-center gap-1.5 hover:text-white transition-colors">
           <span className="text-[16px]">👤</span>
           <span className="font-bold text-[11px]">โปรไฟล์</span>
         </a>
