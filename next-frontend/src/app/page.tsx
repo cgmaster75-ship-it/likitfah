@@ -529,8 +529,8 @@ export default function Home() {
 
         {/* 2. Hero Section - Purple Nebula space with 30% larger rotating zodiac wheel */}
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-10 md:p-16 relative overflow-hidden backdrop-blur-md min-h-[580px]">
-          {/* Subtle star particle background */}
-          <div className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: "url('/zodiac_bg.png')" }}></div>
+          {/* Galaxy background image */}
+          <div className="absolute inset-0 bg-cover bg-center opacity-[0.25] pointer-events-none mix-blend-screen" style={{ backgroundImage: "url('/hero_galaxy_bg.png')" }}></div>
           
           {/* Left copy */}
           <div className="lg:col-span-7 flex flex-col gap-8 text-left items-start z-10">
@@ -941,6 +941,8 @@ export default function Home() {
         {/* 8. Apple-style Recommended Banner (Crystal recommended banner, eating full width) */}
         <section className="flex flex-col gap-4 text-left">
           <div className="bg-gradient-to-r from-purple-950/30 via-[#0a051d]/60 to-purple-950/30 rounded-3xl border border-white/[0.08] overflow-hidden flex flex-col lg:flex-row gap-8 p-10 md:p-12 items-center relative shadow-2xl">
+            {/* Dark purple star background image */}
+            <div className="absolute inset-0 bg-cover bg-center opacity-[0.22] pointer-events-none mix-blend-screen" style={{ backgroundImage: "url('/mystic_stars_bg.png')" }}></div>
             {/* Background gold glow */}
             <div className="absolute top-0 right-0 w-96 h-full bg-amber-500/[0.03] rounded-full blur-[100px] pointer-events-none"></div>
 
