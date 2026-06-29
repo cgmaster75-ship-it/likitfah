@@ -85,7 +85,7 @@ const t = {
     viewAll: "ดูบริการทั้งหมด",
 
     bottomTitle: "พร้อมถอดรหัสและค้นพบแผนผังชะตาชีวิตของคุณหรือยัง?",
-    bottomCta: "🔮 เริ่มถอดรหัอดวงชะตาฟรี",
+    bottomCta: "🔮 เริ่มถอดรหัสดวงชะตาฟรี",
     footerDesc: "พลิกชะตาฟ้าลิขิต ด้วยศาสตร์พยากรณ์ตัวเลขดาราศาสตร์และแผนผังธาตุจีนอัจฉริยะวิเคราะห์เฉพาะบุคคล",
     footerCol1: "ฟีเจอร์พยากรณ์",
     footerCol2: "ข้อตกลงและนโยบาย",
@@ -279,6 +279,7 @@ export default function Home() {
   };
 
   const [wizardOpen, setWizardOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [liveUserCount, setLiveUserCount] = useState(18);
 
@@ -475,21 +476,30 @@ export default function Home() {
       {/* 1. Header (Navbar) - Glassmorphism floating header */}
       <header className="sticky top-0 z-50 w-full bg-[#070714]/75 backdrop-blur-md border-b border-white/[0.06] py-5.5 px-6 md:px-12 flex justify-between items-center text-slate-200">
         <div className="flex items-center gap-4">
-          <button className="text-slate-400 hover:text-white transition-colors cursor-pointer" aria-label="Menu">
+          <button 
+            onClick={() => setMobileMenuOpen(prev => !prev)}
+            className="text-slate-400 hover:text-white transition-colors cursor-pointer" 
+            aria-label="Menu"
+          >
             <Menu className="w-6 h-6" />
           </button>
         </div>
 
-        {/* Center Logo matching mockup */}
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 flex items-center justify-center border border-amber-500/30">
-            <Moon className="w-5 h-5 text-slate-950 font-bold" />
-          </div>
-          <div className="text-center">
-            <span className="font-serif font-black text-base md:text-lg tracking-wider text-white">{currentTranslations.brand}</span>
+        {/* Center Logo matching mockup (restored the original img/logo-likitfah.png logo) */}
+        <a href={getLink("index.html")} className="flex items-center gap-3 cursor-pointer group">
+          <img 
+            src="/img/logo-likitfah.png" 
+            alt="Likit Fah" 
+            className="w-10 h-10 rounded-full border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.5)] object-cover group-hover:scale-105 transition-all"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = getLink("img/logo-likitfah.png");
+            }}
+          />
+          <div className="text-left">
+            <span className="font-serif font-black text-base md:text-lg tracking-wider text-white group-hover:text-amber-400 transition-colors">{currentTranslations.brand}</span>
             <p className="text-[8px] text-slate-500 uppercase tracking-widest mt-0.5 font-bold">{currentTranslations.subtitle}</p>
           </div>
-        </div>
+        </a>
 
         {/* Right tools */}
         <div className="flex items-center gap-4">
@@ -697,7 +707,7 @@ export default function Home() {
                 <span className="text-2xl font-black text-white font-mono ml-2">78%</span>
               </div>
               <p className="text-[16px] md:text-[17px] text-slate-400 font-light leading-relaxed">
-                พลังธาตุประจำตัวทำงานร่วมกับองศาดาววันนี้ได้อย่างสมดุลปานกลาง มีทิศทางไหลลื่นในเรื่องคำเจรจาเป็นบวก
+                พลังธาตุประจำตัวทำงานร่วมกับองศาดาววันนี้ได้อย่างสมดุลปานกลาง มีทิศทางไหลลื่นในเรื่องคำเจจาเป็นบวก
               </p>
             </div>
 
@@ -768,7 +778,7 @@ export default function Home() {
             {/* Card 3 */}
             <div className="bg-white/[0.03] border border-white/[0.08] p-8 md:p-9.5 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[250px] shadow-md group">
               <div className="space-y-5">
-                <div className="w-14 h-14 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/20 group-hover:text-purple-300 transition-colors">
+                <div className="w-14 h-14 rounded-2xl bg-purple-550/10 border border-purple-550/20 flex items-center justify-center text-purple-450 group-hover:bg-purple-500/20 group-hover:text-purple-300 transition-colors">
                   <Sparkles className="w-7 h-7" />
                 </div>
                 <h3 className="text-[20px] md:text-[22px] font-serif font-black text-white leading-snug">{currentTranslations.why3Title}</h3>
@@ -794,7 +804,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. Popular Services Carousel Section (With real paths) */}
+        {/* 6. Popular Services Carousel Section (With custom no-scrollbar class to hide ugly browser scrollbar) */}
         <section className="flex flex-col gap-6 text-left">
           <div className="flex flex-col gap-2">
             <span className="text-[12px] font-black uppercase tracking-widest text-amber-500">Trending Astrology</span>
@@ -838,8 +848,8 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Carousel container (swipeable grid layout) */}
-          <div className="flex gap-6 overflow-x-auto pb-4 pt-1 snap-x scrollbar-thin">
+          {/* Carousel container (swipeable grid layout - hidden scrollbar using no-scrollbar) */}
+          <div className="flex gap-6 overflow-x-auto pb-4 pt-1 snap-x no-scrollbar">
             {filteredPopularServices.map(srv => (
               <a 
                 key={srv.id}
@@ -848,7 +858,7 @@ export default function Home() {
               >
                 <div>
                   <div className="flex justify-between items-start gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                    <div className="w-11 h-11 rounded-xl bg-purple-550/10 border border-purple-550/20 flex items-center justify-center text-purple-400">
                       {srv.icon}
                     </div>
                     {srv.badge && (
@@ -1016,7 +1026,6 @@ export default function Home() {
                     alt={article.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" 
                     onError={(e) => {
-                      // Fallback image if custom remote webp is not loading
                       (e.target as HTMLImageElement).src = "/zodiac_bg.png";
                     }}
                   />
@@ -1117,16 +1126,21 @@ export default function Home() {
 
       </main>
 
-      {/* 13. Expanded Footer Section */}
+      {/* 13. Expanded Footer Section (Logo restored to original img/logo-likitfah.png) */}
       <footer className="w-full bg-[#020208] border-t border-white/[0.04] py-20 px-8 md:px-14 mt-16 relative z-10 text-slate-500 text-[14px] text-left">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-8">
           
           {/* Logo & description (Takes 2 cols on desktop) */}
           <div className="col-span-2 space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 flex items-center justify-center border border-amber-500/30">
-                <Moon className="w-5 h-5 text-slate-950 font-bold" />
-              </div>
+              <img 
+                src="/img/logo-likitfah.png" 
+                alt="Likit Fah" 
+                className="w-10 h-10 rounded-full border border-amber-500/50 shadow-[0_0_10px_rgba(245,158,11,0.5)] object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = getLink("img/logo-likitfah.png");
+                }}
+              />
               <div>
                 <span className="font-serif font-black text-base md:text-lg tracking-wider text-white">{currentTranslations.brand}</span>
                 <p className="text-[8px] text-slate-500 uppercase tracking-widest font-bold">{currentTranslations.subtitle}</p>
@@ -1426,6 +1440,80 @@ export default function Home() {
               </div>
             )}
 
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Drawer Navigation overlay (functional burger menu content) */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-[102] flex justify-end">
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-[#03040c]/85 backdrop-blur-xs" onClick={() => setMobileMenuOpen(false)}></div>
+          
+          {/* Sliding Menu Drawer */}
+          <div className="bg-[#0b0c16]/98 border-l border-white/[0.08] w-72 h-full relative z-10 p-8 flex flex-col justify-between shadow-2xl animate-in slide-in-from-right duration-250">
+            <div className="space-y-8">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <img 
+                    src="/img/logo-likitfah.png" 
+                    alt="Likit Fah" 
+                    className="w-8 h-8 rounded-full border border-amber-500/30 object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = getLink("img/logo-likitfah.png");
+                    }}
+                  />
+                  <span className="font-serif font-black text-base text-white">{currentTranslations.brand}</span>
+                </div>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-slate-400 hover:text-white cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              
+              <nav className="flex flex-col gap-6">
+                <a href={getLink("index.html")} className="text-[16px] font-bold text-slate-350 hover:text-white flex items-center gap-2">
+                  <span>🏠 หน้าหลัก</span>
+                </a>
+                <a href={getLink("dashboard.html")} className="text-[16px] font-bold text-slate-350 hover:text-white flex items-center gap-2">
+                  <span>⭐ แดชบอร์ดดวงชะตา</span>
+                </a>
+                <div className="h-px bg-white/[0.06] my-2"></div>
+                <span className="text-[11px] font-bold text-slate-550 uppercase tracking-widest block">บริการทั้งหมด (Services)</span>
+                <div className="flex flex-col gap-4.5 max-h-[45vh] overflow-y-auto pr-2 no-scrollbar">
+                  {servicesList.map(srv => (
+                    <a key={srv.id} href={getLink(srv.path)} className="text-[15px] text-slate-400 hover:text-amber-400 transition-colors flex items-center justify-between">
+                      <span>{srv.title}</span>
+                      <ChevronRight className="w-4 h-4 text-slate-650" />
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            </div>
+            
+            <div className="space-y-4 pt-6 border-t border-white/[0.04] mt-auto">
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setLang(prev => prev === "th" ? "en" : "th");
+                }}
+                className="w-full py-3 rounded-xl border border-white/[0.08] bg-white/[0.02] text-[13px] font-bold text-slate-300 hover:text-white transition-all cursor-pointer"
+              >
+                🌐 Language: {lang === "th" ? "ไทย (TH)" : "English (EN)"}
+              </button>
+              <button 
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setWizardOpen(true);
+                }}
+                className="w-full py-3.5 rounded-xl bg-amber-500 text-black text-[13px] font-black shadow-md cursor-pointer"
+              >
+                🔮 เริ่มวิเคราะห์ดวงชะตาฟรี
+              </button>
+            </div>
           </div>
         </div>
       )}

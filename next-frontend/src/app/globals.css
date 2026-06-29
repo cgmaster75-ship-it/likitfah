@@ -130,3 +130,13 @@ body {
 .animate-spin-slow-rev {
   animation: spin-slow-reverse 30s linear infinite;
 }
+
+/* Hide scrollbar utility class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+

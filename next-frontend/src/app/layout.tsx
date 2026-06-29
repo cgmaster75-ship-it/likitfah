@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Prompt, Cinzel } from "next/font/google";
+import { Kanit, Cinzel } from "next/font/google";
 import "./globals.css";
 
-const prompt = Prompt({
+const kanit = Kanit({
   variable: "--font-sans",
   subsets: ["thai", "latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="th"
-      className={`${prompt.variable} ${cinzel.variable} h-full antialiased`}
+      className={`${kanit.variable} ${cinzel.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#05050f] text-slate-200">
         {children}
