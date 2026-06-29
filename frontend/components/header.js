@@ -1,5 +1,20 @@
 const pathPrefix = window.location.pathname.includes('/blog/articles/') ? '../../' : '';
 
+// Sync query parameters (useful during local development redirect from port 3001)
+const syncParams = new URLSearchParams(window.location.search);
+if (syncParams.has('fullname')) {
+    localStorage.setItem('user_fullname', syncParams.get('fullname'));
+    const first = syncParams.get('fullname').split(' ')[0];
+    localStorage.setItem('user_firstname', first);
+}
+if (syncParams.has('dob')) {
+    localStorage.setItem('user_dob', syncParams.get('dob'));
+}
+if (syncParams.has('tob')) {
+    localStorage.setItem('user_tob', syncParams.get('tob'));
+}
+
+
 // 1. Inject Bilingual CSS toggles instantly to prevent text flashing
 const style = document.createElement('style');
 style.textContent = `

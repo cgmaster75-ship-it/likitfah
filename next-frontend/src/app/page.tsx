@@ -149,7 +149,7 @@ const t = {
     popularSub: "Our most requested and highly calculated astrology categories.",
 
     servicesTitle: "All Astrology Services",
-    servicesSub: "Choose from our suite of professional calculators and interactive readings free of charge.",
+    servicesSub: "Choose from our suite of professional destiny calculators and interactive readings free of charge.",
     viewAll: "View All",
 
     bottomTitle: "Ready to Reveal Your Cosmic Blueprint?",
@@ -181,6 +181,15 @@ const t = {
 export default function Home() {
   const [lang, setLang] = useState<"th" | "en">("th");
   const currentTranslations = t[lang];
+
+  // Helper function to resolve cross-port links in local dev, and relative links in production
+  const getLink = (path: string) => {
+    if (typeof window !== "undefined" && window.location.port === "3001") {
+      return `http://localhost:3000/${path}`;
+    }
+    return path;
+  };
+
   const [wizardOpen, setWizardOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [liveUserCount, setLiveUserCount] = useState(18);
@@ -292,7 +301,10 @@ export default function Home() {
         setSubmissionProgress((step / 5) * 100);
         if (step === 5) {
           setTimeout(() => {
-            window.location.href = "dashboard.html";
+            const queryParams = `?fullname=${encodeURIComponent(fullName)}&dob=${encodeURIComponent(dob)}&tob=${encodeURIComponent(noBirthTime ? "12:00" : tob)}`;
+            const isLocal3001 = typeof window !== "undefined" && window.location.port === "3001";
+            const targetOrigin = isLocal3001 ? "http://localhost:3000" : "";
+            window.location.href = `${targetOrigin}/dashboard.html${queryParams}`;
           }, 600);
         }
       }, (idx + 1) * 1100);
@@ -611,7 +623,7 @@ export default function Home() {
                   <Compass className="w-6 h-6" />
                 </div>
                 <h3 className="text-xs font-serif font-black text-white">{currentTranslations.why1Title}</h3>
-                <p className="text-[10.5px] text-slate-450 leading-relaxed font-light">{currentTranslations.why1Desc}</p>
+                <p className="text-[10.5px] text-slate-455 leading-relaxed font-light">{currentTranslations.why1Desc}</p>
               </div>
               <button onClick={() => setWizardOpen(true)} className="text-[9.5px] text-amber-500 hover:text-amber-400 font-black self-start mt-4 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
@@ -624,7 +636,7 @@ export default function Home() {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <h3 className="text-xs font-serif font-black text-white">{currentTranslations.why2Title}</h3>
-                <p className="text-[10.5px] text-slate-450 leading-relaxed font-light">{currentTranslations.why2Desc}</p>
+                <p className="text-[10.5px] text-slate-455 leading-relaxed font-light">{currentTranslations.why2Desc}</p>
               </div>
               <button onClick={() => setWizardOpen(true)} className="text-[9.5px] text-amber-500 hover:text-amber-400 font-black self-start mt-4 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
@@ -637,7 +649,7 @@ export default function Home() {
                   <Sparkles className="w-6 h-6" />
                 </div>
                 <h3 className="text-xs font-serif font-black text-white">{currentTranslations.why3Title}</h3>
-                <p className="text-[10.5px] text-slate-450 leading-relaxed font-light">{currentTranslations.why3Desc}</p>
+                <p className="text-[10.5px] text-slate-455 leading-relaxed font-light">{currentTranslations.why3Desc}</p>
               </div>
               <button onClick={() => setWizardOpen(true)} className="text-[9.5px] text-amber-500 hover:text-amber-400 font-black self-start mt-4 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
@@ -650,7 +662,7 @@ export default function Home() {
                   <Award className="w-6 h-6" />
                 </div>
                 <h3 className="text-xs font-serif font-black text-white">{currentTranslations.why4Title}</h3>
-                <p className="text-[10.5px] text-slate-450 leading-relaxed font-light">{currentTranslations.why4Desc}</p>
+                <p className="text-[10.5px] text-slate-455 leading-relaxed font-light">{currentTranslations.why4Desc}</p>
               </div>
               <button onClick={() => setWizardOpen(true)} className="text-[9.5px] text-amber-500 hover:text-amber-400 font-black self-start mt-4 transition-colors">
                 เรียนรู้เพิ่มเติม ➔
@@ -664,7 +676,7 @@ export default function Home() {
           <div className="flex flex-col gap-2">
             <span className="text-[9px] font-black uppercase tracking-widest text-amber-500">Trending Astrology</span>
             <h2 className="text-xl md:text-2xl font-serif font-black text-white">{currentTranslations.popularTitle}</h2>
-            <p className="text-slate-450 text-xs">{currentTranslations.popularSub}</p>
+            <p className="text-slate-455 text-xs">{currentTranslations.popularSub}</p>
           </div>
 
           {/* Interactive filter tabs for Carousel */}
@@ -723,11 +735,11 @@ export default function Home() {
                     )}
                   </div>
                   <h4 className="text-xs font-serif font-black text-white mt-4.5 mb-1.5">{srv.title}</h4>
-                  <p className="text-[10px] text-slate-450 leading-relaxed font-light">{srv.desc}</p>
+                  <p className="text-[10px] text-slate-455 leading-relaxed font-light">{srv.desc}</p>
                 </div>
                 
                 <div className="flex justify-between items-center pt-3 border-t border-white/[0.04] mt-4 text-[9.5px] font-bold">
-                  <span className="text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">เริ่มต้น ฟรี</span>
+                  <span className="text-emerald-450 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">เริ่มต้น ฟรี</span>
                   <span className="text-slate-400 group-hover:text-white transition-colors">วิเคราะห์ดวงเลย →</span>
                 </div>
               </div>
@@ -739,7 +751,7 @@ export default function Home() {
         <section className="flex flex-col gap-6 text-left">
           <div className="flex justify-between items-center px-1">
             <h2 className="text-lg md:text-xl font-serif font-black text-white">{currentTranslations.servicesTitle}</h2>
-            <a href="chinese-calendar.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+            <a href={getLink("chinese-calendar.html")} className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -825,7 +837,7 @@ export default function Home() {
                   เปิดทำนายไพ่ยิปซีพลังจักรวาล 3 ใบ ถอดรหัสคำชี้แนะที่เป็นประโยชน์ที่สุดสำหรับการตัดสินใจด้านการงาน การเงิน และอุปสรรคสำคัญที่จะก้าวเข้ามา ให้คุณดำเนินชีวิตได้อย่างสง่างาม มั่นใจ และปลอดภัย
                 </p>
                 <div className="flex items-center gap-2 pt-1.5">
-                  <span className="text-emerald-450 bg-emerald-500/10 border border-emerald-500/20 text-[9.5px] font-black px-2.5 py-0.5 rounded">
+                  <span className="text-emerald-455 bg-emerald-500/10 border border-emerald-500/20 text-[9.5px] font-black px-2.5 py-0.5 rounded">
                     วิเคราะห์ฟรี 100% ไม่มีโฆษณาแทรกระหว่างการอ่าน
                   </span>
                 </div>
@@ -868,13 +880,13 @@ export default function Home() {
         <section className="flex flex-col gap-6 text-left">
           <div className="flex justify-between items-center px-1">
             <h2 className="text-lg md:text-xl font-serif font-black text-white">บทความ & คู่มือ</h2>
-            <a href="dreams.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+            <a href={getLink("dreams.html")} className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Article 1 */}
-            <a href="chinese-calendar.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
+            <a href={getLink("chinese-calendar.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
                 <img src="/zodiac_bg.png" alt="12 Zodiac Forecast Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
               </div>
@@ -892,7 +904,7 @@ export default function Home() {
             </a>
 
             {/* Article 2 */}
-            <a href="dreams.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
+            <a href={getLink("dreams.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
                 <img src="/art_coins.png" alt="Wealth & Prosperity Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
               </div>
@@ -910,7 +922,7 @@ export default function Home() {
             </a>
 
             {/* Article 3 */}
-            <a href="tarot.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
+            <a href={getLink("tarot.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
                 <img src="/art_love.png" alt="Relationship Forecast Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
               </div>
@@ -928,14 +940,14 @@ export default function Home() {
             </a>
 
             {/* Article 4 */}
-            <a href="dreams.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
+            <a href={getLink("dreams.html")} className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-4px] transition-all shadow-md group">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
                 <img src="/art_bedroom.png" alt="Bedroom Feng Shui Article" className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500" />
               </div>
               <div className="p-4 text-left space-y-1.5">
                 <div className="flex justify-between items-center text-[7.5px] font-bold text-purple-400 uppercase tracking-wider">
                   <span>ฮวงจุ้ยที่พัก</span>
-                  <span className="text-slate-500">อ่าน 5 นาที</span>
+                  <span className="text-slate-550">อ่าน 5 นาที</span>
                 </div>
                 <h4 className="text-[10px] font-bold text-white leading-relaxed line-clamp-2">ฮวงจุ้ยห้องนอน ปลดล็อกพลังธาตุนอนรับโชค</h4>
                 <div className="flex justify-between items-center text-[7px] text-slate-550 pt-2 font-mono">
@@ -971,7 +983,7 @@ export default function Home() {
                     <ChevronDown className={`w-4 h-4 text-slate-400 transition-transform ${isOpen ? "transform rotate-180" : ""}`} />
                   </button>
                   {isOpen && (
-                    <div className="px-5.5 pb-5.5 text-[10.5px] text-slate-400 leading-relaxed font-light border-t border-white/[0.04] pt-4.5">
+                    <div className="px-5.5 pb-5.5 text-[10.5px] text-slate-450 leading-relaxed font-light border-t border-white/[0.04] pt-4.5">
                       {faq.a}
                     </div>
                   )}
@@ -1052,10 +1064,10 @@ export default function Home() {
           <div className="space-y-3">
             <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">Company</h5>
             <ul className="space-y-2 font-light">
-              <li><a href="about.html" className="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a></li>
-              <li><a href="team.html" className="hover:text-amber-400 transition-colors">ทีมนักพยากรณ์</a></li>
-              <li><a href="careers.html" className="hover:text-amber-400 transition-colors">ร่วมงานกับเรา</a></li>
-              <li><a href="press.html" className="hover:text-amber-400 transition-colors">ข่าวประชาสัมพันธ์</a></li>
+              <li><a href={getLink("about.html")} className="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a></li>
+              <li><a href={getLink("team.html")} className="hover:text-amber-400 transition-colors">ทีมนักพยากรณ์</a></li>
+              <li><a href={getLink("careers.html")} className="hover:text-amber-400 transition-colors">ร่วมงานกับเรา</a></li>
+              <li><a href={getLink("press.html")} className="hover:text-amber-400 transition-colors">ข่าวประชาสัมพันธ์</a></li>
             </ul>
           </div>
 
@@ -1063,10 +1075,10 @@ export default function Home() {
           <div className="space-y-3">
             <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">Horoscope & Services</h5>
             <ul className="space-y-2 font-light">
-              <li><a href="chinese-calendar.html" className="hover:text-amber-400 transition-colors">ปฏิทินจีนบาจื่อ</a></li>
-              <li><a href="tarot.html" className="hover:text-amber-400 transition-colors">ทำนายไพ่ยิปซี</a></li>
-              <li><a href="siemsi.html" className="hover:text-amber-400 transition-colors">เสี่ยงเซียมซีนำทาง</a></li>
-              <li><a href="dreams.html" className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
+              <li><a href={getLink("chinese-calendar.html")} className="hover:text-amber-400 transition-colors">ปฏิทินจีนบาจื่อ</a></li>
+              <li><a href={getLink("tarot.html")} className="hover:text-amber-400 transition-colors">ทำนายไพ่ยิปซี</a></li>
+              <li><a href={getLink("siemsi.html")} className="hover:text-amber-400 transition-colors">เสี่ยงเซียมซีนำทาง</a></li>
+              <li><a href={getLink("dreams.html")} className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
             </ul>
           </div>
 
@@ -1074,10 +1086,10 @@ export default function Home() {
           <div className="space-y-3">
             <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">Legal & Support</h5>
             <ul className="space-y-2 font-light">
-              <li><a href="policy.html" className="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a></li>
-              <li><a href="terms.html" className="hover:text-amber-400 transition-colors">ข้อตกลงและเงื่อนไข</a></li>
-              <li><a href="disclaimer.html" className="hover:text-amber-400 transition-colors">ข้อปฏิเสธความรับผิดชอบ</a></li>
-              <li><a href="help.html" className="hover:text-amber-400 transition-colors">ศูนย์ช่วยเหลือ (Help)</a></li>
+              <li><a href={getLink("policy.html")} className="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a></li>
+              <li><a href={getLink("terms.html")} className="hover:text-amber-400 transition-colors">ข้อตกลงและเงื่อนไข</a></li>
+              <li><a href={getLink("disclaimer.html")} className="hover:text-amber-400 transition-colors">ข้อปฏิเสธความรับผิดชอบ</a></li>
+              <li><a href={getLink("help.html")} className="hover:text-amber-400 transition-colors">ศูนย์ช่วยเหลือ (Help)</a></li>
             </ul>
           </div>
 
@@ -1087,32 +1099,32 @@ export default function Home() {
         <div className="max-w-[1440px] mx-auto border-t border-white/[0.04] mt-12 pt-6 text-center text-[10px] text-slate-650 font-medium flex flex-col sm:flex-row justify-between items-center gap-4">
           <p>&copy; 2026 LikitFah.com • ศาลาพยากรณ์ ออลไรท์สงวนลิขสิทธิ์.</p>
           <div className="flex gap-4">
-            <a href="policy.html" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href={getLink("policy.html")} className="hover:text-white transition-colors">Privacy Policy</a>
             <span>•</span>
-            <a href="terms.html" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href={getLink("terms.html")} className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </footer>
 
       {/* 14. Sticky Mobile Bottom Navigation Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-[100] bg-[#070714]/90 backdrop-blur-md border-t border-white/[0.06] py-2.5 px-4 flex justify-around items-center text-slate-400 text-[10px] md:hidden shadow-[0_-2px_15px_rgba(0,0,0,0.5)]">
-        <a href="index.html" className="flex flex-col items-center gap-1 text-amber-500">
+        <a href={getLink("index.html")} className="flex flex-col items-center gap-1 text-amber-500">
           <span>🏠</span>
           <span className="font-bold text-[9px]">หน้าหลัก</span>
         </a>
-        <a href="dashboard.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+        <a href={getLink("dashboard.html")} className="flex flex-col items-center gap-1 hover:text-white transition-colors">
           <span>⭐</span>
           <span className="font-bold text-[9px]">ดูดวงของฉัน</span>
         </a>
-        <a href="chinese-calendar.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+        <a href={getLink("chinese-calendar.html")} className="flex flex-col items-center gap-1 hover:text-white transition-colors">
           <span>㗊</span>
           <span className="font-bold text-[9px]">บริการ</span>
         </a>
-        <a href="dreams.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+        <a href={getLink("dreams.html")} className="flex flex-col items-center gap-1 hover:text-white transition-colors">
           <span>📖</span>
           <span className="font-bold text-[9px]">บทความ</span>
         </a>
-        <a href="profile.html" className="flex flex-col items-center gap-1 hover:text-white transition-colors">
+        <a href={getLink("profile.html")} className="flex flex-col items-center gap-1 hover:text-white transition-colors">
           <span>👤</span>
           <span className="font-bold text-[9px]">โปรไฟล์</span>
         </a>
