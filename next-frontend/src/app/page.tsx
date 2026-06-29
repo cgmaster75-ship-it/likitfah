@@ -599,8 +599,8 @@ export default function Home() {
               
               {/* Spinning wheel */}
               <img 
-                src="/zodiac_bg.png" 
-                alt="Glowing Zodiac Calendar Wheel" 
+                src="/new_zodiac_wheel.png" 
+                alt="Golden Zodiac Calendar Wheel" 
                 className="w-full h-full object-contain animate-spin-slow filter drop-shadow-[0_0_40px_rgba(233,196,106,0.25)]"
               />
               
