@@ -8,9 +8,7 @@ import {
   Compass, 
   Users, 
   CheckCircle2, 
-  ChevronLeft, 
   ChevronRight, 
-  Eye, 
   Lock, 
   ArrowRight, 
   ShieldCheck, 
@@ -26,102 +24,59 @@ import {
   X,
   Activity,
   Award,
-  Zap,
   BookOpen,
-  Phone,
   Bell,
-  Menu
+  Menu,
+  Heart,
+  TrendingUp,
+  Sliders,
+  DollarSign,
+  Phone
 } from "lucide-react";
 
+// Premium Translation & content dictionary matching user prompt
 const t = {
   th: {
-    brand: "ลิขิตฟ้า",
-    subtitle: "ASTRONOMICAL ASTROLOGY",
+    brand: "Likit Fah",
+    subtitle: "ศาลาพยากรณ์",
     navTarot: "ทำนายไพ่ยิปซี",
     navCalendar: "ปฏิทินจีนบาจื่อ",
     navDashboard: "แดชบอร์ดดวงชะตา",
     navGetStarted: "🔮 เริ่มวิเคราะห์ฟรี",
     
-    heroTitle: "ถอดรหัสชะตาชีวิต เฉพาะบุคคล ครบวงจร",
-    heroSubtitle: "วิเคราะห์สมดุลพลังธาตุ ค้นหาจุดแข็งเพื่อคว้าความสำเร็จ และวางรากฐานดวงชะตารับปีมงคลอย่างมั่นใจโดยผู้เชี่ยวชาญศาสตร์จีนและดาราศาสตร์สากล",
+    heroTitle: "ค้นพบคำตอบ",
+    heroTitleHighlight: "ที่จักรวาลอยากบอกคุณ",
+    heroSubtitle: "ดูดวงแม่นยำ ด้วยศาสตร์โหราศาสตร์หลายแขนง พร้อม AI วิเคราะห์เฉพาะบุคคลโดยผู้เชี่ยวชาญ",
+    btnHeroCta: "🌟 ดูดวงของฉันเลย",
+    btnHeroSample: "💬 ปรึกษาเรื่องที่กังวล",
+    seekersCount: "มีผู้เปิดดวงชะตาแล้วกว่า 23,481+ คน",
     bullet1: "✨ ตรวจสมดุล 5 ธาตุและสีมงคลประจำตัว",
     bullet2: "🃏 เปิดไพ่ยิปซีพยากรณ์ความรักและการงาน",
     bullet3: "🍀 รหัสตัวเลขมงคลและเลขเด่นนำโชคลาภ",
-    btnHeroCta: "🔮 เริ่มวิเคราะห์ดวงชะตาฟรี",
-    btnHeroSample: "ดูศาสตร์พยากรณ์ทั้งหมด",
-    seekersCount: "มีผู้เปิดดวงชะตาแล้วกว่า 23,481+ คน",
     
-    calculatorTitle: "เครื่องมือวิเคราะห์ชะตาชีวิตเรียลไทม์",
-    liveCalculating: "กำลังคำนวณตำแหน่งพิกัดดาว...",
+    feat1Title: "แม่นยำสูง",
+    feat1Desc: "วิเคราะห์พิกัดองศาดาวตามเวลาตกฟากจริงด้วยดาราศาสตร์คำนวณ",
+    feat2Title: "ปลอดภัย 100%",
+    feat2Desc: "ข้อมูลส่วนตัวและวันเดือนปีเกิดของคุณจะได้รับการดูแลเป็นความลับสูงสุด",
+    feat3Title: "ครอบคลุมทุกศาสตร์",
+    feat3Desc: "ครบถ้วนในหนึ่งเดียว ทั้งโหราศาสตร์จีน บาจื่อ ไพ่ยิปซี ลายมือ และตัวเลขมงคล",
+
+    widgetTitle: "ดัชนีดวงดาวประจำวันของคุณ",
+    widgetSub: "ประมวลผลดวงชะตาปัจจุบันด้วยค่าพิกัดลัคนาผสมผสานปฏิทินพลังธาตุเกิดวันนี้",
+    widgetScoreLabel: "ดวงโดยรวมวันนี้",
+    widgetLuckyNum: "เลขนำโชค",
+    widgetLuckyColor: "สีมงคลประจำตัว",
+    widgetLuckyTime: "ช่วงเวลาทองคำ",
+    widgetAiRecommend: "คำชี้แนะจากระบบ AI ลิขิตฟ้า",
+    widgetAiRecommendText: "ดาวพฤหัสโคจรเข้าทับเรือนชะตาในตำแหน่งการเงิน จังหวะชีวิตวันนี้เหมาะแก่การริเริ่มเจรจาค้าขาย หรือประสานงานโปรเจกต์ใหญ่ จะได้รับผลลัพธ์ที่ดีเลิศ",
     
-    servicesTitle: "ศาสตร์พยากรณ์และบริการของเรา",
-    servicesSub: "เลือกใช้งานศาสตร์และเครื่องมือวิเคราะห์ชะตาชีวิตต่างๆ ของลิขิตฟ้าได้ฟรีโดยไม่มีค่าใช้จ่าย",
-    srvBazi: "ปฏิทินจีนบาจื่อ (Bazi Calendar)",
-    srvBaziDesc: "ตรวจวิเคราะห์สัดส่วนกำลังพลังธาตุ ไม้ ไฟ ดิน ทอง น้ำ เพื่อหาจุดเด่นที่ส่งเสริมดวงชะตาในการงานและการทำธุรกิจ",
-    srvTarot: "ทำนายไพ่ยิปซี (Tarot Readings)",
-    srvTarotDesc: "ไขข้อข้องใจในจิตใจด้วยศาสตร์เปิดไพ่ทาโรต์พยากรณ์รายวันและแนวทางรายสัปดาห์ในทุกมิติชีวิต",
-    srvSiemsi: "เสี่ยงเซียมซีนำทาง (Siemsi Oracle)",
-    srvSiemsiDesc: "เสี่ยงทายใบคำทำนายแนวทางชีวิตจากวัดดังทั่วประเทศ เพื่อค้นหาคำตอบและทางออกที่ดีที่สุดสำหรับคุณ",
-    srvDreams: "ทำนายฝันพยากรณ์ (Dream Interpretation)",
-    srvDreamsDesc: "ตีความความฝันลึกลับบอกลางดีลางร้ายล่วงหน้า พร้อมถอดรหัสออกมาเป็นตัวเลขนำโชคมงคลเฉพาะตัวคุณ",
-    srvMobileNum: "วิเคราะห์เบอร์มงคล (Lucky Mobile)",
-    srvMobileNumDesc: "ถอดรหัสความหมายคู่ตัวเลขเบอร์โทรศัพท์มือถือที่ใช้งาน เพื่อปรับเสริมพลังบวกด้านเจรจาค้าขายและบารมี",
-    srvGraph: "กราฟชีวิต 100 ปี (100-Year Life Graph)",
-    srvGraphDesc: "ประมวลผลทิศทางดวงชะตาขึ้นลงในแต่ละทศวรรษ เพื่อช่วยวางแผนชีวิตระยะยาวอย่างปลอดภัยและมั่นคง",
+    servicesTitle: "บริการของเราทั้งหมด",
+    servicesSub: "เลือกเข้าใช้งานศาสตร์และเครื่องมือวิเคราะห์ชะตาชีวิตอัจฉริยะได้ทันที",
+    viewAll: "ดูทั้งหมด",
 
-    featuresTitle: "สิ่งที่จะได้รับการประมวลผล",
-    featuresSub: "รายงานดวงชะตาระดับพรีเมียมที่ถูกจัดทำขึ้นหลังส่งข้อมูลเวลาเกิดและพิกัดดวงดาว",
-    feat1: "สมดุลธาตุเกิด (Bazi Balance)",
-    feat1Desc: "วิเคราะห์อัตราส่วนพลังงานธรรมชาติเพื่อนำมาปรับใช้ในสภาพแวดล้อมและห้องทำงานเพื่อการเจริญรุ่งเรือง",
-    feat2: "จุดแข็ง & จุดทรานสิทดวง",
-    feat2Desc: "ชี้ประเด็นสำคัญที่จะเกิดผลลัพธ์ที่ดี และจุดเฝ้าระวังช่วงปีชงหรือธาตุขัดแย้งเพื่อหลีกเลี่ยงความเสี่ยง",
-    feat3: "แนวทางการงานที่รุ่งเรือง",
-    feat3Desc: "แนะนำกลุ่มธุรกิจและอาชีพเสริมที่สอดรับกับธาตุเกิดและส่งพลังให้ชีวิตก้าวหน้าได้รวดเร็วที่สุด",
-    feat4: "พื้นฐานความรักและคู่ครอง",
-    feat4Desc: "วิเคราะห์ลักษณะดวงชะตาคู่ครองที่สมพงษ์ เกื้อหนุน และการปรับความสัมพันธ์ตามพลังธาตุธรรมชาติ",
-
-    previewTitle: "ตัวอย่างหน้าแดชบอร์ดผลลัพธ์",
-    previewSub: "ชาร์ตรายละเอียดข้อมูลที่จะแสดงผลทันทีหลังการคำนวณถอดรหัสลัคนาของคุุณ",
-    tabBazi: "สมดุล 5 ธาตุหลัก",
-    tabTarot: "ไพ่ทาโรต์นำชีวิต",
-    tabGraph: "กราฟชีวิต 100 ปี",
-    previewLockDesc: "กรอกข้อมูลในขั้นตอนด้านล่างเพื่อปลดล็อกกราฟทิศทางชะตารายทศวรรษของคุณ",
-    btnUnlock: "🔮 ปลดล็อกดวงชะตาของฉันฟรี",
-
-    testimonialsTitle: "ความรู้สึกจากผู้ใช้บริการลิขิตฟ้า",
-    testimonialsSub: "เสียงสะท้อนจากบุคคลทั่วไปและนักธุรกิจที่ได้รับแผนผังวิเคราะห์ลิขิตฟ้า",
-    rev1: "วิเคราะห์สายงานตรงกับชีวิตจริงมากเลยครับ ช่วยให้เห็นสัดส่วนกำลังธาตุเพื่อวางแผนปีนี้ได้ดีจริงๆ",
-    rev1User: "กานดา พรหมรักษา",
-    rev1Role: "นักการตลาดดิจิทัล • กรุงเทพฯ",
-    rev2: "ชอบการดีไซน์ชาร์ตที่สะอาดตาและอ่านง่ายมากครับ ทำให้วิชาโหราศาสตร์จีนที่เข้าใจยากกลายเป็นเรื่องง่ายทันที",
-    rev2User: "สมชาย ตั้งวิทยา",
-    rev2Role: "ผู้ประกอบการธุรกิจ • เชียงใหม่",
-    rev3: "กราฟ 100 ปีช่วยเตือนอุปสรรคชีวิตช่วงวัยได้แม่นยำมากค่ะ สีสันสวยงามสมราคาพรีเมียม แนะนำค่ะ",
-    rev3User: "นลินี เลิศวิจิตร",
-    rev3Role: "นักออกแบบกราฟิก • ภูเก็ต",
-    
-    faqTitle: "คำถามที่พบบ่อย (FAQ)",
-    faqSub: "คลายข้อสงสัยเกี่ยวกับการวิเคราะห์พิกัดดาวดาราศาสตร์",
-    q1: "การวิเคราะห์ของลิขิตฟ้ามีค่าใช้จ่ายหรือไม่?",
-    a1: "บริการพยากรณ์และรายงานวิเคราะห์เบื้องต้นทั้งหมดสามารถใช้งานได้ฟรี 100% โดยสนับสนุนผ่านโฆษณา AdSense เพื่อให้ผู้พัฒนายังคงดูแลระบบต่อไปได้",
-    q2: "หากไม่รู้เวลาเกิดที่แน่นอน จะคำนวณชะตาได้หรือไม่?",
-    a2: "คำนวณได้ครับ โดยระบบจะใช้ค่ากึ่งกลางวันเฉลี่ยทำการประมวลผล อย่างไรก็ตามจุดคำนวณลัคนาราศีเกิดอาจมีสัดส่วนความแม่นยำลดลงเล็กน้อย",
-    q3: "ข้อมูลส่วนตัวของฉันจะถูกเก็บไว้ปลอดภัยหรือไม่?",
-    a3: "ปลอดภัยสูงสุดแน่นอน ข้อมูลวันเดือนปีเกิดจะถูกประมวลผลสด in หน้าบราวเซอร์เพื่อวาดชาร์ตคำนวณ และจะไม่มีการจัดเก็บหรือส่งข้อมูลไปเผยแพร่ใดๆ ทั้งสิ้น",
-    q4: "ศาสตร์ที่ระบบใช้คำนวณอ้างอิงจากหลักการใด?",
-    a4: "ระบบผสมผสานตำแหน่งพิกัดองศาดาวจริงทางดาราศาสตร์สากลเข้ากับวิชาพลัง 5 ธาตุและปฏิทินจีนบาจื่อดั้งเดิมเพื่อความครอบคลุมและแม่นยำที่สุด",
-    q5: "ทำไมผลการคำนวณถึงให้ความสำคัญกับเวลาตกฟากมาก?",
-    a5: "เพราะเวลาตกฟาก (นาทีเกิด) เป็นจุดตัดสินตำแหน่งลัคนาและองศาดาวที่ขยับตัวตลอดเวลา การระบุชั่วโมงเกิดจึงช่วยเจาะลึกพลังดวงชะตาได้ดีที่สุด",
-    q6: "กราฟชีวิต 100 ปีวิเคราะห์แนวโน้มชะตาจากจุดใด?",
-    a6: "คำนวณจากปฏิสัมพันธ์ระหว่างวัยจรทศวรรษ (วัยจร 10 ปี) ของจีนเข้ากับตาราศีดาวกำเนิดเพื่อวาดเส้นแนวโน้มจุดขึ้นลงของชะตาแต่ละช่วงวัย",
-    q7: "ระบบใช้เทคโนโลยีใดในการเขียนคำพยากรณ์อัจฉริยะ?",
-    a7: "เราใช้ระบบประมวลผล AI ช่วยวิเคราะห์องศาดาราศาสตร์ที่ซับซ้อนให้กลายเป็นประโยคคำพยากรณ์ที่กระชับ สวยงาม และเข้าถึงง่าย",
-    q8: "โฆษณาในหน้าเว็บรบกวนการใช้งานหรือไม่?",
-    a8: "โฆษณาจะถูกจัดสรรในพื้นที่ที่เหมาะสม ไม่บังการกดหรืออ่านข้อมูล เพื่อความปลอดภัยและความลื่นไหลในการใช้งานบนมือถือสูงสุด",
-
-    bottomTitle: "พร้อมถอดรหัสและค้นพบแผนผังชะตาชีวิตของคุณหรือยัง?",
-    bottomCta: "🔮 เริ่มถอดรหัสดวงชะตาวันนี้",
-    footerDesc: "พลิกชะตาฟ้าลิขิต ด้วยศาสตร์พยากรณ์ตัวเลขดาราศาสตร์และแผนผังธาตุจีนอัจฉริยะวิเคราะห์เฉพาะบุคคล",
+    bottomTitle: "พร้อมเปิดแผนผังชะตาชีวิตของคุณหรือยัง?",
+    bottomCta: "🔮 เริ่มถอดรหัสดวงชะตาฟรี",
+    footerDesc: "พลิกชะตาชีวิตด้วยการคำนวณตำแหน่งองศาดาวจริงและหลักการสมดุลห้าธาตุสากล",
     footerCol1: "ฟีเจอร์พยากรณ์",
     footerCol2: "ข้อตกลงและนโยบาย",
     footerCol3: "ติดต่อสนับสนุน",
@@ -141,98 +96,50 @@ const t = {
     loadingS3: "จัดสัดส่วนเปอร์เซ็นต์สมดุลพลังธาตุทั้ง 5",
     loadingS4: "จัดเตรียมกราฟชีวิตทิศทางชะตา 100 ปีล่วงหน้า",
     loadingS5: "จัดทำแผนภูมิแดชบอร์ดเฉพาะตัวบุคคลเสร็จสิ้น...",
-    unknownTime: "ฉันไม่ทราบเวลาเกิดของฉัน",
-    emptyChart: "ระบุข้อมูลตกฟากเพื่อวาดแผนภูมิชะตาชีวิต"
+    unknownTime: "ฉันไม่ทราบเวลาเกิดของฉัน"
   },
   en: {
     brand: "Likit Fah",
-    subtitle: "ASTRONOMICAL ASTROLOGY",
+    subtitle: "Mystic Oracle",
     navTarot: "Tarot Readings",
     navCalendar: "Bazi Calendar",
     navDashboard: "Report Dashboard",
     navGetStarted: "🔮 Free Reading",
     
-    heroTitle: "Decode Your Cosmic Blueprint & Destiny Map",
-    heroSubtitle: "Analyze your elemental balance, discover structural strengths, and navigate critical transits with guidance from astronomical data and classic Bazi principles.",
+    heroTitle: "Discover The Answers",
+    heroTitleHighlight: "The Universe Has For You",
+    heroSubtitle: "High-precision calculations and multi-branch astrology reports powered by personalized AI.",
+    btnHeroCta: "🌟 Reveal My Destiny",
+    btnHeroSample: "💬 Ask a Specialist",
+    seekersCount: "Over 23,481+ seekers have checked their charts",
     bullet1: "✨ Analyze your 5-element strengths & colors",
     bullet2: "🃏 Access tarot roadmap for love & work",
     bullet3: "🍀 Access lucky numbers and codes",
-    btnHeroCta: "🔮 Begin Free Analysis",
-    btnHeroSample: "Browse All Oracles",
-    seekersCount: "Over 23,481+ seekers have checked their charts",
     
-    calculatorTitle: "Live Destiny Calculation Machine",
-    liveCalculating: "Recalculating planetary positions...",
+    feat1Title: "High Precision",
+    feat1Desc: "Astronomical calculation mapped to your exact birth time coordinates.",
+    feat2Title: "100% Private",
+    feat2Desc: "Your birth parameters and personal data are strictly private and secure.",
+    feat3Title: "Universal Oracles",
+    feat3Desc: "Bazi Elements, Tarot roadmaps, Palmistry analysis, and Lucky numbers in one place.",
+
+    widgetTitle: "Your Daily Cosmic Alignment",
+    widgetSub: "Live transit calculations based on your birth coordinates and current celestial paths.",
+    widgetScoreLabel: "Today's Luck Index",
+    widgetLuckyNum: "Lucky Number",
+    widgetLuckyColor: "Lucky Color",
+    widgetLuckyTime: "Golden Hours",
+    widgetAiRecommend: "Cosmic AI Recommendation",
+    widgetAiRecommendText: "Jupiter enters your financial house today. The current planetary alignment is highly supportive for contract signatures, wealth decisions, and launching ambitious designs.",
     
-    servicesTitle: "Astrology & Oracle Services",
-    servicesSub: "Choose from our suite of professional calculators and interactive predictions free of charge.",
-    srvBazi: "Chinese Bazi Calendar (Bazi Calendar)",
-    srvBaziDesc: "Analyze Wood, Fire, Earth, Metal, and Water ratios to harmonize your internal energies for business and career success.",
-    srvTarot: "Tarot Readings (Tarot Readings)",
-    srvTarotDesc: "Unlock daily guidance and weekly forecast roadmaps across career, finance, and partnership fields.",
-    srvSiemsi: "Siemsi Temple Oracle (Siemsi Oracle)",
-    srvSiemsiDesc: "Shake the virtual cup and draw paper prophecy advice from famous Thailand temples for clear solutions.",
-    srvDreams: "Dream Interpretation (Dream Interpretation)",
-    srvDreamsDesc: "Decode your dreams into signs of warnings and receive your personalized lucky lottery numbers.",
-    srvMobileNum: "Lucky Mobile Numbers (Lucky Mobile)",
-    srvMobileNumDesc: "Parse the energy of your phone numbers to boost negotiation, wealth, and commercial status.",
-    srvGraph: "100-Year Life Graph (100-Year Life Graph)",
-    srvGraphDesc: "Map the rise and fall of your decade transit curves to plan career adjustments safely and long-term.",
-
-    featuresTitle: "What Insights You Will Receive",
-    featuresSub: "A premium comprehensive report generated instantly after entering your coordinates.",
-    feat1: "5 Elements Balance (Bazi)",
-    feat1Desc: "Understand Wood, Fire, Earth, Metal, and Water ratios to harmonize your internal energy.",
-    feat2: "Strengths & Pitfalls",
-    feat2Desc: "Discover your major career capabilities and highlight critical timeframes to watch.",
-    feat3: "Prosperous Career Directions",
-    feat3Desc: "Top sectors and jobs that align with your elemental weights.",
-    feat4: "Love & Partnership Sign",
-    feat4Desc: "Compatible partner profiles and relationship stability trends based on coordinates.",
-
-    previewTitle: "Sample Dashboard Results",
-    previewSub: "Visual charts generated instantly after decoding your birth parameters.",
-    tabBazi: "5 Elements Balance",
-    tabTarot: "Daily Tarot Guideline",
-    tabGraph: "100-Year Life Graph",
-    previewLockDesc: "Provide your birth parameters to unlock and generate decade transit charts.",
-    btnUnlock: "🔮 Unlock My Destiny Graph Free",
-
-    testimonialsTitle: "What Our Seekers Say",
-    testimonialsSub: "Real feedback from individuals who unlocked Likit Fah report",
-    rev1: "The career alignment is spot-on. The element balance helped me plan out my year with absolute clarity.",
-    rev1User: "Kanda Promraksa",
-    rev1Role: "Digital Marketer • Bangkok",
-    rev2: "I love the clean, modern dashboard design. Visualizing Bazi coordinates makes it easy to understand.",
-    rev2User: "Somchai Tangwittaya",
-    rev2Role: "Business Owner • Chiang Mai",
-    rev3: "Decade transition curve is highly accurate. High-end colors and typography. Highly recommended!",
-    rev3User: "Nalinee Lertwijit",
-    rev3Role: "Graphic Designer • Phuket",
-    
-    faqTitle: "Frequently Asked Questions",
-    faqSub: "Find answers about astronomical astrology calculation",
-    q1: "Is there any cost for checking my destiny?",
-    a1: "Likit Fah reports and basic predictions are 100% free, supported by AdSense ads to maintain our servers.",
-    q2: "Can I get a report if I don't know my exact birth time?",
-    a2: "Yes! Choose 'I do not know my birth hour'. Midday averages will be computed. Note that ascendant sign accuracy may decrease.",
-    q3: "Will my birth details be kept safe and private?",
-    a3: "Absolutely. Your data is calculated on-the-fly inside the browser locally and is never sent or stored on external servers.",
-    q4: "What methodology is used in calculation?",
-    a4: "We combine Western physical coordinates of celestial stars with the Chinese Bazi 5 Elements calendar.",
-    q5: "Why is birth hour crucial for analysis?",
-    a5: "Birth hour determines your ascendant and house layout, which changes rapidly. High-precision minutes unlock the best results.",
-    q6: "How does the 100-year graph calculate trends?",
-    a6: "It maps the relationship between your Chinese 10-year luck pillars and natal celestial elements to chart life transits.",
-    q7: "How is Artificial Intelligence (AI) utilized?",
-    a7: "We use AI to summarize complex planetary coordinates and element percentages into simple, easy-to-read instructions.",
-    q8: "Do ads interfere with the page experience?",
-    a8: "We arrange AdSense slots in designated, clean panels so they do not block your reading flow or buttons.",
+    servicesTitle: "Our Astrology Services",
+    servicesSub: "Choose from our suite of professional destiny calculators and interactive readings.",
+    viewAll: "View All",
 
     bottomTitle: "Ready to Reveal Your Cosmic Blueprint?",
-    bottomCta: "🔮 Begin Cosmic Calculation",
-    footerDesc: "Take charge of your life with advanced astronomical calculations and element balance.",
-    footerCol1: "Free Oracles",
+    bottomCta: "🔮 Begin Free Calculation",
+    footerDesc: "Empower your choices with advanced celestial mathematics and classic elemental balancing.",
+    footerCol1: "Oracles",
     footerCol2: "Terms & Policies",
     footerCol3: "Support",
     
@@ -251,8 +158,7 @@ const t = {
     loadingS3: "Balancing Bazi 5-Element strengths",
     loadingS4: "Drawing 100-year decade transit graph",
     loadingS5: "Creating personalized Bazi PDF dashboard...",
-    unknownTime: "I do not know my birth hour",
-    emptyChart: "Enter coordinates to preview your chart"
+    unknownTime: "I do not know my birth hour"
   }
 };
 
@@ -263,7 +169,20 @@ export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const [liveUserCount, setLiveUserCount] = useState(18);
 
-  // Form Wizard states
+  // Live Interactive Widget state (calculated dynamically based on user input or defaults)
+  const [widgetDob, setWidgetDob] = useState("1995-06-23");
+  const [widgetName, setWidgetName] = useState("");
+  const [widgetScore, setWidgetScore] = useState(88);
+  const [widgetNum, setWidgetNum] = useState("3, 8");
+  const [widgetColor, setWidgetColor] = useState("เขียวเหนี่ยวทรัพย์, ทองคำ (Green, Gold)");
+  const [widgetTime, setWidgetTime] = useState("09:00 - 11:00 น. (Gold Hours)");
+  
+  const [widgetLove, setWidgetLove] = useState(85);
+  const [widgetMoney, setWidgetMoney] = useState(92);
+  const [widgetCareer, setWidgetCareer] = useState(78);
+  const [widgetHealth, setWidgetHealth] = useState(90);
+
+  // Form Wizard inputs
   const [fullName, setFullName] = useState("");
   const [dob, setDob] = useState("");
   const [tob, setTob] = useState("12:00");
@@ -273,7 +192,46 @@ export default function Home() {
   const [submissionProgress, setSubmissionProgress] = useState(0);
   const [completedAnimationSteps, setCompletedAnimationSteps] = useState<number[]>([]);
 
-  // Simulation of live active seekers
+  // Update Horoscope Widget values on input changes
+  useEffect(() => {
+    const seed = widgetDob.split("-").reduce((acc, val) => acc + parseInt(val || "0"), 0) + (widgetName ? widgetName.length * 5 : 45);
+    const score = 70 + (seed % 28); // between 70% and 98%
+    setWidgetScore(score);
+
+    const love = 65 + (seed % 31);
+    const money = 60 + ((seed * 7) % 36);
+    const career = 65 + ((seed * 11) % 31);
+    const health = 70 + ((seed * 3) % 26);
+    
+    setWidgetLove(love);
+    setWidgetMoney(money);
+    setWidgetCareer(career);
+    setWidgetHealth(health);
+
+    const numbers = [`3, 8`, `1, 9`, `2, 7`, `4, 6`, `5, 0`][seed % 5];
+    setWidgetNum(numbers);
+
+    const colors = [
+      "เขียวเหนี่ยวทรัพย์, ชมพู (Green, Pink)",
+      "ทองคำส่องสว่าง, แดงมงคล (Gold, Red)",
+      "น้ำเงินมหาสมุทร, เทาเงิน (Navy Blue, Silver)",
+      "เหลืองครีม, ส้มสดใส (Yellow, Orange)",
+      "ขาวบริสุทธิ์, ดำขลับ (White, Black)"
+    ][seed % 5];
+    setWidgetColor(colors);
+
+    const times = [
+      "09:00 - 11:00 น. (Gold Hours)",
+      "13:00 - 15:00 น. (Lucky Hours)",
+      "17:00 - 19:00 น. (Auspicious Hours)",
+      "07:00 - 09:00 น. (Morning Hours)",
+      "19:00 - 21:00 น. (Evening Hours)"
+    ][seed % 5];
+    setWidgetTime(times);
+
+  }, [widgetDob, widgetName]);
+
+  // Simulation of live active seekers count
   useEffect(() => {
     const interval = setInterval(() => {
       setLiveUserCount(prev => {
@@ -332,300 +290,346 @@ export default function Home() {
     });
   };
 
+  // List of all services (completely free of pricing tags to align with request)
+  const servicesList = [
+    { id: 1, title: "ดูดวงรายวัน (Daily Horoscope)", desc: "เช็คทิศทางโชคลาภรายธาตุและดัชนีดาวจรวันต่อวันฟรี", badge: "ยอดนิยม", icon: <Sun className="w-5 h-5" /> },
+    { id: 2, title: "ดูดวงรายเดือน (Monthly Horoscope)", desc: "ตรวจลัคนาราศีวิเคราะห์ลึก 12 ราศีพร้อมทรานสิตปี", badge: "แนะนำ", icon: <Calendar className="w-5 h-5" /> },
+    { id: 3, title: "ดูดวงความรัก (Love Horoscope)", desc: "เจาะลึกเกณฑ์เนื้อคู่ คนโสด คนมีคู่ และองศาดาวแห่งคู่ครอง", badge: null, icon: <Heart className="w-5 h-5" /> },
+    { id: 4, title: "ปฏิทินจีนบาจื่อ (Bazi Chart)", desc: "ตรวจวิเคราะห์สัดส่วนกำลังสมดุล 5 ธาตุหลักประจำวันเกิด", badge: "พรีเมียม", icon: <Compass className="w-5 h-5" /> },
+    { id: 5, title: "ทำนายไพ่ยิปซี (Tarot Readings)", desc: "เปิดไพ่พยากรณ์สากล 78 ใบคลายข้อสงสัยชีวิตเฉพาะด้าน", badge: null, icon: <Sparkles className="w-5 h-5" /> },
+    { id: 6, title: "ฮวงจุ้ยบ้าน & โต๊ะทำงาน (Feng Shui)", desc: "ปรับสมดุลทิศทางและตำแหน่งเพื่อส่งเสริมพลังบวกโชคลาภ", badge: null, icon: <ShieldCheck className="w-5 h-5" /> },
+    { id: 7, title: "เลขนำโชคเบอร์โทรศัพท์ (Lucky Numbers)", desc: "วิเคราะห์ความหมายคู่ตัวเลขเบอร์โทรศัพท์มือถือที่ใช้หนุนชีวิต", badge: null, icon: <Phone className="w-5 h-5" /> },
+    { id: 8, title: "ทำนายฝันพยากรณ์ (Dream Decode)", desc: "ถอดรหัสเหตุการณ์ในฝันเป็นคำเตือนภัยและเลขนำโชคประจำวัน", badge: null, icon: <BookOpen className="w-5 h-5" /> }
+  ];
+
   return (
-    <div className="min-h-screen bg-[#060214] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black relative pb-16 md:pb-0">
+    <div className="min-h-screen bg-[#070714] text-slate-100 flex flex-col font-sans selection:bg-amber-500 selection:text-black relative pb-16 md:pb-0 overflow-x-hidden">
       
-      {/* Mystical Nebula Glow Ambient Backgrounds */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[800px] overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-transparent rounded-full blur-[140px]"></div>
-        <div className="absolute top-[250px] right-[5%] w-[350px] h-[350px] bg-amber-500/5 rounded-full blur-[100px]"></div>
+      {/* Astrological Cosmic Nebula Background Glows */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1440px] h-[800px] overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[-100px] left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-purple-500/10 via-indigo-500/5 to-transparent rounded-full blur-[140px]"></div>
+        <div className="absolute top-[300px] right-[5%] w-[450px] h-[450px] bg-amber-500/5 rounded-full blur-[120px]"></div>
+        <div className="absolute top-[450px] left-[-10%] w-[350px] h-[350px] bg-pink-500/5 rounded-full blur-[100px]"></div>
       </div>
 
-      {/* Floating Dark Navbar matching the mockup header */}
-      <header className="sticky top-0 z-50 w-full bg-[#060214]/80 backdrop-blur-md border-b border-purple-950/20 py-4.5 px-6 md:px-12 flex justify-between items-center text-slate-200">
+      {/* 1. Header (Navbar) - Glassmorphism floating header */}
+      <header className="sticky top-0 z-50 w-full bg-[#070714]/70 backdrop-blur-md border-b border-white/[0.06] py-4.5 px-6 md:px-12 flex justify-between items-center text-slate-200">
         <div className="flex items-center gap-4">
-          <button className="text-slate-350 hover:text-white transition-colors cursor-pointer" aria-label="Menu">
+          <button className="text-slate-400 hover:text-white transition-colors cursor-pointer" aria-label="Menu">
             <Menu className="w-5 h-5" />
           </button>
         </div>
 
         {/* Center Logo matching mockup */}
         <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 flex items-center justify-center border border-amber-500/30">
-            <Moon className="w-4 h-4 text-white" />
+          <div className="w-7.5 h-7.5 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 flex items-center justify-center border border-amber-500/30">
+            <Moon className="w-4 h-4 text-slate-950 font-bold" />
           </div>
           <div className="text-center">
-            <span className="font-serif font-black text-sm md:text-base tracking-wider text-title-gradient">Likit Fah</span>
-            <p className="text-[6px] text-slate-500 uppercase tracking-widest mt-0.5 font-bold">ศาลาพยากรณ์</p>
+            <span className="font-serif font-black text-sm md:text-base tracking-wider text-white">{currentTranslations.brand}</span>
+            <p className="text-[6.5px] text-slate-500 uppercase tracking-widest mt-0.5 font-bold">{currentTranslations.subtitle}</p>
           </div>
         </div>
 
-        {/* Right tools matching mockup */}
+        {/* Right tools */}
         <div className="flex items-center gap-4">
           <button 
             onClick={() => setLang(prev => prev === "th" ? "en" : "th")}
-            className="text-[10px] font-bold text-slate-400 hover:text-amber-400 transition-all border border-purple-950/40 rounded px-1.5 py-0.5"
+            className="text-[10px] font-bold text-slate-400 hover:text-amber-400 transition-all border border-white/[0.08] rounded px-2 py-0.5"
           >
             {lang === "th" ? "EN" : "TH"}
           </button>
           
-          <button className="relative text-slate-350 hover:text-white transition-colors cursor-pointer" aria-label="Notifications">
+          <button className="relative text-slate-400 hover:text-white transition-colors cursor-pointer">
             <Bell className="w-5 h-5" />
-            <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-amber-500"></span>
+            <span className="absolute top-0 right-0 w-1.5 h-1.5 rounded-full bg-amber-500"></span>
           </button>
-          
-          <a href="profile.html" className="w-7 h-7 rounded-full bg-slate-900 border border-purple-950/50 flex items-center justify-center text-slate-400 hover:text-white transition-colors">
-            <User className="w-4 h-4" />
-          </a>
         </div>
       </header>
 
-      {/* Main Content Container with Mockup Layout */}
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-8 md:py-12 relative z-10 flex flex-col gap-12">
-
-        {/* 1. Hero Section - Mystic cosmic background and rotating zodiac */}
-        <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-gradient-to-b from-[#120a2e]/30 to-transparent rounded-3xl p-6 md:p-8 border border-purple-950/20 relative overflow-hidden">
-          {/* Subtle cosmic particle overlay */}
-          <div className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: "url('/zodiac_bg.png')" }}></div>
-          
-          {/* Left Text Column */}
-          <div className="md:col-span-7 flex flex-col gap-5 text-left items-start z-10">
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white font-serif tracking-tight leading-tight">
-              ค้นพบคำตอบ <br />
-              <span className="text-amber-400">ที่จักรวาลอยากบอกคุณ</span>
-            </h1>
-            
-            <p className="text-xs text-slate-400 font-light leading-relaxed max-w-md">
-              ดูดวง แม่นยำ โดยนักพยากรณ์มืออาชีพ พร้อมให้คำแนะนำในทุกเรื่องของชีวิตและแผนผังธาตุกำเนิด
-            </p>
-
-            <div className="flex items-center gap-3.5 w-full pt-1">
-              <button 
-                onClick={() => {
-                  setWizardOpen(true);
-                  setCurrentStep(1);
-                }}
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs transition-all hover:scale-[1.02] shadow-[0_4px_25px_rgba(245,158,11,0.25)] flex items-center gap-1.5 cursor-pointer"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-black" />
-                <span>ดูดวงของฉันเลย</span>
-              </button>
-              
-              <button 
-                onClick={() => setWizardOpen(true)}
-                className="px-6 py-3 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <span>ปรึกษาเรื่องที่กังวล</span>
-              </button>
-            </div>
-
-            {/* Mockup Trust Indicators underneath Hero */}
-            <div className="grid grid-cols-3 gap-3 border-t border-purple-950/30 pt-5 mt-3 w-full">
-              <div className="flex items-start gap-2 text-left">
-                <ShieldCheck className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-[10px] text-white font-bold">แม่นยำ</div>
-                  <div className="text-[7.5px] text-slate-500">โดยนักพยากรณ์มืออาชีพ</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 text-left">
-                <Lock className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-[10px] text-white font-bold">ปลอดภัย</div>
-                  <div className="text-[7.5px] text-slate-500">ข้อมูลของคุณเป็นความลับ</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-2 text-left">
-                <Award className="w-4.5 h-4.5 text-amber-550 shrink-0 mt-0.5" />
-                <div>
-                  <div className="text-[10px] text-white font-bold">ครบทุกศาสตร์</div>
-                  <div className="text-[7.5px] text-slate-500">ไพ่ยิปซี, ฮวงจุ้ย, บาจื่อ</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Zodiac Wheel Image Column */}
-          <div className="md:col-span-5 flex justify-center items-center relative z-10">
-            <div className="relative w-48 h-48 md:w-56 md:h-56">
-              {/* Star dust halo */}
-              <div className="absolute inset-[-10px] bg-purple-650/10 rounded-full blur-2xl animate-pulse"></div>
-              {/* Glowing Zodiac Background Rotating */}
-              <img 
-                src="/zodiac_bg.png" 
-                alt="Astrology Zodiac Chart Wheel" 
-                className="w-full h-full object-contain animate-spin-slow filter drop-shadow-[0_0_20px_rgba(245,158,11,0.2)]"
-              />
-            </div>
-          </div>
-        </section>
+      {/* Main Content Layout with 1440px max width constraints */}
+      <main className="flex-1 max-w-[1440px] mx-auto w-full px-6 md:px-12 py-10 md:py-16 relative z-10 flex flex-col gap-24">
 
         {/* AdSense Top Ad Slot Placeholder */}
-        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-650 uppercase tracking-widest min-h-[90px] relative overflow-hidden">
+        <div className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-600 uppercase tracking-widest min-h-[90px] relative overflow-hidden">
           <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Top Banner</div>
           <span>Google AdSense Advertisement</span>
           <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
 
-        {/* 2. Services Grid Section (บริการของเรา) - 8 circular mystical services */}
-        <section className="flex flex-col gap-4">
-          <div className="flex justify-between items-center px-1">
-            <h2 className="text-base md:text-lg font-serif font-black text-white">บริการของเรา</h2>
-            <a href="chinese-calendar.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
+        {/* 2. Hero Section - Purple Nebula space with rotating zodiac wheel */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-8 md:p-12 relative overflow-hidden backdrop-blur-md">
+          {/* Subtle star particle background */}
+          <div className="absolute inset-0 bg-cover bg-center opacity-[0.05] pointer-events-none mix-blend-overlay" style={{ backgroundImage: "url('/zodiac_bg.png')" }}></div>
+          
+          {/* Left copy */}
+          <div className="lg:col-span-7 flex flex-col gap-6 text-left items-start z-10">
+            
+            {/* Live seekers tag */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[10px] font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+              <span>⭐ {currentTranslations.seekersCount}</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black font-serif tracking-tight leading-none text-white">
+              {currentTranslations.heroTitle} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 block sm:inline mt-2">
+                {currentTranslations.heroTitleHighlight}
+              </span>
+            </h1>
+            
+            <p className="text-xs md:text-sm text-slate-400 font-light leading-relaxed max-w-lg">
+              {currentTranslations.heroSubtitle}
+            </p>
+
+            {/* Bullets */}
+            <div className="flex flex-col gap-3.5 text-xs text-slate-300 font-semibold w-full">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
+                <span>{currentTranslations.bullet1}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
+                <span>{currentTranslations.bullet2}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4.5 h-4.5 text-amber-400 shrink-0" />
+                <span>{currentTranslations.bullet3}</span>
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full pt-2">
+              <button 
+                onClick={() => {
+                  setWizardOpen(true);
+                  setCurrentStep(1);
+                }}
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs transition-all hover:scale-[1.02] shadow-[0_4px_30px_rgba(233,196,106,0.3)] cursor-pointer flex justify-center items-center gap-2"
+              >
+                <span>{currentTranslations.btnHeroCta}</span>
+                <ArrowRight className="w-4 h-4 text-black" />
+              </button>
+              
+              <button 
+                onClick={() => setWizardOpen(true)}
+                className="w-full sm:w-auto px-8 py-4 rounded-full border border-purple-500/20 bg-purple-950/15 hover:bg-purple-950/30 text-purple-300 font-bold text-xs transition-all flex justify-center items-center gap-2 cursor-pointer"
+              >
+                <span>{currentTranslations.btnHeroSample}</span>
+              </button>
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            
-            {/* Service 1: Tarot Card */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-amber-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(245,158,11,0.25)] transition-all">
-                <Sparkles className="w-6 h-6 text-amber-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ดูดวงไพ่ยิปซี</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ไพ่คำทำนายด้วยไพ่ยิปซี 78 ใบ</p>
+          {/* Right spinning zodiac wheel */}
+          <div className="lg:col-span-5 flex justify-center items-center relative z-10">
+            <div className="relative w-56 h-56 md:w-72 md:h-72">
+              <div className="absolute inset-[-15px] bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+              <img 
+                src="/zodiac_bg.png" 
+                alt="Glowing Zodiac Calendar Wheel" 
+                className="w-full h-full object-contain animate-spin-slow filter drop-shadow-[0_0_25px_rgba(233,196,106,0.18)]"
+              />
             </div>
-
-            {/* Service 2: Bazi Calendar / Monthly */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-indigo-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all">
-                <Compass className="w-6 h-6 text-indigo-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ดูดวงรายเดือน</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ทำนายดวงชะตา 12 ราศีเจาะลึก</p>
-            </div>
-
-            {/* Service 3: Love */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-pink-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(244,114,182,0.15)] group-hover:shadow-[0_0_20px_rgba(244,114,182,0.25)] transition-all">
-                <Moon className="w-6 h-6 text-pink-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ดูดวงความรัก</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">เช็คดวงความรัก เนื้อคู่ คนโสด</p>
-            </div>
-
-            {/* Service 4: Personal Expert */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-cyan-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(34,211,238,0.15)] group-hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-all">
-                <User className="w-6 h-6 text-cyan-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ดูดวงส่วนตัว</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ปรึกษาส่วนตัวกับนักพยากรณ์</p>
-            </div>
-
-            {/* Service 5: Money & Career */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-orange-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(251,146,60,0.15)] group-hover:shadow-[0_0_20px_rgba(251,146,60,0.25)] transition-all">
-                <Activity className="w-6 h-6 text-orange-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">การเงิน การงาน</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">วิเคราะห์เจาะลึกตำแหน่งกระแสดวง</p>
-            </div>
-
-            {/* Service 6: Feng Shui */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-emerald-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(52,211,153,0.15)] group-hover:shadow-[0_0_20px_rgba(52,211,153,0.25)] transition-all">
-                <ShieldCheck className="w-6 h-6 text-emerald-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ฮวงจุ้ย</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ปรับดวงชะตาสถานที่อยู่อาศัย</p>
-            </div>
-
-            {/* Service 7: Auspicious Timing */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-red-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(248,113,113,0.15)] group-hover:shadow-[0_0_20px_rgba(248,113,113,0.25)] transition-all">
-                <Calendar className="w-6 h-6 text-red-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ฤกษ์มงคล</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">เลือกเวลาฤกษ์เริ่มสิ่งสำคัญ</p>
-            </div>
-
-            {/* Service 8: Palmistry */}
-            <div 
-              onClick={() => {
-                setWizardOpen(true);
-                setCurrentStep(1);
-              }}
-              className="bg-gradient-to-b from-[#120a2e]/50 to-[#060214]/80 border border-purple-950/30 p-5 rounded-2xl flex flex-col items-center text-center cursor-pointer hover:border-purple-500/40 hover:scale-[1.01] transition-all group"
-            >
-              <div className="w-16 h-16 rounded-full bg-[#1c1242] flex items-center justify-center text-teal-400 mb-3 border border-purple-500/10 shadow-[0_0_15px_rgba(45,212,191,0.15)] group-hover:shadow-[0_0_20px_rgba(45,212,191,0.25)] transition-all">
-                <BookOpen className="w-6 h-6 text-teal-400" />
-              </div>
-              <h3 className="text-xs font-bold text-white mb-1">ลายมือ</h3>
-              <p className="text-[9px] text-slate-500 font-light leading-relaxed">ถอดลายมือวิเคราะห์เส้นชีวิต</p>
-            </div>
-
           </div>
         </section>
 
-        {/* 3. Recommendation Highlight Section (แนะนำสำหรับคุณ) */}
-        <section className="flex flex-col gap-4">
-          <div className="flex justify-between items-center px-1">
-            <h2 className="text-base md:text-lg font-serif font-black text-white">แนะนำสำหรับคุณ</h2>
-            <a href="tarot.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
+        {/* 3. Feature Highlights Section (3 Glass cards) */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Card 1 */}
+          <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col gap-4 text-left shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <Award className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-serif font-black text-white">{currentTranslations.feat1Title}</h3>
+            <p className="text-xs text-slate-450 leading-relaxed font-light">{currentTranslations.feat1Desc}</p>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col gap-4 text-left shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <Lock className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-serif font-black text-white">{currentTranslations.feat2Title}</h3>
+            <p className="text-xs text-slate-450 leading-relaxed font-light">{currentTranslations.feat2Desc}</p>
+          </div>
+          {/* Card 3 */}
+          <div className="bg-white/[0.03] border border-white/[0.08] p-6 rounded-3xl hover:border-purple-500/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col gap-4 text-left shadow-lg">
+            <div className="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-serif font-black text-white">{currentTranslations.feat3Title}</h3>
+            <p className="text-xs text-slate-450 leading-relaxed font-light">{currentTranslations.feat3Desc}</p>
+          </div>
+        </section>
+
+        {/* 4. Today's Horoscope Widget (Dashboard style) */}
+        <section className="flex flex-col gap-6 text-left">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-lg md:text-xl font-serif font-black text-white">{currentTranslations.widgetTitle}</h2>
+            <p className="text-slate-450 text-xs">{currentTranslations.widgetSub}</p>
           </div>
 
-          {/* Horizontal Highlight Card matching mockup */}
-          <div className="bg-[#0b061e]/40 rounded-2xl border border-purple-950/30 overflow-hidden flex flex-col sm:flex-row gap-5 p-4 items-center">
-            {/* Left side image banner */}
-            <div className="w-full sm:w-1/3 aspect-[1.8/1] sm:aspect-[1.5/1] rounded-xl overflow-hidden relative border border-purple-950/20 shrink-0">
+          <div className="bg-white/[0.03] border border-white/[0.08] rounded-3xl p-6 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center backdrop-blur-md relative overflow-hidden shadow-2xl">
+            {/* Ambient gold/purple background glow inside card */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/5 rounded-full blur-[80px] pointer-events-none"></div>
+
+            {/* Circular Luck Index score dial (4 columns on desktop) */}
+            <div className="lg:col-span-4 flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-white/[0.08] pb-6 lg:pb-0 lg:pr-8 text-center min-h-[200px]">
+              
+              {/* Sandbox controls inside the widget to make it extremely interactive */}
+              <div className="w-full max-w-[180px] flex flex-col gap-1.5 mb-5 text-left">
+                <label className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">ชื่อผู้เปิดดวงชะตา</label>
+                <input 
+                  type="text" 
+                  value={widgetName}
+                  onChange={(e) => setWidgetName(e.target.value)}
+                  placeholder="ณัฐวุฒิ ใจดี"
+                  className="bg-black/40 border border-white/[0.08] rounded-lg px-2.5 py-1.5 text-[10px] text-amber-400 font-bold focus:outline-none focus:border-amber-500 transition-all w-full"
+                />
+              </div>
+
+              <div className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-3">{currentTranslations.widgetScoreLabel}</div>
+              
+              <div className="relative w-28 h-28 flex items-center justify-center">
+                <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.03)" strokeWidth="6" fill="transparent" />
+                  <circle cx="50" cy="50" r="42" stroke="#E9C46A" strokeWidth="6" fill="transparent"
+                    strokeDasharray="263.8" strokeDashoffset={263.8 - (263.8 * widgetScore) / 100} strokeLinecap="round" className="transition-all duration-700 ease-out" />
+                </svg>
+                <div className="absolute flex flex-col items-center">
+                  <span className="text-2xl font-black text-amber-400 font-mono tracking-tighter">{widgetScore}%</span>
+                  <span className="text-[7px] text-emerald-400 font-bold uppercase tracking-widest mt-0.5">High Transit</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Lucky coordinates lists (4 columns on desktop) */}
+            <div className="lg:col-span-4 flex flex-col gap-4.5 border-b lg:border-b-0 lg:border-r border-white/[0.08] pb-6 lg:pb-0 lg:pr-8 text-left justify-center min-h-[200px]">
+              <div className="flex flex-col gap-1">
+                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">{currentTranslations.widgetLuckyNum}</span>
+                <span className="text-sm font-black text-amber-400 font-mono">{widgetNum}</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">{currentTranslations.widgetLuckyColor}</span>
+                <span className="text-xs font-bold text-slate-200">{widgetColor}</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[8px] font-bold text-slate-500 uppercase tracking-widest">{currentTranslations.widgetLuckyTime}</span>
+                <span className="text-[11px] font-bold text-slate-300 font-mono">{widgetTime}</span>
+              </div>
+            </div>
+
+            {/* Parameters levels & AI summary (4 columns on desktop) */}
+            <div className="lg:col-span-4 flex flex-col justify-between text-left min-h-[220px]">
+              
+              {/* Parameters levels */}
+              <div className="space-y-2.5">
+                <div>
+                  <div className="flex justify-between text-[10px] font-bold mb-1"><span className="text-pink-400">ความรัก (Love)</span><span className="text-white font-mono">{widgetLove}%</span></div>
+                  <div className="w-full bg-[#120e2e] rounded-full h-1"><div className="bg-pink-500 h-1 rounded-full transition-all duration-500" style={{ width: `${widgetLove}%` }}></div></div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-[10px] font-bold mb-1"><span className="text-amber-450">การเงิน (Money)</span><span className="text-white font-mono">{widgetMoney}%</span></div>
+                  <div className="w-full bg-[#120e2e] rounded-full h-1"><div className="bg-amber-500 h-1 rounded-full transition-all duration-500" style={{ width: `${widgetMoney}%` }}></div></div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-[10px] font-bold mb-1"><span className="text-indigo-400">การงาน (Career)</span><span className="text-white font-mono">{widgetCareer}%</span></div>
+                  <div className="w-full bg-[#120e2e] rounded-full h-1"><div className="bg-indigo-500 h-1 rounded-full transition-all duration-500" style={{ width: `${widgetCareer}%` }}></div></div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-[10px] font-bold mb-1"><span className="text-emerald-450">สุขภาพ (Health)</span><span className="text-white font-mono">{widgetHealth}%</span></div>
+                  <div className="w-full bg-[#120e2e] rounded-full h-1"><div className="bg-emerald-500 h-1 rounded-full transition-all duration-500" style={{ width: `${widgetHealth}%` }}></div></div>
+                </div>
+              </div>
+
+              {/* AI Badge & Advice summary */}
+              <div className="bg-white/[0.02] border border-white/[0.04] p-3 rounded-xl mt-4">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[8px] font-bold uppercase tracking-wider mb-1.5">
+                  <Sparkles className="w-2.5 h-2.5 text-purple-400" />
+                  <span>{currentTranslations.widgetAiRecommend}</span>
+                </span>
+                <p className="text-[10px] text-slate-450 leading-relaxed font-light">
+                  "{currentTranslations.widgetAiRecommendText}"
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Services Responsive Grid Section (บริการของเรา) - completely free of pricing to match the user's specific request */}
+        <section className="flex flex-col gap-6 text-left">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-lg md:text-xl font-serif font-black text-white">{currentTranslations.servicesTitle}</h2>
+            <a href="chinese-calendar.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {servicesList.map(srv => (
+              <div 
+                key={srv.id}
+                onClick={() => {
+                  setWizardOpen(true);
+                  setCurrentStep(1);
+                }}
+                className="bg-white/[0.03] border border-white/[0.08] p-5.5 rounded-3xl hover:border-purple-550/30 hover:translate-y-[-4px] transition-all duration-300 flex flex-col justify-between min-h-[220px] cursor-pointer relative group overflow-hidden shadow-md"
+              >
+                {/* Glow circle overlay inside cards */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/0 group-hover:bg-purple-500/[0.02] rounded-full blur-2xl transition-all duration-300"></div>
+
+                <div>
+                  <div className="flex justify-between items-start gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-purple-550/10 border border-purple-550/20 flex items-center justify-center text-purple-400 shadow-[0_0_15px_rgba(139,92,246,0.15)] group-hover:shadow-[0_0_20px_rgba(139,92,246,0.25)] transition-all shrink-0">
+                      {srv.icon}
+                    </div>
+                    {srv.badge && (
+                      <span className="text-[7.5px] font-bold bg-amber-500/10 border border-amber-500/20 text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        {srv.badge}
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-xs font-serif font-black text-white mt-4 mb-2">{srv.title}</h3>
+                  <p className="text-[10px] text-slate-450 leading-relaxed font-light">{srv.desc}</p>
+                </div>
+
+                <div className="flex justify-between items-center pt-3.5 border-t border-white/[0.04] mt-4 text-[10px] font-bold">
+                  <span className="text-emerald-400 bg-emerald-500/5 px-2 py-0.5 rounded border border-emerald-500/10">✨ ตรวจฟรี</span>
+                  <span className="text-slate-400 hover:text-white flex items-center gap-1 transition-colors">วิเคราะห์เลย →</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* 6. Recommended Highlight Banner (เปิดไพ่พลังจักรวาล - Price free to match request) */}
+        <section className="flex flex-col gap-4 text-left">
+          <div className="flex justify-between items-center px-1">
+            <h2 className="text-lg md:text-xl font-serif font-black text-white">แนะนำพยากรณ์พิเศษ</h2>
+            <a href="tarot.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
+          </div>
+
+          <div className="bg-[#0b061e]/40 rounded-3xl border border-white/[0.08] overflow-hidden flex flex-col md:flex-row gap-6 p-6 items-center backdrop-blur-md relative shadow-2xl">
+            {/* Background gold glow */}
+            <div className="absolute top-0 right-0 w-64 h-full bg-amber-500/[0.02] rounded-full blur-[80px] pointer-events-none"></div>
+
+            {/* Left banner image */}
+            <div className="w-full md:w-1/3 aspect-[1.8/1] md:aspect-[1.5/1] rounded-2xl overflow-hidden relative border border-white/[0.08] shrink-0">
               <img 
                 src="/tarot_banner.png" 
-                alt="Tarot recommended banner" 
+                alt="Tarot recommended banner illustration" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0b061e]/20"></div>
             </div>
 
-            {/* Right side copy and CTA */}
-            <div className="flex-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 w-full text-left">
-              <div className="space-y-1">
-                <h3 className="text-sm font-bold text-white">เปิดไพ่พลังจักรวาล</h3>
-                <p className="text-[10px] text-slate-450 leading-relaxed font-light">เปิดไพ่ 3 ใบ รับคำแนะนำจากจักรวาล เพื่อค้นพบแนวทางที่ดีที่สุดสำหรับคุณในการดำเนินชีวิต</p>
-                <div className="flex items-center gap-2.5 pt-1">
-                  <span className="text-amber-400 font-black text-xs">199.-</span>
-                  <span className="text-slate-500 line-through text-[9px]">299.-</span>
+            {/* Right details */}
+            <div className="flex-1 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 w-full text-left">
+              <div className="space-y-1.5 max-w-xl">
+                <span className="text-[8px] font-bold text-amber-500 uppercase tracking-widest">ศาสตร์พยากรณ์เด่น</span>
+                <h3 className="text-base font-serif font-black text-white">เปิดไพ่พลังจักรวาล</h3>
+                <p className="text-[11px] text-slate-450 leading-relaxed font-light">เปิดไพ่ยิปซีพลังจักรวาล 3 ใบ รับคำวิเคราะห์สวรรค์ ชี้พิกัดการงานและการเงินเพื่อแนวทางประกอบการตัดสินใจของชีวิตคุณฟรี</p>
+                <div className="flex items-center gap-2 pt-1">
+                  <span className="text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-bold px-2 py-0.5 rounded">ตรวจพยากรณ์ได้ฟรีไม่มีค่าบริการ</span>
                 </div>
               </div>
               <button 
@@ -633,107 +637,111 @@ export default function Home() {
                   setWizardOpen(true);
                   setCurrentStep(1);
                 }}
-                className="px-5 py-3 rounded-lg bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-[10px] shadow-sm flex items-center gap-1.5 cursor-pointer shrink-0"
+                className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-[10px] shadow-sm flex items-center gap-1.5 cursor-pointer shrink-0"
               >
-                <span>ดูรายละเอียด 👈</span>
+                <span>เปิดไพ่พยากรณ์เลย 👈</span>
               </button>
             </div>
           </div>
         </section>
 
-        {/* AdSense Mid-Feed Ad Slot Placeholder */}
-        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-650 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
+        {/* AdSense In-Feed Ad Slot Placeholder */}
+        <div className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-600 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
           <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Mid Banner</div>
           <span>Google AdSense Advertisement</span>
           <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
 
-        {/* 4. Articles & Guides Section (บทความ & คู่มือ) */}
-        <section className="flex flex-col gap-4">
+        {/* 7. Articles Grid Section (บทความ & คู่มือ) */}
+        <section className="flex flex-col gap-6 text-left">
           <div className="flex justify-between items-center px-1">
-            <h2 className="text-base md:text-lg font-serif font-black text-white">บทความ & คู่มือ</h2>
-            <a href="dreams.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">ดูทั้งหมด &gt;</a>
+            <h2 className="text-lg md:text-xl font-serif font-black text-white">บทความ & คู่มือ</h2>
+            <a href="dreams.html" className="text-xs text-purple-400 hover:text-purple-300 font-bold">{currentTranslations.viewAll} &gt;</a>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             
             {/* Article 1 */}
-            <a href="chinese-calendar.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+            <a href="chinese-calendar.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-2px] transition-all shadow-sm">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/zodiac_bg.png" alt="Zodiac Forecast Article" className="w-full h-full object-cover" />
+                <img src="/zodiac_bg.png" alt="12 Zodiac Forecast Article Banner" className="w-full h-full object-cover" />
               </div>
-              <div className="p-3 text-left space-y-1">
-                <h4 className="text-[10px] font-bold text-white line-clamp-2">เช็คดวงรายเดือนทั้ง 12 ราศี</h4>
-                <span className="text-[7px] text-slate-500 block">20 พ.ค. 2567</span>
+              <div className="p-4 text-left space-y-1.5">
+                <span className="text-[7.5px] font-bold text-purple-400 uppercase tracking-wider block">โหราศาสตร์จีน</span>
+                <h4 className="text-[10px] font-bold text-white leading-relaxed line-clamp-2">เช็คดวงรายเดือนทั้ง 12 ราศี</h4>
+                <span className="text-[7px] text-slate-550 block font-mono">20 พ.ค. 2567</span>
               </div>
             </a>
 
             {/* Article 2 */}
-            <a href="dreams.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+            <a href="dreams.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-2px] transition-all shadow-sm">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_coins.png" alt="Wealth Article" className="w-full h-full object-cover" />
+                <img src="/art_coins.png" alt="Wealth & Prosperity Article Banner" className="w-full h-full object-cover" />
               </div>
-              <div className="p-3 text-left space-y-1">
-                <h4 className="text-[10px] font-bold text-white line-clamp-2">5 วิธีเสริมดวงการเงินให้ปังตลอดปี 2567</h4>
-                <span className="text-[7px] text-slate-500 block">18 พ.ค. 2567</span>
+              <div className="p-4 text-left space-y-1.5">
+                <span className="text-[7.5px] font-bold text-purple-400 uppercase tracking-wider block">เสริมชะตาการเงิน</span>
+                <h4 className="text-[10px] font-bold text-white leading-relaxed line-clamp-2">5 วิธีเสริมดวงการเงินให้ปังตลอดปี 2567</h4>
+                <span className="text-[7px] text-slate-550 block font-mono">18 พ.ค. 2567</span>
               </div>
             </a>
 
             {/* Article 3 */}
-            <a href="tarot.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+            <a href="tarot.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-2px] transition-all shadow-sm">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_love.png" alt="Love Article" className="w-full h-full object-cover" />
+                <img src="/art_love.png" alt="Relationship Forecast Article Banner" className="w-full h-full object-cover" />
               </div>
-              <div className="p-3 text-left space-y-1">
-                <h4 className="text-[10px] font-bold text-white line-clamp-2">ดูดวงความรัก คนโสด vs คนมีคู่</h4>
-                <span className="text-[7px] text-slate-500 block">15 พ.ค. 2567</span>
+              <div className="p-4 text-left space-y-1.5">
+                <span className="text-[7.5px] font-bold text-purple-400 uppercase tracking-wider block">ความสัมพันธ์</span>
+                <h4 className="text-[10px] font-bold text-white leading-relaxed line-clamp-2">ดูดวงความรัก คนโสด vs คนมีคู่</h4>
+                <span className="text-[7px] text-slate-550 block font-mono">15 พ.ค. 2567</span>
               </div>
             </a>
 
             {/* Article 4 */}
-            <a href="dreams.html" className="bg-[#0b061e]/20 border border-purple-950/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-purple-500/30 transition-all shadow-sm">
+            <a href="dreams.html" className="bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-purple-500/20 hover:translate-y-[-2px] transition-all shadow-sm">
               <div className="aspect-[1.5/1] overflow-hidden w-full relative">
-                <img src="/art_bedroom.png" alt="Bedroom Feng Shui Article" className="w-full h-full object-cover" />
+                <img src="/art_bedroom.png" alt="Bedroom Feng Shui Article Banner" className="w-full h-full object-cover" />
               </div>
-              <div className="p-3 text-left space-y-1">
-                <h4 className="text-[10px] font-bold text-white line-clamp-2">ฮวงจุ้ยห้องนอน เสริมรัก เสริมโชค</h4>
-                <span className="text-[7px] text-slate-500 block">10 พ.ค. 2567</span>
+              <div className="p-4 text-left space-y-1.5">
+                <span className="text-[7.5px] font-bold text-purple-400 uppercase tracking-wider block">ฮวงจุ้ยที่อยู่อาศัย</span>
+                <h4 className="text-[10px] font-bold text-white leading-relaxed line-clamp-2">ฮวงจุ้ยห้องนอน เสริมรัก เสริมโชค</h4>
+                <span className="text-[7px] text-slate-550 block font-mono">10 พ.ค. 2567</span>
               </div>
             </a>
 
           </div>
         </section>
 
-        {/* AdSense Bottom Ad Slot Placeholder */}
-        <div className="w-full rounded-xl border border-purple-950/20 bg-[#120a2e]/10 p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-655 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
+        {/* AdSense Lower Ad Slot Placeholder */}
+        <div className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.02] p-2.5 flex flex-col items-center justify-center text-[9px] text-slate-600 uppercase tracking-widest min-h-[90px] relative overflow-hidden my-1">
           <div className="absolute top-1 right-2 text-[7px] text-slate-700">AdSlot: Bottom Banner</div>
           <span>Google AdSense Advertisement</span>
           <div className="text-[7px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
 
-        {/* 5. Promotion Membership Banner at the bottom */}
-        <section className="bg-gradient-to-r from-purple-950/30 via-[#120a2e]/60 to-purple-950/30 border border-purple-500/20 rounded-3xl p-6 md:p-8 flex flex-col sm:flex-row justify-between items-center gap-6 relative overflow-hidden">
+        {/* 8. Premium Membership Section (Large Premium Banner) */}
+        <section className="bg-gradient-to-r from-purple-950/20 via-[#120a2e]/50 to-purple-950/20 border border-purple-500/15 rounded-[24px] p-8 md:p-12 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden shadow-2xl text-left">
           {/* Glowing stardust overlay decoration */}
-          <div className="absolute top-0 right-0 w-44 h-full pointer-events-none opacity-20 select-none">
-            <img src="/tarot_banner.png" alt="Tarot cards promo art overlay" className="w-full h-full object-cover" />
+          <div className="absolute top-0 right-0 w-64 h-full pointer-events-none opacity-[0.08] select-none">
+            <img src="/tarot_banner.png" alt="Tarot card promo overlay decoration" className="w-full h-full object-cover" />
           </div>
 
-          <div className="text-left space-y-3 z-10">
-            <span className="text-[8px] font-bold uppercase tracking-wider text-amber-500">สมัครสมาชิกวันนี้</span>
-            <h2 className="text-lg md:text-xl font-serif font-black text-white">รับสิทธิพิเศษทันที!</h2>
+          <div className="space-y-4 z-10">
+            <span className="text-[8px] font-black uppercase tracking-wider text-amber-500">สิทธิประโยชน์สมาชิก</span>
+            <h2 className="text-xl md:text-2xl font-serif font-black text-white">สมัครสมาชิกเปิดชะตาชีวิตวันนี้</h2>
             
-            <div className="flex flex-col gap-1.5 text-[10px] text-slate-300 font-medium">
+            <div className="flex flex-col gap-2 text-[10px] text-slate-350 font-medium">
               <div className="flex items-center gap-2">
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>ดูดวงรายวันไม่จำกัด</span>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span>ดูดวงรายวันและตรวจสมดุล 5 ธาตุไม่จำกัดจำนวนครั้ง</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>ส่วนลดบริการคำพากย์พิเศษ 10%</span>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span>รับสรุปรายงานการคำนวณตำแหน่งดวงดาวแบบละเอียด PDF</span>
               </div>
               <div className="flex items-center gap-2">
-                <Check className="w-3.5 h-3.5 text-emerald-400" />
-                <span>สิทธิ์ปรึกษารายวันพิเศษราคาเฉพาะสมาชิก</span>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span>สิทธิ์การขอคำแนะนำแบบเจาะลึกฟรีโดยระบบปัญญาประดิษฐ์ AI</span>
               </div>
             </div>
           </div>
@@ -743,29 +751,78 @@ export default function Home() {
               setWizardOpen(true);
               setCurrentStep(1);
             }}
-            className="px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center gap-1.5 cursor-pointer z-10 shrink-0"
+            className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-yellow-450 hover:from-amber-400 hover:to-yellow-350 text-black font-extrabold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center gap-1.5 cursor-pointer z-10 shrink-0"
           >
-            <span>สมัครสมาชิก ✛</span>
+            <span>สมัครสมาชิกฟรี ✛</span>
           </button>
         </section>
 
       </main>
 
-      {/* Real Footer with Social Media Links */}
-      <footer className="w-full bg-[#020108] border-t border-purple-950/20 py-8 px-6 md:px-12 mt-12 relative z-10 text-slate-500 text-xs">
-        <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[10px] font-medium">&copy; 2026 Likit Fah ศาลาพยากรณ์ All rights reserved.</p>
+      {/* 9. Footer Section */}
+      <footer className="w-full bg-[#020208] border-t border-white/[0.04] py-12 px-6 md:px-12 mt-16 relative z-10 text-slate-500 text-xs text-left">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          <div className="flex gap-4 text-base">
-            <a href="#" className="hover:text-white transition-colors" aria-label="Facebook"><Share2 className="w-4 h-4" /></a>
-            <a href="#" className="hover:text-white transition-colors" aria-label="Line"><Mail className="w-4 h-4" /></a>
-            <a href="#" className="hover:text-white transition-colors" aria-label="Instagram"><Globe className="w-4 h-4" /></a>
+          {/* Logo & description */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7.5 h-7.5 rounded-full bg-gradient-to-b from-amber-400 to-amber-600 flex items-center justify-center border border-amber-500/30">
+                <Moon className="w-4 h-4 text-slate-950 font-bold" />
+              </div>
+              <div>
+                <span className="font-serif font-black text-sm md:text-base tracking-wider text-white">{currentTranslations.brand}</span>
+                <p className="text-[6px] text-slate-500 uppercase tracking-widest font-bold">{currentTranslations.subtitle}</p>
+              </div>
+            </div>
+            <p className="leading-relaxed text-[11px] font-light">{currentTranslations.footerDesc}</p>
+          </div>
+
+          {/* Col 2 */}
+          <div className="space-y-3">
+            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">{currentTranslations.footerCol1}</h5>
+            <ul className="space-y-2 font-light">
+              <li><a href="chinese-calendar.html" className="hover:text-amber-400 transition-colors">ปฏิทินจีนบาจื่อ</a></li>
+              <li><a href="tarot.html" className="hover:text-amber-400 transition-colors">ทำนายไพ่ยิปซี</a></li>
+              <li><a href="siemsi.html" className="hover:text-amber-400 transition-colors">เสี่ยงเซียมซีนำทาง</a></li>
+              <li><a href="dreams.html" className="hover:text-amber-400 transition-colors">ทำนายฝันพยากรณ์</a></li>
+            </ul>
+          </div>
+
+          {/* Col 3 */}
+          <div className="space-y-3">
+            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">{currentTranslations.footerCol2}</h5>
+            <ul className="space-y-2 font-light">
+              <li><a href="policy.html" className="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว (Privacy)</a></li>
+              <li><a href="terms.html" className="hover:text-amber-400 transition-colors">ข้อตกลงการใช้งาน (Terms)</a></li>
+              <li><a href="donate.html" className="hover:text-amber-400 transition-colors">สนับสนุนลิขิตฟ้า</a></li>
+            </ul>
+          </div>
+
+          {/* Col 4 - Social and newsletter */}
+          <div className="space-y-3">
+            <h5 className="font-serif font-black text-white text-xs uppercase tracking-wider">{currentTranslations.footerCol3}</h5>
+            <p className="font-light">Email: contact@likitfah.com</p>
+            <div className="flex gap-4 pt-1 text-base">
+              <a href="#" className="hover:text-amber-400 transition-colors" aria-label="Facebook"><Share2 className="w-4 h-4" /></a>
+              <a href="#" className="hover:text-amber-400 transition-colors" aria-label="Line"><Mail className="w-4 h-4" /></a>
+              <a href="#" className="hover:text-amber-400 transition-colors" aria-label="Website"><Globe className="w-4 h-4" /></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="max-w-[1440px] mx-auto border-t border-white/[0.04] mt-10 pt-6 text-center text-[10px] text-slate-650 font-medium flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p>&copy; 2026 LikitFah.com • The Mystic Oracle. All Rights Reserved.</p>
+          <div className="flex gap-4">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <span>•</span>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </footer>
 
-      {/* 6. Sticky Mobile Bottom Navigation Bar matching mockup */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-[#060214]/90 backdrop-blur-md border-t border-purple-950/20 py-2.5 px-4 flex justify-around items-center text-slate-400 text-[10px] md:hidden shadow-[0_-2px_15px_rgba(0,0,0,0.4)]">
+      {/* 10. Sticky Mobile Bottom Navigation Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-[#070714]/90 backdrop-blur-md border-t border-white/[0.06] py-2.5 px-4 flex justify-around items-center text-slate-400 text-[10px] md:hidden shadow-[0_-2px_15px_rgba(0,0,0,0.5)]">
         <a href="index.html" className="flex flex-col items-center gap-1 text-amber-500">
           <span>🏠</span>
           <span className="font-bold text-[9px]">หน้าหลัก</span>
@@ -864,7 +921,7 @@ export default function Home() {
                     <div className="flex flex-col gap-4">
                       <div className="text-center">
                         <h3 className="text-base font-bold text-white">{currentTranslations.wizardStep2}</h3>
-                        <p className="text-xs text-slate-400 mt-1">Select date in C.E. (ค.ศ.)</p>
+                        <p className="text-xs text-slate-400 mt-1 font-sans">Select date in C.E. (ค.ศ.)</p>
                       </div>
                       <div className="flex flex-col gap-2">
                         <label className="text-[10px] font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1">
@@ -958,7 +1015,7 @@ export default function Home() {
               /* Loading / Submission State */
               <div className="flex flex-col gap-6 py-4">
                 <div className="text-center flex flex-col items-center gap-3">
-                  <Loader2 className="w-8 h-8 text-amber-550 animate-spin" />
+                  <Loader2 className="w-8 h-8 text-amber-555 animate-spin" />
                   <h3 className="text-sm font-bold text-white mt-1">{currentTranslations.loadingTitle}</h3>
                 </div>
 
@@ -989,7 +1046,7 @@ export default function Home() {
                       >
                         <div className="shrink-0">
                           {isCompleted ? (
-                            <CheckCircle2 className="w-4 h-4 text-amber-555" />
+                            <CheckCircle2 className="w-4 h-4 text-amber-500" />
                           ) : isActive ? (
                             <Loader2 className="w-4 h-4 text-amber-555 animate-spin" />
                           ) : (
