@@ -72,7 +72,7 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: 'Kanit', var(--font-sans), ui-sans-serif, system-ui, sans-serif !important;
   overflow-x: hidden;
 }
 

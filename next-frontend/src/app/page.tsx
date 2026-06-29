@@ -1089,40 +1089,6 @@ export default function Home() {
           <div className="text-[9px] text-slate-500 font-mono mt-1">&lt;ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"&gt;&lt;/ins&gt;</div>
         </div>
 
-        {/* 12. Membership Section (Redesigned with gold gradient button, larger CTA, premium typography) */}
-        <section className="bg-gradient-to-r from-purple-950/20 via-[#120a2e]/60 to-purple-950/20 border border-purple-500/15 rounded-[24px] p-10 md:p-14 flex flex-col md:flex-row justify-between items-center gap-8 relative overflow-hidden shadow-2xl text-left">
-          {/* Glowing stardust overlay decoration */}
-          <div className="absolute top-0 right-0 w-64 h-full pointer-events-none opacity-[0.08] select-none">
-            <img src="/tarot_banner.png" alt="Tarot card promo overlay decoration" className="w-full h-full object-cover" />
-          </div>
-
-          <div className="space-y-5 z-10">
-            <span className="text-[12px] font-black uppercase tracking-wider text-amber-500">สิทธิประโยชน์สมาชิก</span>
-            <h2 className="text-2xl md:text-3xl font-serif font-black text-white leading-tight">สมัครสมาชิกเปิดชะตาชีวิตวันนี้</h2>
-            
-            <div className="flex flex-col gap-3 text-[14px] md:text-[15px] text-slate-300 font-medium leading-relaxed">
-              <div className="flex items-center gap-3.5">
-                <Check className="w-5 h-5 text-emerald-400 animate-pulse" />
-                <span>ดูดวงรายวันและตรวจสมดุล 5 ธาตุไม่จำกัดจำนวนครั้งฟรี</span>
-              </div>
-              <div className="flex items-center gap-3.5">
-                <Check className="w-5 h-5 text-emerald-400 animate-pulse" />
-                <span>รับสรุปรายงานการคำนวณตำแหน่งดวงดาวแบบละเอียด PDF ส่งตรงเข้าเมล</span>
-              </div>
-              <div className="flex items-center gap-3.5">
-                <Check className="w-5 h-5 text-emerald-400 animate-pulse" />
-                <span>สิทธิ์การขอคำแนะนำแบบเจาะลึกฟรีโดยระบบปัญญาประดิษฐ์ AI</span>
-              </div>
-            </div>
-          </div>
-
-          <button 
-            onClick={() => setWizardOpen(true)}
-            className="px-10 py-5.5 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-550 text-black font-black text-[16px] md:text-[17px] shadow-lg hover:scale-[1.03] hover:shadow-[0_4px_30px_rgba(233,196,106,0.4)] transition-all flex items-center gap-2 cursor-pointer z-10 shrink-0"
-          >
-            <span>สมัครสมาชิกฟรี ✛</span>
-          </button>
-        </section>
 
       </main>
 
