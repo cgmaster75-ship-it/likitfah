@@ -1100,7 +1100,7 @@ export default function Home() {
 
       {/* 13. Expanded Footer Section (Logo restored to original img/logo-likitfah.png) */}
       <footer className="w-full bg-[#020208] border-t border-white/[0.04] py-20 px-8 md:px-14 mt-16 relative z-10 text-slate-500 text-[14px] text-left">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           
           {/* Logo & description (Takes 2 cols on desktop) */}
           <div className="col-span-2 space-y-5">
@@ -1126,18 +1126,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Col 2 - Company & Sitemap */}
-          <div className="space-y-4">
-            <h5 className="font-serif font-black text-white text-[15px] uppercase tracking-wider">Company</h5>
-            <ul className="space-y-3 font-light">
-              <li><a href={getLink("about.html")} className="hover:text-amber-400 transition-colors">เกี่ยวกับเรา</a></li>
-              <li><a href={getLink("team.html")} className="hover:text-amber-400 transition-colors">ทีมนักพยากรณ์</a></li>
-              <li><a href={getLink("careers.html")} className="hover:text-amber-400 transition-colors">ร่วมงานกับเรา</a></li>
-              <li><a href={getLink("press.html")} className="hover:text-amber-400 transition-colors">ข่าวประชาสัมพันธ์</a></li>
-            </ul>
-          </div>
-
-          {/* Col 3 - Services Sitemap */}
+          {/* Col 2 - Services Sitemap */}
           <div className="space-y-4">
             <h5 className="font-serif font-black text-white text-[15px] uppercase tracking-wider">Horoscope & Services</h5>
             <ul className="space-y-3 font-light">
@@ -1148,14 +1137,13 @@ export default function Home() {
             </ul>
           </div>
 
-          {/* Col 4 - Legal & Support */}
+          {/* Col 3 - Legal & Support (without Help) */}
           <div className="space-y-4">
-            <h5 className="font-serif font-black text-white text-[15px] uppercase tracking-wider">Legal & Support</h5>
+            <h5 className="font-serif font-black text-white text-[15px] uppercase tracking-wider">Legal & Terms</h5>
             <ul className="space-y-3 font-light">
               <li><a href={getLink("policy.html")} className="hover:text-amber-400 transition-colors">นโยบายความเป็นส่วนตัว</a></li>
               <li><a href={getLink("terms.html")} className="hover:text-amber-400 transition-colors">ข้อตกลงและเงื่อนไข</a></li>
               <li><a href={getLink("disclaimer.html")} className="hover:text-amber-400 transition-colors">ข้อปฏิเสธความรับผิดชอบ</a></li>
-              <li><a href={getLink("help.html")} className="hover:text-amber-400 transition-colors">ศูนย์ช่วยเหลือ (Help)</a></li>
             </ul>
           </div>
 
