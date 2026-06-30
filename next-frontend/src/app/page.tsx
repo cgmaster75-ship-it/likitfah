@@ -517,11 +517,6 @@ export default function Home() {
           >
             {lang === "th" ? "EN" : "TH"}
           </button>
-          
-          <button className="relative text-slate-400 hover:text-white transition-colors cursor-pointer">
-            <Bell className="w-6 h-6" />
-            <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-amber-500"></span>
-          </button>
         </div>
       </header>
 
