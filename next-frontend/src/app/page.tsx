@@ -185,7 +185,7 @@ const realBlogFallback = {
       title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Fool (การผจญภัยครั้งใหม่) เจาะลึกคำทำนาย",
       desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Fool (การผจญภัยครั้งใหม่) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
       category: "ความหมายไพ่ยิปซี",
-      imgUrl: "https://likitfah.com/img/card/Arcana/MA00.webp",
+      imgUrl: "/img/card/Arcana/MA00.webp",
       url: "blog/articles/tarot-the-fool-meaning.html",
       readTime: "อ่าน 5 นาที",
       author: "พยัคฆ์ทาโรต์",
@@ -195,7 +195,7 @@ const realBlogFallback = {
       title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Magician (ผู้เนรมิตโชคชะตา) เจาะลึกคำทำนาย",
       desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Magician (ผู้เนรมิตโชคชะตา) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
       category: "ความหมายไพ่ยิปซี",
-      imgUrl: "https://likitfah.com/img/card/Arcana/MA01.webp",
+      imgUrl: "/img/card/Arcana/MA01.webp",
       url: "blog/articles/tarot-the-magician-meaning.html",
       readTime: "อ่าน 5 นาที",
       author: "พยัคฆ์ทาโรต์",
@@ -205,7 +205,7 @@ const realBlogFallback = {
       title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The High Priestess (ราชินีพระจันทร์) เจาะลึกคำทำนาย",
       desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The High Priestess (ราชินีพระจันทร์) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
       category: "ความหมายไพ่ยิปซี",
-      imgUrl: "https://likitfah.com/img/card/Arcana/MA02.webp",
+      imgUrl: "/img/card/Arcana/MA02.webp",
       url: "blog/articles/tarot-the-high-priestess-meaning.html",
       readTime: "อ่าน 6 นาที",
       author: "พยัคฆ์ทาโรต์",
@@ -215,7 +215,7 @@ const realBlogFallback = {
       title: "ความหมายไพ่ยิปซีพรีเมียม: ไพ่ The Empress (พระมารดาอุดมสมบูรณ์) เจาะลึกคำทำนาย",
       desc: "ศึกษาประวัติ ความลับ และคำทำนายพยากรณ์ของไพ่ The Empress (พระมารดาอุดมสมบูรณ์) ทั้งด้านความรัก การเงิน การงาน และความหมายหัวกลับอย่างละเอียด",
       category: "ความหมายไพ่ยิปซี",
-      imgUrl: "https://likitfah.com/img/card/Arcana/MA03.webp",
+      imgUrl: "/img/card/Arcana/MA03.webp",
       url: "blog/articles/tarot-the-empress-meaning.html",
       readTime: "อ่าน 5 นาที",
       author: "พยัคฆ์ทาโรต์",
@@ -324,12 +324,20 @@ export default function Home() {
           const filtered = list
             .filter((item: any) => item.lang === lang)
             .slice(0, 4)
-            .map((item: any) => ({
-              ...item,
-              readTime: lang === "en" ? "5 min read" : "อ่าน 5 นาที",
-              author: lang === "en" ? "Pyak Tarot" : "พยัคฆ์ทาโรต์",
-              views: lang === "en" ? "1,200 views" : "10,240 วิว"
-            }));
+            .map((item: any) => {
+              // Convert absolute URL to local path to resolve image loading failure
+              let localImg = item.imgUrl;
+              if (localImg && localImg.startsWith("https://likitfah.com/")) {
+                localImg = localImg.replace("https://likitfah.com/", "/");
+              }
+              return {
+                ...item,
+                imgUrl: localImg,
+                readTime: lang === "en" ? "5 min read" : "อ่าน 5 นาที",
+                author: lang === "en" ? "Pyak Tarot" : "พยัคฆ์ทาโรต์",
+                views: lang === "en" ? "1,200 views" : "10,240 วิว"
+              };
+            });
           if (filtered.length > 0) {
             setBlogArticles(filtered);
             return;
@@ -986,24 +994,20 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 9. Trust & Statistics Section */}
-        <section className="bg-white/[0.02] border border-white/[0.06] rounded-[24px] p-10 md:p-12 text-center relative overflow-hidden backdrop-blur-md">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[48px] md:text-[60px] font-mono font-black text-amber-400 tracking-tight leading-none">100,000+</span>
-              <span className="text-[13px] md:text-[14px] font-bold text-slate-500 uppercase tracking-widest">ผู้ใช้งานในระบบ</span>
+        {/* 9. Trust & Statistics Section (Redesigned to be clean and premium, without 10+ years) */}
+        <section className="bg-gradient-to-b from-white/[0.03] to-transparent border border-white/[0.08] rounded-[24px] p-8 md:p-10 text-center relative overflow-hidden backdrop-blur-md">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.06]">
+            <div className="flex flex-col items-center gap-2 py-4 md:py-0">
+              <span className="text-[40px] md:text-[48px] font-mono font-black text-amber-450 tracking-tight leading-none drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">100,000+</span>
+              <span className="text-[12px] md:text-[13px] font-bold text-slate-400 uppercase tracking-wider">ผู้ใช้งานในระบบ</span>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[48px] md:text-[60px] font-mono font-black text-amber-400 tracking-tight leading-none">1,000,000+</span>
-              <span className="text-[13px] md:text-[14px] font-bold text-slate-500 uppercase tracking-widest">คำทำนายที่เสร็จสิ้น</span>
+            <div className="flex flex-col items-center gap-2 py-4 md:py-0">
+              <span className="text-[40px] md:text-[48px] font-mono font-black text-amber-450 tracking-tight leading-none drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">1,000,000+</span>
+              <span className="text-[12px] md:text-[13px] font-bold text-slate-400 uppercase tracking-wider">คำทำนายที่เสร็จสิ้น</span>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[48px] md:text-[60px] font-mono font-black text-amber-400 tracking-tight leading-none">4.9 ★</span>
-              <span className="text-[13px] md:text-[14px] font-bold text-slate-500 uppercase tracking-widest">คะแนนรีวิวจากผู้ใช้</span>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-[48px] md:text-[60px] font-mono font-black text-amber-400 tracking-tight leading-none">10+ ปี</span>
-              <span className="text-[13px] md:text-[14px] font-bold text-slate-500 uppercase tracking-widest">ประสบการณ์ผู้พัฒนาร่วม</span>
+            <div className="flex flex-col items-center gap-2 py-4 md:py-0">
+              <span className="text-[40px] md:text-[48px] font-mono font-black text-amber-450 tracking-tight leading-none drop-shadow-[0_0_15px_rgba(245,158,11,0.25)]">4.9 ★</span>
+              <span className="text-[12px] md:text-[13px] font-bold text-slate-400 uppercase tracking-wider">คะแนนรีวิวจากผู้ใช้</span>
             </div>
           </div>
         </section>
